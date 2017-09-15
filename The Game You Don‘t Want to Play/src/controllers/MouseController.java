@@ -15,10 +15,9 @@ public class MouseController implements MouseMotionListener, MouseListener {
 		this.gui = gui;
 
 	}
-
 	@Override
 	public void mousePressed(MouseEvent e) {
-
+		System.out.printf("X:%dY:%d\n",e.getX(),e.getY());
 	}
 
 	@Override

@@ -6,6 +6,9 @@ import view.View;
 
 public class GUI extends Observable{
 
+	//Player;
+	//Map;
+	
 	
 	public GUI() {
 		

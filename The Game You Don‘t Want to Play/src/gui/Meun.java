@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -14,6 +13,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import resources.ImgResources;
+
 
 public class Meun extends JComponent {
 
@@ -29,6 +29,7 @@ public class Meun extends JComponent {
 		NewGame.addActionListener((e) -> {
 
 			new GUI();
+			f.setVisible(false);
 			//f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
 			// gui.cardlayout3.next(gui.jp);
 
@@ -73,10 +74,8 @@ public class Meun extends JComponent {
 		f.pack();
 		f.setResizable(false);
 		f.setVisible(true);
-		f.setSize(1400, 850);
-
+		f.setSize(1400, 850);	
 		
-
 	}
 
 	public static void main(String[] args) {
@@ -87,7 +86,6 @@ public class Meun extends JComponent {
 	public void paintComponent(Graphics _g) {
 		super.paintComponent(_g);
 		Graphics2D g = (Graphics2D) _g;
-
 		g.drawImage(ImgResources.BackGroud.img, 0, 0, this.getWidth(), this.getHeight(), null);
 
 	}

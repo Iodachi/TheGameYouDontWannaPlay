@@ -3,6 +3,7 @@ package character;
 import java.util.Stack;
 
 import item.ConsumableItem;
+import main.InvalidMove;
 
 /**
  * This class represents the character that player controls, player can do all sorts of things such as move, attack, use items and so on.
@@ -12,6 +13,7 @@ import item.ConsumableItem;
  */
 public class Player {
 	private String name;
+	private String facingDirection;
 	//a stack of items that player collected and can be used later.
 	private Stack<ConsumableItem> inventory;
 	//the maximum amount of items can be stored in the inventory
@@ -23,10 +25,12 @@ public class Player {
 	
 	public Player(String name) {
 		this.name = name;
+		facingDirection = "down";
 		health = 100;
 		damage = 10;
 		defence = 10;
 		gold = 0;
+		inventory = new Stack<>();
 	}
 	
 	/**
@@ -52,34 +56,54 @@ public class Player {
 		inventory.add(item);
 	}
 	
-	//================ movement methods =====================
+	/**
+	 * player moves one grid to its current direction, player cannot move outside the board,
+	 * or move to a wall, or an closed door, but the direction he faces will be changed
+	 * @param direction
+	 * @throws InvalidMove
+	 */
 	public void move(String direction) throws InvalidMove {
 		//TODO: replace this with board size
 		int boardSize = 10;
 		
 		//TODO: door, wall interaction, as well as monsters
 		if(direction.equals("right")) {
+			facingDirection = "right";
 			if(xPos + 1 > boardSize - 1) {
 				throw new InvalidMove("Cannot move out of board");
 			}
 			xPos++;
 		}else if(direction.equals("left")) {
+			facingDirection = "left";
 			if(xPos - 1 < 0) {
 				throw new InvalidMove("Cannot move out of board");
 			}
 			xPos--;
 		}else if(direction.equals("up")) {
+			facingDirection = "up";
 			if(yPos - 1 < 0) {
 				throw new InvalidMove("Cannot move out of board");
 			}
 			xPos--;
 		}else if(direction.equals("down")) {
+			facingDirection = "down";
 			if(yPos + 1 > boardSize - 1) {
 				throw new InvalidMove("Cannot move out of board");
 			}
 			yPos++;
 		}
+		
+		//TODO: pick item
 	}
+	
+//	/**
+//	 * returns the grid on board that the player is facing, in order to do the interactions when pressing e.
+//	 * @return
+//	 */
+//	public Grid getFacingGrid() {
+//		//TODO
+//		return null;
+//	}
 	
 	//================= setter and getters ===================
 	
@@ -118,6 +142,10 @@ public class Player {
 	
 	public int getGold() {
 		return gold;
+	}
+	
+	public Stack<ConsumableItem> getInventory(){
+		return inventory;
 	}
 	
 	public int getXPos() {

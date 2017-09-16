@@ -1,20 +1,44 @@
 package item;
 
-public class Armor extends WearableItem{
-	
+import character.Player;
+
+public class Armor extends WearableItem {
+    private int defence =500;
+	private int x,y;
+	private boolean isOn=false;
+
+
+	public Armor(int x,int y){
+	    this.x =x;
+	    this.y= y;
+    }
 	@Override
-	public boolean on(double x, double y) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean on(int x, int y) {
+		return this.x ==x&&this.y==y;
 	}
 
 	@Override
-	public void putOn() {
+	public void putOn(Player player) {
+	  if(!isOn){
+          player.setDefence(player.getDefence()+defence);
+          isOn=true;
+      }
 
 	}
 
+    @Override
+    public void takeOff(Player player) {
+	    if(isOn){
+            player.setDefence(player.getDefence()-defence);
+            isOn=false;
+        }
+
+    }
+
+
+
 	@Override
-	public void takeOff() {
+	public void fix(int amount) {
 
 	}
 }

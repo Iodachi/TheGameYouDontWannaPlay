@@ -6,7 +6,7 @@ public interface Item {
 	 * @param y
 	 * check if the point(x,y) is on the top of item
 	 * */
-	public boolean on(double x,double y);
+	public boolean on(int x, int y);
 
 
 	/**

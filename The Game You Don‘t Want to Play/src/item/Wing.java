@@ -1,20 +1,30 @@
 package item;
 
-public class Wing extends WearableItem{
+import character.Player;
+/***
+ * increase crit
+ * */
+public class Wing extends WearableItem {
+
+
 
 	@Override
-	public boolean on(double x, double y) {
-		// TODO Auto-generated method stub
+	public void putOn(Player player) {
+
+	}
+
+	@Override
+	public void takeOff(Player player) {
+
+	}
+
+	@Override
+	public void fix(int amount) {
+		
+	}
+
+	@Override
+	public boolean on(int x, int y) {
 		return false;
-	}
-
-	@Override
-	public void putOn() {
-
-	}
-
-	@Override
-	public void takeOff() {
-
 	}
 }

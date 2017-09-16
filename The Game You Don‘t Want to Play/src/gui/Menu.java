@@ -15,12 +15,12 @@ import javax.swing.border.EmptyBorder;
 import resources.ImgResources;
 
 
-public class Meun extends JComponent {
+public class Menu extends JComponent {
 
 	private static final long serialVersionUID = 1L;
 	private static final JFrame f = new JFrame("The Game You Don't Want to Play");
 
-	public Meun() {
+	public Menu() {
 
 		JButton NewGame = new JButton("New Game");
 		JButton Load = new JButton("Load");
@@ -80,7 +80,7 @@ public class Meun extends JComponent {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new Meun();  
+		new Menu();  
 	}
 
 	public void paintComponent(Graphics _g) {

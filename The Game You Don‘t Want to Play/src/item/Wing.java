@@ -1,6 +1,6 @@
 package item;
 
-public class Wing extends wearableItem{
+public class Wing extends WearableItem{
 
 	@Override
 	public boolean on(double x, double y) {

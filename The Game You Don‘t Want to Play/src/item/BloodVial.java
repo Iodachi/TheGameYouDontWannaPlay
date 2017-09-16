@@ -1,6 +1,6 @@
 package item;
 
-public class BloodVial extends consumableItem {
+public class BloodVial extends ConsumableItem {
 
 	@Override
 	public boolean on(double x, double y) {

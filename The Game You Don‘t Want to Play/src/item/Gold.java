@@ -1,6 +1,6 @@
 package item;
 
-public class Gold extends consumableItem{
+public class Gold extends ConsumableItem{
 
 	@Override
 	public boolean on(double x, double y) {

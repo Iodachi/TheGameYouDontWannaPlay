@@ -1,6 +1,6 @@
 package item;
 
-public class Gem extends wearableItem {
+public class Gem extends WearableItem {
 
 	@Override
 	public boolean on(double x, double y) {

@@ -13,7 +13,13 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import resources.ImgResources;
-
+/**
+ * 
+ * @author Zhancheng Gan
+ *  
+ *  The game menu for this game, it contains New Game, Load, Info , Quit button and background 
+ *
+ */
 
 public class Menu extends JComponent {
 
@@ -27,17 +33,13 @@ public class Menu extends JComponent {
 		JButton Info = new JButton("Info");
 		JButton Quit = new JButton("Quit");
 		NewGame.addActionListener((e) -> {
-
 			new GUI();
 			f.setVisible(false);
 			//f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
-			// gui.cardlayout3.next(gui.jp);
 
 		});
 		Load.addActionListener((e) -> {
-
 			System.exit(0);
-
 		});
 
 		Quit.addActionListener((e) -> {

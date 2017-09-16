@@ -1,4 +1,4 @@
-package main;
+package character;
 
 /**
  * An exception that indicates an attempt to make an invalid move.

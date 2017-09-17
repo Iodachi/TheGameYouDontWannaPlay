@@ -17,14 +17,18 @@ import resources.ImgResources;
  * 
  * @author Zhancheng Gan
  *  
+<<<<<<< HEAD
  *  The game menu for this game, it contains New Game, Load, Info , Quit button and background 
+=======
+ *  The game menu for this game, it contains New Game, Load, Info , Quit button and background images 
+>>>>>>> e8c4104ffc667679dbcf9b48afa3b63f6a3151bf
  *
  */
 
 public class Menu extends JComponent {
 
 	private static final long serialVersionUID = 1L;
-	private static final JFrame f = new JFrame("The Game You Don't Want to Play");
+	private static final JFrame f = new JFrame("The Game You Don't Want To Play");
 
 	public Menu() {
 
@@ -34,26 +38,30 @@ public class Menu extends JComponent {
 		JButton Quit = new JButton("Quit");
 		NewGame.addActionListener((e) -> {
 			new GUI();
+<<<<<<< HEAD
 			f.setVisible(false);
 			//f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
 
 		});
 		Load.addActionListener((e) -> {
 			System.exit(0);
+=======
+			f.setVisible(false); //hidden the menu frame
+		});
+		Load.addActionListener((e) -> {
+			// not implement yet
+>>>>>>> e8c4104ffc667679dbcf9b48afa3b63f6a3151bf
 		});
 
 		Quit.addActionListener((e) -> {
-
 			System.exit(0);
-
 		});
 		Info.addActionListener((e) -> {
-
-			// gui.getInfo();
-
+			// not implement yet
 		});
-
-		this.setLayout(new GridLayout(0, 1, 0, 100));
+		
+		//set layout for the buttons 
+		this.setLayout(new GridLayout(0, 1, 0, 100)); 
 		this.setBorder(new EmptyBorder(190, 600, 190, 600));
 		Insets margin = new Insets(20, 100, 20, 150);
 
@@ -67,10 +75,10 @@ public class Menu extends JComponent {
 		this.add(Info);
 		this.add(Quit);
 
-		this.setSize(50, 50);
 		setFocusable(true);
 		setVisible(true);
 		
+		// add this menu to the frame
 		f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		f.add(this);
 		f.pack();
@@ -81,10 +89,11 @@ public class Menu extends JComponent {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		new Menu();  
 	}
-
+	/**
+	 * paint out the background images 
+	 */
 	public void paintComponent(Graphics _g) {
 		super.paintComponent(_g);
 		Graphics2D g = (Graphics2D) _g;

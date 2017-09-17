@@ -1,13 +1,17 @@
 package resources;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+/**
+ * 
+ * @author Zhancheng Gan
+ *
+ */
 public enum IconResources {
 	
 		Info("Info.png");
 		
-		public final Icon icon;
+		public final  ImageIcon icon;
 
 		IconResources(String resourceName) {
 			try {

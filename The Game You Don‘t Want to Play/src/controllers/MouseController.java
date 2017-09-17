@@ -6,6 +6,12 @@ import java.awt.event.MouseMotionListener;
 
 import gui.GUI;
 
+/**
+ * 
+ * @author Zhancheng Gan
+ *
+ */
+
 
 public class MouseController implements MouseMotionListener, MouseListener {
 

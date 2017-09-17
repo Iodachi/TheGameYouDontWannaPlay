@@ -1,9 +1,15 @@
 package controllers;
 
 import java.awt.event.KeyEvent;
+
 import java.awt.event.KeyListener;
 
 import gui.GUI;
+
+/**
+ * 
+ *
+ */
 
 public class KeyController implements KeyListener {
 

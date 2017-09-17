@@ -1,8 +1,14 @@
 package resources;
 
 import java.awt.Image;
+
 import java.io.IOException;
 import javax.imageio.ImageIO;
+
+/**
+ * 
+ * @author Zhancheng Gan
+ */
 
 public enum ImgResources {
 	//

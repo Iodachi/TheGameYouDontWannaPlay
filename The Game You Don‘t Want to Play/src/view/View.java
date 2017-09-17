@@ -11,11 +11,18 @@ import javax.swing.WindowConstants;
 import controllers.*;
 import gui.GUI;
 
+/**
+ * 
+ * This is View class for the GUI
+ * To do rendering, to paint our all the components, includes Players, Maps ect 
+ * 
+ * @author ZhanCheng Gan
+ *
+ */
+
 public class View extends JComponent implements Observer{
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	private GUI gui;

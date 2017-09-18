@@ -38,19 +38,19 @@ public class Menu extends JComponent {
 		JButton Quit = new JButton("Quit");
 		NewGame.addActionListener((e) -> {
 			new GUI();
-<<<<<<< HEAD
+//<<<<<<< HEAD
 			f.setVisible(false);
 			//f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
 
 		});
 		Load.addActionListener((e) -> {
 			System.exit(0);
-=======
+//=======
 			f.setVisible(false); //hidden the menu frame
 		});
 		Load.addActionListener((e) -> {
 			// not implement yet
->>>>>>> e8c4104ffc667679dbcf9b48afa3b63f6a3151bf
+//>>>>>>> e8c4104ffc667679dbcf9b48afa3b63f6a3151bf
 		});
 
 		Quit.addActionListener((e) -> {

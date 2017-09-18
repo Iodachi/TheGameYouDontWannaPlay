@@ -2,7 +2,10 @@ package character;
 
 import java.util.Stack;
 
+import item.Bomb;
 import item.ConsumableItem;
+import item.Key;
+import main.InvalidMove;
 
 /**
  * This class represents the character that player controls, player can do all sorts of things such as move, attack, use items and so on.
@@ -50,6 +53,48 @@ public class Player {
 			throw new InvalidMove("Inventory is full.");
 		
 		inventory.add(item);
+	}
+	
+	/**
+	 * use a key in the corresponding color from inventory to open door，
+	 * @param color
+	 * 					the color of the key needed to open the door
+	 * @throws InvalidMove
+	 * 					throws an invalid move exception if doesn't have a key in that color
+	 */
+	public void useKey(String color) throws InvalidMove {
+		boolean hasKey = false;
+//		for(ConsumableItem item: inventory) {
+//			if(item instanceof Key && ((Key)item).getColor().equals(color)) {
+//				inventory.remove(item);
+//				hasKey = true;
+//				break;
+//			}
+//		}
+		
+		//when all items in inventory has been checked and
+		//player doesn't have the key, the door cannot be opened
+		if(!hasKey)
+			throw new InvalidMove("No such key in inventory, cannot open the door");
+	}
+	
+	/**
+	 * use a bomb from inventory to break a breakable wall.
+	 * @throws InvalidMove
+	 * 					throws an invalid move excepction if doesn't have a bomb
+	 */
+	public void useBomb() throws InvalidMove {
+		boolean hasBomb = false;
+		for(ConsumableItem item: inventory) {
+			if(item instanceof Bomb) {
+				inventory.remove(item);
+				hasBomb = true;
+				break;
+			}
+		}
+		
+		if(!hasBomb)
+			throw new InvalidMove("No bomb in inventory, cannot break the wall");
 	}
 	
 	//================ movement methods =====================

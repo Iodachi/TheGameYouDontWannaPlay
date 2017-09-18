@@ -1,9 +1,9 @@
 package Board;
 
 public class Door extends Entity{
-
 	public boolean opened = false;
 	public String color; 
+	
 	public Door(String name, int x, int y, int size) {
 		super(name, x, y, size);
 		// TODO Auto-generated constructor stub

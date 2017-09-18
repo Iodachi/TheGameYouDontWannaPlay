@@ -57,8 +57,9 @@ public class View extends JComponent implements Observer{
 	    characterPanel.setSize(new Dimension(getPreferredSize()));
 	     
 	    JPanel fl = new JPanel(new GridLayout(2,1));
-		fl.add(equipmentsPanel);
+		
 	    fl.add(characterPanel);
+	    fl.add(equipmentsPanel);
 	    fl.setVisible(true);
 	   
 	    
@@ -111,9 +112,9 @@ class equipmentsPanel extends JPanel{
 	private static final int TILESIZE = 64;
 	 @Override  
      public void paint(Graphics g) { 
-		 g.setColor(Color.BLUE);
-		
-	 g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		 
+	 Image img= ImgResources.equipmentBackGroud.img;
+	 g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),0,0,img.getWidth(null),img.getHeight(null),null);
 	 }	 
 	 
 	 public Dimension getPreferredSize() {return new Dimension((int) (TILESIZE*4), TILESIZE*6);}
@@ -127,8 +128,8 @@ class characterPanel extends JPanel{
 	private static final int TILESIZE = 64;
 	 @Override  
      public void paint(Graphics g) { 
-		 g.setColor(Color.GREEN);
-		 Image img= ImgResources.equipmentBackGroud.img;
+		 
+		 Image img= ImgResources.characterBackGroud.img;
 		 g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),0,0,img.getWidth(null),img.getHeight(null),null);
 	 }	 
 	 public Dimension getPreferredSize() {return new Dimension((int) (TILESIZE*4), TILESIZE*6);}

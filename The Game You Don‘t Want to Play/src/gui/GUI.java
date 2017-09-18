@@ -11,12 +11,14 @@ public class GUI extends Observable{
 	public Player player;
 	//Map;
 	
-	
 	public GUI() {
 		player = new Player("Warrior");
 		
 		new View(this);
-	
+		
+	}
+
+	public void update() {
 		
 	}
 	

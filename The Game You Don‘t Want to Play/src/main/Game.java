@@ -1,6 +1,6 @@
 package main;
 
-import Board.Door;
+
 import character.Player;
 import item.Key;
 

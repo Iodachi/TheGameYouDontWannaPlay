@@ -8,8 +8,10 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
+import character.Player;
 import controllers.*;
 import gui.GUI;
+import resources.PlayerResources;
 
 /**
  * 
@@ -24,12 +26,14 @@ public class View extends JComponent implements Observer{
 
 	
 	private static final long serialVersionUID = 1L;
+	private static final int TILESIZE = 64;
 
 	private GUI gui;
 	public View(GUI gui) {
 		this.gui=gui;
 		this.gui.addObserver(this);
 	    this.setFocusable(true); 
+	    
 	    JFrame f = new JFrame("The Game You Don't Want to Play");
 		f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		f.add(this);
@@ -47,6 +51,24 @@ public class View extends JComponent implements Observer{
 		
 	}
 	public void paintComponent(Graphics g) {
+		//drawMap(gui.map);
+		drawPlayer(gui.player,g);
+		
+	}
+
+	private void drawPlayer(Player player, Graphics g) {
+		int x = player.getXPos()*TILESIZE+16;
+		int y = player.getYPos()*TILESIZE+16;
+		
+		/*
+		switch(player.face) {
+		case "up": PlayerResources.Up.image.paintIcon(null, g, x, y); break;
+		case "down": PlayerResources.Down.image.paintIcon(null, g, x, y); break;
+		case "right": PlayerResources.Right.image.paintIcon(null, g, x, y); break;
+		case "left": PlayerResources.Left.image.paintIcon(null, g, x, y); break;
+		default: break;
+		}
+		*/
 		
 	}
 	

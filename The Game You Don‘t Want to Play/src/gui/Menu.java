@@ -84,7 +84,7 @@ public class Menu extends JComponent {
 	public void paintComponent(Graphics _g) {
 		super.paintComponent(_g);
 		Graphics2D g = (Graphics2D) _g;
-		g.drawImage(ImgResources.BackGroud.img, 0, 0, this.getWidth(), this.getHeight(), null);
+		g.drawImage(ImgResources.BackGround.img, 0, 0, this.getWidth(), this.getHeight(), null);
 
 	}
 

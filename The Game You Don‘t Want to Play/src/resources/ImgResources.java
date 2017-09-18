@@ -13,7 +13,8 @@ import javax.imageio.ImageIO;
 public enum ImgResources {
 	//
 	
-	BackGroud("background.jpg");
+	equipmentBackGroud("equipmentPanel.png"),
+	BackGround("background.jpg");
 	
 	public final Image img;
 

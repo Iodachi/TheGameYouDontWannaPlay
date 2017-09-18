@@ -2,17 +2,20 @@ package gui;
 
 import java.util.Observable;
 
-import character.Player;
+import javax.swing.JPanel;
+
+import main.Game;
 import view.View;
 
 
 public class GUI extends Observable{
 
-	public Player player;
-	//Map;
+	
+	public Game game = new Game();
+
 	
 	public GUI() {
-		player = new Player("Warrior");
+		
 		
 		new View(this);
 		

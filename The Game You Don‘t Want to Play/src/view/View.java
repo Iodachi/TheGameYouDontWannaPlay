@@ -1,16 +1,13 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.image.ImageObserver;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -35,7 +32,7 @@ public class View extends JComponent implements Observer{
 
 	
 	private static final long serialVersionUID = 1L;
-	private static final int TILESIZE = 64;
+	public static final int TILESIZE = 64;
 	
 	private JPanel equipmentsPanel;
 	private JPanel characterPanel;
@@ -43,7 +40,7 @@ public class View extends JComponent implements Observer{
 	private GUI gui;
 	
 	public View(GUI gui) {
-		// seting attribute for this view
+		// setting attribute for this view
 		this.gui=gui;
 		this.gui.addObserver(this);
 	    this.setFocusable(true); 
@@ -79,9 +76,10 @@ public class View extends JComponent implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		repaint();
+		//repaint();
 		
 	}
+	@Override
 	public void paintComponent(Graphics g) {
 		//drawMap(gui.map);
 		//drawPlayer(gui.game,g);

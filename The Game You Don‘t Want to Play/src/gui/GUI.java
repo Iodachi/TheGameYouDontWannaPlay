@@ -2,8 +2,6 @@ package gui;
 
 import java.util.Observable;
 
-import javax.swing.JPanel;
-
 import main.Game;
 import view.View;
 

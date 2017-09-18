@@ -4,8 +4,12 @@ package gui;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Insets;
 
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -13,6 +17,8 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import resources.ImgResources;
+import resources.PlayerResources;
+import view.View;
 /**
  * 
  * @author Zhancheng Gan
@@ -24,6 +30,7 @@ import resources.ImgResources;
 public class Menu extends JComponent {
 
 	private static final long serialVersionUID = 1L;
+	
 	private static final JFrame f = new JFrame("The Game You Don't Want To Play");
 
 	public Menu() {
@@ -49,8 +56,8 @@ public class Menu extends JComponent {
 		
 		//set layout for the buttons 
 		this.setLayout(new GridLayout(0, 1, 0, 100)); 
-		this.setBorder(new EmptyBorder(190, 600, 190, 600));
-		Insets margin = new Insets(20, 100, 20, 150);
+		this.setBorder(new EmptyBorder(150, 450, 150, 450));
+		Insets margin = new Insets(20, 150, 20, 150);
 
 		NewGame.setMargin(margin);
 		Load.setMargin(margin);
@@ -71,7 +78,7 @@ public class Menu extends JComponent {
 		f.pack();
 		f.setResizable(false);
 		f.setVisible(true);
-		f.setSize(1400, 850);	
+		f.setSize(View.TILESIZE*17, View.TILESIZE*12);	
 		
 	}
 
@@ -81,11 +88,30 @@ public class Menu extends JComponent {
 	/**
 	 * paint out the background images 
 	 */
-	public void paintComponent(Graphics _g) {
-		super.paintComponent(_g);
-		Graphics2D g = (Graphics2D) _g;
-		g.drawImage(ImgResources.BackGround.img, 0, 0, this.getWidth(), this.getHeight(), null);
-
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		
+		int size = View.TILESIZE;
+		for(int x=0; x<this.getWidth()/size; x++) {
+			for(int y=0; y<=this.getHeight()/size; y++) {
+				int number = (int) (Math.random()*80)+1;
+				String code ="";
+				if(number<10) {code= "0"+number;}
+				else {code=""+number;}
+				//System.out.println(code);
+				try {
+					String path = "/tiles/tiles_"+code+".png";
+					Icon icon = new ImageIcon ( ImageIO.read(Menu.class.getResource(path)));
+					icon.paintIcon(null, g, x*size, y*size);;
+				} catch (Exception e) {
+					throw new Error(e);
+				}
+				
+			}
+		}
+		
+		System.out.print("======DOEN=====\n");
 	}
 
 }

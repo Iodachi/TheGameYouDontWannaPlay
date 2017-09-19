@@ -1,10 +1,9 @@
-package view;
+package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -15,8 +14,6 @@ import javax.swing.WindowConstants;
 
 import character.Player;
 import controllers.*;
-import gui.GUI;
-import resources.ImgResources;
 
 
 /**
@@ -47,10 +44,10 @@ public class View extends JComponent implements Observer{
 	    this.setPreferredSize(getPreferredSize());
 	    
 	    // create UI for the main 
-	    equipmentsPanel = new equipmentsPanel();
+	    equipmentsPanel = new EquipmentsPanel();
 	    equipmentsPanel.setSize(new Dimension(getPreferredSize()));
 	    //equipmentsPanel.setBackground();
-	    characterPanel = new characterPanel();
+	    characterPanel = new CharacterPanel();
 	    characterPanel.setSize(new Dimension(getPreferredSize()));
 	     
 	    JPanel fl = new JPanel(new GridLayout(2,1));
@@ -102,34 +99,7 @@ public class View extends JComponent implements Observer{
 		
 	}
 }
-class equipmentsPanel extends JPanel{ 
-	/**
-	 * the Panel for showing all the equipments in players bag 
-	 */
-	private static final long serialVersionUID = 1L;
-	private static final int TILESIZE = 64;
-	 @Override  
-     public void paint(Graphics g) { 
-		 
-	 Image img= ImgResources.equipmentBackGroud.img;
-	 g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),0,0,img.getWidth(null),img.getHeight(null),null);
-	 }	 
-	 
-	 public Dimension getPreferredSize() {return new Dimension((int) (TILESIZE*4), TILESIZE*6);}
-}
 
-class characterPanel extends JPanel{ 
-	/**
-	 * the Panel for showing all the attribute main character 
-	 */
-	private static final long serialVersionUID = 1L;
-	private static final int TILESIZE = 64;
-	 @Override  
-     public void paint(Graphics g) { 
-		 
-		 Image img= ImgResources.characterBackGroud.img;
-		 g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),0,0,img.getWidth(null),img.getHeight(null),null);
-	 }	 
-	 public Dimension getPreferredSize() {return new Dimension((int) (TILESIZE*4), TILESIZE*6);}
-}
+
+
 

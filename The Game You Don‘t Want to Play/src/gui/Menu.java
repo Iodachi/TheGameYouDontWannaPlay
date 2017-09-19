@@ -18,7 +18,6 @@ import javax.swing.border.EmptyBorder;
 
 import resources.ImgResources;
 import resources.PlayerResources;
-import view.View;
 /**
  * 
  * @author Zhancheng Gan

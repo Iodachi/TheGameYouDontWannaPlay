@@ -3,7 +3,6 @@ package gui;
 import java.util.Observable;
 
 import main.Game;
-import view.View;
 
 
 public class GUI extends Observable{

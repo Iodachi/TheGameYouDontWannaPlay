@@ -16,5 +16,5 @@ public interface Item {
 	 * return a string description of the item
 	 * */
 	public String toString();
-	
+	public String getName();
 }

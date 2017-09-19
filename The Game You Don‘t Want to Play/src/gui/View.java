@@ -46,17 +46,16 @@ public class View extends JComponent implements Observer{
 	    // create UI for the main 
 	    equipmentsPanel = new EquipmentsPanel();
 	    equipmentsPanel.setSize(new Dimension(getPreferredSize()));
-	    //equipmentsPanel.setBackground();
+
 	    characterPanel = new CharacterPanel();
 	    characterPanel.setSize(new Dimension(getPreferredSize()));
-	     
+	    
+	    //set GridLayout for fl
 	    JPanel fl = new JPanel(new GridLayout(2,1));
-		
 	    fl.add(characterPanel);
 	    fl.add(equipmentsPanel);
 	    fl.setVisible(true);
 	   
-	    
 	    JFrame f = new JFrame("The Game You Don't Want to Play");
 		f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		f.setLayout(new BorderLayout());

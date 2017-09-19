@@ -2,7 +2,6 @@ package main;
 
 
 import character.Player;
-import item.Key;
 
 /**
  * This class contains the game logic with methods that can be used for controller
@@ -11,7 +10,11 @@ import item.Key;
  */
 public class Game {
 	private Player player;
-	
+
+	public Player getPlayer() {
+		return player;
+	}
+
 	public Game() {
 		//FIXME replace this with a info box in gui to ask player's name
 		String name = "";

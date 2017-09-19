@@ -28,6 +28,9 @@ public class Player {
 	private int xPos, yPos;
 	private int health, damage, defence;
 	private int gold;
+	private String facceDirction="down";//up/ left/ right
+
+	private List<WearableItem> equipments= new ArrayList<>();
 	private int speed=1; // the speed of the player movement
 	public int getSpeed(){
 		return speed;
@@ -35,7 +38,12 @@ public class Player {
 	public void setSpeed(int amount){
 		speed = amount;
 	}
+	public String getFaceDirection(){return facceDirction;}
+	public void setFaceDirection(String dir){facceDirction=dir;}
 	private HashMap<Item, Integer> bag =new HashMap<>();
+
+
+
 
 	public Player(String name) {
 		this.name = name;
@@ -44,27 +52,29 @@ public class Player {
 		defence = 10;
 		gold = 0;
 	}
-	
+
 	/**
-	 *@author minpingyang 
+	 *@author minpingyang
 	 * */
 	public void pickUp(Item item){
-	   Set<Item> keySet= bag.keySet();
-	   if(!keySet.isEmpty()){
-		   for(Item i: keySet){
-			   //already exist item in the bag 
-			   if(i.getName().equals(item.getName())){
-				   //!!notice the name of key 
-				   bag.put(item,bag.get(item)+1);
-				   return ;
-			   }
-		   }
-	   }
-	   //whatever the bag is empty or not, if it does not find the item in the bag
-	   bag.put(item,1);
+		Set<Item> keySet= bag.keySet();
+		if(!keySet.isEmpty()){
+			for(Item i: keySet){
+				//already exist item in the bag
+				if(i.getName().equals(item.getName())){
+					//!!notice the name of key
+					bag.put(item,bag.get(item)+1);
+					return ;
+				}
+			}
+		}
+		//whatever the bag is empty or not, if it does not find the item in the bag
+		bag.put(item,1);
 	}
-	
-	
+	public void wearEquipment(WearableItem equipment){
+		equipments.add(equipment);
+	}
+
 
 	/**
 	 * player uses an consumable item from his inventory, for example a key to unlock a door,
@@ -72,11 +82,15 @@ public class Player {
 	 * @param item
 	 */
 	public void useItem(ConsumableItem item) {
-		//TODO: different effects when using different items
-		
-		inventory.remove(item);
+		//modified by mp
+		if(item!=null &&item instanceof ConsumableItem){
+			item.use(this);
+			inventory.remove(item);
+		}
 	}
-	
+
+
+
 	/**
 	 * pick up an item and add to inventory
 	 * @param item
@@ -85,10 +99,10 @@ public class Player {
 	public void addItem(ConsumableItem item) throws InvalidMove {
 		if(inventory.size() == INVENTORY_CAPACITY)
 			throw new InvalidMove("Inventory is full.");
-		
+
 		inventory.add(item);
 	}
-	
+
 	/**
 	 * use a key in the corresponding color from inventory to open door，
 	 * @param color
@@ -105,13 +119,13 @@ public class Player {
 //				break;
 //			}
 //		}
-		
+
 		//when all items in inventory has been checked and
 		//player doesn't have the key, the door cannot be opened
 		if(!hasKey)
 			throw new InvalidMove("No such key in inventory, cannot open the door");
 	}
-	
+
 	/**
 	 * use a bomb from inventory to break a breakable wall.
 	 * @throws InvalidMove
@@ -126,16 +140,16 @@ public class Player {
 				break;
 			}
 		}
-		
+
 		if(!hasBomb)
 			throw new InvalidMove("No bomb in inventory, cannot break the wall");
 	}
-	
+
 	//================ movement methods =====================
 	public void move(String direction) throws InvalidMove {
 		//TODO: replace this with board size
 		int boardSize = 10;
-		
+
 		//TODO: door, wall interaction, as well as monsters
 		if(direction.equals("right")) {
 			if(xPos + 1 > boardSize - 1) {
@@ -159,9 +173,9 @@ public class Player {
 			yPos++;
 		}
 	}
-	
+
 	//================= setter and getters ===================
-	
+
 	/**
 	 * set a change on current health, either because of using items (health potion/equipments) 
 	 * or attacted by a monster
@@ -170,39 +184,39 @@ public class Player {
 	public void setHealth(int health) {
 		this.health = health;
 	}
-	
+
 	public int getHealth() {
 		return health;
 	}
-	
+
 	public void setDamage(int damage) {
 		this.damage = damage;
 	}
-	
+
 	public int getDamage() {
 		return damage;
 	}
-	
+
 	public void setDefence(int defence) {
 		this.defence = defence;
 	}
-	
+
 	public int getDefence() {
 		return defence;
 	}
-	
+
 	public void setGold(int gold) {
 		this.gold = gold;
 	}
-	
+
 	public int getGold() {
 		return gold;
 	}
-	
+
 	public int getXPos() {
 		return xPos;
 	}
-	
+
 	public int getYPos() {
 		return yPos;
 	}

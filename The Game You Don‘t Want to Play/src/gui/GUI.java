@@ -1,18 +1,22 @@
 package gui;
 
-import java.util.Observable;
-
 import main.Game;
+
+import java.util.Observable;
 
 
 public class GUI extends Observable{
 
 	
-	public Game game = new Game();
+	private Game game = new Game();
 
-	
+	public Game getGame() {
+		return game;
+	}
+
+
 	public GUI() {
-		
+
 		
 		new View(this);
 		

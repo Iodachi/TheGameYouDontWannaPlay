@@ -1,10 +1,15 @@
 package character;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 import java.util.Stack;
 
 import item.Bomb;
 import item.ConsumableItem;
 import item.Key;
+import item.*;
 import main.InvalidMove;
 
 /**
@@ -23,7 +28,15 @@ public class Player {
 	private int xPos, yPos;
 	private int health, damage, defence;
 	private int gold;
-	
+	private int speed=1; // the speed of the player movement
+	public int getSpeed(){
+		return speed;
+	}
+	public void setSpeed(int amount){
+		speed = amount;
+	}
+	private HashMap<Item, Integer> bag =new HashMap<>();
+
 	public Player(String name) {
 		this.name = name;
 		health = 100;
@@ -32,6 +45,27 @@ public class Player {
 		gold = 0;
 	}
 	
+	/**
+	 *@author minpingyang 
+	 * */
+	public void pickUp(Item item){
+	   Set<Item> keySet= bag.keySet();
+	   if(!keySet.isEmpty()){
+		   for(Item i: keySet){
+			   //already exist item in the bag 
+			   if(i.getName().equals(item.getName())){
+				   //!!notice the name of key 
+				   bag.put(item,bag.get(item)+1);
+				   return ;
+			   }
+		   }
+	   }
+	   //whatever the bag is empty or not, if it does not find the item in the bag
+	   bag.put(item,1);
+	}
+	
+	
+
 	/**
 	 * player uses an consumable item from his inventory, for example a key to unlock a door,
 	 * or a potion to restore health.

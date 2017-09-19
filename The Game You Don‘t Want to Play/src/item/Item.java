@@ -1,5 +1,8 @@
 package item;
 
+/***
+ * This is a item interface which include all kinds of items
+ * */
 public interface Item {
 	/**
 	 * @param x

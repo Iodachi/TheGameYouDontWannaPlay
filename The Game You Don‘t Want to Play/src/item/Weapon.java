@@ -8,7 +8,7 @@ public class Weapon extends WearableItem {
 	private int attack =500;
 	private int x,y;
 	private boolean isOn=false;
-
+	private String name="weapon";
 	@Override
 	public void putOn(Player player) {
 		if(!isOn){
@@ -17,7 +17,9 @@ public class Weapon extends WearableItem {
 		}
 
 	}
-
+	public String getName(){
+		return name;
+	}
 	@Override
 	public void takeOff(Player player) {
 		if(isOn){

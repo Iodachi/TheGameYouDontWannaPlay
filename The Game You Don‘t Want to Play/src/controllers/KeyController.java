@@ -1,6 +1,6 @@
 package controllers;
 
-import gui.GUI;
+import main.Game;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -10,10 +10,10 @@ import java.awt.event.KeyListener;
  * */
 public class KeyController implements KeyListener {
 
-	GUI gui;
+	private Game game;
 
-	public KeyController(GUI gui) {
-		this.gui = gui;
+	public KeyController(Game game) {
+		this.game = game;
 	}
 
 	@Override
@@ -31,20 +31,16 @@ public class KeyController implements KeyListener {
 		try {
 			switch (e.getKeyChar()) {
 			case 'w':
-				gui.getGame().getPlayer().move("up");
-				gui.getGame().getPlayer().setFaceDirection("up");
+				game.move("up");
 				break;
 			case 'a':
-				gui.getGame().getPlayer().move("right");
-				gui.getGame().getPlayer().setFaceDirection("right");
+				game.move("left");
 				break;
 			case 's':
-				gui.getGame().getPlayer().move("down");
-				gui.getGame().getPlayer().setFaceDirection("down");
+				game.move("down");
 				break;
 			case 'd':
-				gui.getGame().getPlayer().move("left");
-				gui.getGame().getPlayer().setFaceDirection("left");
+				game.move("right");
 				break;
 			}
 		} catch (main.InvalidMove invalidMove) {

@@ -2,7 +2,7 @@ package Board;
 
 import java.awt.Rectangle;
 
-public abstract class Entity {
+public abstract class Entity  {
 	private String name;
 	private int PosX,PosY,size;
 	private Rectangle EntityRange;

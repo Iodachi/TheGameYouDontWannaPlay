@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
+import main.Game;
 import resources.ImgResources;
 import resources.PlayerResources;
 /**
@@ -39,7 +40,7 @@ public class Menu extends JComponent {
 		JButton Info = new JButton("Info");
 		JButton Quit = new JButton("Quit");
 		NewGame.addActionListener((e) -> {
-			new GUI();
+			new Game();
 			f.setVisible(false); //hidden the menu frame
 		});
 		Load.addActionListener((e) -> {

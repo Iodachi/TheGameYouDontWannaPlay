@@ -14,6 +14,7 @@ import javax.swing.WindowConstants;
 
 import character.Player;
 import controllers.*;
+import main.Game;
 
 
 /**
@@ -34,12 +35,12 @@ public class View extends JComponent implements Observer{
 	private JPanel equipmentsPanel;
 	private JPanel characterPanel;
 
-	private GUI gui;
+	private Game game;
 	
-	public View(GUI gui) {
+	public View(Game game) {
 		// setting attribute for this view
-		this.gui=gui;
-		this.gui.addObserver(this);
+		this.game = game;
+		game.addObserver(this);
 	    this.setFocusable(true); 
 	    this.setPreferredSize(getPreferredSize());
 	    
@@ -65,8 +66,8 @@ public class View extends JComponent implements Observer{
 		f.setResizable(false);
 		f.setVisible(true);
 	
-		addKeyListener(new KeyController(gui));
-		addMouseListener(new MouseController(gui));
+		addKeyListener(new KeyController(game));
+		addMouseListener(new MouseController(game));
 	}
 	 public Dimension getPreferredSize() {return new Dimension((TILESIZE*12), TILESIZE*12);}
 

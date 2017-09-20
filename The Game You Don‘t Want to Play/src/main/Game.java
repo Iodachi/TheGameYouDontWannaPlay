@@ -1,14 +1,17 @@
 package main;
 
 
+import java.util.Observable;
+
 import character.Player;
+import gui.View;
 
 /**
  * This class contains the game logic with methods that can be used for controller
  * @author stella
  *
  */
-public class Game {
+public class Game extends Observable{
 	private Player player;
 
 	public Player getPlayer() {
@@ -19,6 +22,7 @@ public class Game {
 		//FIXME replace this with a info box in gui to ask player's name
 		String name = "";
 		player = new Player("Cui Hua");
+		View view = new View(this);
 	}
 	
 	public void move(String direction) throws InvalidMove {

@@ -99,23 +99,23 @@ public class Level {
 		return null;
 	}
 
-	/**
-	 * if it has Opened Door then replace door to ground
-	 */
-	public void OpenDoor(int x, int y,String key){
-		Entity tempdoor = GetEntityAt(x,y);
-		if(tempdoor instanceof Door){
-			if(((Door) tempdoor).TryOpen(key)){
-				((Door) tempdoor).HasOpen();
-				int PosX = tempdoor.GetPosX();
-				int PosY = tempdoor.GetPosY();
-				int Size = tempdoor.GetSize();
-				this.entities.remove(tempdoor);
-				AddEntity("ground",PosX,PosY,Size);
-			}
-		}
-
-	}
+//	/**
+//	 * if it has Opened Door then replace door to ground
+//	 */
+//	public void OpenDoor(int x, int y,String key){
+//		Entity tempdoor = GetEntityAt(x,y);
+//		if(tempdoor instanceof Door){
+//			if(((Door) tempdoor).TryOpen(key)){
+//				((Door) tempdoor).HasOpen();
+//				int PosX = tempdoor.GetPosX();
+//				int PosY = tempdoor.GetPosY();
+//				int Size = tempdoor.GetSize();
+//				this.entities.remove(tempdoor);
+//				AddEntity("ground",PosX,PosY,Size);
+//			}
+//		}
+//
+//	}
 
 	/**
 	 * set all entities in this 12*12 map, fill empty as ground

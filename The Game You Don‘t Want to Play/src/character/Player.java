@@ -28,7 +28,7 @@ public class Player {
 	private int xPos, yPos;
 	private int health, damage, defence;
 	private int gold;
-	private String facceDirction="down";//up/ left/ right
+	private String facingDirection;
 
 	private List<WearableItem> equipments= new ArrayList<>();
 	private int speed=1; // the speed of the player movement
@@ -38,15 +38,12 @@ public class Player {
 	public void setSpeed(int amount){
 		speed = amount;
 	}
-	public String getFaceDirection(){return facceDirction;}
-	public void setFaceDirection(String dir){facceDirction=dir;}
 	private HashMap<Item, Integer> bag =new HashMap<>();
-
-
-
-
+	
 	public Player(String name) {
 		this.name = name;
+		facingDirection = "down";
+		inventory = new Stack<>();
 		health = 100;
 		damage = 10;
 		defence = 10;
@@ -152,21 +149,25 @@ public class Player {
 
 		//TODO: door, wall interaction, as well as monsters
 		if(direction.equals("right")) {
+			facingDirection = "right";
 			if(xPos + 1 > boardSize - 1) {
 				throw new InvalidMove("Cannot move out of board");
 			}
 			xPos++;
 		}else if(direction.equals("left")) {
+			facingDirection = "left";
 			if(xPos - 1 < 0) {
 				throw new InvalidMove("Cannot move out of board");
 			}
 			xPos--;
 		}else if(direction.equals("up")) {
+			facingDirection = "up";
 			if(yPos - 1 < 0) {
 				throw new InvalidMove("Cannot move out of board");
 			}
 			xPos--;
 		}else if(direction.equals("down")) {
+			facingDirection = "down";
 			if(yPos + 1 > boardSize - 1) {
 				throw new InvalidMove("Cannot move out of board");
 			}
@@ -211,6 +212,10 @@ public class Player {
 
 	public int getGold() {
 		return gold;
+	}
+	
+	public String getFacingDirection() {
+		return facingDirection;
 	}
 
 	public int getXPos() {

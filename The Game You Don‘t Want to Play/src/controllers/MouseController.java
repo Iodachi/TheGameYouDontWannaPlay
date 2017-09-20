@@ -3,8 +3,7 @@ package controllers;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-
-import gui.GUI;
+import main.Game;
 
 /**
  * 
@@ -15,10 +14,10 @@ import gui.GUI;
 
 public class MouseController implements MouseMotionListener, MouseListener {
 
-	GUI gui;
+	private Game game;
 	
-	public MouseController( GUI gui) {
-		this.gui = gui;
+	public MouseController(Game game) {
+		this.game = game;
 
 	}
 	@Override

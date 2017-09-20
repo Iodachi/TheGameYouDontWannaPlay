@@ -11,11 +11,12 @@ import character.Player;
 public class Key extends ConsumableItem {
 	private int x,y;
     private KeyType type=KeyType.GoldKey; // the key type is corresponding to the type of door.
-    private String name = "key";
+    private String name = "KB";
 	public Key(int x, int y, KeyType type){
 	    this.x =x;
 	    this.y =y;
 	    this.type=type;
+	    setName(type);
     }
 	public enum KeyType{
 		GoldKey,CyanKey,BronzeKey,PurplyeKey,SilverKey;
@@ -25,19 +26,19 @@ public class Key extends ConsumableItem {
 		
 		switch (type) {
 		case GoldKey:
-			name="GoldKey";
+			name="KG";
 			break;
 		case CyanKey:
-			name="CyanKey";
+			name="KC";
 			break;
 		case BronzeKey:
-			name="BronzeKey";
+			name="KB";
 			break;
 		case PurplyeKey:
-			name="PurplyeKey";
+			name="KP";
 			break;
 		case SilverKey:
-			name="SilverKey";
+			name="KS";
 			break;
 		}
 	}
@@ -54,7 +55,7 @@ public class Key extends ConsumableItem {
 		return false;
 	}
 	public String getName(){
-		setName(type);
+	
 		return name;
 	}
 }

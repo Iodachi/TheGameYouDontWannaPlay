@@ -9,7 +9,7 @@ public class Wing extends WearableItem {
 
    private int speedFactor = 2;
    private boolean isOn=false;
-   private String name="wing";
+   private String name="WI";
 	@Override
 	public void putOn(Player player) {
 		if(!isOn){

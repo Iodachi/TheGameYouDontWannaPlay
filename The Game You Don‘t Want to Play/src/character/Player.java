@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
+import Board.Entity;
 import item.Bomb;
 import item.ConsumableItem;
 import item.Key;
@@ -18,8 +19,8 @@ import main.InvalidMove;
  * @author stella
  *
  */
-public class Player {
-	private String name;
+public class Player extends Entity {
+	private static String name;
 	//a stack of items that player collected and can be used later.
 	private Stack<ConsumableItem> inventory;
 	//the maximum amount of items can be stored in the inventory
@@ -40,8 +41,9 @@ public class Player {
 	}
 	private HashMap<Item, Integer> bag =new HashMap<>();
 	
-	public Player(String name) {
-		this.name = name;
+	public Player() {
+		super(name, 0, 0, 64);
+//		this.name = name;
 		facingDirection = "down";
 		inventory = new Stack<>();
 		health = 100;

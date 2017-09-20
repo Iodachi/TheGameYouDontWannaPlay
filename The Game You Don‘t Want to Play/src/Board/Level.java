@@ -62,8 +62,7 @@ public class Level {
 			this.entities[x][y] = (new Door(Entity, x, y, size));
 		else if (Entity.equals("stair"))
 			this.entities[x][y] = (new Stairs(Entity, x, y, size));
-		else if (Entity.equals("npc"))
-			this.entities[x][y] = (new NPC(Entity, x, y, size));
+		
 	}
 
 	/**

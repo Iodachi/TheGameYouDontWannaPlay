@@ -24,7 +24,7 @@ public class Game extends Observable{
 	public Game() {
 		//FIXME replace this with a info box in gui to ask player's name
 		String name = "";
-		player = new Player("Cui Hua");
+		player = new Player();
 		board = new Board();
 		new View(this);
 	}

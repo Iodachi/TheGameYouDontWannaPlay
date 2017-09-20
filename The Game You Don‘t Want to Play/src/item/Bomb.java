@@ -8,7 +8,7 @@ import character.Player;
  */
 public class Bomb extends ConsumableItem {
     private int x,y;
-    private String name = "bomb";
+    private String name = "BO";
     public Bomb(int x, int y){
         this.x = x;
         this.y =y;

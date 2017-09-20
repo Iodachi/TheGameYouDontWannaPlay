@@ -9,7 +9,7 @@ public class Armor extends WearableItem {
     private int defence =500;
 	private int x,y;
 	private boolean isOn=false;
-	private String name = "armor";
+	private String name = "AR";
 
 	public Armor(int x,int y){
 	    this.x =x;

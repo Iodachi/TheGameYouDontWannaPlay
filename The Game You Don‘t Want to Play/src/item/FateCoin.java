@@ -9,7 +9,7 @@ public class FateCoin extends ConsumableItem{
     private int x,y;
 	private int randomNumber=0;
 	private int amount= 100;
-	private String name="fateCoin";
+	private String name="FC";
 	@Override
 	public void use(Player player) {
 

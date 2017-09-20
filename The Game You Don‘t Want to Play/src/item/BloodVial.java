@@ -6,13 +6,14 @@ import character.Player;
  *
  * */
 public class BloodVial extends ConsumableItem {
-	private String name = "bloodVial";
+	private String name = "BS";
 	private int x,y;
 	private int amount = 500; //
 	private String type;// small ,big
     @Override
     public void use(Player player) {
         if(type=="big"){
+        	
         	player.setHealth(player.getHealth()+amount);
         }else{
         	player.setHealth(player.getHealth()+amount/2);
@@ -22,6 +23,7 @@ public class BloodVial extends ConsumableItem {
     }
     @Override
     public String getName(){
+    		
 		return name;
 	}
 
@@ -29,6 +31,9 @@ public class BloodVial extends ConsumableItem {
 		this.x =x;
 		this.y=y;
 		this.type = type;  //either small or big
+		if(type.equals("big")) {
+			this.name="BB";
+		}
 	}
 	@Override
 	public boolean on(int x, int y) {

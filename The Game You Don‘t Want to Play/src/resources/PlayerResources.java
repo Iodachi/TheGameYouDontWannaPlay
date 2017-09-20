@@ -11,8 +11,8 @@ public enum PlayerResources {
 	
 	Up("Player_10.png"),
 	Down("Player_01.png"),
-	Right("Player_04.png"),
-	Left("Player_07.png");
+	Left("Player_04.png"),
+	Right("Player_07.png");
 	
 	
 	public final ImageIcon image;

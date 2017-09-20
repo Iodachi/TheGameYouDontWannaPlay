@@ -3,6 +3,7 @@ package main;
 
 import java.util.Observable;
 
+import Board.Board;
 import character.Player;
 import gui.View;
 
@@ -13,6 +14,8 @@ import gui.View;
  */
 public class Game extends Observable{
 	private Player player;
+	private String dir;
+	public Board board;
 
 	public Player getPlayer() {
 		return player;
@@ -22,11 +25,15 @@ public class Game extends Observable{
 		//FIXME replace this with a info box in gui to ask player's name
 		String name = "";
 		player = new Player("Cui Hua");
-		View view = new View(this);
+		board = new Board();
+		new View(this);
 	}
 	
 	public void move(String direction) throws InvalidMove {
 		player.move(direction);
+		player.setFacingDirection(direction);
+		this.setChanged();
+		this.notifyObservers();
 	}
 	
 	/**

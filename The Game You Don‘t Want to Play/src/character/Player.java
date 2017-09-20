@@ -145,7 +145,7 @@ public class Player {
 	//================ movement methods =====================
 	public void move(String direction) throws InvalidMove {
 		//TODO: replace this with board size
-		int boardSize = 10;
+		int boardSize = 12;
 
 		//TODO: door, wall interaction, as well as monsters
 		if(direction.equals("right")) {
@@ -165,7 +165,7 @@ public class Player {
 			if(yPos - 1 < 0) {
 				throw new InvalidMove("Cannot move out of board");
 			}
-			xPos--;
+			yPos--;
 		}else if(direction.equals("down")) {
 			facingDirection = "down";
 			if(yPos + 1 > boardSize - 1) {
@@ -224,5 +224,9 @@ public class Player {
 
 	public int getYPos() {
 		return yPos;
+	}
+	public void setFacingDirection(String direction) {
+		this.facingDirection = direction;
+		
 	}
 }

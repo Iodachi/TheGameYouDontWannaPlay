@@ -12,9 +12,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import Board.Board;
 import character.Player;
 import controllers.*;
 import main.Game;
+import resources.PlayerResources;
 
 
 /**
@@ -73,29 +75,33 @@ public class View extends JComponent implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		//repaint();
+		repaint();
 		
 	}
 	@Override
 	public void paintComponent(Graphics g) {
-		//drawMap(gui.map);
-		//drawPlayer(gui.game,g);
+		drawMap(game.board);
+		drawPlayer(game.getPlayer(),g);
 		
 	}
 
+	private void drawMap(Board board) {
+		//board.GetCurrentLevel().GetEntityAt(0,0)
+		
+	}
 	private void drawPlayer(Player player, Graphics g) {
 		int x = player.getXPos()*TILESIZE+16;
 		int y = player.getYPos()*TILESIZE+16;
 		
-		/*
-		switch(player.face) {
+		
+		switch(game.getPlayer().getFacingDirection()) {
 		case "up": PlayerResources.Up.image.paintIcon(null, g, x, y); break;
 		case "down": PlayerResources.Down.image.paintIcon(null, g, x, y); break;
 		case "right": PlayerResources.Right.image.paintIcon(null, g, x, y); break;
 		case "left": PlayerResources.Left.image.paintIcon(null, g, x, y); break;
 		default: break;
 		}
-		*/
+		
 		
 	}
 }

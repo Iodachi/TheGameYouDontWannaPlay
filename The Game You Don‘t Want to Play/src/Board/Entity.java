@@ -15,7 +15,11 @@ public abstract class Entity  {
 		this.size = size;
 		this.EntityRange = new Rectangle(x * size ,y * size,size,size);
 	}
-
+	/**
+	 * 
+	 * @return name of the entity
+	 */
+	public String getName() {return this.name;}
 	/**
 	 * position X
 	 * @return

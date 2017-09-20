@@ -10,6 +10,13 @@ public class Wing extends WearableItem {
    private int speedFactor = 2;
    private boolean isOn=false;
    private String name="WI";
+   private int x,y;
+   private int cost = 1000;
+   @Override
+	public int getCost() {
+		return cost;
+	}
+   	
 	@Override
 	public void putOn(Player player) {
 		if(!isOn){
@@ -29,7 +36,10 @@ public class Wing extends WearableItem {
 		}
 		
 	}
-
+	public Wing(int x,int y) {
+		this.x =x ;
+		this.y =y;
+	}
 	@Override
 	public void fix(int amount) {
 		

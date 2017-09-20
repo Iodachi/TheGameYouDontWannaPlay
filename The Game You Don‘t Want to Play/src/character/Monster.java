@@ -1,5 +1,6 @@
 package character;
 
+import Board.Entity;
 import item.Item;
 
 public class Monster {
@@ -7,7 +8,8 @@ public class Monster {
 	private int health = 50;
 	private int damage =50;
 	private int defenece = 50;
-	private int xPos, yPos;
+	private int xPos;
+	private int yPos;
 	private boolean isDefeated = false;
 	//the potential item drop when the monster dies
 	private Item drop;
@@ -15,6 +17,7 @@ public class Monster {
 	private String name = "M1";
 	
 	public Monster(int level){
+		
 		this.level = level;
 		setName(level);
 		setAttribute(level);

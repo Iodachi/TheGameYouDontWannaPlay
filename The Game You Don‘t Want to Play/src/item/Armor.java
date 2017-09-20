@@ -1,5 +1,7 @@
 package item;
 
+import java.security.KeyStore.PrivateKeyEntry;
+
 import character.Player;
 /**
  * This class is used to represent the armor equipment which the player can put on to increase defence of player
@@ -10,7 +12,8 @@ public class Armor extends WearableItem {
 	private int x,y;
 	private boolean isOn=false;
 	private String name = "AR";
-
+	private int cost= 800;
+	public int getCost() {return cost;}
 	public Armor(int x,int y){
 	    this.x =x;
 	    this.y= y;

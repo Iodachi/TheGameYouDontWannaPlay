@@ -19,7 +19,7 @@ import main.InvalidMove;
  * @author stella
  *
  */
-public class Player extends Entity {
+public class Player{
 	private static String name;
 	//a stack of items that player collected and can be used later.
 	private Stack<ConsumableItem> inventory;
@@ -41,9 +41,10 @@ public class Player extends Entity {
 	}
 	private HashMap<Item, Integer> bag =new HashMap<>();
 	
+	
+	
 	public Player() {
-		super(name, 0, 0, 64);
-//		this.name = name;
+
 		facingDirection = "down";
 		inventory = new Stack<>();
 		health = 100;

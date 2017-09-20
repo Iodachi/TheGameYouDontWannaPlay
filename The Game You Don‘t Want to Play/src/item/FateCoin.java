@@ -10,6 +10,12 @@ public class FateCoin extends ConsumableItem{
 	private int randomNumber=0;
 	private int amount= 100;
 	private String name="FC";
+	private int cost= 80;
+	public int getCost() {return cost;}
+    public FateCoin(int x, int y) {
+    	this.x =x;
+    	this.y=y;
+    }
 	@Override
 	public void use(Player player) {
 

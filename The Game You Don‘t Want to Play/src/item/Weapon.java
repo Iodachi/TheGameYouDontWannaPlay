@@ -8,7 +8,8 @@ public class Weapon extends WearableItem {
 	private int attack =500;
 	private int x,y;
 	private boolean isOn=false;
-	private String name="weapon";
+	private String name="WE";
+	private int cost = 600;
 	@Override
 	public void putOn(Player player) {
 		if(!isOn){
@@ -16,6 +17,10 @@ public class Weapon extends WearableItem {
 			isOn=true;
 		}
 
+	}
+	public Weapon(int x, int y) {
+		this.x = x;
+		this.y =y;
 	}
 	public String getName(){
 		return name;
@@ -36,5 +41,9 @@ public class Weapon extends WearableItem {
 	@Override
 	public boolean on(int x, int y) {
 		return false;
+	}
+	@Override
+	public int getCost() {
+		return cost;
 	}
 }

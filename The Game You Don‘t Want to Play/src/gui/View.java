@@ -35,7 +35,7 @@ public class View extends JComponent implements Observer {
 	private static final long serialVersionUID = 1L;
 	public static final int TILESIZE = 64;
 
-	private JPanel equipmentsPanel;
+	private JPanel bagPanelPanel;
 	private JPanel characterPanel;
 
 	private Game game;
@@ -48,16 +48,19 @@ public class View extends JComponent implements Observer {
 		this.setPreferredSize(getPreferredSize());
 
 		// create UI for the main
-		equipmentsPanel = new EquipmentsPanel();
-		equipmentsPanel.setSize(new Dimension(getPreferredSize()));
-
+		bagPanelPanel = new BagPanel();
+	
+		bagPanelPanel.addMouseListener(new MouseController(game));
+		bagPanelPanel.setSize(new Dimension(getPreferredSize()));
+			
 		characterPanel = new CharacterPanel();
+		characterPanel.addMouseListener(new MouseController(game));
 		characterPanel.setSize(new Dimension(getPreferredSize()));
 
 		// set GridLayout for fl
 		JPanel fl = new JPanel(new GridLayout(2, 1));
 		fl.add(characterPanel);
-		fl.add(equipmentsPanel);
+		fl.add(bagPanelPanel);
 		fl.setVisible(true);
 
 		JFrame f = new JFrame("The Game You Don't Want to Play");

@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 import resources.ImgResources;
 
-public class EquipmentsPanel  extends JPanel {
+public class BagPanel extends JPanel {
 	 
 		/**
 		 * the Panel for showing all the equipments in players bag 

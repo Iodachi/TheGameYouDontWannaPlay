@@ -14,6 +14,11 @@ public class Key extends ConsumableItem {
     private String name = "KB";
     private int cost= 60;
 	public int getCost() {return cost;}
+	
+	public Key() {
+		
+	}
+	
 	public Key(int x, int y, KeyType type){
 	    this.x =x;
 	    this.y =y;

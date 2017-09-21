@@ -11,6 +11,11 @@ public class Bomb extends ConsumableItem {
     private String name = "BO";
     private int cost= 400;
 	public int getCost() {return cost;}
+	
+	public Bomb() {
+		
+	}
+	
     public Bomb(int x, int y){
         this.x = x;
         this.y =y;

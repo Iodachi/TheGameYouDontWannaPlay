@@ -2,6 +2,7 @@ package character;
 
 import java.util.Stack;
 
+import Board.Level;
 import item.*;
 import main.InvalidMove;
 
@@ -15,7 +16,7 @@ public class Player{
 	//a stack of items that player collected and can be used later.
 	private Stack<ConsumableItem> inventory;
 	//the maximum amount of items can be stored in the inventory
-	private static final int INVENTORY_CAPACITY = 30;
+	public static final int INVENTORY_CAPACITY = 30;
 	//the current position of player on board
 	private int xPos, yPos;
 	private int health, damage, defence;
@@ -49,6 +50,7 @@ public class Player{
 	}
 	
 	public void equip(WearableItem item) {
+		//TODO: update on player's stats when an equipment is equiped
 		if(item instanceof Armor) {
 			armor = (Armor)item;
 		}else if(item instanceof Weapon) {
@@ -65,13 +67,13 @@ public class Player{
 	 */
 	public void useKey(String color) throws InvalidMove {
 		boolean hasKey = false;
-//		for(ConsumableItem item: inventory) {
+		for(ConsumableItem item: inventory) {
 //			if(item instanceof Key && ((Key)item).getColor().equals(color)) {
 //				inventory.remove(item);
 //				hasKey = true;
 //				break;
 //			}
-//		}
+		}
 
 		//when all items in inventory has been checked and
 		//player doesn't have the key, the door cannot be opened
@@ -102,8 +104,7 @@ public class Player{
 
 	//================ movement methods =====================
 	public void move(String direction) throws InvalidMove {
-		//TODO: replace this with board size
-		int boardSize = 12;
+		int boardSize = Level.BOARDSIZE;
 
 		//TODO: door, wall interaction, as well as monsters
 		if(direction.equals("right")) {
@@ -172,6 +173,10 @@ public class Player{
 		return facingDirection;
 	}
 	
+	public void setFacingDirection(String direction) {
+		this.facingDirection = direction;
+	}
+	
 	public int getSpeed(){
 		return speed;
 	}
@@ -187,15 +192,15 @@ public class Player{
 		return yPos;
 	}
 	
-	public void setFacingDirection(String direction) {
-		this.facingDirection = direction;
-	}
-	
 	public Armor getCurrentArmor() {
 		return armor;
 	}
 	
 	public Weapon getCurrentWeapon() {
 		return weapon;
+	}
+	
+	public Stack<ConsumableItem> getInventory() {
+		return inventory;
 	}
 }

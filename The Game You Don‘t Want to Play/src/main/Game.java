@@ -14,7 +14,6 @@ import gui.View;
  */
 public class Game extends Observable{
 	private Player player;
-	private String dir;
 	public Board board;
 
 	public Player getPlayer() {
@@ -22,16 +21,18 @@ public class Game extends Observable{
 	}
 
 	public Game() {
-		//FIXME replace this with a info box in gui to ask player's name
-		String name = "";
 		player = new Player();
 		board = new Board();
 		new View(this);
 	}
 	
 	public void move(String direction) throws InvalidMove {
-		player.move(direction);
+		//facing direction is changed even if player didn't actually move 
 		player.setFacingDirection(direction);
+		this.setChanged();
+		this.notifyObservers();
+
+		player.move(direction);
 		this.setChanged();
 		this.notifyObservers();
 	}

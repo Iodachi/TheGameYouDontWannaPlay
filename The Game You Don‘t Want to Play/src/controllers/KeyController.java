@@ -44,7 +44,7 @@ public class KeyController implements KeyListener {
 				break;
 			}
 		} catch (main.InvalidMove invalidMove) {
-			invalidMove.printStackTrace();
+			//invalidMove.printStackTrace();
 		}
 	}
 

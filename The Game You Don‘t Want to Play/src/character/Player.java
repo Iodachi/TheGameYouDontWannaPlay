@@ -118,7 +118,7 @@ public class Player{
 			if(xPos + 1 > boardSize - 1) 
 				throw new InvalidMove("Cannot move out of board");
 			
-			Entity e = board[xPos+1][yPos];
+			Entity e = board[yPos][xPos+1];
 			if(e != null && e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on right");
 			
@@ -127,7 +127,7 @@ public class Player{
 			if(xPos - 1 < 0) 
 				throw new InvalidMove("Cannot move out of board");
 			
-			Entity e = board[xPos-1][yPos];
+			Entity e = board[yPos][xPos-1];
 			if(e != null && e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on left");
 			
@@ -136,7 +136,7 @@ public class Player{
 			if(yPos - 1 < 0) 
 				throw new InvalidMove("Cannot move out of board");
 			
-			Entity e = board[xPos][yPos-1];
+			Entity e = board[yPos-1][xPos];
 			if(e != null && e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on top");
 			
@@ -145,7 +145,7 @@ public class Player{
 			if(yPos + 1 > boardSize - 1) 
 				throw new InvalidMove("Cannot move out of board");
 			
-			Entity e = board[xPos][yPos+1];
+			Entity e = board[yPos+1][xPos];
 			if(e != null && e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on bottom");
 			

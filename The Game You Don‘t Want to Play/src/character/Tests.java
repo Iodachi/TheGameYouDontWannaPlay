@@ -12,7 +12,7 @@ import main.InvalidMove;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Tests {
 	private Player player;
-	private Bomb bomb = new Bomb();
+	private Bomb bomb = new Bomb(0,0);
 	
 	@Test
 	public void test01_playerPicksConsumables() {
@@ -30,7 +30,7 @@ public class Tests {
 		player = new Player();
 		try {
 			for(int i = 0; i < Player.INVENTORY_CAPACITY; i++) {
-				player.addItem(new Bomb());
+				player.addItem(new Bomb(0,0));
 			}
 			
 			player.addItem(bomb);

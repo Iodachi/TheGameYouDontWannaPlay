@@ -6,16 +6,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import character.Player;
 import gui.View;
+import item.Item;
 
 public class Level {
 	// private List<Entity> entities = new ArrayList<Entity>();
 	public static final int BOARDSIZE = 12;
 	private Entity entities[][];
+	private Item itmes[][];
 	private int floor;
-	private int[][] pieces;
-	private Player player;
+	
 	
 
 	public Level(int floor) {
@@ -82,6 +82,7 @@ public class Level {
 	 * Add entities in this level
 	 */
 	public void AddEntity(String Entity, int x, int y, int size) {
+		
 		if (Entity.equals("WL"))
 			this.entities[x][y] = new Wall(Entity, x, y, size);
 		else if (Entity.equals("GL"))
@@ -106,7 +107,8 @@ public class Level {
 			this.entities[x][y] = (new Stairs(Entity, x, y, size));
 		else if (Entity.equals("npc"))
 			this.entities[x][y] = (new NPC(Entity, x, y, size));
-		
+	
+	
 	}
 
 	/**

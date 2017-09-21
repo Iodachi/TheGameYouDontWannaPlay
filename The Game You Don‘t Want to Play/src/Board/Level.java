@@ -8,13 +8,11 @@ import java.io.InputStreamReader;
 
 import character.Player;
 import gui.View;
-import item.Item;
 
 public class Level {
 	// private List<Entity> entities = new ArrayList<Entity>();
 	public static final int BOARDSIZE = 12;
 	private Entity entities[][];
-	private Item[][] items;
 	private int floor;
 	private int[][] pieces;
 	private Player player;
@@ -32,7 +30,7 @@ public class Level {
 
 	private void initialize() {
 
-		String fileName = "Map1.txt";
+		String fileName = "Map"+floor+".txt";
 		String line = null;
 		try {
 			InputStream is = Level.class.getResourceAsStream(fileName);
@@ -108,6 +106,7 @@ public class Level {
 			this.entities[x][y] = (new Stairs(Entity, x, y, size));
 		else if (Entity.equals("npc"))
 			this.entities[x][y] = (new NPC(Entity, x, y, size));
+		
 	}
 
 	/**

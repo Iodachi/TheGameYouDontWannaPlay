@@ -32,13 +32,18 @@ public class Door extends Entity{
 	 * if this door has opened then if should disappear
 	 * @return
 	 */
-	public boolean isOpened(){
-		return opened;
+	public boolean HasOpen(){return this.opened;}
+
+	/**
+	 * Try to open the door
+	 */
+	public boolean TryOpen(String key){
+		if(key.equals(this.color)) {
+			this.opened = true;
+			return true;
+		}
+		return false;
 	}
 
-	public void open() {
-		opened = true;
-		//TODO: what happens when door is opened
-	}
 
 }

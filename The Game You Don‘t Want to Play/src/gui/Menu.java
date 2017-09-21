@@ -2,9 +2,7 @@ package gui;
 
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.Insets;
 
 import javax.imageio.ImageIO;
@@ -17,8 +15,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import main.Game;
-import resources.ImgResources;
-import resources.PlayerResources;
+
 /**
  * 
  * @author Zhancheng Gan

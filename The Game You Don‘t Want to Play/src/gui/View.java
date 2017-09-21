@@ -95,9 +95,13 @@ public class View extends JComponent implements Observer {
 
 		for (int x = 0; x < Level.BOARDSIZE; x++) {
 			for (int y = 0; y < Level.BOARDSIZE; y++) {
+				
+				if(board.GetCurrentLevel().GetEntityAt(x, y)!=null) {
 				String name = board.GetCurrentLevel().GetEntityAt(x, y).getName();
 				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/"+name+".png"));
+				//System.out.printf("X: %s Y: %s Name: ",x,y,name);
 				img.paintIcon(null, g, y * TILESIZE, x * TILESIZE);
+				}
 			}
 		}
 		// board.GetCurrentLevel().GetEntityAt(0,0)

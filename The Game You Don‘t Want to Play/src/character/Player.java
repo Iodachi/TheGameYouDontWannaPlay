@@ -120,7 +120,7 @@ public class Player{
 			
 			Entity e = board[xPos+1][yPos];
 			if(e != null && e instanceof Wall)
-				throw new InvalidMove("Cannot move towards wall");
+				throw new InvalidMove("Cannot move towards wall on right");
 			
 			xPos++;
 		}else if(direction.equals("left")) {
@@ -129,7 +129,7 @@ public class Player{
 			
 			Entity e = board[xPos-1][yPos];
 			if(e != null && e instanceof Wall)
-				throw new InvalidMove("Cannot move towards wall");
+				throw new InvalidMove("Cannot move towards wall on left");
 			
 			xPos--;
 		}else if(direction.equals("up")) {
@@ -138,7 +138,7 @@ public class Player{
 			
 			Entity e = board[xPos][yPos-1];
 			if(e != null && e instanceof Wall)
-				throw new InvalidMove("Cannot move towards wall");
+				throw new InvalidMove("Cannot move towards wall on top");
 			
 			yPos--;
 		}else if(direction.equals("down")) {
@@ -147,7 +147,7 @@ public class Player{
 			
 			Entity e = board[xPos][yPos+1];
 			if(e != null && e instanceof Wall)
-				throw new InvalidMove("Cannot move towards wall");
+				throw new InvalidMove("Cannot move towards wall on bottom");
 			
 			yPos++;
 		}

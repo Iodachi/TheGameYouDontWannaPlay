@@ -91,20 +91,26 @@ public class View extends JComponent implements Observer {
 	}
 
 	private void drawMap(Board board, Graphics g) {
-		
+		drawFloor(g);
+
 		for (int x = 0; x < Level.BOARDSIZE; x++) {
 			for (int y = 0; y < Level.BOARDSIZE; y++) {
 				String name = board.GetCurrentLevel().GetEntityAt(x, y).getName();
-				ImageIcon img = null;
-				if (name.equals("wall")) {
-					img = new ImageIcon(View.class.getResource("/tiles/tiles_34.png"));
-				} else {
-					img = new ImageIcon(View.class.getResource("/tiles/tiles_49.png"));
-				}
-				img.paintIcon(null, g, x * TILESIZE, y * TILESIZE);
+				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/"+name+".png"));
+				img.paintIcon(null, g, y * TILESIZE, x * TILESIZE);
 			}
 		}
 		// board.GetCurrentLevel().GetEntityAt(0,0)
+
+	}
+
+	private void drawFloor(Graphics g) {
+		for (int x = 0; x < Level.BOARDSIZE; x++) {
+			for (int y = 0; y < Level.BOARDSIZE; y++) {
+				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/WL.png"));
+				img.paintIcon(null, g, y * TILESIZE, x * TILESIZE);
+			}
+		}
 
 	}
 

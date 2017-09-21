@@ -2,8 +2,11 @@ package character;
 
 import java.util.Stack;
 
+import Board.Entity;
 import Board.Level;
+import Board.Wall;
 import item.*;
+import main.Game;
 import main.InvalidMove;
 
 /**
@@ -13,10 +16,11 @@ import main.InvalidMove;
  *
  */
 public class Player{
-	//a stack of items that player collected and can be used later.
-	private Stack<ConsumableItem> inventory;
 	//the maximum amount of items can be stored in the inventory
 	public static final int INVENTORY_CAPACITY = 30;
+	private Game game;
+	//a stack of items that player collected and can be used later.
+	private Stack<ConsumableItem> inventory;
 	//the current position of player on board
 	private int xPos, yPos;
 	private int health, damage, defence;
@@ -35,6 +39,8 @@ public class Player{
 		damage = 10;
 		defence = 10;
 		gold = 0;
+		xPos = 1;	
+		yPos = 1;
 	}
 	
 	/**
@@ -105,27 +111,44 @@ public class Player{
 	//================ movement methods =====================
 	public void move(String direction) throws InvalidMove {
 		int boardSize = Level.BOARDSIZE;
+		Entity[][] board = game.getBoard().GetCurrentLevel().getEntities();
 
 		//TODO: door, wall interaction, as well as monsters
 		if(direction.equals("right")) {
-			if(xPos + 1 > boardSize - 1) {
+			if(xPos + 1 > boardSize - 1) 
 				throw new InvalidMove("Cannot move out of board");
-			}
+			
+			Entity e = board[xPos+1][yPos];
+			if(e != null && e instanceof Wall)
+				throw new InvalidMove("Cannot move towards wall");
+			
 			xPos++;
 		}else if(direction.equals("left")) {
-			if(xPos - 1 < 0) {
+			if(xPos - 1 < 0) 
 				throw new InvalidMove("Cannot move out of board");
-			}
+			
+			Entity e = board[xPos-1][yPos];
+			if(e != null && e instanceof Wall)
+				throw new InvalidMove("Cannot move towards wall");
+			
 			xPos--;
 		}else if(direction.equals("up")) {
-			if(yPos - 1 < 0) {
+			if(yPos - 1 < 0) 
 				throw new InvalidMove("Cannot move out of board");
-			}
+			
+			Entity e = board[xPos][yPos-1];
+			if(e != null && e instanceof Wall)
+				throw new InvalidMove("Cannot move towards wall");
+			
 			yPos--;
 		}else if(direction.equals("down")) {
-			if(yPos + 1 > boardSize - 1) {
+			if(yPos + 1 > boardSize - 1) 
 				throw new InvalidMove("Cannot move out of board");
-			}
+			
+			Entity e = board[xPos][yPos+1];
+			if(e != null && e instanceof Wall)
+				throw new InvalidMove("Cannot move towards wall");
+			
 			yPos++;
 		}
 	}
@@ -202,5 +225,9 @@ public class Player{
 	
 	public Stack<ConsumableItem> getInventory() {
 		return inventory;
+	}
+	
+	public void setCurrentGame(Game game) {
+		this.game = game;
 	}
 }

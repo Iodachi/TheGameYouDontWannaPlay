@@ -16,12 +16,9 @@ public class Game extends Observable{
 	private Player player;
 	public Board board;
 
-	public Player getPlayer() {
-		return player;
-	}
-
 	public Game() {
 		player = new Player();
+		player.setCurrentGame(this);
 		board = new Board();
 		new View(this);
 	}
@@ -55,4 +52,12 @@ public class Game extends Observable{
 //			(BreakableWall)grid.collapse();
 //		}
 //	}
+	
+	public Player getPlayer() {
+		return player;
+	}
+	
+	public Board getBoard() {
+		return board;
+	}
 }

@@ -1,15 +1,7 @@
 package character;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
 import java.util.Stack;
 
-import Board.Entity;
-import item.Bomb;
-import item.ConsumableItem;
-import item.Key;
 import item.*;
 import main.InvalidMove;
 
@@ -20,7 +12,6 @@ import main.InvalidMove;
  *
  */
 public class Player{
-	private static String name;
 	//a stack of items that player collected and can be used later.
 	private Stack<ConsumableItem> inventory;
 	//the maximum amount of items can be stored in the inventory
@@ -29,22 +20,14 @@ public class Player{
 	private int xPos, yPos;
 	private int health, damage, defence;
 	private int gold;
+	private int speed = 1;
 	private String facingDirection;
-
-	private List<WearableItem> equipments= new ArrayList<>();
-	private int speed=1; // the speed of the player movement
-	public int getSpeed(){
-		return speed;
-	}
-	public void setSpeed(int amount){
-		speed = amount;
-	}
-	private HashMap<Item, Integer> bag =new HashMap<>();
 	
-	
+	//equipments
+	private Armor armor;
+	private Weapon weapon;
 	
 	public Player() {
-
 		facingDirection = "down";
 		inventory = new Stack<>();
 		health = 100;
@@ -52,45 +35,7 @@ public class Player{
 		defence = 10;
 		gold = 0;
 	}
-
-	/**
-	 *@author minpingyang
-	 * */
-	public void pickUp(Item item){
-		Set<Item> keySet= bag.keySet();
-		if(!keySet.isEmpty()){
-			for(Item i: keySet){
-				//already exist item in the bag
-				if(i.getName().equals(item.getName())){
-					//!!notice the name of key
-					bag.put(item,bag.get(item)+1);
-					return ;
-				}
-			}
-		}
-		//whatever the bag is empty or not, if it does not find the item in the bag
-		bag.put(item,1);
-	}
-	public void wearEquipment(WearableItem equipment){
-		equipments.add(equipment);
-	}
-
-
-	/**
-	 * player uses an consumable item from his inventory, for example a key to unlock a door,
-	 * or a potion to restore health.
-	 * @param item
-	 */
-	public void useItem(ConsumableItem item) {
-		//modified by mp
-		if(item!=null &&item instanceof ConsumableItem){
-			item.use(this);
-			inventory.remove(item);
-		}
-	}
-
-
-
+	
 	/**
 	 * pick up an item and add to inventory
 	 * @param item
@@ -101,6 +46,14 @@ public class Player{
 			throw new InvalidMove("Inventory is full.");
 
 		inventory.add(item);
+	}
+	
+	public void equip(WearableItem item) {
+		if(item instanceof Armor) {
+			armor = (Armor)item;
+		}else if(item instanceof Weapon) {
+			weapon = (Weapon)item;
+		}
 	}
 
 	/**
@@ -132,9 +85,11 @@ public class Player{
 	 * 					throws an invalid move excepction if doesn't have a bomb
 	 */
 	public void useBomb() throws InvalidMove {
+		//FIXME: note, need to test if the wall breaks if dont' have bomb
 		boolean hasBomb = false;
 		for(ConsumableItem item: inventory) {
 			if(item instanceof Bomb) {
+				//bomb used, 
 				inventory.remove(item);
 				hasBomb = true;
 				break;
@@ -220,6 +175,13 @@ public class Player{
 	public String getFacingDirection() {
 		return facingDirection;
 	}
+	
+	public int getSpeed(){
+		return speed;
+	}
+	public void setSpeed(int speed){
+		this.speed = speed;
+	}
 
 	public int getXPos() {
 		return xPos;
@@ -228,8 +190,16 @@ public class Player{
 	public int getYPos() {
 		return yPos;
 	}
+	
 	public void setFacingDirection(String direction) {
 		this.facingDirection = direction;
-		
+	}
+	
+	public Armor getCurrentArmor() {
+		return armor;
+	}
+	
+	public Weapon getCurrentWeapon() {
+		return weapon;
 	}
 }

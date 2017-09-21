@@ -14,7 +14,6 @@ import gui.View;
  */
 public class Game extends Observable{
 	private Player player;
-	private String dir;
 	public Board board;
 
 	public Player getPlayer() {

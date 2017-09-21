@@ -107,25 +107,21 @@ public class Player{
 
 		//TODO: door, wall interaction, as well as monsters
 		if(direction.equals("right")) {
-			facingDirection = "right";
 			if(xPos + 1 > boardSize - 1) {
 				throw new InvalidMove("Cannot move out of board");
 			}
 			xPos++;
 		}else if(direction.equals("left")) {
-			facingDirection = "left";
 			if(xPos - 1 < 0) {
 				throw new InvalidMove("Cannot move out of board");
 			}
 			xPos--;
 		}else if(direction.equals("up")) {
-			facingDirection = "up";
 			if(yPos - 1 < 0) {
 				throw new InvalidMove("Cannot move out of board");
 			}
 			yPos--;
 		}else if(direction.equals("down")) {
-			facingDirection = "down";
 			if(yPos + 1 > boardSize - 1) {
 				throw new InvalidMove("Cannot move out of board");
 			}

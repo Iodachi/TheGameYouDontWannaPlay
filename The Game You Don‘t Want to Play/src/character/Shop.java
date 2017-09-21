@@ -7,6 +7,11 @@ import item.Item;
 import item.WearableItem;
 import main.InvalidMove;
 
+/**
+ * A shop that sells a variety of items including both equipments and consumables.
+ * @author stella
+ *
+ */
 public class Shop {
 	//a list of items that the shop sells, with their corresponding prices
 	private Map<? extends Item, Integer> items;

@@ -11,15 +11,22 @@ import character.Player;
 public class Key extends ConsumableItem {
 	private int x,y;
     private KeyType type=KeyType.GoldKey; // the key type is corresponding to the type of door.
+    private String color;
     private String name = "KB";
     private int cost= 60;
 	public int getCost() {return cost;}
+	
 	public Key(int x, int y, KeyType type){
 	    this.x =x;
 	    this.y =y;
 	    this.type=type;
 	    setName(type);
     }
+	
+	public Key(String color) {
+		this.color = color;
+	}
+	
 	public enum KeyType{
 		GoldKey,CyanKey,BronzeKey,PurplyeKey,SilverKey;
 	};
@@ -62,8 +69,12 @@ public class Key extends ConsumableItem {
 	public boolean on(int x, int y) {
 		return false;
 	}
-	public String getName(){
 	
+	public String getName(){
 		return name;
+	}
+	
+	public String getColor() {
+		return color;
 	}
 }

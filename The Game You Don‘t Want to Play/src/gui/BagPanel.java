@@ -3,26 +3,71 @@ package gui;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 
 import javax.swing.JPanel;
 
 import resources.ImgResources;
 
 public class BagPanel extends JPanel {
-	 
-		/**
-		 * the Panel for showing all the equipments in players bag 
-		 */
-		private static final long serialVersionUID = 1L;
-		private static final int TILESIZE = 64;
-		 @Override  
-	     public void paint(Graphics g) { 
-			 
-		 Image img= ImgResources.equipmentBackGroud.img;
-		 g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),0,0,img.getWidth(null),img.getHeight(null),null);
-		 }	 
-		 
-		 public Dimension getPreferredSize() {return new Dimension((int) (TILESIZE*4), TILESIZE*6);}
+
+	/**
+	 * the Panel for showing all the equipments in players bag
+	 */
+	private static final long serialVersionUID = 1L;
+	private static final int TILESIZE = 64;
+	private static final int RECTSIZE = 60;
+	private static final int GAPSIZE = 10;
+	private int initialX = 25;
+	private int initialY = 60;
+	private Rectangle[][] bagRectangle = new Rectangle[4][3];
+	
+	public BagPanel(){
+		CreateRectangle();
 	}
 
+	@Override
+	public void paint(Graphics g) {
 
+		Image img = ImgResources.equipmentBackGroud.img; // to load the equipment BackGroud image
+		// fill the BackGroud to appropriate size
+		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), 0, 0, img.getWidth(null), img.getHeight(null), null);
+	}
+	/**
+	 * The Rectangles is provide for the Mouse controller, to checking does 
+	 * the user chick on the items on bag Panel.
+	 */
+
+	public void CreateRectangle() {
+		for (int row = 0; row < 4; row++) {
+			for (int col = 0; col < 3; col++) {
+				int x = initialX + (RECTSIZE + GAPSIZE) * col;
+				int y = initialY + (RECTSIZE + GAPSIZE) * row;
+				if (row > 1) y += 10;// the gap changes when the row lager than 1
+				bagRectangle[row][col] = new Rectangle(x, y, RECTSIZE, RECTSIZE);
+			}
+		}
+	}
+	
+	/**
+	 * To check those the user check on the items frame
+	 * @return true if contains otherwise return false
+	 */
+	public boolean containsRect(int x, int y) {
+		for(int row = 0; row<4; row++) {
+			for(int col = 0; col<3; col++) {
+			if(bagRectangle[row][col].contains(x, y))
+			return true;
+			}
+		}
+		return false;
+		
+	}
+
+	/**
+	 * set the size for character panel, on the basis of tile size
+	 */
+	public Dimension getPreferredSize() {
+		return new Dimension((int) (TILESIZE * 4), TILESIZE * 6);
+	}
+}

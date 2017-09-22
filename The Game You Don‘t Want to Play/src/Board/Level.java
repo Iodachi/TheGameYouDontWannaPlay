@@ -15,8 +15,6 @@ public class Level {
 	private Entity entities[][];
 	private Item itmes[][];
 	private int floor;
-	
-	
 
 	public Level(int floor) {
 		this.floor = floor;
@@ -30,7 +28,7 @@ public class Level {
 
 	private void initialize() {
 
-		String fileName = "Map"+floor+".txt";
+		String fileName = "Map" + floor + ".txt";
 		String line = null;
 		try {
 			InputStream is = Level.class.getResourceAsStream(fileName);
@@ -107,9 +105,28 @@ public class Level {
 			this.entities[x][y] = (new Stairs(Entity, x, y, size));
 		else if (Entity.equals("npc"))
 			this.entities[x][y] = (new NPC(Entity, x, y, size));
+		
+//		switch(name) {
+//			case"WL":this.entities[x][y] = new Wall(name, x, y, size); break;
+//			case"GL":
+//			case"LA":
+//			case"DB":
+//			case"DS":
+//			case"DG":
+//			case"DP":
+//			case"SU":
+//			case"SD":
+//			case"KB":
+//			case"KS":
+//			case"KG":
+//			case"KC":
+//			case"KP":
+//			case"BL":
+//			case"BS":
+		}
 	
 	
-	}
+	
 
 	/**
 	 * make long Entities2

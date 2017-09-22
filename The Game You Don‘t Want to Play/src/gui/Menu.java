@@ -23,11 +23,9 @@ import main.Game;
  *  The game menu for this game, it contains New Game, Load, Info , Quit button and background images 
  *
  */
-
 public class Menu extends JComponent {
 
 	private static final long serialVersionUID = 1L;
-	
 	private static final JFrame f = new JFrame("The Game You Don't Want To Play");
 
 	public Menu() {
@@ -96,7 +94,6 @@ public class Menu extends JComponent {
 				String code ="";
 				if(number<10) {code= "0"+number;}
 				else {code=""+number;}
-				//System.out.println(code);
 				try {
 					String path = "/tiles/tiles_"+code+".png";
 					Icon icon = new ImageIcon ( ImageIO.read(Menu.class.getResource(path)));
@@ -107,8 +104,6 @@ public class Menu extends JComponent {
 				
 			}
 		}
-		
-		System.out.print("======DOEN=====\n");
 	}
 
 }

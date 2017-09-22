@@ -11,6 +11,7 @@ import javax.security.auth.x500.X500Principal;
 
 import gui.BagPanel;
 import gui.CharacterPanel;
+import gui.View;
 import item.Item;
 import main.Game;
 
@@ -22,7 +23,7 @@ import main.Game;
 
 public class MouseController implements MouseMotionListener, MouseListener {
 
-	private Game game;
+	private View view;
 	private Item[][] bag= new Item[4][3]; 
 	private int sizeRectangle = 60;
 	private int width=45,length=50;
@@ -32,8 +33,9 @@ public class MouseController implements MouseMotionListener, MouseListener {
 	private int bagRow=0, bagCol=0,charaCol=0;
 	private Rectangle[][] bagRectangle = new Rectangle[4][3];
 	private Rectangle[] charactRectangle = new Rectangle[3];
-	public MouseController(Game game) {
-		this.game = game;
+	
+	public MouseController(View view) {
+		this.view = view;
 		fillRectangle();
 		printOut();
 	}
@@ -60,13 +62,14 @@ public class MouseController implements MouseMotionListener, MouseListener {
 	}
 	
 	public void printOut() {
-//		for(int row=0;row<4;row++) {
-//			for(int col=0; col<3;col++) {
-//			int x =	bagRectangle[row][col].x;
-//			int y =	bagRectangle[row][col].y;
-//			System.out.println("row:"+row + " col"+col+"  x:"+x+ "y:"+y);
-//			}
-//		}
+		
+		for(int row=0;row<4;row++) {
+			for(int col=0; col<3;col++) {
+			int x =	bagRectangle[row][col].x;
+			int y =	bagRectangle[row][col].y;
+			System.out.println("row:"+row + " col"+col+"  x:"+x+ "y:"+y);
+			}
+		}
 		for(int col=0;col<3;col++) {
 			int y = charactRectangle[col].y;
 			System.out.println("coL: "+col+ " y: "+y);
@@ -104,6 +107,7 @@ public class MouseController implements MouseMotionListener, MouseListener {
 		System.out.printf("X:%dY:%d\n",e.getX(),e.getY());
 		
 		if(e.getSource() instanceof BagPanel) {
+			
 			if(checkClickOn(e.getX(), e.getY(), true)) {
 				System.out.println("row: "+(bagRow+1)+    "col:"+(bagCol+1));
 			}else {

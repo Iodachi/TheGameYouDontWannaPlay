@@ -35,9 +35,10 @@ public class View extends JComponent implements Observer {
 	private static final long serialVersionUID = 1L;
 	public static final int TILESIZE = 64;
 
-	private JPanel bagPanelPanel;
+	private JPanel bagPanel;
 	private JPanel characterPanel;
 	private JPanel dialogPanel;
+	
 
 	private Game game;
 
@@ -49,12 +50,12 @@ public class View extends JComponent implements Observer {
 		this.setPreferredSize(getPreferredSize());
 
 		// create UI for the main
-		bagPanelPanel = new BagPanel();
-		bagPanelPanel.addMouseListener(new MouseController(game));
-		bagPanelPanel.setSize(new Dimension(getPreferredSize()));
+		bagPanel = new BagPanel();
+		bagPanel.addMouseListener(new MouseController(this));
+		bagPanel.setSize(new Dimension(getPreferredSize()));
 			
 		characterPanel = new CharacterPanel();
-		characterPanel.addMouseListener(new MouseController(game));
+		characterPanel.addMouseListener(new MouseController(this));
 		characterPanel.setSize(new Dimension(getPreferredSize()));
 		
 		dialogPanel = new DialogPanel();
@@ -63,7 +64,7 @@ public class View extends JComponent implements Observer {
 		// set GridLayout for fl
 		JPanel fl = new JPanel(new GridLayout(2, 1));
 		fl.add(characterPanel);
-		fl.add(bagPanelPanel);
+		fl.add(bagPanel);
 		fl.setVisible(true);
 
 		JFrame f = new JFrame("The Game You Don't Want to Play");
@@ -77,7 +78,7 @@ public class View extends JComponent implements Observer {
 		f.setVisible(true);
 
 		addKeyListener(new KeyController(game));
-		addMouseListener(new MouseController(game));
+		addMouseListener(new MouseController(this));
 	}
 
 	public Dimension getPreferredSize() {
@@ -92,13 +93,14 @@ public class View extends JComponent implements Observer {
 
 	@Override
 	public void paintComponent(Graphics g) {
+		drawFloor(g);
 		drawMap(game.board, g);
 		drawPlayer(game.getPlayer(), g);
 
 	}
 
 	private void drawMap(Board board, Graphics g) {
-		drawFloor(g);
+		
 
 		for (int x = 0; x < Level.BOARDSIZE; x++) {
 			for (int y = 0; y < Level.BOARDSIZE; y++) {
@@ -106,12 +108,10 @@ public class View extends JComponent implements Observer {
 				if(board.GetCurrentLevel().GetEntityAt(x, y)!=null) {
 				String name = board.GetCurrentLevel().GetEntityAt(x, y).getName();
 				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/"+name+".png"));
-				//System.out.printf("X: %s Y: %s Name: ",x,y,name);
 				img.paintIcon(null, g, y * TILESIZE, x * TILESIZE);
 				}
 			}
 		}
-		// board.GetCurrentLevel().GetEntityAt(0,0)
 
 	}
 
@@ -145,6 +145,23 @@ public class View extends JComponent implements Observer {
 		default:
 			break;
 		}
-
+		
+	
 	}
+	public JPanel getBagPanel() {
+		return bagPanel;
+	}
+
+	public JPanel getCharacterPanel() {
+		return characterPanel;
+	}
+
+	public JPanel getDialogPanel() {
+		return dialogPanel;
+	}
+
+	public Game getGame() {
+		return game;
+	}
+
 }

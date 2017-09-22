@@ -22,7 +22,7 @@ public class Door extends Entity{
 	public int GetDoorCode(){return super.Code;}
 
 
-	//================================= Test =========================================================
+	//================================= Test ============================================================
 	@Override
 	public String toString(){
 		String Color = null;

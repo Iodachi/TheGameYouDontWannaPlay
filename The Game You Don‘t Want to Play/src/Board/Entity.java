@@ -2,11 +2,10 @@ package Board;
 
 import java.awt.Rectangle;
 
-public abstract class Entity  {
+public abstract class Entity {
 	protected int Code;
 	protected int PosX,PosY,size;
 	private Rectangle EntityRange;
-
 
 	public Entity(int code,int x,int y,int size){
 		this.Code = code;
@@ -15,7 +14,7 @@ public abstract class Entity  {
 		this.size = size;
 		this.EntityRange = new Rectangle(x * size ,y * size,size,size);
 	}
-	
+
 	//================================= Return =========================================================
 	/**
 	 * 
@@ -45,7 +44,7 @@ public abstract class Entity  {
 	 * @return
 	 */
 	public Rectangle GetRange(){return this.EntityRange;}
-	//================================= Test =========================================================
+	//================================= Test ============================================================
 	@Override
 	public String toString(){ return String.valueOf(this.Code);}
 

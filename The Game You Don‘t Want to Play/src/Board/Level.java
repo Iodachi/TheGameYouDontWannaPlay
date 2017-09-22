@@ -27,7 +27,7 @@ public class Level {
 		this.TType0 = getTemple0();
 		this.TType1 = getTemple1();
 		this.TType2 = getTemple2();
-		
+
 	}
 
 
@@ -103,8 +103,10 @@ public class Level {
 
 	/**
 	 * Add entities in this level
+	 * @param <T>
 	 */
-	public void AddEntity(int code, int x, int y, int size,Scanner sc) {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public <T> void AddEntity(int code, int x, int y, int size,Scanner sc) {
 		// from 00 ~09  Ground
 		if(code < 10){
 			Entity Ground = new Ground(code,x,y,size);
@@ -130,28 +132,28 @@ public class Level {
 		}else if(code >= 60 && code < 70){	
 			if(code == 60){
 				Ground GroundShop = new Ground(code,x,y,size);
-				GroundShop.SetShop(SType0);
+				GroundShop.SetShopOrTemple((T)SType0);
 				this.entities[x][y] = GroundShop;
 			}else if(code == 61){
 				Ground GroundShop = new Ground(code,x,y,size);
-				GroundShop.SetShop(SType1);
+				GroundShop.SetShopOrTemple((T)SType1);
 				this.entities[x][y] = GroundShop;
 			}else if(code == 62){
 				Ground GroundShop = new Ground(code,x,y,size);
-				GroundShop.SetShop(SType2);
+				GroundShop.SetShopOrTemple((T)SType2);
 				this.entities[x][y] = GroundShop;
 			}else if(code == 65){
-				Ground GroundShop = new Ground(code,x,y,size);
-				GroundShop.SetTemple(TType0);
-				this.entities[x][y] = GroundShop;
+				Ground GroundTemple = new Ground(code,x,y,size);
+				GroundTemple.SetShopOrTemple((T)TType0);
+				this.entities[x][y] = GroundTemple;
 			}else if(code == 66){
-				Ground GroundShop = new Ground(code,x,y,size);
-				GroundShop.SetTemple(TType1);
-				this.entities[x][y] = GroundShop;
+				Ground GroundTemple = new Ground(code,x,y,size);
+				GroundTemple.SetShopOrTemple((T)TType1);
+				this.entities[x][y] = GroundTemple;
 			}else if(code == 67){
-				Ground GroundShop = new Ground(code,x,y,size);
-				GroundShop.SetTemple(TType2);
-				this.entities[x][y] = GroundShop;
+				Ground GroundTemple = new Ground(code,x,y,size);
+				GroundTemple.SetShopOrTemple((T)TType2);
+				this.entities[x][y] = GroundTemple;
 			}
 			//from 90 ~ 99 Monster	
 		}else if(code >= 90 && code <= 99){
@@ -193,7 +195,7 @@ public class Level {
 		type2.put(new Key(-1,-1,KeyType.BronzeKey),2);
 		return new Shop(type2);
 	}
-	
+
 	/**
 	 * Temple Type 0 contain ("health", 10)	, ("damage", 10) and ("defence", 10)	
 	 * @return
@@ -217,7 +219,7 @@ public class Level {
 		type1.put("defence", 100);
 		return new Temple(type1);
 	}
-	
+
 	/**
 	 * Temple Type 2 contain ("health", 1000)	, ("damage", 1000) and ("defence", 1000)	
 	 * @return
@@ -237,9 +239,8 @@ public class Level {
 		for (int i = 0; i < 12; i++) {
 			StringBuilder temp = new StringBuilder();
 			for (int c = 0; c < 12; c++) {
-				if(this.pieces[i][c] == 0) temp.append(" 00");
-				else if(this.pieces[i][c] == 1) temp.append(" 01");
-				else if(this.pieces[i][c] == 2) temp.append(" 02");
+				if(this.pieces[i][c] < 10) temp.append(" 0" + this.pieces[i][c]);
+				
 				else temp.append(" " + this.pieces[i][c]);
 			}
 			System.out.println(temp);

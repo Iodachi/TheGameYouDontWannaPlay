@@ -27,11 +27,11 @@ public class Player{
 	private int gold;
 	private int speed = 1;
 	private String facingDirection;
-	
+
 	//equipments
 	private Armor armor;
 	private Weapon weapon;
-	
+
 	public Player() {
 		facingDirection = "down";
 		inventory = new Stack<>();
@@ -42,7 +42,7 @@ public class Player{
 		xPos = 1;	
 		yPos = 1;
 	}
-	
+
 	/**
 	 * pick up an item and add to inventory
 	 * @param item
@@ -54,7 +54,7 @@ public class Player{
 
 		inventory.add(item);
 	}
-	
+
 	public void equip(WearableItem item) {
 		//TODO: update on player's stats when an equipment is equiped
 		if(item instanceof Armor) {
@@ -65,7 +65,7 @@ public class Player{
 	}
 
 	/**
-	 * use a key in the corresponding color from inventory to open door，
+	 * use a key in the corresponding color from inventory to open door锛�
 	 * @param color
 	 * 					the color of the key needed to open the door
 	 * @throws InvalidMove
@@ -74,11 +74,11 @@ public class Player{
 	public void useKey(String color) throws InvalidMove {
 		boolean hasKey = false;
 		for(ConsumableItem item: inventory) {
-//			if(item instanceof Key && ((Key)item).getColor().equals(color)) {
-//				inventory.remove(item);
-//				hasKey = true;
-//				break;
-//			}
+			//			if(item instanceof Key && ((Key)item).getColor().equals(color)) {
+			//				inventory.remove(item);
+			//				hasKey = true;
+			//				break;
+			//			}
 		}
 
 		//when all items in inventory has been checked and
@@ -117,38 +117,38 @@ public class Player{
 		if(direction.equals("right")) {
 			if(xPos + 1 > boardSize - 1) 
 				throw new InvalidMove("Cannot move out of board");
-			
+
 			Entity e = board[yPos][xPos+1];
 			if(e != null && e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on right");
-			
+
 			xPos++;
 		}else if(direction.equals("left")) {
 			if(xPos - 1 < 0) 
 				throw new InvalidMove("Cannot move out of board");
-			
+
 			Entity e = board[yPos][xPos-1];
 			if(e != null && e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on left");
-			
+
 			xPos--;
 		}else if(direction.equals("up")) {
 			if(yPos - 1 < 0) 
 				throw new InvalidMove("Cannot move out of board");
-			
+
 			Entity e = board[yPos-1][xPos];
 			if(e != null && e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on top");
-			
+
 			yPos--;
 		}else if(direction.equals("down")) {
 			if(yPos + 1 > boardSize - 1) 
 				throw new InvalidMove("Cannot move out of board");
-			
+
 			Entity e = board[yPos+1][xPos];
 			if(e != null && e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on bottom");
-			
+
 			yPos++;
 		}
 	}
@@ -191,15 +191,15 @@ public class Player{
 	public int getGold() {
 		return gold;
 	}
-	
+
 	public String getFacingDirection() {
 		return facingDirection;
 	}
-	
+
 	public void setFacingDirection(String direction) {
 		this.facingDirection = direction;
 	}
-	
+
 	public int getSpeed(){
 		return speed;
 	}
@@ -214,20 +214,26 @@ public class Player{
 	public int getYPos() {
 		return yPos;
 	}
-	
+
 	public Armor getCurrentArmor() {
 		return armor;
 	}
-	
+
 	public Weapon getCurrentWeapon() {
 		return weapon;
 	}
-	
+
 	public Stack<ConsumableItem> getInventory() {
 		return inventory;
 	}
-	
+
 	public void setCurrentGame(Game game) {
 		this.game = game;
+	}
+
+	public Player setPos(int x, int y){
+		this.xPos = x;
+		this.yPos = y;
+		return this;
 	}
 }

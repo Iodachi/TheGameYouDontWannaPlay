@@ -2,7 +2,6 @@ package character;
 
 import java.util.Stack;
 
-import Board.Door;
 import Board.Entity;
 import Board.Level;
 import Board.Wall;
@@ -75,11 +74,11 @@ public class Player{
 	public void useKey(String color) throws InvalidMove {
 		boolean hasKey = false;
 		for(ConsumableItem item: inventory) {
-			if(item instanceof Key && ((Key)item).getColor().equals(color)) {
-				inventory.remove(item);
-				hasKey = true;
-				break;
-			}
+//			if(item instanceof Key && ((Key)item).getColor().equals(color)) {
+//				inventory.remove(item);
+//				hasKey = true;
+//				break;
+//			}
 		}
 
 		//when all items in inventory has been checked and
@@ -114,79 +113,44 @@ public class Player{
 		int boardSize = Level.BOARDSIZE;
 		Entity[][] board = game.getBoard().GetCurrentLevel().getEntities();
 
-		//TODO: door interaction, as well as monsters
+		//TODO: door, wall interaction, as well as monsters
 		if(direction.equals("right")) {
-			moveRight(board, boardSize);
-		}else if(direction.equals("left")) {
-			moveLeft(board, boardSize);
-		}else if(direction.equals("up")) {
-			moveUp(board, boardSize);
-		}else if(direction.equals("down")) {
-			moveDown(board, boardSize);
-		}
-		
-		//TODO pick up items at new position
-		//if(board[yPos][xPos] != null && board[yPos][xPos] instanceof ConsumableItem)
-	}
-	
-	public void moveRight(Entity[][] board, int boardSize) throws InvalidMove {
-		if(xPos + 1 > boardSize - 1) 
-			throw new InvalidMove("Cannot move out of board");
-		
-		Entity e = board[yPos][xPos+1];
-		if(e != null) {
-			if(e instanceof Wall)
+			if(xPos + 1 > boardSize - 1) 
+				throw new InvalidMove("Cannot move out of board");
+			
+			Entity e = board[yPos][xPos+1];
+			if(e != null && e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on right");
-			else if(e instanceof Door)
-				game.tryOpenDoor((Door) e);
-		}
-		
-		xPos++;
-	}
-
-	public void moveLeft(Entity[][] board, int boardSize) throws InvalidMove {
-		if(xPos - 1 < 0) 
-			throw new InvalidMove("Cannot move out of board");
-		
-		Entity e = board[yPos][xPos-1];
-		if(e != null) {
-			if(e instanceof Wall)
+			
+			xPos++;
+		}else if(direction.equals("left")) {
+			if(xPos - 1 < 0) 
+				throw new InvalidMove("Cannot move out of board");
+			
+			Entity e = board[yPos][xPos-1];
+			if(e != null && e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on left");
-			else if(e instanceof Door)
-				game.tryOpenDoor((Door) e);
-		}
-		
-		xPos--;
-	}
-
-	public void moveUp(Entity[][] board, int boardSize) throws InvalidMove {
-		if(yPos - 1 < 0) 
-			throw new InvalidMove("Cannot move out of board");
-		
-		Entity e = board[yPos-1][xPos];
-		if(e != null) {
-			if(e instanceof Wall)
+			
+			xPos--;
+		}else if(direction.equals("up")) {
+			if(yPos - 1 < 0) 
+				throw new InvalidMove("Cannot move out of board");
+			
+			Entity e = board[yPos-1][xPos];
+			if(e != null && e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on top");
-			else if(e instanceof Door)
-				game.tryOpenDoor((Door) e);
-		}
-		
-		yPos--;
-	}
-
-	public void moveDown(Entity[][] board, int boardSize) throws InvalidMove {
-		if(yPos + 1 > boardSize - 1) 
-			throw new InvalidMove("Cannot move out of board");
-		
-		Entity e = board[yPos+1][xPos];
-		if(e != null) {
-			if(e instanceof Wall)
+			
+			yPos--;
+		}else if(direction.equals("down")) {
+			if(yPos + 1 > boardSize - 1) 
+				throw new InvalidMove("Cannot move out of board");
+			
+			Entity e = board[yPos+1][xPos];
+			if(e != null && e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on bottom");
-			else if(e instanceof Door)
-				game.tryOpenDoor((Door) e);
+			
+			yPos++;
 		}
-		
-		yPos++;
 	}
 
 	//================= setter and getters ===================

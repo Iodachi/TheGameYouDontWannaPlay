@@ -8,6 +8,8 @@ public class TestBoard {
 	public void test() {
 		Board temp = new Board();
 		temp.GetCurrentLevel().Print();
+		System.out.println("");
+		temp.GetCurrentLevel().Print1();
 	}
 
 }

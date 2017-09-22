@@ -1,8 +1,14 @@
 package Board;
 
+import java.io.BufferedReader;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.Scanner;
 
 public class Board {
 	private static final int TOWERHIGHT =10;
@@ -21,33 +27,27 @@ public class Board {
 	}
 
 	public void initialize(){
-//		Level l0 = new Level(0);
-//		l0.GenerateEntiies(2, 7, 2, 9, "wall");
-//		l0.GenerateEntiies(3, 8, 3, 9, "wall");
-//		l0.GenerateEntiies(4, 9, 4, 11, "wall");
-//		//l0.GenerateEntiies(4, 3, 4, 7, "wall");
-//		//l0.GenerateEntiies(5, 3, 6, 3, "wall");
-//		//l0.GenerateEntiies(5, 5, 5, 6, "wall");
-//		//l0.GenerateEntiies(7, 3, 7, 7, "wall");
-//		//l0.GenerateEntiies(9, 7, 9, 10, "wall");
-//		//l0.GenerateEntiies(8, 8, 8, 10, "wall");
-//		//l0.GenerateEntiies(7, 9, 7, 11, "wall");
-//		//l0.AddEntity("stair", 5, 4, 60);
-//		//l0.AddEntity("reddoor", 6, 5,60 );
-//		//l0.AddEntity("greendoor", 6, 6,60 );
-//		//l0.AddEntity("irondoor", 5, 8,60 );
-//		//l0.AddEntity("irondoor", 5, 9,60 );
-//		l0.FillAllAsGround();
-		
-		System.out.println("1");
-		for(int i = 1; i<TOWERHIGHT; i++) {
-		Board.levels.put(i, new Level(i));
-		break; //only done one map, so just added one level
+		String fileName = "load"+".txt";
+		try {
+			InputStream is = Board.class.getResourceAsStream(fileName);
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
+
+			Scanner sc = new Scanner(bufferedReader);
+			while(sc.hasNext()){
+				if(sc.hasNext("l")){
+					sc.next();      //consume l
+					int NumOfLevel = sc.nextInt();
+					Level temp = new Level(NumOfLevel);
+					temp.ParserLevel(sc);
+					this.levels.put(NumOfLevel, temp);
+				}
+			}
+			bufferedReader.close();
+		} catch (FileNotFoundException ex) {
+			System.out.println("Unable to open file '" + fileName + "'");
+		} catch (IOException ex) {
+			System.out.println("Error reading file '" + fileName + "'");
 		}
-
-
 	}	
-	//public void load
-
 
 }

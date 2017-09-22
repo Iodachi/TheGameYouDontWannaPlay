@@ -35,9 +35,8 @@ public class View extends JComponent implements Observer {
 	private static final long serialVersionUID = 1L;
 	public static final int TILESIZE = 64;
 
-	private JPanel bagPanelPanel;
+	private JPanel equipmentsPanel;
 	private JPanel characterPanel;
-	private JPanel dialogPanel;
 
 	private Game game;
 
@@ -49,29 +48,23 @@ public class View extends JComponent implements Observer {
 		this.setPreferredSize(getPreferredSize());
 
 		// create UI for the main
-		bagPanelPanel = new BagPanel();
-		bagPanelPanel.addMouseListener(new MouseController(game));
-		bagPanelPanel.setSize(new Dimension(getPreferredSize()));
-			
+		equipmentsPanel = new EquipmentsPanel();
+		equipmentsPanel.setSize(new Dimension(getPreferredSize()));
+
 		characterPanel = new CharacterPanel();
-		characterPanel.addMouseListener(new MouseController(game));
 		characterPanel.setSize(new Dimension(getPreferredSize()));
-		
-		dialogPanel = new DialogPanel();
-		dialogPanel.setSize(new Dimension(getPreferredSize()));
 
 		// set GridLayout for fl
 		JPanel fl = new JPanel(new GridLayout(2, 1));
 		fl.add(characterPanel);
-		fl.add(bagPanelPanel);
+		fl.add(equipmentsPanel);
 		fl.setVisible(true);
 
 		JFrame f = new JFrame("The Game You Don't Want to Play");
 		f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		f.setLayout(new BorderLayout());
 		f.add(fl, BorderLayout.WEST);
-		f.add(this, BorderLayout.CENTER);
-		f.add(dialogPanel,BorderLayout.EAST);
+		f.add(this, BorderLayout.EAST);
 		f.pack();
 		f.setResizable(false);
 		f.setVisible(true);
@@ -118,7 +111,7 @@ public class View extends JComponent implements Observer {
 	private void drawFloor(Graphics g) {
 		for (int x = 0; x < Level.BOARDSIZE; x++) {
 			for (int y = 0; y < Level.BOARDSIZE; y++) {
-				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/GL.png"));
+				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/WL.png"));
 				img.paintIcon(null, g, y * TILESIZE, x * TILESIZE);
 			}
 		}

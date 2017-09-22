@@ -4,7 +4,6 @@ package main;
 import java.util.Observable;
 
 import Board.Board;
-import Board.Door;
 import character.Player;
 import gui.View;
 
@@ -37,12 +36,11 @@ public class Game extends Observable{
 	
 	/**
 	 * when player presses e, apply interaction with the grid that player is currently facing, 
-	 * including opening doors, bombing walls, as well as interactions with shop and other NPC.
+	 * including opening doors, bombing walls, as well as inteactions with shop and other NPC.
 	 * Do nothing if no block can interact with, or no item in inventory to interact.
 	 * @param grid
 	 * 				the next grid on player's current facing direction. for example if player is in pisition (2, 2) and facing right,
 	 * 				the position of this grid will be (2, 3)
-	 * @throws InvalidMove 
 	 */
 //	public void interaction(Grid grid) {
 //		if(grid instanceof Door) {
@@ -54,20 +52,6 @@ public class Game extends Observable{
 //			(BreakableWall)grid.collapse();
 //		}
 //	}
-	
-	public void tryOpenDoor(Door door) throws InvalidMove {
-		String keyColor = door.getColor();
-		
-		try {
-			player.useKey(keyColor);
-			door.setOpen(true);
-			
-			this.setChanged();
-			this.notifyObservers();
-		} catch (InvalidMove e) {
-			throw new InvalidMove("Cannot open door");
-		}
-	}
 	
 	public Player getPlayer() {
 		return player;

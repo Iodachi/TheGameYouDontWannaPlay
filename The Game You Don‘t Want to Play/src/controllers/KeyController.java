@@ -42,14 +42,10 @@ public class KeyController implements KeyListener {
 			case 'd':
 				game.move("right");
 				break;
-			case '1':
-				
 			}
 		} catch (main.InvalidMove invalidMove) {
-			//invalidMove.printStackTrace();
+			invalidMove.printStackTrace();
 		}
 	}
-	
-	
 
 }

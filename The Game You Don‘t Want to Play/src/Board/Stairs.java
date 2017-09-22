@@ -2,8 +2,8 @@ package Board;
 
 public class Stairs extends Entity{
 	private int up,down;
-	public Stairs(String name, int x, int y, int size) {
-		super(name, x, y, size);
+	public Stairs(int code, int x, int y, int size) {
+		super(code, x, y, size);
 		// TODO Auto-generated constructor stub
 	}
 

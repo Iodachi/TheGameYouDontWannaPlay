@@ -111,6 +111,7 @@ public class View extends JComponent implements Observer {
 				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/"+code+".png"));
 				img.paintIcon(null, g, y * TILESIZE, x * TILESIZE);
 				}
+				if(code==60)y+=1;
 				}catch(NullPointerException e) {
 					System.err.println("NullPointerException: " + code);
 				}

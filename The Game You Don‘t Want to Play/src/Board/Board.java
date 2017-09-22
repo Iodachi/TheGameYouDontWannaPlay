@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -18,6 +19,7 @@ public class Board {
 		this.CurrentLevel = 1;
 		initialize();
 	}
+	//====================================== Return ======================================================
 
 	/**
 	 * Return current level
@@ -26,6 +28,10 @@ public class Board {
 		return Board.levels.get(CurrentLevel);
 	}
 
+	public Collection<Level> GetAllLevel(){
+		return this.levels.values();
+	}
+	//================================== initialize ======================================================
 	public void initialize(){
 		String fileName = "load"+".txt";
 		try {

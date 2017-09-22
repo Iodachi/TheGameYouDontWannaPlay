@@ -1,0 +1,38 @@
+     * 00 - nothing                     - GG  
+	 * 01 - lava                        - GL 
+	 * 02 - contain player              - GP 
+	 * 03 - contain monster             - GM
+
+     * 10 - normal wall                 - WW   
+	 * 11 - Breakable wall              - WB
+
+	 * 20 - GoldDoor                    - DG           
+	 * 21 - CyanDoor                    - DC          
+	 * 22 - Bornze D                    - DB         
+	 * 23 - Purplye                     - DP
+	 * 24 - Silver D                    - DS
+
+     * 30 - Gold key                    - GK
+	 * 31 - Cyan key                    - CK
+	 * 32 - Bronze Key                  - BK
+	 * 33 - Purplye Key                 - PK
+	 * 34 - Sliver K                    - SK
+
+	 * 40 - Big BloodVial               - BB
+	 * 41 - Small BloodVial             - SB
+	 * 42 - Armor                       - AR
+	 * 43 - Bomb                        - BM
+	 * 44 - Weapon                      - WP
+	 * 45 - wing                        - WG
+	 
+     * 51 - up stair                    - US
+	 * 52 - down stair                  - DS
+
+     * 60 - Shop Type 0
+	 * 61 - Shop Type 1
+	 * 62 - Shop Type 2
+	 * 65 - Temple Type 0 
+	 * 66 - Temple Type 1
+	 * 67 - Temple Type 2
+
+	 * 91 - M1  92 - M2 93 - M3 94 - M4 95 - M5 96 - M6 97 - M7 98 - M8

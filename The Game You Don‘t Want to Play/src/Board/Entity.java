@@ -15,6 +15,8 @@ public abstract class Entity  {
 		this.size = size;
 		this.EntityRange = new Rectangle(x * size ,y * size,size,size);
 	}
+	
+	//================================= Return =========================================================
 	/**
 	 * 
 	 * @return name of the entity
@@ -43,7 +45,7 @@ public abstract class Entity  {
 	 * @return
 	 */
 	public Rectangle GetRange(){return this.EntityRange;}
-
+	//================================= Test =========================================================
 	@Override
 	public String toString(){ return String.valueOf(this.Code);}
 

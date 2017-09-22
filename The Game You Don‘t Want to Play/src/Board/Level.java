@@ -1,8 +1,6 @@
 package Board;
 
 import java.util.Scanner;
-
-import character.Player;
 import gui.View;
 
 public class Level {

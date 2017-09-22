@@ -1,10 +1,10 @@
 package controllers;
 
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-<<<<<<< HEAD
-=======
 import java.nio.channels.NonWritableChannelException;
 
 import javax.security.auth.x500.X500Principal;
@@ -13,25 +13,16 @@ import gui.BagPanel;
 import gui.CharacterPanel;
 import gui.View;
 import item.Item;
->>>>>>> 9d56fd2ff63280a798d902d44d46b64648a5783f
 import main.Game;
 
 /**
  * 
- * @author Zhancheng Gan
- *
+ * @author Minping
  */
 
 
 public class MouseController implements MouseMotionListener, MouseListener {
 
-<<<<<<< HEAD
-	private Game game;
-	
-	public MouseController(Game game) {
-		this.game = game;
-
-=======
 	private View view;
 	private Item[][] bag= new Item[4][3]; 
 	private int sizeRectangle = 60;
@@ -108,21 +99,20 @@ public class MouseController implements MouseMotionListener, MouseListener {
 		}
 		
 		return false;
->>>>>>> 9d56fd2ff63280a798d902d44d46b64648a5783f
 	}
+	
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		System.out.printf("X:%dY:%d\n",e.getX(),e.getY());
-<<<<<<< HEAD
-=======
 		
 		if(e.getSource() instanceof BagPanel) {
 			
-			if(checkClickOn(e.getX(), e.getY(), true)) {
-				System.out.println("row: "+(bagRow+1)+    "col:"+(bagCol+1));
-			}else {
-				System.out.println("have not clicked ");
-			}
+//			if(checkClickOn(e.getX(), e.getY(), true)) {
+//				System.out.println("row: "+(bagRow+1)+    "col:"+(bagCol+1));
+//			}else {
+//				System.out.println("have not clicked ");
+//			}
 		}else if(e.getSource() instanceof CharacterPanel) {
 
 			if(checkClickOn(e.getX(), e.getY(), false)) {
@@ -131,12 +121,12 @@ public class MouseController implements MouseMotionListener, MouseListener {
 				System.out.println("have not clicked ");
 			}
 		}
->>>>>>> 9d56fd2ff63280a798d902d44d46b64648a5783f
 	}
 
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-
+		
 	}
 
 	@Override

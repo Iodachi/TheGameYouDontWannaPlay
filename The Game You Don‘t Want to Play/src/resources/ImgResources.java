@@ -15,6 +15,7 @@ public enum ImgResources {
 	
 	equipmentBackGroud("equipmentPanel.png"),
 	characterBackGroud("characterPanel.png"),
+	dialogBackGroud("dialogPanel.png"),
 	BackGround("background.jpg");
 	
 	public final Image img;

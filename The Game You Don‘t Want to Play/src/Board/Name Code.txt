@@ -8,11 +8,11 @@
      * 10 - normal wall                 - WW   
 	 * 11 - Breakable wall              - WB
 
-	 * 20 - Gold Door                   - DG           
-	 * 21 - Cyan Door                   - DC          
-	 * 22 - Bronze Door                 - DB         
-	 * 23 - Purple Door                 - DP
-	 * 24 - Silver Door                 - DS
+	 * 20 - GoldDoor                    - DG           
+	 * 21 - CyanDoor                    - DC          
+	 * 22 - Bornze D                    - DB         
+	 * 23 - Purplye                     - DP
+	 * 24 - Silver D                    - DS
 
      * 30 - Gold key                    - GK
 	 * 31 - Cyan key                    - CK

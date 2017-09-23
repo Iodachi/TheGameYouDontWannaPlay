@@ -122,17 +122,17 @@ public class TestBoard {
 	public <T> void testCast04(){
 		Level l = new Level(0);
 		Ground ST0 = new Ground(60,0,0,0);
-//		ST0.SetShopOrTemple((T) l.getShop0());
-//		assertTrue(ST0.GetWhatContain() instanceof Shop);
-//		ST0.CloseShop();
-//		assertNull(ST0.GetWhatContain());
-//		assertEquals(ST0.GetCode(), 00);
-//		Ground ST1 = new Ground(61,0,0,0);
-//		ST1.SetShopOrTemple((T) l.getShop1());
-//		assertTrue(ST1.GetWhatContain() instanceof Shop);
-//		Ground ST2 = new Ground(62,0,0,0);
-//		ST2.SetShopOrTemple((T) l.getShop2());
-//		assertTrue(ST2.GetWhatContain() instanceof Shop);
+		ST0.SetShopOrTemple((T) l.getShop0());
+		assertTrue(ST0.GetWhatContain() instanceof Shop);
+		ST0.CloseShop();
+		assertNull(ST0.GetWhatContain());
+		assertEquals(ST0.GetCode(), 00);
+		Ground ST1 = new Ground(61,0,0,0);
+		ST1.SetShopOrTemple((T) l.getShop1());
+		assertTrue(ST1.GetWhatContain() instanceof Shop);
+		Ground ST2 = new Ground(62,0,0,0);
+		ST2.SetShopOrTemple((T) l.getShop2());
+		assertTrue(ST2.GetWhatContain() instanceof Shop);
 		
 		Ground TT0 = new Ground(65,0,0,0);
 		TT0.SetShopOrTemple((T) l.getTemple0());

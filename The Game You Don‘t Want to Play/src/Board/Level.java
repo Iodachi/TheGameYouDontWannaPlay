@@ -6,6 +6,7 @@ import java.util.Scanner;
 import character.*;
 import gui.View;
 import item.*;
+import item.Key.KeyType;
 
 public class Level {
 	// private List<Entity> entities = new ArrayList<Entity>();
@@ -13,14 +14,16 @@ public class Level {
 	private Entity entities[][];
 	private int floor;
 	private int[][] pieces;
-	private Shop SType;
+	private Shop SType0,SType1,SType2;
 	private Temple TType0,TType1,TType2;
 
 	public Level(int floor) {
 		this.floor = floor;
 		this.entities = new Entity[BOARDSIZE][BOARDSIZE];
 		this.pieces = new int[12][12];
-		this.SType = getShop();
+		this.SType0 = getShop0();
+		this.SType1 = getShop1();
+		this.SType2 = getShop2();
 		this.TType0 = getTemple0();
 		this.TType1 = getTemple1();
 		this.TType2 = getTemple2();
@@ -129,7 +132,15 @@ public class Level {
 		}else if(code >= 60 && code < 70){	
 			if(code == 60){
 				Ground GroundShop = new Ground(code,x,y,size);
-				GroundShop.SetShopOrTemple((T)SType);
+				GroundShop.SetShopOrTemple((T)SType0);
+				this.entities[x][y] = GroundShop;
+			}else if(code == 61){
+				Ground GroundShop = new Ground(code,x,y,size);
+				GroundShop.SetShopOrTemple((T)SType1);
+				this.entities[x][y] = GroundShop;
+			}else if(code == 62){
+				Ground GroundShop = new Ground(code,x,y,size);
+				GroundShop.SetShopOrTemple((T)SType2);
 				this.entities[x][y] = GroundShop;
 			}else if(code == 65){
 				Ground GroundTemple = new Ground(code,x,y,size);
@@ -152,10 +163,39 @@ public class Level {
 
 	}
 
-	public Shop getShop() {
-		return new Shop();
+	/**
+	 * Shop Type 0 contain 5 GoldKey	
+	 * @return
+	 */
+	public Shop getShop0(){
+		Map<Item,Integer> type0 = new HashMap<>();
+		type0.put(new Key(-1,-1,KeyType.GoldKey),5);
+		return new Shop(type0);
 	}
-	
+
+	/**
+	 * Shop Type 1 contain 2 bombs, 2 GoldKey and 2 Small BloodVial
+	 * @return
+	 */
+	public Shop getShop1(){
+		Map<Item,Integer> type1 = new HashMap<>();
+		type1.put(new Bomb(-1,-1), 2);
+		type1.put(new Key(-1,-1,KeyType.GoldKey),2);
+		type1.put(new BloodVial(-1, -1,"small") , 2);
+		return new Shop(type1);
+	}
+	/**
+	 * Shop Type 2 contain 2 GoldKey, 2 CyanKey and 2 BronzeKey
+	 * @return
+	 */
+	public Shop getShop2(){
+		Map<Item,Integer> type2 = new HashMap<>();
+		type2.put(new Key(-1,-1,KeyType.GoldKey),2);
+		type2.put(new Key(-1,-1,KeyType.CyanKey),2);
+		type2.put(new Key(-1,-1,KeyType.BronzeKey),2);
+		return new Shop(type2);
+	}
+
 	/**
 	 * Temple Type 0 contain ("health", 10)	, ("damage", 10) and ("defence", 10)	
 	 * @return

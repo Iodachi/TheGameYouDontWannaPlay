@@ -25,7 +25,7 @@ public class Temple {
 	 * @param stats
 	 * @param player
 	 */
-	public <T> void boost(String stats, Player player) {
+	public void boost(String stats, Player player) {
 		int amount = boosts.get(stats);
 
 		if(stats.equals("health")) {

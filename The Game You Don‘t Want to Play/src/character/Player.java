@@ -146,7 +146,7 @@ public class Player{
 		if(e != null) {
 			if(e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on right");
-			else if(e instanceof Door)
+			else if(e instanceof Door && !((Door)e).isOpened())
 				game.tryOpenDoor((Door) e);
 		}
 		
@@ -161,7 +161,7 @@ public class Player{
 		if(e != null) {
 			if(e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on left");
-			else if(e instanceof Door)
+			else if(e instanceof Door && !((Door)e).isOpened())
 				game.tryOpenDoor((Door) e);
 		}
 		
@@ -176,7 +176,7 @@ public class Player{
 		if(e != null) {
 			if(e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on top");
-			else if(e instanceof Door)
+			else if(e instanceof Door && !((Door)e).isOpened())
 				game.tryOpenDoor((Door) e);
 		}
 		
@@ -191,7 +191,7 @@ public class Player{
 		if(e != null) {
 			if(e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on bottom");
-			else if(e instanceof Door)
+			else if(e instanceof Door && !((Door)e).isOpened())
 				game.tryOpenDoor((Door) e);
 		}
 		

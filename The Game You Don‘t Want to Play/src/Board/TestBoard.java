@@ -33,39 +33,39 @@ public class TestBoard {
 	@Test
 	public <T> void testCast01(){
 		Ground k1 = new Ground(30,0,0,0);
-		assertTrue(k1.GetWhatContain() instanceof Key);
-		k1.PickItem();
-		assertNull(k1.GetWhatContain());
+		assertTrue(k1.getWhatContain() instanceof Key);
+		k1.pickItem();
+		assertNull(k1.getWhatContain());
 		assertEquals(k1.GetCode(), 00);
 		Ground k2 = new Ground(31,0,0,0);
-		assertTrue(k2.GetWhatContain() instanceof Key);
+		assertTrue(k2.getWhatContain() instanceof Key);
 		Ground k3 = new Ground(32,0,0,0);
-		assertTrue(k3.GetWhatContain() instanceof Key);
+		assertTrue(k3.getWhatContain() instanceof Key);
 		Ground k4 = new Ground(33,0,0,0);
-		assertTrue(k4.GetWhatContain() instanceof Key);
+		assertTrue(k4.getWhatContain() instanceof Key);
 		Ground k5 = new Ground(34,0,0,0);
-		assertTrue(k5.GetWhatContain() instanceof Key);
+		assertTrue(k5.getWhatContain() instanceof Key);
 		
 		Ground BB = new Ground(40,0,0,0);
-		assertTrue(BB.GetWhatContain() instanceof BloodVial);
-		BB.PickItem();
-		assertNull(BB.GetWhatContain());
+		assertTrue(BB.getWhatContain() instanceof BloodVial);
+		BB.pickItem();
+		assertNull(BB.getWhatContain());
 		assertEquals(BB.GetCode(), 00);
 		Ground SB = new Ground(41,0,0,0);
-		assertTrue(SB.GetWhatContain() instanceof BloodVial);
+		assertTrue(SB.getWhatContain() instanceof BloodVial);
 		Ground AR = new Ground(42,0,0,0);
-		assertTrue(AR.GetWhatContain() instanceof Armor);
+		assertTrue(AR.getWhatContain() instanceof Armor);
 		Ground BM = new Ground(43,0,0,0);
-		assertTrue(BM.GetWhatContain() instanceof Bomb);
+		assertTrue(BM.getWhatContain() instanceof Bomb);
 		Ground WP = new Ground(44,0,0,0);
-		assertTrue(WP.GetWhatContain() instanceof Weapon);
+		assertTrue(WP.getWhatContain() instanceof Weapon);
 		Ground WG = new Ground(45,0,0,0);
-		assertTrue(WG.GetWhatContain() instanceof Wing);
+		assertTrue(WG.getWhatContain() instanceof Wing);
 		
 		Ground gg = new Ground(00,0,0,0);
-		assertNull(gg.GetWhatContain());
+		assertNull(gg.getWhatContain());
 		Ground gl = new Ground(01,0,0,0);
-		assertNull(gl.GetWhatContain());
+		assertNull(gl.getWhatContain());
 		
 	
 	}
@@ -77,14 +77,14 @@ public class TestBoard {
 	@Test
 	public <T> void testCast02(){
 		Ground w0 = new Ground(03,0,0,0);
-		assertTrue(w0.GetWhatContain() instanceof WiseMan);
+		assertTrue(w0.getWhatContain() instanceof WiseMan);
 		w0.KillWiseMan();
-		assertNull(w0.GetWhatContain());
+		assertNull(w0.getWhatContain());
 		assertEquals(w0.GetCode(), 00);
 		Ground w1 = new Ground(04,0,0,0);
-		assertTrue(w1.GetWhatContain() instanceof WiseMan);
+		assertTrue(w1.getWhatContain() instanceof WiseMan);
 		Ground w2 = new Ground(05,0,0,0);
-		assertTrue(w2.GetWhatContain() instanceof WiseMan);
+		assertTrue(w2.getWhatContain() instanceof WiseMan);
 	}
 	
 	/**
@@ -94,24 +94,24 @@ public class TestBoard {
 	@Test
 	public <T> void testCast03(){
 		Ground t1 = new Ground(91,0,0,0);
-		assertTrue(t1.GetWhatContain() instanceof Monster);
+		assertTrue(t1.getWhatContain() instanceof Monster);
 		t1.CleanBattleground();
-		assertNull(t1.GetWhatContain());
+		assertNull(t1.getWhatContain());
 		assertEquals(t1.GetCode(), 00);
 		Ground t2 = new Ground(92,0,0,0);
-		assertTrue(t2.GetWhatContain() instanceof Monster);
+		assertTrue(t2.getWhatContain() instanceof Monster);
 		Ground t3 = new Ground(93,0,0,0);
-		assertTrue(t3.GetWhatContain() instanceof Monster);
+		assertTrue(t3.getWhatContain() instanceof Monster);
 		Ground t4 = new Ground(94,0,0,0);
-		assertTrue(t4.GetWhatContain() instanceof Monster);
+		assertTrue(t4.getWhatContain() instanceof Monster);
 		Ground t5 = new Ground(95,0,0,0);
-		assertTrue(t5.GetWhatContain() instanceof Monster);
+		assertTrue(t5.getWhatContain() instanceof Monster);
 		Ground t6 = new Ground(96,0,0,0);
-		assertTrue(t6.GetWhatContain() instanceof Monster);
+		assertTrue(t6.getWhatContain() instanceof Monster);
 		Ground t7 = new Ground(97,0,0,0);
-		assertTrue(t7.GetWhatContain() instanceof Monster);
+		assertTrue(t7.getWhatContain() instanceof Monster);
 		Ground t8 = new Ground(98,0,0,0);
-		assertTrue(t8.GetWhatContain() instanceof Monster);
+		assertTrue(t8.getWhatContain() instanceof Monster);
 	}
 	
 	/**
@@ -136,16 +136,16 @@ public class TestBoard {
 		
 		Ground TT0 = new Ground(65,0,0,0);
 		TT0.SetShopOrTemple((T) l.getTemple0());
-		assertTrue(TT0.GetWhatContain() instanceof Temple);
+		assertTrue(TT0.getWhatContain() instanceof Temple);
 		TT0.CloseTemple();
-		assertNull(TT0.GetWhatContain());
+		assertNull(TT0.getWhatContain());
 		assertEquals(TT0.GetCode(), 00);
 		Ground TT1 = new Ground(66,0,0,0);
 		TT1.SetShopOrTemple((T) l.getTemple1());
-		assertTrue(TT1.GetWhatContain() instanceof Temple);
+		assertTrue(TT1.getWhatContain() instanceof Temple);
 		Ground TT2 = new Ground(67,0,0,0);
 		TT2.SetShopOrTemple((T) l.getTemple2());
-		assertTrue(TT2.GetWhatContain() instanceof Temple);
+		assertTrue(TT2.getWhatContain() instanceof Temple);
 	}
 	
 }

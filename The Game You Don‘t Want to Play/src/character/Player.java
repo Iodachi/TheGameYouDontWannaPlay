@@ -4,6 +4,7 @@ import java.util.Stack;
 
 import Board.Door;
 import Board.Entity;
+import Board.Ground;
 import Board.Level;
 import Board.Wall;
 import item.*;
@@ -125,8 +126,16 @@ public class Player{
 			moveDown(board, boardSize);
 		}
 		
-		//TODO pick up items at new position
-		//if(board[yPos][xPos] != null && board[yPos][xPos] instanceof ConsumableItem)
+		//pick up the item at new position if have one
+		Entity e = board[yPos][xPos];
+		if(e != null && e instanceof Ground) {
+			if(((Ground) e).getWhatContain() instanceof Item) {
+				if(((Ground) e).getWhatContain() instanceof ConsumableItem) {
+					addItem((ConsumableItem)((Ground) e).getWhatContain());
+					((Ground) e).pickItem();
+				}
+			}
+		}
 	}
 	
 	public void moveRight(Entity[][] board, int boardSize) throws InvalidMove {

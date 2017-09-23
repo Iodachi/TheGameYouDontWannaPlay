@@ -4,11 +4,9 @@ import character.*;
 import item.*;
 
 public class Ground<T> extends Entity{
-	private Player P;
 	private T t;
 	public Ground(int code, int x, int y, int size) {
 		super(code, x, y, size);
-		// TODO Auto-generated constructor stub
 		SetGround();
 	}
 
@@ -18,7 +16,7 @@ public class Ground<T> extends Entity{
 	 * if code name as 01 then it is lava
 	 * @return
 	 */
-	public boolean IsThisLava(){
+	public boolean isLava(){
 		if(super.Code == 01) return true;
 		return false;
 	}
@@ -29,7 +27,7 @@ public class Ground<T> extends Entity{
 	 * Shop - you walk by, pass by, but should not miss it! 
 	 * @return
 	 */
-	public T GetWhatContain(){return this.t;}
+	public T getWhatContain(){return this.t;}
 	
 	/**
 	 * Could player Move? 
@@ -40,41 +38,12 @@ public class Ground<T> extends Entity{
 		if(super.Code == 00) return true;
 		return false;
 	}
-	
-	/**
-	 * Set Player in this Ground Possible Us this in move
-	 */
-	public boolean SetPlayer(Player p){
-		if(this.P == null){
-			this.P = p;
-			super.Code = 01;
-			return true;
-		}
-		return false;
-	}
-	
-	/**
-	 * keep going my warrior
-	 * @return
-	 */
-	public Player GetPlayer(){
-		if(this.P != null && super.Code == 02) return this.P;
-		return null;
-	}
-
-	/**
-	 * if we have move this player then need change Code - 00
-	 */
-	public void MovePlayer(){
-		this.P = null;
-		super.Code = 00;
-	}
 
 	/**
 	 * Pick item then set this become normal ground
 	 * @return
 	 */
-	public boolean PickItem(){
+	public boolean pickItem(){
 		if(this.t != null && this.t instanceof Item) return SetContainNothing();
 		
 		return false;
@@ -135,7 +104,6 @@ public class Ground<T> extends Entity{
 	 * Set this ground except Contain Player
 	 * 00 - nothing  
 	 * 01 - lava
-	 * 02 - contain player-GP 
 	 * 03 - contain wise man type0      - W0
      * 04 - contain wise man type1      - W1
      * 05 - contain wise man type2      - W2
@@ -159,8 +127,7 @@ public class Ground<T> extends Entity{
 	 * 91 - M1  92 - M2 93 - M3 94 - M4 95 - M5 96 - M6 97 - M7 98 - M8
 	 */ @SuppressWarnings({"unchecked"})
 	private  void SetGround() {
-		if(super.Code == 02)  this.P =  new Player().setPos(super.PosX, super.PosY);
-		else if(super.Code == 03) this.t = (T) new WiseMan(new Armor(-1,-1));
+		if(super.Code == 03) this.t = (T) new WiseMan(new Armor(-1,-1));
 		else if(super.Code == 04) this.t = (T) new WiseMan(new Weapon(-1,-1));
 		else if(super.Code == 05) this.t = (T) new WiseMan(new Wing(-1,-1));
 		else if(super.Code == 30) this.t = (T) new Key(super.PosX,super.PosY, "gold");

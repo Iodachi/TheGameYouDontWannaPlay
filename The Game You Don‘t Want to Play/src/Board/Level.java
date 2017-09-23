@@ -37,7 +37,7 @@ public class Level {
 	 */
 	public boolean PickItem(int x, int y){
 		if(this.entities[x][y] instanceof Ground){
-			return ((Ground) this.entities[x][y]).PickItem();
+			return ((Ground) this.entities[x][y]).pickItem();
 		}
 		return false;
 	}

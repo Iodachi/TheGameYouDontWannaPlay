@@ -7,7 +7,11 @@ public class Door extends Entity{
 
 	public Door(int code, int x, int y, int size) {
 		super(code, x, y, size);
-
+		if(code == 20)	color = "gold";
+		if(code == 21)	color = "cyan";
+		if(code == 22)	color = "bronze";
+		if(code == 23)	color = "purple";
+		if(code == 24)	color = "silver";
 	}
 	//================================= Return =========================================================
 

@@ -1,5 +1,9 @@
 package Board;
-
+/**
+ * Stair is use for player move into other level
+ * @author tian
+ *
+ */
 public class Stairs extends Entity{
 	private int up,down;
 	// true point to up stair, false point to down stair

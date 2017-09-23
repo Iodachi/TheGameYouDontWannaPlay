@@ -7,6 +7,11 @@ import character.*;
 import gui.View;
 import item.*;
 
+/**
+ * The basic of Level is 2D-array of Entity. Each entity would instance as different things such as wall and ground.
+ * @author tian
+ *
+ */
 public class Level {
 	// private List<Entity> entities = new ArrayList<Entity>();
 	public static final int BOARDSIZE = 12;
@@ -20,13 +25,12 @@ public class Level {
 		this.floor = floor;
 		this.entities = new Entity[BOARDSIZE][BOARDSIZE];
 		this.pieces = new int[12][12];
-		this.SType = getShop();
+		this.SType = new Shop();
 		this.TType0 = getTemple0();
 		this.TType1 = getTemple1();
 		this.TType2 = getTemple2();
 
 	}
-
 
 	//=========================================== Return Method ========================================================	
 	/**
@@ -54,6 +58,20 @@ public class Level {
 				this.entities[x][y] = new Ground(00,x,y,View.TILESIZE);
 				return true;
 			}
+		}
+		return false;
+	}
+
+	/**
+	 * Method for reset the door to normal ground
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public boolean OpenTheDoor(int x,int y){
+		if ( this.entities[x][y] instanceof Door ){
+			this.entities[x][y] = new Ground(00,x,y,View.TILESIZE);
+			return true;
 		}
 		return false;
 	}
@@ -152,10 +170,6 @@ public class Level {
 
 	}
 
-	public Shop getShop() {
-		return new Shop();
-	}
-	
 	/**
 	 * Temple Type 0 contain ("health", 10)	, ("damage", 10) and ("defence", 10)	
 	 * @return
@@ -200,7 +214,7 @@ public class Level {
 			StringBuilder temp = new StringBuilder();
 			for (int c = 0; c < 12; c++) {
 				if(this.pieces[i][c] < 10) temp.append(" 0" + this.pieces[i][c]);
-				
+
 				else temp.append(" " + this.pieces[i][c]);
 			}
 			System.out.println(temp);

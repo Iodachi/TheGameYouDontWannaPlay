@@ -2,6 +2,11 @@ package Board;
 
 import java.awt.Rectangle;
 
+/**
+ * Entity have different type such as ground,stair and wall.
+ * @author napier
+ *
+ */
 public abstract class Entity {
 	protected int Code;
 	protected int PosX,PosY,size;

@@ -3,6 +3,13 @@ package Board;
 import character.*;
 import item.*;
 
+/**
+ * Ground is one of the most important entity which could contain one of 
+ * item,shop,temple or monster.
+ * @author tian
+ *
+ * @param <T>
+ */
 public class Ground<T> extends Entity{
 	private T t;
 	public Ground(int code, int x, int y, int size) {

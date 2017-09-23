@@ -1,6 +1,9 @@
 package Board;
-
-
+/**
+ * Door instance as different color door that could open by specific key 
+ * @author tian
+ *
+ */
 public class Door extends Entity{
 	public boolean opened = false;
 	public String color;

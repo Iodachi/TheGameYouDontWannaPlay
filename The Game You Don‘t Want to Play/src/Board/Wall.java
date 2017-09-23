@@ -1,5 +1,9 @@
 package Board;
-
+/**
+ * Some type of wall could be break by bomb
+ * @author tian
+ *
+ */
 public class Wall extends Entity{
 
 	public Wall(int code, int x, int y, int size) {

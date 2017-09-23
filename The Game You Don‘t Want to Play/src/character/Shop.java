@@ -40,11 +40,17 @@ public class Shop {
 			}else if(item instanceof WearableItem) {
 				player.equip((WearableItem) item);
 			}
+			
+			//remove this item from the shop
+			items.remove(item);
 		}else {
 			throw new InvalidMove("Cannot buy this item, you don't have enough gold.");
 		}
 	}
 	
+	/**
+	 * generates a random item with random price for the shop to sell, each shop will sell three items
+	 */
 	public void generateItem() {
 		int item = (int) (Math.random()*10);
 		int price = (int) (Math.random()*10);

@@ -12,7 +12,7 @@ import main.InvalidMove;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Tests {
 	private Player player;
-	private Bomb bomb = new Bomb(0,0);
+	private Bomb bomb = new Bomb();
 	
 	@Test
 	public void test01_playerPicksConsumables() {

@@ -4,6 +4,7 @@ package main;
 import java.util.Observable;
 
 import Board.Board;
+import Board.Door;
 import character.Player;
 import gui.View;
 
@@ -53,6 +54,16 @@ public class Game extends Observable{
 //		}
 //	}
 	
+	public void tryOpenDoor(Door door) throws InvalidMove {
+		String keyColor = door.getColor();
+
+		player.useKey(keyColor);
+		door.setOpen(true);
+
+		this.setChanged();
+		this.notifyObservers();
+	}
+
 	public Player getPlayer() {
 		return player;
 	}

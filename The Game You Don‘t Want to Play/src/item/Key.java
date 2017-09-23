@@ -12,6 +12,7 @@ public class Key extends ConsumableItem {
 	private int x,y;
     private KeyType type=KeyType.GoldKey; // the key type is corresponding to the type of door.
     private String name = "KB";
+    private String color;
     private int cost= 60;
 	public int getCost() {return cost;}
 	public Key(int x, int y, KeyType type){
@@ -54,6 +55,7 @@ public class Key extends ConsumableItem {
 	public KeyType getType(){
 		return type;
 	}
+	
 	@Override
 	public void use(Player player) {
 	}
@@ -62,8 +64,13 @@ public class Key extends ConsumableItem {
 	public boolean on(int x, int y) {
 		return false;
 	}
-	public String getName(){
 	
+	public String getName(){
 		return name;
 	}
+	
+	public String getColor() {
+		return color;
+	}
+
 }

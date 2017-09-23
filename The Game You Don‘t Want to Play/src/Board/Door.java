@@ -3,41 +3,42 @@ package Board;
 
 public class Door extends Entity{
 	public boolean opened = false;
+	public String color;
 
 	public Door(int code, int x, int y, int size) {
 		super(code, x, y, size);
 
 	}
 	//================================= Return =========================================================
-	/**
-	 * if this door has opened then if should disappear
-	 * @return
-	 */
-	public boolean HasOpen(){return this.opened;}
 
-	/**
-	 * return the code of this door
-	 * @return
-	 */
-	public int GetDoorCode(){return super.Code;}
+	public String getColor(){
+		return this.color;
+	}
+
+	public boolean isOpened(){
+		return opened;
+	}
+	
+	public void setOpen(boolean opened) {
+		this.opened = opened;
+	}
 
 
 	//================================= Test ============================================================
 	@Override
 	public String toString(){
-		String Color = null;
 		if(super.Code == 20){
-			Color = "DG";
+			color = "DG";
 		}else if(super.Code == 21){
-			Color = "DC";
+			color = "DC";
 		}else if(super.Code == 22){
-			Color = "DB";
+			color = "DB";
 		}else if(super.Code == 23){
-			Color = "DP";
+			color = "DP";
 		}else if(super.Code == 24){
-			Color = "DS";
+			color = "DS";
 		}
-		return Color;
+		return color;
 	}
 
 }

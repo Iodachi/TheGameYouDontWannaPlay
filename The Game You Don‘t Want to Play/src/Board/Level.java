@@ -13,13 +13,14 @@ public class Level {
 	private Entity entities[][];
 	private int floor;
 	private int[][] pieces;
-	private Shop SType0,SType1,SType2;
+	private Shop SType;
 	private Temple TType0,TType1,TType2;
 
 	public Level(int floor) {
 		this.floor = floor;
 		this.entities = new Entity[BOARDSIZE][BOARDSIZE];
 		this.pieces = new int[12][12];
+		this.SType = getShop();
 		this.TType0 = getTemple0();
 		this.TType1 = getTemple1();
 		this.TType2 = getTemple2();
@@ -128,15 +129,7 @@ public class Level {
 		}else if(code >= 60 && code < 70){	
 			if(code == 60){
 				Ground GroundShop = new Ground(code,x,y,size);
-				GroundShop.SetShopOrTemple((T)SType0);
-				this.entities[x][y] = GroundShop;
-			}else if(code == 61){
-				Ground GroundShop = new Ground(code,x,y,size);
-				GroundShop.SetShopOrTemple((T)SType1);
-				this.entities[x][y] = GroundShop;
-			}else if(code == 62){
-				Ground GroundShop = new Ground(code,x,y,size);
-				GroundShop.SetShopOrTemple((T)SType2);
+				GroundShop.SetShopOrTemple((T)SType);
 				this.entities[x][y] = GroundShop;
 			}else if(code == 65){
 				Ground GroundTemple = new Ground(code,x,y,size);
@@ -159,6 +152,10 @@ public class Level {
 
 	}
 
+	public Shop getShop() {
+		return new Shop();
+	}
+	
 	/**
 	 * Temple Type 0 contain ("health", 10)	, ("damage", 10) and ("defence", 10)	
 	 * @return

@@ -104,12 +104,21 @@ public class View extends JComponent implements Observer {
 
 		for (int x = 0; x < Level.BOARDSIZE; x++) {
 			for (int y = 0; y < Level.BOARDSIZE; y++) {
+				
+				int py =y * TILESIZE;
+				int px =x * TILESIZE;
 				int code=0;
+				
 				try {
 				if(board.GetCurrentLevel().GetEntityAt(x, y)!=null) {
-				code = board.GetCurrentLevel().GetEntityAt(x, y).GetCode();
+					code = board.GetCurrentLevel().GetEntityAt(x, y).GetCode();
+					if(code>=90&&code<100) {
+						py+=16;
+						px+=16;
+					}
+				
 				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/"+code+".png"));
-				img.paintIcon(null, g, y * TILESIZE, x * TILESIZE);
+				img.paintIcon(null, g, py,px);
 				}
 				if(code==60)y+=1;
 				}catch(NullPointerException e) {

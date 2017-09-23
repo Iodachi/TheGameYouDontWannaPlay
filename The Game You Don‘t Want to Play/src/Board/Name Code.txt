@@ -31,8 +31,7 @@
 	 * 52 - down stair                  - DS
 
      * 60 - Shop Type 0                 - S0
-	 * 61 - Shop Type 1                 - S1
-	 * 62 - Shop Type 2                 - S2
+	
 	 * 65 - Temple Type 0               - T0
 	 * 66 - Temple Type 1               - T1
 	 * 67 - Temple Type 2               - T2

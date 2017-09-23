@@ -8,7 +8,9 @@ import java.applet.*;
  */
 public enum SoundResources {
 	//
-	Break("break.wav");
+	Break("break.wav"),
+	Meun("meunBGM.wav"),
+	Fight("fightBGM.wav");
 
 	public final AudioClip sound;
 

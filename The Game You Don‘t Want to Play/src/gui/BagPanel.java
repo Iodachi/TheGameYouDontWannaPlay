@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 
 import javax.swing.JPanel;
 
+import main.Game;
 import resources.ImgResources;
 
 public class BagPanel extends JPanel {
@@ -20,9 +21,11 @@ public class BagPanel extends JPanel {
 	private static final int GAPSIZE = 10;
 	private int initialX = 25;
 	private int initialY = 60;
+	private Game game;
 	private Rectangle[][] bagRectangle = new Rectangle[4][3];
 	
-	public BagPanel(){
+	public BagPanel(Game game){
+		this.game = game;
 		CreateRectangle();
 	}
 
@@ -31,6 +34,7 @@ public class BagPanel extends JPanel {
 
 		Image img = ImgResources.equipmentBackGroud.img; // to load the equipment BackGroud image
 		// fill the BackGroud to appropriate size
+		game.getPlayer().getInventory();
 		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), 0, 0, img.getWidth(null), img.getHeight(null), null);
 	}
 	/**

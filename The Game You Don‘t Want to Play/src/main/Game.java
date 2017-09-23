@@ -7,6 +7,7 @@ import Board.Board;
 import Board.Door;
 import character.Player;
 import gui.View;
+import resources.SoundResources;
 
 /**
  * This class contains the game logic with methods that can be used for controller
@@ -18,6 +19,7 @@ public class Game extends Observable{
 	public Board board;
 
 	public Game() {
+		SoundResources.Fight.sound.loop();
 		player = new Player();
 		player.setCurrentGame(this);
 		board = new Board();

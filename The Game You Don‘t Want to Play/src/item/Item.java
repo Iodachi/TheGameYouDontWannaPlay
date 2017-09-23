@@ -1,7 +1,5 @@
 package item;
 
-import Board.Entity;
-
 /***
  * This is a item interface which include all kinds of items
  * */

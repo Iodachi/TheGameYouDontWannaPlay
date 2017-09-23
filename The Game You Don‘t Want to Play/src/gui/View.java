@@ -50,7 +50,7 @@ public class View extends JComponent implements Observer {
 		this.setPreferredSize(getPreferredSize());
 
 		// create UI for the main
-		bagPanel = new BagPanel();
+		bagPanel = new BagPanel(this.game);
 		bagPanel.addMouseListener(new MouseController(this));
 		bagPanel.setSize(new Dimension(getPreferredSize()));
 			

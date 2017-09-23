@@ -15,6 +15,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import main.Game;
+import resources.SoundResources;
 
 /**
  * 
@@ -29,7 +30,8 @@ public class Menu extends JComponent {
 	private static final JFrame f = new JFrame("The Game You Don't Want To Play");
 
 	public Menu() {
-
+		
+		SoundResources.Meun.sound.loop();
 		JButton NewGame = new JButton("New Game");
 		JButton Load = new JButton("Load");
 		JButton Info = new JButton("Info");
@@ -37,6 +39,7 @@ public class Menu extends JComponent {
 		NewGame.addActionListener((e) -> {
 			new Game();
 			f.setVisible(false); //hidden the menu frame
+			SoundResources.Meun.sound.stop();
 		});
 		Load.addActionListener((e) -> {
 			// not implement yet

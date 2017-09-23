@@ -44,8 +44,7 @@ public class KeyController implements KeyListener {
 				break;
 			}
 		} catch (main.InvalidMove invalidMove) {
-			System.out.println(invalidMove.getMessage());
-			//invalidMove.printStackTrace();
+			invalidMove.printStackTrace();
 		}
 	}
 

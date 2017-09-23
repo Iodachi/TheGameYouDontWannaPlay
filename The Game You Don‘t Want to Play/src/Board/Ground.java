@@ -24,8 +24,7 @@ public class Ground<T> extends Entity{
 	 * @return
 	 */
 	public boolean isLava(){
-		if(super.Code == 01) return true;
-		return false;
+		return (super.Code == 01);
 	}
     
 	/**
@@ -35,16 +34,6 @@ public class Ground<T> extends Entity{
 	 * @return
 	 */
 	public T getWhatContain(){return this.t;}
-	
-	/**
-	 * Could player Move? 
-	 * if code name as 00 then mean it is empty ground then player could move
-	 * @return
-	 */
-	public boolean CouldMove(){
-		if(super.Code == 00) return true;
-		return false;
-	}
 
 	/**
 	 * Pick item then set this become normal ground

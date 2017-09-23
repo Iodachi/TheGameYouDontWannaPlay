@@ -41,8 +41,8 @@ public class Player{
 		damage = 10;
 		defence = 10;
 		gold = 0;
-		xPos = 1;	
-		yPos = 1;
+		xPos = 2;	
+		yPos = 2;
 	}
 
 	/**
@@ -150,7 +150,8 @@ public class Player{
 				game.tryOpenDoor((Door) e);
 		}
 		
-		xPos++;
+		if(!(e instanceof Ground && ((Ground) e).isLava()))
+			xPos++;
 	}
 
 	public void moveLeft(Entity[][] board, int boardSize) throws InvalidMove {
@@ -165,7 +166,8 @@ public class Player{
 				game.tryOpenDoor((Door) e);
 		}
 		
-		xPos--;
+		if(!(e instanceof Ground && ((Ground) e).isLava()))
+			xPos--;
 	}
 
 	public void moveUp(Entity[][] board, int boardSize) throws InvalidMove {
@@ -180,7 +182,8 @@ public class Player{
 				game.tryOpenDoor((Door) e);
 		}
 		
-		yPos--;
+		if(!(e instanceof Ground && ((Ground) e).isLava()))
+			yPos--;
 	}
 
 	public void moveDown(Entity[][] board, int boardSize) throws InvalidMove {
@@ -195,7 +198,8 @@ public class Player{
 				game.tryOpenDoor((Door) e);
 		}
 		
-		yPos++;
+		if(!(e instanceof Ground && ((Ground) e).isLava()))
+			yPos++;
 	}
 
 

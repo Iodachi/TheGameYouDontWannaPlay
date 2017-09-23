@@ -2,7 +2,6 @@ package Board;
 
 import character.*;
 import item.*;
-import item.Key.KeyType;
 
 public class Ground<T> extends Entity{
 	private Player P;
@@ -164,11 +163,11 @@ public class Ground<T> extends Entity{
 		else if(super.Code == 03) this.t = (T) new WiseMan(new Armor(-1,-1));
 		else if(super.Code == 04) this.t = (T) new WiseMan(new Weapon(-1,-1));
 		else if(super.Code == 05) this.t = (T) new WiseMan(new Wing(-1,-1));
-		else if(super.Code == 30) this.t = (T) new Key(super.PosX,super.PosY,KeyType.GoldKey);
-		else if(super.Code == 31) this.t = (T) new Key(super.PosX,super.PosY,KeyType.CyanKey);
-		else if(super.Code == 32) this.t = (T) new Key(super.PosX,super.PosY,KeyType.BronzeKey);
-		else if(super.Code == 33) this.t = (T) new Key(super.PosX,super.PosY,KeyType.PurplyeKey);
-		else if(super.Code == 34) this.t = (T) new Key(super.PosX,super.PosY,KeyType.SilverKey);
+		else if(super.Code == 30) this.t = (T) new Key(super.PosX,super.PosY, "gold");
+		else if(super.Code == 31) this.t = (T) new Key(super.PosX,super.PosY, "cyan");
+		else if(super.Code == 32) this.t = (T) new Key(super.PosX,super.PosY, "bronze");
+		else if(super.Code == 33) this.t = (T) new Key(super.PosX,super.PosY, "purple");
+		else if(super.Code == 34) this.t = (T) new Key(super.PosX,super.PosY, "silver");
 		else if(super.Code == 40) this.t = (T) new BloodVial(super.PosX,super.PosY,"big");
 		else if(super.Code == 41) this.t = (T) new BloodVial(super.PosX,super.PosY,"small");
 		else if(super.Code == 42) this.t = (T) new Armor(super.PosX,super.PosY);

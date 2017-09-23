@@ -9,13 +9,16 @@ import character.Player;
 public class Bomb extends ConsumableItem {
     private int x,y;
     private String name = "BO";
-    private int cost= 400;
-	public int getCost() {return cost;}
+    
     public Bomb(int x, int y){
         this.x = x;
-        this.y =y;
-
+        this.y = y;
     }
+    
+    public Bomb() {
+    	
+    }
+    
     @Override
     public boolean on(int x, int y) {
         return false;

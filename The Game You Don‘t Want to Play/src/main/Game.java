@@ -5,6 +5,8 @@ import java.util.Observable;
 
 import Board.Board;
 import Board.Door;
+import Board.Entity;
+import Board.Wall;
 import character.Player;
 import gui.View;
 import resources.SoundResources;
@@ -37,25 +39,6 @@ public class Game extends Observable{
 		this.notifyObservers();
 	}
 	
-	/**
-	 * when player presses e, apply interaction with the grid that player is currently facing, 
-	 * including opening doors, bombing walls, as well as inteactions with shop and other NPC.
-	 * Do nothing if no block can interact with, or no item in inventory to interact.
-	 * @param grid
-	 * 				the next grid on player's current facing direction. for example if player is in pisition (2, 2) and facing right,
-	 * 				the position of this grid will be (2, 3)
-	 */
-//	public void interaction(Grid grid) {
-//		if(grid instanceof Door) {
-//			String keyColor = ((Door)grid).GetColor();
-//			player.useKey(keyColor);
-//			(Door)grid.open();
-//		}else if(grid instanceof BreakableWall) {
-//			player.useBomb();
-//			(BreakableWall)grid.collapse();
-//		}
-//	}
-	
 	public void tryOpenDoor(Door door) throws InvalidMove {
 		String keyColor = door.getColor();
 
@@ -64,6 +47,16 @@ public class Game extends Observable{
 
 		this.setChanged();
 		this.notifyObservers();
+	}
+	
+	public void tryBomb() throws InvalidMove {
+		Entity[][] currentBoard = getBoard().GetCurrentLevel().getEntities();
+		Entity e = player.findFacingEntity(currentBoard);
+		if(e instanceof Wall && ((Wall)e).isBreakable()) {
+			player.useBomb();
+		}else {
+			throw new InvalidMove("This wall is not breakable, cannot use bomb.");
+		}
 	}
 
 	public Player getPlayer() {

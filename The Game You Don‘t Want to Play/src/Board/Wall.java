@@ -18,7 +18,7 @@ public class Wall extends Entity{
 	 * If code name equal to 11 then it means breakable
 	 * @return
 	 */
-	public boolean IsWallBreakable(){
+	public boolean isBreakable(){
 		if(super.Code == 11) return true;
 		return false;
 	}

@@ -127,32 +127,7 @@ public class Player{
 			moveDown(board, boardSize);
 		}
 		
-		//pick up the item at new position if have one
-		pickItem(board);
-	}
-	
-	/**
-	 * if there is an item that can be picked up in the new position, pick it up
-	 * @param board
-	 * @throws InvalidMove
-	 */
-	public void pickItem(Entity[][] board) throws InvalidMove {
-		Entity e = board[yPos][xPos];
-		if(e != null) {
-			if(e instanceof Ground) {
-				if(((Ground) e).getWhatContain() instanceof Item) {
-					if(((Ground) e).getWhatContain() instanceof ConsumableItem) {
-						addItem((ConsumableItem)((Ground) e).getWhatContain());
-						((Ground) e).pickItem();
-					}
-				}
-			}else if(e instanceof Stairs) {
-				if(((Stairs)e).upOrDownStair())
-					game.board.setCurrentLevel(game.board.getCurrentLevelNumber() + 1);
-				else
-					game.board.setCurrentLevel(game.board.getCurrentLevelNumber() - 1);
-			}
-		}
+		newGridInteraction(board);
 	}
 	
 	public void moveRight(Entity[][] board, int boardSize) throws InvalidMove {
@@ -218,7 +193,57 @@ public class Player{
 		if(!(e instanceof Ground && ((Ground) e).isLava()))
 			yPos++;
 	}
-
+	
+	/**
+	 * if there is an item that can be picked up in the new position, pick it up,
+	 * if there is a stair, teleport player to corresponding level
+	 * @param board
+	 * @throws InvalidMove
+	 */
+	public void newGridInteraction(Entity[][] board) throws InvalidMove {
+		Entity e = board[yPos][xPos];
+		if(e != null) {
+			if(e instanceof Ground) {
+				if(((Ground) e).getWhatContain() instanceof Item) {
+					if(((Ground) e).getWhatContain() instanceof ConsumableItem) {
+						addItem((ConsumableItem)((Ground) e).getWhatContain());
+						((Ground) e).pickItem();
+					}
+				}
+			}else if(e instanceof Stairs) {
+				if(((Stairs)e).upOrDownStair())
+					game.board.setCurrentLevel(game.board.getCurrentLevelNumber() + 1);
+				else
+					game.board.setCurrentLevel(game.board.getCurrentLevelNumber() - 1);
+			}
+		}
+	}
+	
+	/**
+	 * finds the next grid on player's current facing direction. for example if player is in pisition (2, 2) and facing right,
+	 * 	the position of this grid will be (2, 3)
+	 * @param currentBoard
+	 * @return
+	 */
+	public Entity findFacingEntity(Entity[][] currentBoard) {
+		//TODO: test me!
+		Entity e = null;
+		int boardSize = Level.BOARDSIZE;
+		if(facingDirection.equals("right")) {
+			if(xPos + 1 <= boardSize - 1) 
+				e = currentBoard[xPos+1][yPos];
+		}else if(facingDirection.equals("left")) {
+			if(xPos - 1 >= 0) 
+				e = currentBoard[xPos-1][yPos];
+		}else if(facingDirection.equals("up")) {
+			if(yPos - 1 >= 0) 
+				e = currentBoard[xPos][yPos-1];
+		}else if(facingDirection.equals("down")) {
+			if(yPos + 1 <= boardSize - 1) 
+				e = currentBoard[xPos][yPos+1];
+		}
+		return e;
+	}
 
 	//================= setter and getters ===================
 

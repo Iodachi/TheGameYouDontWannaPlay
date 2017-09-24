@@ -54,7 +54,7 @@ public class Level {
 	 */
 	public boolean BreakWall(int x, int y){
 		if(this.entities[x][y] instanceof Wall){
-			if( ((Wall) this.entities[x][y]).IsWallBreakable()){
+			if( ((Wall) this.entities[x][y]).isBreakable()){
 				this.entities[x][y] = new Ground(00,x,y,View.TILESIZE);
 				return true;
 			}

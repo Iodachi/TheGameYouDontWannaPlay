@@ -13,9 +13,9 @@ import java.util.Scanner;
 public class Board {
 	private static final int TOWERHIGHT =10;
 	private static Map<Integer, Level> levels = new HashMap<Integer, Level>();
-	private int CurrentLevel;
+	private int currentLevel;
 	public Board(){
-		this.CurrentLevel = 1;
+		this.currentLevel = 1;
 		initialize();
 	}
 	//====================================== Return ======================================================
@@ -24,7 +24,15 @@ public class Board {
 	 * Return current level
 	 */
 	public Level GetCurrentLevel(){
-		return Board.levels.get(CurrentLevel);
+		return Board.levels.get(currentLevel);
+	}
+	
+	public int getCurrentLevelNumber() {
+		return currentLevel;
+	}
+	
+	public void setCurrentLevel(int level) {
+		currentLevel = level;
 	}
 
 	public Collection<Level> GetAllLevel(){

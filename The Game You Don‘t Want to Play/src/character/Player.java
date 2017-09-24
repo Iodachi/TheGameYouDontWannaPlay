@@ -6,6 +6,7 @@ import Board.Door;
 import Board.Entity;
 import Board.Ground;
 import Board.Level;
+import Board.Stairs;
 import Board.Wall;
 import item.*;
 import main.Game;
@@ -41,8 +42,8 @@ public class Player{
 		damage = 10;
 		defence = 10;
 		gold = 0;
-		xPos = 2;	
-		yPos = 2;
+		xPos = 1;	
+		yPos = 1;
 	}
 
 	/**
@@ -127,13 +128,29 @@ public class Player{
 		}
 		
 		//pick up the item at new position if have one
+		pickItem(board);
+	}
+	
+	/**
+	 * if there is an item that can be picked up in the new position, pick it up
+	 * @param board
+	 * @throws InvalidMove
+	 */
+	public void pickItem(Entity[][] board) throws InvalidMove {
 		Entity e = board[yPos][xPos];
-		if(e != null && e instanceof Ground) {
-			if(((Ground) e).getWhatContain() instanceof Item) {
-				if(((Ground) e).getWhatContain() instanceof ConsumableItem) {
-					addItem((ConsumableItem)((Ground) e).getWhatContain());
-					((Ground) e).pickItem();
+		if(e != null) {
+			if(e instanceof Ground) {
+				if(((Ground) e).getWhatContain() instanceof Item) {
+					if(((Ground) e).getWhatContain() instanceof ConsumableItem) {
+						addItem((ConsumableItem)((Ground) e).getWhatContain());
+						((Ground) e).pickItem();
+					}
 				}
+			}else if(e instanceof Stairs) {
+				if(((Stairs)e).upOrDownStair())
+					game.board.setCurrentLevel(game.board.getCurrentLevelNumber() + 1);
+				else
+					game.board.setCurrentLevel(game.board.getCurrentLevelNumber() - 1);
 			}
 		}
 	}

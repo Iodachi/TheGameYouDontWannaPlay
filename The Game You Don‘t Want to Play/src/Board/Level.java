@@ -141,7 +141,7 @@ public class Level {
 			//from 50 ~ 60 Stair
 		}else if(code >= 50 && code < 60){
 			Stairs Stair = new Stairs(code,x,y,size);
-			Stair.SetStairs(this.floor);
+			Stair.setStairs(this.floor);
 			this.entities[x][y] = (Entity)Stair;
 			//60 ~ 70 shop and temple
 		}else if(code >= 60 && code < 70){	

@@ -7,7 +7,7 @@ package Board;
 public class Stairs extends Entity{
 	private int up,down;
 	// true point to up stair, false point to down stair
- 	private boolean UpOrDown = true;
+ 	private boolean upOrDown = true;
 
 	public Stairs(int code, int x, int y, int size) {
 		super(code, x, y, size);
@@ -19,9 +19,14 @@ public class Stairs extends Entity{
 	 * @param up
 	 * @param down
 	 */
-	public void SetStairs(int floor){
+	public void setStairs(int floor){
 		if(super.Code == 51) this.up = floor + 1;
 		else if(super.Code == 52) this.down = floor - 1;
+	}
+	
+	public void setUpOrDown() {
+		if(super.Code == 51) upOrDown = true;
+		else if(super.Code == 52) upOrDown = false;
 	}
 	//================================= Return =========================================================
 	/**
@@ -29,7 +34,7 @@ public class Stairs extends Entity{
 	 * otherwise return false
 	 * @return
 	 */
-	public boolean UpOrDownStair(){ return this.UpOrDown;}
+	public boolean upOrDownStair(){ return this.upOrDown;}
 
 	/**
 	 * if it is up stair then return up

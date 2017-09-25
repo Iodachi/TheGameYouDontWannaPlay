@@ -9,9 +9,13 @@ public class Wing extends WearableItem {
 
    private int speedFactor = 2;
    private boolean isOn=false;
-   private String name="WI";
+   private String name="45";
    private int x,y;
    private int cost = 1000;
+   @Override
+	public String toString() {
+		return name;
+	}
    @Override
 	public int getCost() {
 		return cost;

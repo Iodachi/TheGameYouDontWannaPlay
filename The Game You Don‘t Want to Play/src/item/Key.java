@@ -10,17 +10,43 @@ import character.Player;
 
 public class Key extends ConsumableItem {
 	private int x,y;
-    private String name = "KB";
+    private String name = "30";
     private String color;
 	
 	public Key(int x, int y, String color){
 	    this.x =x;
 	    this.y =y;
 	    this.color = color;
+	    generateName(color);
     }
+	@Override
+	public String toString() {
+		return name;
+	}
 	
+	public void generateName(String color) {
+		switch (color) {
+		case "gold":
+			name= "30";
+			break;
+		case "silver":
+			name= "34";
+			break;
+		case "purple":
+			name="33";
+			break;
+		case "cyan":
+			name="31";
+			break;
+		case "bronze":
+			name="32";
+			break;
+		}
+	}
+		
 	public Key(String color) {
 		this.color = color;
+		generateName(color);
 	}
 	
 	@Override

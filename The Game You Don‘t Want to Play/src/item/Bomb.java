@@ -8,15 +8,17 @@ import character.Player;
  */
 public class Bomb extends ConsumableItem {
     private int x,y;
-    private String name = "BO";
+    private String name = "43";
     
-    public Bomb(int x, int y){
+    Bomb(int x, int y){
         this.x = x;
         this.y = y;
     }
-    
+    @Override
+	public String toString() {
+		return name;
+	}
     public Bomb() {
-    	
     }
     
     @Override

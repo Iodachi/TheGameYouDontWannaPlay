@@ -13,7 +13,7 @@ public interface Item {
 	
 
 	/**
-	 * return a string description of the item
+	 * return a the code name of every item;
 	 * */
 	public String toString();
 	public String getName();

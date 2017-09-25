@@ -11,7 +11,11 @@ public class Armor extends WearableItem {
     private int defence =500;
 	private int x,y;
 	private boolean isOn=false;
-	private String name = "AR";
+	private String name = "42";
+	@Override
+	public String toString() {
+		return name;
+	}
 	private int cost= 800;
 	public int getCost() {return cost;}
 	public Armor(int x,int y){

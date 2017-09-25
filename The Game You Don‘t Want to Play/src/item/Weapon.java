@@ -8,8 +8,12 @@ public class Weapon extends WearableItem {
 	private int attack =500;
 	private int x,y;
 	private boolean isOn=false;
-	private String name="WE";
+	private String name="44";
 	private int cost = 600;
+	@Override
+	public String toString() {
+		return name;
+	}
 	@Override
 	public void putOn(Player player) {
 		if(!isOn){

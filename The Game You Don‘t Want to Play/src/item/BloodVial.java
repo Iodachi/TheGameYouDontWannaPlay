@@ -10,8 +10,6 @@ public class BloodVial extends ConsumableItem {
 	private int x,y;
 	private int amount = 500; //
 	private String type;// small ,big
-	private int cost= 50;
-	public int getCost() {return cost;}
 	private String name = "40";
 	@Override
 	public String toString() {
@@ -28,11 +26,15 @@ public class BloodVial extends ConsumableItem {
     	
         this.amount=0;
     }
+    
     @Override
     public String getName(){
-    		
 		return name;
 	}
+    
+    public String getType() {
+    		return type;
+    }
 
 	public BloodVial(int x, int y, String type){
 		this.x =x;
@@ -40,7 +42,6 @@ public class BloodVial extends ConsumableItem {
 		this.type = type;  //either small or big
 		if(type.equals("big")) {
 			this.name="41";
-			this.cost = 100;
 		}
 	}
 	@Override

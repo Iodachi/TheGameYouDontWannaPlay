@@ -10,6 +10,10 @@ import Board.Ground;
 import Board.Wall;
 import character.Player;
 import gui.View;
+import item.BloodVial;
+import item.ConsumableItem;
+import item.Weapon;
+import item.WearableItem;
 import resources.SoundResources;
 
 /**
@@ -70,6 +74,47 @@ public class Game extends Observable{
 			this.notifyObservers();
 		}else {
 			throw new InvalidMove("No breakable wall in front, cannot use bomb.");
+		}
+	}
+	
+	/**
+	 * picks up the equipment on the ground by pressing q, put down current one on floor.
+	 */
+	public void tryPickEquipment() {
+		Entity[][] currentBoard = getBoard().GetCurrentLevel().getEntities();
+		Entity e = currentBoard[player.getYPos()][player.getXPos()];
+		if(e instanceof Ground) {
+			Ground g = (Ground)e;
+			if(g.getWhatContain() instanceof WearableItem){
+				player.equip((WearableItem)g.getWhatContain());
+				//TODO put down current one
+				setToEmpty(e);
+				
+				this.setChanged();
+				this.notifyObservers();
+			}
+		}
+	}
+	
+	/**
+	 * player restores health using the health potion
+	 * @param type
+	 * @throws InvalidMove
+	 */
+	public void tryRestoreHealth(String type) throws InvalidMove {
+		BloodVial b = null;
+		for(ConsumableItem item: player.getInventory()) {
+			if(item instanceof BloodVial && ((BloodVial)item).getType().equals(type)) {
+				b = (BloodVial) item;
+				break;
+			}
+		}
+		
+		if(b == null) {
+			throw new InvalidMove("No health potion to use.");
+		}else {
+			b.use(player);
+			player.getInventory().remove(b);
 		}
 	}
 

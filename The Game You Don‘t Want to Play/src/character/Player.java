@@ -34,6 +34,7 @@ public class Player{
 	//equipments
 	private Armor armor;
 	private Weapon weapon;
+	private Wing wing;
 
 	public Player() {
 		facingDirection = "down";
@@ -64,6 +65,8 @@ public class Player{
 			armor = (Armor)item;
 		}else if(item instanceof Weapon) {
 			weapon = (Weapon)item;
+		}else if(item instanceof Wing) {
+			wing = (Wing)item;
 		}
 	}
 
@@ -204,10 +207,11 @@ public class Player{
 		Entity e = board[yPos][xPos];
 		if(e != null) {
 			if(e instanceof Ground) {
-				if(((Ground) e).getWhatContain() instanceof Item) {
-					if(((Ground) e).getWhatContain() instanceof ConsumableItem) {
-						addItem((ConsumableItem)((Ground) e).getWhatContain());
-						((Ground) e).pickItem();
+				Ground g = ((Ground) e);
+				if(g.getWhatContain() instanceof Item) {
+					if(g.getWhatContain() instanceof ConsumableItem) {
+						addItem((ConsumableItem)(g.getWhatContain()));
+						game.setToEmpty(g);
 					}
 				}
 			}else if(e instanceof Stairs) {
@@ -243,6 +247,46 @@ public class Player{
 				e = currentBoard[yPos+1][xPos];
 		}
 		return e;
+	}
+	
+	//=============== counting inventory ====================
+	/**
+	 * count the number of keys in given color in inventory
+	 * @param color
+	 * @return
+	 */
+	public int getNumKeys(String color) {
+		int num = 0;
+		for(ConsumableItem item: inventory) {
+			if(item instanceof Key) {
+				if(((Key)item).getColor().equals(color)) {
+					num++;
+				}
+			}
+		}
+		return num;
+	}
+	
+	public int getNumBombs() {
+		int num = 0;
+		for(ConsumableItem item: inventory) {
+			if(item instanceof Bomb) {
+				num++;
+			}
+		}
+		return num;
+	}
+	
+	public int getNumBlood(String type) {
+		int num = 0;
+		for(ConsumableItem item: inventory) {
+			if(item instanceof BloodVial) {
+				if(((BloodVial)item).getType().equals(type)){
+					num++;
+				}
+			}
+		}
+		return num;
 	}
 
 	//================= setter and getters ===================
@@ -313,6 +357,10 @@ public class Player{
 
 	public Weapon getCurrentWeapon() {
 		return weapon;
+	}
+	
+	public Wing getCurrentWing() {
+		return wing;
 	}
 
 	public Stack<ConsumableItem> getInventory() {

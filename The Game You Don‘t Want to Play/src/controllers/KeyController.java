@@ -45,6 +45,9 @@ public class KeyController implements KeyListener {
 			case 'e':
 				game.tryBomb();
 				break;
+			case 'q':
+				game.tryPickEquipment();
+				break;
 			}
 		} catch (main.InvalidMove invalidMove) {
 			//invalidMove.printStackTrace();

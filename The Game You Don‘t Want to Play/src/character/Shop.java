@@ -53,7 +53,7 @@ public class Shop {
 	 */
 	public void generateItem() {
 		int item = (int) (Math.random()*10);
-		int price = (int) (Math.random()*10);
+		int price = (int) (Math.random()*30);
 		if(item == 0) {
 			items.put(new Key("gold"), (int) (price*1.5));
 		}else if(item == 1) {

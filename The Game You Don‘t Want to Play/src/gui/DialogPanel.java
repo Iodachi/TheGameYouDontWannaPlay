@@ -21,6 +21,7 @@ public class DialogPanel  extends JPanel{
 		 Image img= ImgResources.dialogBackGroud.img;// to load the dialog BackGroud image
 		 //fill the BackGroud to appropriate size	 
 		 g.drawImage(img, 0,0,this.getWidth(),this.getHeight(),0,0,img.getWidth(null),img.getHeight(null),null);
+		 
 	 }
 	 
 	 /**

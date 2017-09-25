@@ -10,7 +10,7 @@ public class Bomb extends ConsumableItem {
     private int x,y;
     private String name = "43";
     
-    Bomb(int x, int y){
+    public Bomb(int x, int y){
         this.x = x;
         this.y = y;
     }

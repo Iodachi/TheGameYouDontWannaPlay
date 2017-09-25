@@ -54,7 +54,7 @@ public class View extends JComponent implements Observer {
 		bagPanel.addMouseListener(new MouseController(this));
 		bagPanel.setSize(new Dimension(getPreferredSize()));
 			
-		characterPanel = new CharacterPanel();
+		characterPanel = new CharacterPanel(this.game);
 		characterPanel.addMouseListener(new MouseController(this));
 		characterPanel.setSize(new Dimension(getPreferredSize()));
 		
@@ -122,7 +122,8 @@ public class View extends JComponent implements Observer {
 				}
 				if(code==60)y+=1;
 				}catch(NullPointerException e) {
-					System.err.println("NullPointerException: " + code);
+					
+					System.err.println("NullPointerException: image unfind" + code);
 				}
 			}
 		}

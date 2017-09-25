@@ -42,7 +42,7 @@ public class Board {
 	}
 	//================================== initialize ======================================================
 	public void initialize(){
-		String fileName = "load"+".txt";
+		String fileName = "OriginalMap.txt";
 		try {
 			InputStream is = Board.class.getResourceAsStream(fileName);
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));

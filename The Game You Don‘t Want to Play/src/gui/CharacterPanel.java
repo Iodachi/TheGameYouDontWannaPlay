@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import main.Game;
 import resources.ImgResources;
 
-public class CharacterPanel extends JPanel implements Observer  {
+public class CharacterPanel extends JPanel implements Observer {
 	/**
 	 * the Panel for showing all the attribute main character
 	 */
@@ -25,13 +25,13 @@ public class CharacterPanel extends JPanel implements Observer  {
 	private static final int INITIALY = 50;
 	private Game game;
 	private Rectangle[] charaRect = new Rectangle[3];
-	
-	public CharacterPanel(Game game){
+
+	public CharacterPanel(Game game) {
 		game.addObserver(this);
-		this.game =game;
+		this.game = game;
 		CreateRectangle();
 	}
-	
+
 	@Override
 	public void paint(Graphics g) {
 
@@ -42,39 +42,38 @@ public class CharacterPanel extends JPanel implements Observer  {
 		drawKeys(g);
 		drawItem(g);
 	}
-	
 
 	private void drawItem(Graphics g) {
-//		for (int i = 0; i < charaRect.length; i++) {
-//			int x =charaRect[i].x;
-//			int y =charaRect[i].y;
-//			try {
-//				Name = game.getPlayer().getCurrentArmor();
-//				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/" + Name + ".png"));
-//				img.paintIcon(null, g, x, y);
-//				System.out.println(i);
-//			} catch (NullPointerException e) {
-//				System.err.println("NullPointerException: image unfind" + Name);
-//			}
-//		}
-//		
+		if(game.getPlayer().getCurrentWeapon()!=null) {
+			
+			String name = game.getPlayer().getCurrentWeapon().getName();
+			ImageIcon img = new ImageIcon(View.class.getResource("/Entities/" + name + ".png"));
+			img.paintIcon(null, g, charaRect[0].x, charaRect[0].y);
+		}
+		if(game.getPlayer().getCurrentArmor()!=null) {
+			String name = game.getPlayer().getCurrentWeapon().getName();
+			ImageIcon img = new ImageIcon(View.class.getResource("/Entities/" + name + ".png"));
+			img.paintIcon(null, g, charaRect[1].x, charaRect[1].y);
+		}
+			//if(game.getPlayer().getwin=null)
+		
 	}
 
 	private void drawKeys(Graphics g) {
-		//game.getPlayer()
-		
+		// game.getPlayer()
+
 	}
 
 	private void drawAttribute(Graphics g) {
 		int x = 86;
 		int y = 267;
-		//System.out.print(game.getPlayer().getHealth();
-		g.drawString(game.getPlayer().getHealth()+"",x , y);
-		y+=40;
-		g.drawString(game.getPlayer().getDamage()+"",x , y);
-		y+=40;
-		g.drawString(game.getPlayer().getDefence()+"",x , y);
-		
+		// System.out.print(game.getPlayer().getHealth();
+		g.drawString(game.getPlayer().getHealth() + "", x, y);
+		y += 40;
+		g.drawString(game.getPlayer().getDamage() + "", x, y);
+		y += 40;
+		g.drawString(game.getPlayer().getDefence() + "", x, y);
+
 	}
 
 	/**
@@ -84,24 +83,26 @@ public class CharacterPanel extends JPanel implements Observer  {
 	public void CreateRectangle() {
 		for (int row = 0; row < 3; row++) {
 			int x = INITIALX;
-			int y = INITIALY + (RECTSIZE+GAPSIZE) * row;
+			int y = INITIALY + (RECTSIZE + GAPSIZE) * row;
 			if (row > 1)
 				y += 10;// the gap changes when the row lager than 1
 			charaRect[row] = new Rectangle(x, y, RECTSIZE, RECTSIZE);
 
 		}
 	}
+
 	/**
 	 * To check those the user check on the items frame
+	 * 
 	 * @return true if contains otherwise return false
 	 */
 	public boolean containsRect(int x, int y) {
-		for(int row = 0; row<3; row++) {
-			if(charaRect[row].contains(x, y))
-			return true;
+		for (int row = 0; row < 3; row++) {
+			if (charaRect[row].contains(x, y))
+				return true;
 		}
 		return false;
-		
+
 	}
 
 	/**
@@ -114,6 +115,6 @@ public class CharacterPanel extends JPanel implements Observer  {
 	@Override
 	public void update(Observable o, Object arg) {
 		repaint();
-		
+
 	}
 }

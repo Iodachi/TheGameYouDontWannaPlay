@@ -21,7 +21,8 @@ public class BagPanel extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
 	private static final int TILESIZE = 64;
 	private static final int RECTSIZE = 60;
-	private static final int GAPSIZE = 10;
+	private static final int COLGAPSIZE = 10;
+	private static final int ROWGAPSIZE = 20;
 	private int initialX = 28;
 	private int initialY = 38;
 	private Game game;
@@ -73,8 +74,8 @@ public class BagPanel extends JPanel implements Observer {
 	public void CreateRectangle() {
 		for (int row = 0; row < 4; row++) {
 			for (int col = 0; col < 3; col++) {
-				int x = initialX + (RECTSIZE + GAPSIZE) * col;
-				int y = initialY + (RECTSIZE + GAPSIZE) * row;
+				int x = initialX + (RECTSIZE + COLGAPSIZE) * col;
+				int y = initialY + (RECTSIZE + ROWGAPSIZE) * row;
 				if (row > 1)
 					y += 20;// the gap changes when the row lager than 1
 				bagRectangle[row][col] = new Rectangle(x, y, RECTSIZE, RECTSIZE);

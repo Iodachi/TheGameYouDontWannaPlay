@@ -33,6 +33,48 @@ public class Level {
 	}
 
 	//=========================================== Return Method ========================================================	
+	/**
+	 * if pick the item on the ground then set ground into normal ground
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public boolean PickItem(int x, int y){
+		if(this.entities[x][y] instanceof Ground){
+			return ((Ground) this.entities[x][y]).pickItem();
+		}
+		return false;
+	}
+
+	/**
+	 * if break the wall then set normal ground into this coords of entities
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public boolean BreakWall(int x, int y){
+		if(this.entities[x][y] instanceof Wall){
+			if( ((Wall) this.entities[x][y]).isBreakable()){
+				this.entities[x][y] = new Ground(00,x,y,View.TILESIZE);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Method for reset the door to normal ground
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public boolean OpenTheDoor(int x,int y){
+		if ( this.entities[x][y] instanceof Door ){
+			this.entities[x][y] = new Ground(00,x,y,View.TILESIZE);
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * what is the number of this level
@@ -99,6 +141,7 @@ public class Level {
 			//from 50 ~ 60 Stair
 		}else if(code >= 50 && code < 60){
 			Stairs Stair = new Stairs(code,x,y,size);
+			//Stair.SetStairs(this.floor);
 			this.entities[x][y] = (Entity)Stair;
 			//60 ~ 70 shop and temple
 		}else if(code >= 60 && code < 70){	

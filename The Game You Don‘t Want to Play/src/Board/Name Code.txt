@@ -22,10 +22,20 @@
 
 	 * 40 - Big BloodVial               - BB
 	 * 41 - Small BloodVial             - SB
-	 * 42 - Armor                       - AR
+	 * 42 - 0-Armor                     - AR
 	 * 43 - Bomb                        - BM
-	 * 44 - Weapon                      - WP
-	 * 45 - wing                        - WG
+	 * 44 - 0-Weapon                    - WP
+	 * 45 - 0-wing                      - WG
+	 
+	 * 25 - 1-Armor
+	 * 26 - 2-Armor
+	 * 35 - 1-Weapon
+	 * 36 - 2-Weapon
+	 * 46 - 1-Wing
+	 * 47 - 2-Wing
+	 
+	 
+	 
 	 
      * 51 - up stair                    - US
 	 * 52 - down stair                  - DS

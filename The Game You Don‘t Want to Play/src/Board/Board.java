@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import gui.View;
+
 public class Board {
 	private static final int TOWERHIGHT =10;
 	private static Map<Integer, Level> levels = new HashMap<Integer, Level>();
@@ -62,5 +64,4 @@ public class Board {
 			System.out.println("Error reading file '" + fileName + "'");
 		}
 	}	
-
 }

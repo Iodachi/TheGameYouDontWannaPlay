@@ -5,7 +5,6 @@ package Board;
  *
  */
 public class Door extends Entity{
-	public boolean opened = false;
 	public String color;
 
 	public Door(int code, int x, int y, int size) {
@@ -21,15 +20,6 @@ public class Door extends Entity{
 	public String getColor(){
 		return this.color;
 	}
-
-	public boolean isOpened(){
-		return opened;
-	}
-	
-	public void setOpen(boolean opened) {
-		this.opened = opened;
-	}
-
 
 	//================================= Test ============================================================
 	@Override

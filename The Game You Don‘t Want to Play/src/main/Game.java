@@ -6,6 +6,7 @@ import java.util.Observable;
 import Board.Board;
 import Board.Door;
 import Board.Entity;
+import Board.Ground;
 import Board.Wall;
 import character.Player;
 import gui.View;
@@ -39,23 +40,36 @@ public class Game extends Observable{
 		this.notifyObservers();
 	}
 	
+	/**
+	 * try open the door when encounters one
+	 * @param door
+	 * @throws InvalidMove
+	 */
 	public void tryOpenDoor(Door door) throws InvalidMove {
 		String keyColor = door.getColor();
 
 		player.useKey(keyColor);
-		door.setOpen(true);
+		setToEmpty(door);
 
 		this.setChanged();
 		this.notifyObservers();
 	}
 	
+	/**
+	 * try use bomb when presses e, if player happens to face a breakable wall, the bomb is successfully used.
+	 * @throws InvalidMove
+	 */
 	public void tryBomb() throws InvalidMove {
 		Entity[][] currentBoard = getBoard().GetCurrentLevel().getEntities();
 		Entity e = player.findFacingEntity(currentBoard);
 		if(e instanceof Wall && ((Wall)e).isBreakable()) {
 			player.useBomb();
+			setToEmpty(e);
+			
+			this.setChanged();
+			this.notifyObservers();
 		}else {
-			throw new InvalidMove("This wall is not breakable, cannot use bomb.");
+			throw new InvalidMove("No breakable wall in front, cannot use bomb.");
 		}
 	}
 
@@ -65,5 +79,16 @@ public class Game extends Observable{
 	
 	public Board getBoard() {
 		return board;
+	}
+	
+	/**
+	 * set the entity to a normal ground, for example after a wall is broke or a door is open
+	 * this is here instead of Level or Board class is because the entities[][] can be accessed easily
+	 * @param e
+	 */
+	public void setToEmpty(Entity e) {
+		int x = e.GetPosX();
+		int y = e.GetPosY();
+		board.GetCurrentLevel().getEntities()[x][y] = new Ground(00,x,y,View.TILESIZE);
 	}
 }

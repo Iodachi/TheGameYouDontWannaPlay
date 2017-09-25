@@ -138,7 +138,7 @@ public class Player{
 		if(e != null) {
 			if(e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on right");
-			else if(e instanceof Door && !((Door)e).isOpened())
+			else if(e instanceof Door)
 				game.tryOpenDoor((Door) e);
 		}
 		
@@ -154,7 +154,7 @@ public class Player{
 		if(e != null) {
 			if(e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on left");
-			else if(e instanceof Door && !((Door)e).isOpened())
+			else if(e instanceof Door)
 				game.tryOpenDoor((Door) e);
 		}
 		
@@ -170,7 +170,7 @@ public class Player{
 		if(e != null) {
 			if(e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on top");
-			else if(e instanceof Door && !((Door)e).isOpened())
+			else if(e instanceof Door)
 				game.tryOpenDoor((Door) e);
 		}
 		
@@ -186,7 +186,7 @@ public class Player{
 		if(e != null) {
 			if(e instanceof Wall)
 				throw new InvalidMove("Cannot move towards wall on bottom");
-			else if(e instanceof Door && !((Door)e).isOpened())
+			else if(e instanceof Door)
 				game.tryOpenDoor((Door) e);
 		}
 		
@@ -231,16 +231,16 @@ public class Player{
 		int boardSize = Level.BOARDSIZE;
 		if(facingDirection.equals("right")) {
 			if(xPos + 1 <= boardSize - 1) 
-				e = currentBoard[xPos+1][yPos];
+				e = currentBoard[yPos][xPos+1];
 		}else if(facingDirection.equals("left")) {
 			if(xPos - 1 >= 0) 
-				e = currentBoard[xPos-1][yPos];
+				e = currentBoard[yPos][xPos-1];
 		}else if(facingDirection.equals("up")) {
 			if(yPos - 1 >= 0) 
-				e = currentBoard[xPos][yPos-1];
+				e = currentBoard[yPos-1][xPos];
 		}else if(facingDirection.equals("down")) {
 			if(yPos + 1 <= boardSize - 1) 
-				e = currentBoard[xPos][yPos+1];
+				e = currentBoard[yPos+1][xPos];
 		}
 		return e;
 	}

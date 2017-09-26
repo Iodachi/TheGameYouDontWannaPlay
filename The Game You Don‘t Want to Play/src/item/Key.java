@@ -43,7 +43,7 @@ public class Key extends ConsumableItem {
 			break;
 		}
 	}
-		
+	
 	public Key(String color) {
 		this.color = color;
 		generateName(color);

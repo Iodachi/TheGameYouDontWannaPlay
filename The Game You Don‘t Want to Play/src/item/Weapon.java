@@ -13,7 +13,9 @@ public class Weapon extends WearableItem {
 	private String name = "44";
 	private int cost = 600;
 	private int level = 0;
-
+	boolean getIsoN() {
+		return isOn;
+	}
 	@Override
 	public String toString() {
 		return name;

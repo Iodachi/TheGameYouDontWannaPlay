@@ -85,7 +85,35 @@ public class Tests {
 		assertEquals("31", key.getName());
 		key = new Key("bronze");
 		assertEquals("32", key.getName());
-		
+	}
+	
+//	@Override
+//	public void takeOff(Player player) {
+//		if (isOn) {
+//			player.setDamage(player.getDamage() + attack);
+//			isOn = true;
+//		}
+//	}
+	//This test case is used to test if the player have not wear the weapon, then the player can not take off the weapon
+	@Test
+	public void testInvalidTakeOff() {
+		Player player = new Player();
+		int initalDamage = player.getDamage();
+		Weapon weapon =new Weapon(0, 0, 0);
+		weapon.takeOff(player);
+		assertEquals(false, weapon.getIsoN());
+		assertEquals(initalDamage,player.getDamage());
+	}
+	// This test case is used to test if the player try to put on the weapon, then the player's attribute should be changed 
+	@Test
+	public void testValidPutOn() {
+		Player player = new Player();
+		int initalDamage = player.getDamage();
+		Weapon weapon =new Weapon(0, 0, 0);
+		weapon.putOn(player);
+		assertEquals(true, weapon.getIsoN());
+		assertEquals(initalDamage+weapon.getAttack(),player.getDamage());
 	}
 
+	
 }

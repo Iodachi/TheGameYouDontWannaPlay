@@ -3,6 +3,7 @@ package item;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.validator.TestClassValidator;
 
 import character.Player;
 
@@ -86,34 +87,57 @@ public class Tests {
 		key = new Key("bronze");
 		assertEquals("32", key.getName());
 	}
-	
-//	@Override
-//	public void takeOff(Player player) {
-//		if (isOn) {
-//			player.setDamage(player.getDamage() + attack);
-//			isOn = true;
-//		}
-//	}
-	//This test case is used to test if the player have not wear the weapon, then the player can not take off the weapon
-	@Test
-	public void testInvalidTakeOff() {
-		Player player = new Player();
-		int initalDamage = player.getDamage();
-		Weapon weapon =new Weapon(0, 0, 0);
-		weapon.takeOff(player);
-		assertEquals(false, weapon.getIsoN());
-		assertEquals(initalDamage,player.getDamage());
-	}
-	// This test case is used to test if the player try to put on the weapon, then the player's attribute should be changed 
+
+	// This test case is used to test if the player try to put on the weapon, then
+	// the player's attribute should be changed
 	@Test
 	public void testValidPutOn() {
 		Player player = new Player();
 		int initalDamage = player.getDamage();
-		Weapon weapon =new Weapon(0, 0, 0);
+		Weapon weapon = new Weapon(0, 0, 0);
 		weapon.putOn(player);
 		assertEquals(true, weapon.getIsoN());
-		assertEquals(initalDamage+weapon.getAttack(),player.getDamage());
+		assertEquals(initalDamage + weapon.getAttack(), player.getDamage());
+	}
+	// This case case is used test if the player already wear a weapon, the the player try to take off the weapon.After 
+	//the player take off the weapon, the player' damages should also be decreased 
+	@Test
+	public void testValidTakeOff() {
+		Player player = new Player();
+		int initalDamage = player.getDamage();
+		Weapon weapon = new Weapon(0, 0, 0);
+		weapon.putOn(player);
+		assertEquals(true, weapon.getIsoN());
+		assertEquals(initalDamage + weapon.getAttack(), player.getDamage());
+		weapon.takeOff(player);
+		assertEquals(false, weapon.getIsoN());
+		assertEquals(initalDamage, player.getDamage());
+	}
+	
+	// This test case is used to test if the player have not wear the weapon, then
+	// the player can not take off the weapon
+	@Test
+	public void testInvalidTakeOff() {
+		Player player = new Player();
+		int initalDamage = player.getDamage();
+		Weapon weapon = new Weapon(0, 0, 0);
+		weapon.takeOff(player);
+		assertEquals(false, weapon.getIsoN());
+		assertEquals(initalDamage, player.getDamage());
 	}
 
-	
+	// this test case is used to test if the player already wear weapon, the player
+	// cannot wear two weapons at same time
+	@Test
+	public void testInvalidPutOn() {
+		Player player = new Player();
+		Weapon weapon = new Weapon(0, 0, 0);
+		weapon.putOn(player);
+		assertEquals(true, weapon.getIsoN());
+		int initalDamage = player.getDamage();
+		weapon.putOn(player);
+		assertEquals(true, weapon.getIsoN());
+		assertEquals(initalDamage, player.getDamage());
+	}
+
 }

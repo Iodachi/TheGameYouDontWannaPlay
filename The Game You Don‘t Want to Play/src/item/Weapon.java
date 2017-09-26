@@ -66,8 +66,8 @@ public class Weapon extends WearableItem {
 	@Override
 	public void takeOff(Player player) {
 		if (isOn) {
-			player.setDamage(player.getDamage() + attack);
-			isOn = true;
+			player.setDamage(player.getDamage() - attack);
+			isOn = false;
 		}
 	}
 

@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -15,14 +16,12 @@ public class Board {
 	private static Map<Integer, Level> levels;
 	private int currentLevel;
 
-	public Board(String load){
+	public Board(Scanner sc){
 		this.levels = new HashMap<Integer, Level>();
-		System.out.println("1");
-		LoadInitialize(load);
+		LoadInitialize(sc);
 	}
 
 	public Board(){
-		System.out.println("2");
 		this.levels = new HashMap<Integer, Level>();
 		this.currentLevel = 1;
 		OriginalInitialize();
@@ -68,7 +67,7 @@ public class Board {
 	public String toString(){
 		StringBuilder temp = new StringBuilder();
 		temp.append("( "+this.currentLevel +" )\n");
-		for(Level l:this.levels.values())temp.append(l.toString());
+		for(Level l:this.levels.values())temp.append(l.toString()+"\n");
 		return temp.toString();
 	}
 
@@ -104,9 +103,8 @@ public class Board {
 	/**
 	 * Load a file, start a saved game.
 	 */
-	public void LoadInitialize(String load){
+	public void LoadInitialize(Scanner sc){
 		try{
-			Scanner sc = new Scanner(load);
 			sc.next();      // consume (
 			this.currentLevel = sc.nextInt();
 			sc.next();      // consume )

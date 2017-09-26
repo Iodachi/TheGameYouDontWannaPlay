@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
+import item.ConsumableItem;
 import main.Game;
 import resources.SoundResources;
 
@@ -30,8 +31,8 @@ public class Menu extends JComponent {
 	private static final JFrame f = new JFrame("The Game You Don't Want To Play");
 
 	public Menu() {
-		
-		SoundResources.Meun.sound.loop();
+
+		//SoundResources.Meun.sound.loop();
 		JButton NewGame = new JButton("New Game");
 		JButton Load = new JButton("Load");
 		JButton Info = new JButton("Info");
@@ -43,6 +44,11 @@ public class Menu extends JComponent {
 		});
 		Load.addActionListener((e) -> {
 			// not implement yet
+			String load = "save.txt";
+			Game g =new Game(load);
+			
+			f.setVisible(false); //hidden the menu frame
+			SoundResources.Meun.sound.stop();
 		});
 
 		Quit.addActionListener((e) -> {
@@ -51,7 +57,7 @@ public class Menu extends JComponent {
 		Info.addActionListener((e) -> {
 			// not implement yet
 		});
-		
+
 		//set layout for the buttons 
 		this.setLayout(new GridLayout(0, 1, 0, 100)); 
 		this.setBorder(new EmptyBorder(150, 450, 150, 450));
@@ -69,7 +75,7 @@ public class Menu extends JComponent {
 
 		setFocusable(true);
 		setVisible(true);
-		
+
 		// add this menu to the frame
 		f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		f.add(this);
@@ -77,7 +83,7 @@ public class Menu extends JComponent {
 		f.setResizable(false);
 		f.setVisible(true);
 		f.setSize(View.TILESIZE*17, View.TILESIZE*12);	
-		
+
 	}
 
 	public static void main(String[] args) {
@@ -89,7 +95,7 @@ public class Menu extends JComponent {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
+
 		int size = View.TILESIZE;
 		for(int x=0; x<this.getWidth()/size; x++) {
 			for(int y=0; y<=this.getHeight()/size; y++) {
@@ -104,7 +110,7 @@ public class Menu extends JComponent {
 				} catch (Exception e) {
 					throw new Error(e);
 				}
-				
+
 			}
 		}
 	}

@@ -1,7 +1,8 @@
 package character;
 
-import java.util.Stack;
 
+import java.util.Scanner;
+import java.util.Stack;
 import Board.Door;
 import Board.Entity;
 import Board.Ground;
@@ -43,9 +44,65 @@ public class Player{
 		damage = 10;
 		defence = 10;
 		gold = 0;
-		xPos = 1;	
-		yPos = 1;
+		xPos = 5;	
+		yPos = 0;
 	}
+
+	/**
+	 * Use for reload
+	 */
+	public void ParserPlayer(Scanner sc){
+		try{
+			//first facing direction
+			this.facingDirection = sc.next();
+			//second parse inventory
+
+			if(sc.hasNext("i")){
+				sc.next();                //consume s
+				sc.next();                //consume (
+				while(sc.hasNextInt()){
+					int a = sc.nextInt();
+					System.out.println(a);
+					if(a == 30) this.inventory.push(  new Key(-1,-1, "gold"));
+					else if(a == 31) this.inventory.push(  new Key(-1,-1, "cyan"));
+					else if(a == 32) this.inventory.push(  new Key(-1,-1, "bronze"));
+					else if(a == 33) this.inventory.push(  new Key(-1,-1, "purple"));
+					else if(a == 34) this.inventory.push(  new Key(-1,-1, "silver"));
+					else if(a == 40) this.inventory.push(  new BloodVial(-1,-1, "big"));
+					else if(a == 41) this.inventory.push(  new BloodVial(-1,-1, "small"));
+					else if(a == 43) this.inventory.push(  new Bomb(-1,-1));
+				}
+			}
+			sc.next();                //consume )
+			//third parse parameter
+			this.xPos = sc.nextInt();
+			this.yPos = sc.nextInt();
+			this.health = sc.nextInt();
+			this.damage = sc.nextInt();
+			this.defence = sc.nextInt();
+			this.gold = sc.nextInt();
+			this.speed = sc.nextInt();
+			//finally add gear
+			while(sc.hasNextInt()){
+				int gear = sc.nextInt();
+				if(gear != -1) continue;
+				else if(gear == 42) this.armor = new Armor(-1,-1,0);
+				else if(gear == 25) this.armor = new Armor(-1,-1,1);
+				else if(gear == 26) this.armor = new Armor(-1,-1,2);
+				else if(gear == 44) this.weapon = new Weapon(-1,-1,0);
+				else if(gear == 35) this.weapon = new Weapon(-1,-1,1);
+				else if(gear == 23) this.weapon = new Weapon(-1,-1,2);
+				else if(gear == 45) this.wing = new Wing(-1,-1,0);
+				else if(gear == 46) this.wing = new Wing(-1,-1,1);
+				else if(gear == 47) this.wing = new Wing(-1,-1,2);
+			}
+
+		}catch (java.util.InputMismatchException e) {
+			System.out.println(e);
+		}
+
+	}
+
 
 	/**
 	 * pick up an item and add to inventory
@@ -129,14 +186,14 @@ public class Player{
 		}else if(direction.equals("down")) {
 			moveDown(board, boardSize);
 		}
-		
+
 		newGridInteraction(board);
 	}
-	
+
 	public void moveRight(Entity[][] board, int boardSize) throws InvalidMove {
 		if(xPos + 1 > boardSize - 1) 
 			throw new InvalidMove("Cannot move out of board");
-		
+
 		Entity e = board[yPos][xPos+1];
 		if(e != null) {
 			if(e instanceof Wall)
@@ -144,7 +201,7 @@ public class Player{
 			else if(e instanceof Door)
 				game.tryOpenDoor((Door) e);
 		}
-		
+
 		if(!(e instanceof Ground && ((Ground) e).isLava()))
 			xPos++;
 	}
@@ -152,7 +209,7 @@ public class Player{
 	public void moveLeft(Entity[][] board, int boardSize) throws InvalidMove {
 		if(xPos - 1 < 0) 
 			throw new InvalidMove("Cannot move out of board");
-		
+
 		Entity e = board[yPos][xPos-1];
 		if(e != null) {
 			if(e instanceof Wall)
@@ -160,7 +217,7 @@ public class Player{
 			else if(e instanceof Door)
 				game.tryOpenDoor((Door) e);
 		}
-		
+
 		if(!(e instanceof Ground && ((Ground) e).isLava()))
 			xPos--;
 	}
@@ -168,7 +225,7 @@ public class Player{
 	public void moveUp(Entity[][] board, int boardSize) throws InvalidMove {
 		if(yPos - 1 < 0) 
 			throw new InvalidMove("Cannot move out of board");
-		
+
 		Entity e = board[yPos-1][xPos];
 		if(e != null) {
 			if(e instanceof Wall)
@@ -176,7 +233,7 @@ public class Player{
 			else if(e instanceof Door)
 				game.tryOpenDoor((Door) e);
 		}
-		
+
 		if(!(e instanceof Ground && ((Ground) e).isLava()))
 			yPos--;
 	}
@@ -184,7 +241,7 @@ public class Player{
 	public void moveDown(Entity[][] board, int boardSize) throws InvalidMove {
 		if(yPos + 1 > boardSize - 1) 
 			throw new InvalidMove("Cannot move out of board");
-		
+
 		Entity e = board[yPos+1][xPos];
 		if(e != null) {
 			if(e instanceof Wall)
@@ -192,11 +249,11 @@ public class Player{
 			else if(e instanceof Door)
 				game.tryOpenDoor((Door) e);
 		}
-		
+
 		if(!(e instanceof Ground && ((Ground) e).isLava()))
 			yPos++;
 	}
-	
+
 	/**
 	 * if there is an item that can be picked up in the new position, pick it up,
 	 * if there is a stair, teleport player to corresponding level
@@ -211,7 +268,8 @@ public class Player{
 				if(g.getWhatContain() instanceof Item) {
 					if(g.getWhatContain() instanceof ConsumableItem) {
 						addItem((ConsumableItem)(g.getWhatContain()));
-						game.setToEmpty(g);
+						//game.setToEmpty(g);
+						boolean test = this.game.board.GetCurrentLevel().PickItem(yPos, xPos);
 					}
 				}
 			}else if(e instanceof Stairs) {
@@ -222,7 +280,7 @@ public class Player{
 			}
 		}
 	}
-	
+
 	/**
 	 * finds the next grid on player's current facing direction. for example if player is in pisition (2, 2) and facing right,
 	 * 	the position of this grid will be (2, 3)
@@ -248,7 +306,7 @@ public class Player{
 		}
 		return e;
 	}
-	
+
 	//=============== counting inventory ====================
 	/**
 	 * count the number of keys in given color in inventory
@@ -266,7 +324,7 @@ public class Player{
 		}
 		return num;
 	}
-	
+
 	public int getNumBombs() {
 		int num = 0;
 		for(ConsumableItem item: inventory) {
@@ -276,7 +334,7 @@ public class Player{
 		}
 		return num;
 	}
-	
+
 	public int getNumBlood(String type) {
 		int num = 0;
 		for(ConsumableItem item: inventory) {
@@ -358,7 +416,7 @@ public class Player{
 	public Weapon getCurrentWeapon() {
 		return weapon;
 	}
-	
+
 	public Wing getCurrentWing() {
 		return wing;
 	}
@@ -376,4 +434,35 @@ public class Player{
 		this.yPos = y;
 		return this;
 	}
+
+	@Override
+	public String toString(){
+		StringBuilder temp = new StringBuilder();
+		//first append face direction
+		temp.append(facingDirection +" ");
+		//second append stack
+		Stack<ConsumableItem> original = this.inventory;
+		Stack<String> inverse = new Stack<>();
+		for(ConsumableItem ci: original)inverse.push(ci.toString());
+		temp.append("i ( ");
+		for(String str: inverse) temp.append(str+" ");
+		temp.append(")\n"); 
+		//third int x,int y, int hh, int de,int df,int gd,int speed, 
+		temp.append(this.xPos+" ");
+		temp.append(this.yPos+" ");
+		temp.append(this.health+" ");
+		temp.append(this.damage+" ");
+		temp.append(this.defence+" ");
+		temp.append(this.gold + " ");
+		temp.append(this.speed + " \n");
+		//finally Armor ar,Weapon we,Wing wi
+		if(this.armor == null) temp.append("-1 " );
+		else temp.append(this.armor.toString()+ " ");
+		if(this.weapon == null) temp.append("-1 " );
+		else temp.append(this.weapon.toString()+ " ");
+		if(this.wing == null) temp.append("-1 \n" );
+		else temp.append(this.wing.toString()+ " \n");
+		return temp.toString();
+	}
+
 }

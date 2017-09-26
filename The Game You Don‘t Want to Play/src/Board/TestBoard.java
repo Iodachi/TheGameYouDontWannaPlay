@@ -1,5 +1,8 @@
 package Board;
 import static org.junit.Assert.*;
+
+import java.util.Scanner;
+
 import org.junit.Test;
 import character.*;
 import item.*;
@@ -12,10 +15,10 @@ public class TestBoard {
 		Board temp = new Board();
 		//System.out.println(temp.GetCurrentLevel().toString());
 	}
-	
-	
+
+
 	@Test
-	public void testLoadCurrentLevel() {
+	public void testLoadLevel() {
 		String load = "( 1 )\n"
 				+   "l 1 (\n" 
 				+	" 00 00 00 00 00 00 00 00 00 00 00 00\n"
@@ -31,10 +34,18 @@ public class TestBoard {
 				+	" 00 01 01 01 01 43 01 00 00 00 00 00\n"
 				+	" 00 00 00 00 00 51 01 00 01 01 01 01\n"
 				+	")\n";
+		try{
+			Scanner sc = new Scanner(load);
+			Board test02 = new Board(sc);
+			String save = test02.toString();
+			load = load + "\n";
+			assertEquals(load,save);
+		}catch (java.util.InputMismatchException e){
+			System.out.println(e);
+		}
 
-		Board test02 = new Board(load);
-		String save = test02.toString();
-		assertEquals(load,save);
+	
+		
 	}
 
 

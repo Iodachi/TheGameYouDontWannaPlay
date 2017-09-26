@@ -214,23 +214,14 @@ public class Level {
 		temp.append("l " + this.floor +" (" + "\n" );
 		for (int i = 0; i < 12; i++) {
 			for (int c = 0; c < 12; c++) {
-				if(this.pieces[i][c] < 10) temp.append(" 0" + this.pieces[i][c]);
-				else temp.append(" " + this.pieces[i][c]);
+				int code = this.entities[i][c].GetCode();
+				if(code < 10) temp.append(" 0" + code);
+				else temp.append(" " + this.entities[i][c].GetCode());
 			}
 			temp.append("\n");
 		}
 		temp.append(")\n");
 		return temp.toString();
-	}
-
-	public void Print1(){
-		for (int i = 0; i < 12; i++) {
-			StringBuilder temp = new StringBuilder();
-			for (int c = 0; c < 12; c++) {
-				temp.append(" " + GetEntityAt(i,c).toString());
-			}
-			System.out.println(temp);
-		}
 	}
 
 

@@ -52,7 +52,6 @@ public class Ground<T> extends Entity{
 	 */
 	public boolean pickItem(){
 		if(this.t != null && this.t instanceof Item) return SetContainNothing();
-
 		return false;
 	}	
 
@@ -96,13 +95,15 @@ public class Ground<T> extends Entity{
 		return false;
 	}
 
+	
+	
 	/**
 	 * Help method for reset this ground to normal ground
 	 * @return
 	 */
 	public boolean SetContainNothing(){
 		this.t = null;
-		super.Code = 00;
+		super.Code = 0;
 		return true;
 	}
 

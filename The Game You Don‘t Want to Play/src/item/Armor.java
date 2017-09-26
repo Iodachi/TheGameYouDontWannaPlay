@@ -14,7 +14,9 @@ public class Armor extends WearableItem {
 	private boolean isOn=false;
 	private String name = "42";
 	private int level = 0;
-	
+	public int getDefence() {
+		return defence;
+	}
 	@Override
 	public String toString() {
 		return name;

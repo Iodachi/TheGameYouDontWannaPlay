@@ -18,7 +18,9 @@ public class Weapon extends WearableItem {
 	public String toString() {
 		return name;
 	}
-
+	public int getAttack() {
+		return attack;
+	}
 	@Override
 	public void putOn(Player player) {
 		if (!isOn) {

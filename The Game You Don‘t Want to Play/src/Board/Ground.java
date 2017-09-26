@@ -170,14 +170,16 @@ public class Ground<T> extends Entity{
 		 else if(super.Code == 46) this.t = (T) new Wing(super.PosX,super.PosY,1);
 		 else if(super.Code == 47) this.t = (T) new Wing(super.PosX,super.PosY,2);
 
-		 else if(super.Code == 91) this.t = (T) new Monster(1); // this.M = new Monster(1);
-		 else if(super.Code == 92) this.t = (T) new Monster(2); // this.M = new Monster(2);
-		 else if(super.Code == 93) this.t = (T) new Monster(3); // this.M = new Monster(3);
-		 else if(super.Code == 94) this.t = (T) new Monster(4); // this.M = new Monster(4);
-		 else if(super.Code == 95) this.t = (T) new Monster(5); // this.M = new Monster(5);
-		 else if(super.Code == 96) this.t = (T) new Monster(6); // this.M = new Monster(6);
-		 else if(super.Code == 97) this.t = (T) new Monster(7); // this.M = new Monster(7);
-		 else if(super.Code == 98) this.t = (T) new Monster(8); // this.M = new Monster(8);     
+		 else if(super.Code == 60) this.t = (T) new Shop();
+
+		 else if(super.Code == 91) this.t = (T) new Monster(1);
+		 else if(super.Code == 92) this.t = (T) new Monster(2); 
+		 else if(super.Code == 93) this.t = (T) new Monster(3); 
+		 else if(super.Code == 94) this.t = (T) new Monster(4);
+		 else if(super.Code == 95) this.t = (T) new Monster(5);
+		 else if(super.Code == 96) this.t = (T) new Monster(6); 
+		 else if(super.Code == 97) this.t = (T) new Monster(7); 
+		 else if(super.Code == 98) this.t = (T) new Monster(8);     
 
 	 }
 
@@ -242,19 +244,19 @@ public class Ground<T> extends Entity{
 		 else if(super.Code == 40) return "BB";
 		 else if(super.Code == 41) return "SB";
 		 else if(super.Code == 43) return "BM";
-		 
+
 		 else if(super.Code == 42) return "A0";
 		 else if(super.Code == 25) return "A1";
 		 else if(super.Code == 26) return "A2";
-		 
+
 		 else if(super.Code == 44) return "P0";
 		 else if(super.Code == 35) return "P1";
 		 else if(super.Code == 36) return "P2";
-		 
+
 		 else if(super.Code == 45) return "Y0";
 		 else if(super.Code == 46) return "Y1";
 		 else if(super.Code == 47) return "Y2";
-		 
+
 		 else if(super.Code == 60) return "S0";	
 		 else if(super.Code == 65) return "T0";	
 		 else if(super.Code == 66) return "T1";

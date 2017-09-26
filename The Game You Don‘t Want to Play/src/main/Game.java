@@ -33,6 +33,7 @@ public class Game extends Observable{
 		new View(this);
 	}
 	
+	//========================================================= Control Method ===========================================================================
 	public void move(String direction) throws InvalidMove {
 		//facing direction is changed even if player didn't actually move 
 		player.setFacingDirection(direction);
@@ -117,15 +118,11 @@ public class Game extends Observable{
 			player.getInventory().remove(b);
 		}
 	}
-
-	public Player getPlayer() {
-		return player;
-	}
+	//========================================================= Return Method ===========================================================================
+	public Player getPlayer() {return player;}
+	public Board getBoard() {return board;}
 	
-	public Board getBoard() {
-		return board;
-	}
-	
+	//========================================================= Help Method ===========================================================================
 	/**
 	 * set the entity to a normal ground, for example after a wall is broke or a door is open
 	 * this is here instead of Level or Board class is because the entities[][] can be accessed easily

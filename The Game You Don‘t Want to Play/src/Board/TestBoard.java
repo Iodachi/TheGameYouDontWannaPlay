@@ -10,21 +10,33 @@ public class TestBoard {
 	@Test
 	public void testPrintCurrentLevel() {
 		Board temp = new Board();
-		temp.GetCurrentLevel().Print();
-		System.out.println("");
-		temp.GetCurrentLevel().Print1();
+		//System.out.println(temp.GetCurrentLevel().toString());
+	}
+	
+	
+	@Test
+	public void testLoadCurrentLevel() {
+		String load = "( 1 )\n"
+				+   "l 1 (\n" 
+				+	" 00 00 00 00 00 00 00 00 00 00 00 00\n"
+				+	" 00 01 01 01 01 30 01 01 01 01 01 00\n"
+				+	" 00 01 01 01 01 30 01 01 00 00 00 00\n"
+				+	" 00 01 01 01 01 30 01 01 00 01 01 01\n"
+				+	" 00 01 01 01 00 30 00 01 00 00 00 00\n"
+				+	" 00 01 01 01 00 01 00 01 01 01 01 00\n"
+				+	" 00 01 01 01 00 01 00 01 00 00 00 00\n"
+				+	" 00 01 01 01 00 00 00 01 00 01 01 01\n"
+				+	" 00 01 01 01 01 93 01 01 00 00 00 00\n"
+				+	" 00 01 01 01 01 30 01 01 01 01 01 00\n"
+				+	" 00 01 01 01 01 43 01 00 00 00 00 00\n"
+				+	" 00 00 00 00 00 51 01 00 01 01 01 01\n"
+				+	")\n";
+
+		Board test02 = new Board(load);
+		String save = test02.toString();
+		assertEquals(load,save);
 	}
 
-	@Test
-	public void testPrintAllLevel() {
-		Board temp = new Board();
-		for(Level tLevel : temp.GetAllLevel()){
-			System.out.println("");
-			tLevel.Print();
-			System.out.println("");
-			tLevel.Print1();
-		}
-	}
 
 	/**
 	 * test cast item contain item and pick item
@@ -45,7 +57,7 @@ public class TestBoard {
 		assertTrue(k4.getWhatContain() instanceof Key);
 		Ground k5 = new Ground(34,0,0,0);
 		assertTrue(k5.getWhatContain() instanceof Key);
-		
+
 		Ground BB = new Ground(40,0,0,0);
 		assertTrue(BB.getWhatContain() instanceof BloodVial);
 		BB.pickItem();
@@ -61,13 +73,13 @@ public class TestBoard {
 		assertTrue(WP.getWhatContain() instanceof Weapon);
 		Ground WG = new Ground(45,0,0,0);
 		assertTrue(WG.getWhatContain() instanceof Wing);
-		
+
 		Ground gg = new Ground(00,0,0,0);
 		assertNull(gg.getWhatContain());
 		Ground gl = new Ground(01,0,0,0);
 		assertNull(gl.getWhatContain());
-		
-	
+
+
 	}
 
 	/**
@@ -86,7 +98,7 @@ public class TestBoard {
 		Ground w2 = new Ground(05,0,0,0);
 		assertTrue(w2.getWhatContain() instanceof WiseMan);
 	}
-	
+
 	/**
 	 * test create monster cast monster kill monster
 	 */
@@ -113,7 +125,7 @@ public class TestBoard {
 		Ground t8 = new Ground(98,0,0,0);
 		assertTrue(t8.getWhatContain() instanceof Monster);
 	}
-	
+
 	/**
 	 * test create shop/temple cast shop/temple close shop/temple
 	 */
@@ -122,18 +134,8 @@ public class TestBoard {
 	public <T> void testCast04(){
 		Level l = new Level(0);
 		Ground ST0 = new Ground(60,0,0,0);
-//		ST0.SetShopOrTemple((T) l.getShop0());
-//		assertTrue(ST0.GetWhatContain() instanceof Shop);
-//		ST0.CloseShop();
-//		assertNull(ST0.GetWhatContain());
-//		assertEquals(ST0.GetCode(), 00);
-//		Ground ST1 = new Ground(61,0,0,0);
-//		ST1.SetShopOrTemple((T) l.getShop1());
-//		assertTrue(ST1.GetWhatContain() instanceof Shop);
-//		Ground ST2 = new Ground(62,0,0,0);
-//		ST2.SetShopOrTemple((T) l.getShop2());
-//		assertTrue(ST2.GetWhatContain() instanceof Shop);
-		
+		assertTrue(ST0.getWhatContain() instanceof Shop);
+
 		Ground TT0 = new Ground(65,0,0,0);
 		TT0.SetShopOrTemple((T) l.getTemple0());
 		assertTrue(TT0.getWhatContain() instanceof Temple);
@@ -147,5 +149,5 @@ public class TestBoard {
 		TT2.SetShopOrTemple((T) l.getTemple2());
 		assertTrue(TT2.getWhatContain() instanceof Temple);
 	}
-	
+
 }

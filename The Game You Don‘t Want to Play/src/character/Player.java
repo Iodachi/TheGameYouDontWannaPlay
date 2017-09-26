@@ -216,9 +216,9 @@ public class Player{
 				}
 			}else if(e instanceof Stairs) {
 				if(((Stairs)e).upOrDownStair())
-					game.board.setCurrentLevel(game.board.getCurrentLevelNumber() + 1);
+					game.board.setCurrentLevel(game.board.GetCurrentLevelNumber() + 1);
 				else
-					game.board.setCurrentLevel(game.board.getCurrentLevelNumber() - 1);
+					game.board.setCurrentLevel(game.board.GetCurrentLevelNumber() - 1);
 			}
 		}
 	}

@@ -207,18 +207,20 @@ public class Level {
 	}
 	//============================================= Test =================================================================
 	/**
-	 * Use for test
-	 */
-	public void Print() {
+	 * Use for load and save
+	 */@Override
+	public String toString() {
+		StringBuilder temp = new StringBuilder();
+		temp.append("l " + this.floor +" (" + "\n" );
 		for (int i = 0; i < 12; i++) {
-			StringBuilder temp = new StringBuilder();
 			for (int c = 0; c < 12; c++) {
 				if(this.pieces[i][c] < 10) temp.append(" 0" + this.pieces[i][c]);
-
 				else temp.append(" " + this.pieces[i][c]);
 			}
-			System.out.println(temp);
+			temp.append("\n");
 		}
+		temp.append(")\n");
+		return temp.toString();
 	}
 
 	public void Print1(){

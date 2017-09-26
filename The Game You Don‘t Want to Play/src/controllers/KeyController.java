@@ -18,15 +18,6 @@ public class KeyController implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
 		System.out.println(e.getKeyChar());
 		try {
 			switch (e.getKeyChar()) {
@@ -48,11 +39,22 @@ public class KeyController implements KeyListener {
 			case 'q':
 				game.tryPickEquipment();
 				break;
+			default:
+				break;
 			}
 		} catch (main.InvalidMove invalidMove) {
 			//invalidMove.printStackTrace();
 			System.out.println(invalidMove.getMessage());
 		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+	
 	}
 
 }

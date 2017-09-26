@@ -4,10 +4,11 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import main.Game;
@@ -20,9 +21,9 @@ public class CharacterPanel extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
 	private static final int TILESIZE = 64;
 	private static final int RECTSIZE = 50;
-	private static final int GAPSIZE = 10;
-	private static final int INITIALX = 40;
-	private static final int INITIALY = 50;
+	private static final int GAPSIZE = 15;
+	private static final int INITIALX = 32;
+	private static final int INITIALY = 45;
 	private Game game;
 	private Rectangle[] charaRect = new Rectangle[3];
 
@@ -47,15 +48,33 @@ public class CharacterPanel extends JPanel implements Observer {
 		if(game.getPlayer().getCurrentWeapon()!=null) {
 			
 			String name = game.getPlayer().getCurrentWeapon().getName();
-			ImageIcon img = new ImageIcon(View.class.getResource("/Entities/" + name + ".png"));
-			img.paintIcon(null, g, charaRect[0].x, charaRect[0].y);
+			Image img;
+			try {
+				img = ImageIO.read(View.class.getResource("/Entities/" + name + ".png"));
+				int x = charaRect[0].x;
+				int y = charaRect[0].y;
+				int w = img.getWidth(this);
+				int h = img.getHeight(this);
+				g.drawImage(img, x, y, w, h,null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 		}
 		if(game.getPlayer().getCurrentArmor()!=null) {
-			String name = game.getPlayer().getCurrentWeapon().getName();
-			ImageIcon img = new ImageIcon(View.class.getResource("/Entities/" + name + ".png"));
-			img.paintIcon(null, g, charaRect[1].x, charaRect[1].y);
+			String name = game.getPlayer().getCurrentArmor().getName();
+			Image img;
+			try {
+				img = ImageIO.read(View.class.getResource("/Entities/" + name + ".png"));
+				int x = charaRect[1].x;
+				int y = charaRect[1].y;
+				int w = img.getWidth(this);
+				int h = img.getHeight(this);
+				g.drawImage(img, x, y, w,h,null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-			//if(game.getPlayer().getwin=null)
 		
 	}
 

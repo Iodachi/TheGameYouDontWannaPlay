@@ -44,10 +44,12 @@ public class View extends JComponent implements Observer {
 
 	public View(Game game) {
 		// setting attribute for this view
-		this.game = game;
 		game.addObserver(this);
+		this.game = game;
 		this.setFocusable(true);
 		this.setPreferredSize(getPreferredSize());
+		this.addKeyListener(new KeyController(game));
+		this.addMouseListener(new MouseController(this));
 
 		// create UI for the main
 		bagPanel = new BagPanel(this.game);
@@ -77,8 +79,7 @@ public class View extends JComponent implements Observer {
 		f.setResizable(false);
 		f.setVisible(true);
 
-		addKeyListener(new KeyController(game));
-		addMouseListener(new MouseController(this));
+		
 	}
 
 	public Dimension getPreferredSize() {

@@ -7,6 +7,7 @@ import org.junit.validator.TestClassValidator;
 
 import character.Player;
 
+//@author minping
 public class Tests {
 
 	// This test case is used to check the method of setAttributes for armor class
@@ -99,8 +100,10 @@ public class Tests {
 		assertEquals(true, weapon.getIsoN());
 		assertEquals(initalDamage + weapon.getAttack(), player.getDamage());
 	}
-	// This case case is used test if the player already wear a weapon, the the player try to take off the weapon.After 
-	//the player take off the weapon, the player' damages should also be decreased 
+
+	// This case case is used test if the player already wear a weapon, the the
+	// player try to take off the weapon.After
+	// the player take off the weapon, the player' damages should also be decreased
 	@Test
 	public void testValidTakeOff() {
 		Player player = new Player();
@@ -113,7 +116,7 @@ public class Tests {
 		assertEquals(false, weapon.getIsoN());
 		assertEquals(initalDamage, player.getDamage());
 	}
-	
+
 	// This test case is used to test if the player have not wear the weapon, then
 	// the player can not take off the weapon
 	@Test
@@ -139,22 +142,69 @@ public class Tests {
 		assertEquals(true, weapon.getIsoN());
 		assertEquals(initalDamage, player.getDamage());
 	}
-	
-	//this test case is used to test the "use" method for FateCoin class
+
+	// this test case is used to test the "use" method for FateCoin class
 	@Test
 	public void testUse3() {
 		Player player = new Player();
 		FateCoin fateCoin = new FateCoin(0, 0);
 		int initialHealth = player.getHealth();
 		fateCoin.use(player);
-		int randomNumber =fateCoin.getRandomNumber();
-		if(randomNumber<5) {
-			assertEquals(initialHealth-fateCoin.getAmount(),player.getHealth());
-		}else {
-			assertEquals(initialHealth+fateCoin.getAmount(),player.getHealth());
+		int randomNumber = fateCoin.getRandomNumber();
+		if (randomNumber < 5) {
+			assertEquals(initialHealth - fateCoin.getAmount(), player.getHealth());
+		} else {
+			assertEquals(initialHealth + fateCoin.getAmount(), player.getHealth());
 		}
 	}
+
+	// this test case is used to test if putOn method for Wing class
+	@Test
+	public void testValidPutOn2() {
+		Player player = new Player();
+		int initalSpeed = player.getSpeed();
+		Wing wing = new Wing(0, 0, 0);
+		wing.putOn(player);
+		assertEquals(true, wing.getIsOn());
+		assertEquals(initalSpeed * wing.getSpeedFactor(), player.getSpeed());
+	}
+	//this test case is used to test if the player has not wear the wing, then just directly want to take off the wing.Which is invalid
+	//take off
+	@Test
+	public void testInValidTakeOff2() {
+		Player player = new Player();
+		int initialSpeed = player.getSpeed();
+		Wing wing = new Wing(0, 0, 0);
+		wing.takeOff(player);
+		assertEquals(false, wing.getIsOn());
+		assertEquals(initialSpeed, player.getSpeed());
+	}
+
+	// This case case is used to test if the player already wear a wing, then the
+	// player try to take off the wing.After
+	// the player take off the wing, the player's speed should also be decreased
+	@Test
+	public void testValidTakeOff2() {
+		Player player = new Player();
+		Wing wing = new Wing(0, 0, 0);
+		int initialSpeed = player.getSpeed();
+		wing.putOn(player);
+		assertEquals(true,wing.getIsOn());
+		wing.takeOff(player);
+		assertEquals(initialSpeed, player.getSpeed());
+	}
 	
+	//This test case is used to test if the player has already wear wing, then the speed can not increase anymore.
+	@Test
+	public void testInValidPutOn2() {
+		Player player = new Player();
+		Wing wing  = new Wing(0, 0, 0);
+		int initialSpeed= player.getSpeed();
+		wing.putOn(player);
+		wing.putOn(player);
+		assertEquals(true,wing.getIsOn());
+		assertEquals(initialSpeed*wing.getSpeedFactor(), player.getSpeed());
+	}
 	
 	
 }

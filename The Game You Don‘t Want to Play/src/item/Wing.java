@@ -21,7 +21,10 @@ public class Wing extends WearableItem {
 	public String toString() {
 		return name;
 	}
-
+	public boolean getIsOn() {
+		return isOn;
+	}
+	
 	@Override
 	public int getCost() {
 		return cost;

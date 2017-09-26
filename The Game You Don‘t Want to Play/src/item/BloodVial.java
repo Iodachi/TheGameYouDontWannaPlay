@@ -10,7 +10,7 @@ public class BloodVial extends ConsumableItem {
 	private int x,y;
 	private int amount = 500; //
 	private String type;// small ,big
-	private String name = "40";
+	private String name = "41";
 	public int getAmount() {
 		return amount;
 	}
@@ -44,7 +44,7 @@ public class BloodVial extends ConsumableItem {
 		this.y=y;
 		this.type = type;  //either small or big
 		if(type.equals("big")) {
-			this.name="41";
+			this.name="40";
 		}
 	}
 	@Override

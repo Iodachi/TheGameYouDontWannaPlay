@@ -2,13 +2,41 @@ package controllers;
 
 import static org.junit.Assert.*;
 
+import java.util.Stack;
+
 import org.junit.Test;
+//@author minping
+
+import gui.View;
+import item.BloodVial;
+import item.ConsumableItem;
+import main.Game;
 
 public class Tests {
-
+	
+	
+	// this test case is used to  test rowCol convert index 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testRowColIndex() {
+		Game game = new Game();
+		View view = new View(game);
+		MouseController mouseController = new MouseController(view);
+		assertEquals(11,mouseController.rowColCovertIndex(4, 3));
+		assertEquals(0,mouseController.rowColCovertIndex(1, 1));
 	}
+	// this test case is used to test find item  method
+	@Test
+	public void testFindItem() {
+		Game game = new Game();
+		View view = new View(game);
+		MouseController mouseController = new MouseController(view);
+		Stack<ConsumableItem> inventory = new Stack<>();
+		BloodVial bloodVial = new BloodVial(0, 0, "big");
+		inventory.push(bloodVial);
+		mouseController.setInventory(inventory);
+		assertEquals("40",mouseController.findItem(0).getName());
+	}
+	
+	
 
 }

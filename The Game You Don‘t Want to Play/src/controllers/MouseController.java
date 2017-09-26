@@ -38,7 +38,11 @@ public class MouseController implements MouseMotionListener, MouseListener {
 	private Rectangle[] charactRectangle = new Rectangle[3];
 	private Stack<ConsumableItem> inventory = new Stack<>();
 	
-
+	public void setInventory(Stack<ConsumableItem> temp) {inventory = temp;}
+	public Stack<ConsumableItem> getInventory() {
+		return inventory;
+	}
+	
 	public MouseController(View view) {
 		this.view = view;
 	

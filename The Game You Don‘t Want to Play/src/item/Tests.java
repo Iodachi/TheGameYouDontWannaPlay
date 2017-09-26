@@ -55,19 +55,37 @@ public class Tests {
 	public void testUse1() {
 		BloodVial bloodVial = new BloodVial(0, 0, "small");
 		Player player = new Player();
-		int amount = bloodVial.getAmount()/2;
+		int amount = bloodVial.getAmount() / 2;
 		int initialHealth = player.getHealth();
 		bloodVial.use(player);
-		assertEquals(initialHealth+amount,player.getHealth() );
+		assertEquals(initialHealth + amount, player.getHealth());
 	}
+
 	// This test case is used to check the method of use for BloodVial class
-		@Test
-		public void testUse2() {
-			BloodVial bloodVial = new BloodVial(0, 0, "big");
-			Player player = new Player();
-			int amount = bloodVial.getAmount();
-			int initialHealth = player.getHealth();
-			bloodVial.use(player);
-			assertEquals(initialHealth+amount,player.getHealth() );
-		}
+	@Test
+	public void testUse2() {
+		BloodVial bloodVial = new BloodVial(0, 0, "big");
+		Player player = new Player();
+		int amount = bloodVial.getAmount();
+		int initialHealth = player.getHealth();
+		bloodVial.use(player);
+		assertEquals(initialHealth + amount, player.getHealth());
+	}
+
+	// This test case is used to check the genreateName method for key class
+	@Test
+	public void testGenerateName() {
+		Key key = new Key("gold");
+		assertEquals("30", key.getName());
+		key = new Key("silver");
+		assertEquals("34", key.getName());
+		key = new Key("purple");
+		assertEquals("33", key.getName());
+		key = new Key("cyan");
+		assertEquals("31", key.getName());
+		key = new Key("bronze");
+		assertEquals("32", key.getName());
+		
+	}
+
 }

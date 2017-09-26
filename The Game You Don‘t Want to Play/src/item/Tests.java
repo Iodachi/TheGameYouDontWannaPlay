@@ -259,4 +259,29 @@ public class Tests {
 		assertEquals(true, armor.getIsOn());
 		assertEquals(initialDefense + armor.getDefence(), player.getDefence());
 	}
+	//Test on method for all item class
+	@Test 
+	public void testOn() {
+		Armor armor = new Armor(0, 0, 0);
+		assertEquals(true, armor.on(0, 0));
+		assertEquals(false, armor.on(1, 0));
+		BloodVial bloodVial =new BloodVial(0, 0,"small");
+		assertEquals(true, bloodVial.on(0, 0));
+		assertEquals(false, bloodVial.on(1, 0));
+		Bomb bomb = new Bomb(0, 0);
+		assertEquals(true, bomb.on(0, 0));
+		assertEquals(false, bomb.on(1, 0));
+		FateCoin fateCoin =new FateCoin(0, 0);
+		assertEquals(true, fateCoin.on(0, 0));
+		assertEquals(false, fateCoin.on(1, 0));
+		Key key = new Key(0, 0,"dd");
+		assertEquals(true, key.on(0, 0));
+		assertEquals(false, bomb.on(1, 0));
+		Weapon weapon =new Weapon(0, 0,0);
+		assertEquals(true, weapon.on(0, 0));
+		assertEquals(false, weapon.on(1, 0));
+		Wing wing =new Wing(0, 0,0);
+		assertEquals(true, wing.on(0, 0));
+		assertEquals(false, wing.on(1, 0));
+	}
 }

@@ -88,6 +88,6 @@ public class Wing extends WearableItem {
 
 	@Override
 	public boolean on(int x, int y) {
-		return false;
+		return this.x==x&&this.y==y;
 	}
 }

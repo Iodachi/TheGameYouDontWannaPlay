@@ -11,6 +11,9 @@ public class BloodVial extends ConsumableItem {
 	private int amount = 500; //
 	private String type;// small ,big
 	private String name = "40";
+	public int getAmount() {
+		return amount;
+	}
 	@Override
 	public String toString() {
 		return name;
@@ -18,7 +21,7 @@ public class BloodVial extends ConsumableItem {
     @Override
     public void use(Player player) {
         if(type=="big"){
-        	
+        
         	player.setHealth(player.getHealth()+amount);
         }else{
         	player.setHealth(player.getHealth()+amount/2);

@@ -74,6 +74,9 @@ public class Wing extends WearableItem {
 		}
 
 	}
+	public int getSpeedFactor() {
+		return speedFactor;
+	}
 
 	@Override
 	public void fix(int amount) {

@@ -16,6 +16,12 @@ public class FateCoin extends ConsumableItem{
     	this.x =x;
     	this.y=y;
     }
+    public int getRandomNumber() {
+		return randomNumber;
+	}
+    public int getAmount() {
+		return amount;
+	}
 	@Override
 	public void use(Player player) {
 

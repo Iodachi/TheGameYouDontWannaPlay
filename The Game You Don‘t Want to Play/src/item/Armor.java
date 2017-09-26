@@ -1,8 +1,6 @@
 package item;
 
-import java.security.KeyStore.PrivateKeyEntry;
 
-import Board.Level;
 import character.Player;
 /**
  * This class is used to represent the armor equipment which the player can put on to increase defence of player
@@ -17,6 +15,7 @@ public class Armor extends WearableItem {
 	public int getDefence() {
 		return defence;
 	}
+	
 	@Override
 	public String toString() {
 		return name;

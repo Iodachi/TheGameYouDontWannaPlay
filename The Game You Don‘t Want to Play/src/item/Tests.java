@@ -139,5 +139,22 @@ public class Tests {
 		assertEquals(true, weapon.getIsoN());
 		assertEquals(initalDamage, player.getDamage());
 	}
-
+	
+	//this test case is used to test the "use" method for FateCoin class
+	@Test
+	public void testUse3() {
+		Player player = new Player();
+		FateCoin fateCoin = new FateCoin(0, 0);
+		int initialHealth = player.getHealth();
+		fateCoin.use(player);
+		int randomNumber =fateCoin.getRandomNumber();
+		if(randomNumber<5) {
+			assertEquals(initialHealth-fateCoin.getAmount(),player.getHealth());
+		}else {
+			assertEquals(initialHealth+fateCoin.getAmount(),player.getHealth());
+		}
+	}
+	
+	
+	
 }

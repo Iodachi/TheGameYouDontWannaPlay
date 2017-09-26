@@ -168,8 +168,10 @@ public class Tests {
 		assertEquals(true, wing.getIsOn());
 		assertEquals(initalSpeed * wing.getSpeedFactor(), player.getSpeed());
 	}
-	//this test case is used to test if the player has not wear the wing, then just directly want to take off the wing.Which is invalid
-	//take off
+
+	// this test case is used to test if the player has not wear the wing, then just
+	// directly want to take off the wing.Which is invalid
+	// take off
 	@Test
 	public void testInValidTakeOff2() {
 		Player player = new Player();
@@ -189,22 +191,72 @@ public class Tests {
 		Wing wing = new Wing(0, 0, 0);
 		int initialSpeed = player.getSpeed();
 		wing.putOn(player);
-		assertEquals(true,wing.getIsOn());
+		assertEquals(true, wing.getIsOn());
 		wing.takeOff(player);
 		assertEquals(initialSpeed, player.getSpeed());
 	}
-	
-	//This test case is used to test if the player has already wear wing, then the speed can not increase anymore.
+
+	// This test case is used to test if the player has already wear wing, then the
+	// speed can not increase anymore.
 	@Test
 	public void testInValidPutOn2() {
 		Player player = new Player();
-		Wing wing  = new Wing(0, 0, 0);
-		int initialSpeed= player.getSpeed();
+		Wing wing = new Wing(0, 0, 0);
+		int initialSpeed = player.getSpeed();
 		wing.putOn(player);
 		wing.putOn(player);
-		assertEquals(true,wing.getIsOn());
-		assertEquals(initialSpeed*wing.getSpeedFactor(), player.getSpeed());
+		assertEquals(true, wing.getIsOn());
+		assertEquals(initialSpeed * wing.getSpeedFactor(), player.getSpeed());
 	}
-	
-	
+
+	// this test case is used to test if putOn method for Armor class
+	@Test
+	public void testValidPutOn3() {
+		Player player = new Player();
+		int initalDefence = player.getDefence();
+		Armor armor = new Armor(0, 0, 0);
+		armor.putOn(player);
+		assertEquals(true, armor.getIsOn());
+		assertEquals(initalDefence+armor.getDefence(), player.getDefence());
+	}
+
+	// this test case is used to test if the player has not wear the armor, then just
+	// directly want to take off the armor.Which is invalid
+	// take off
+	@Test
+	public void testInValidTakeOff3() {
+		Player player = new Player();
+		int initialDefence = player.getDefence();
+		Armor armor = new Armor(0, 0, 0);
+		armor.takeOff(player);
+		assertEquals(false, armor.getIsOn());
+		assertEquals(initialDefence, player.getDefence());
+	}
+
+	// This case case is used to test if the player already wear a armor, then the
+	// player try to take off the armor. After
+	// the player take off the armor, the player's defense should also be decreased
+	@Test
+	public void testValidTakeOff3() {
+		Player player = new Player();
+		Armor armor = new Armor(0, 0, 0);
+		int initialDefense = player.getDefence();
+		armor.putOn(player);
+		assertEquals(true, armor.getIsOn());
+		armor.takeOff(player);
+		assertEquals(initialDefense, player.getDefence());
+	}
+
+	// This test case is used to test if the player has already wear armor, then the
+	// defense can not increase anymore.
+	@Test
+	public void testInValidPutOn3() {
+		Player player = new Player();
+		Armor armor = new Armor(0, 0, 0);
+		int initialDefense = player.getDefence();
+		armor.putOn(player);
+		armor.putOn(player);
+		assertEquals(true, armor.getIsOn());
+		assertEquals(initialDefense + armor.getDefence(), player.getDefence());
+	}
 }

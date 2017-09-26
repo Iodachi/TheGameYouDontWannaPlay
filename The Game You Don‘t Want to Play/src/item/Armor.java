@@ -12,6 +12,9 @@ public class Armor extends WearableItem {
 	private boolean isOn=false;
 	private String name = "42";
 	private int level = 0;
+	boolean getIsOn() {
+		return isOn;
+	}
 	public int getDefence() {
 		return defence;
 	}

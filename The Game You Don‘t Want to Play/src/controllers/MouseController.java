@@ -87,16 +87,13 @@ public class MouseController implements MouseMotionListener, MouseListener {
 				System.out.println("row:" + row + " col" + col + "  x:" + x + "y:" + y);
 			}
 		}
-		// for(int col=0;col<3;col++) {
-		// int y = charactRectangle[col].y;
-		// System.out.println("coL: "+col+ " y: "+y);
-		// }
+		
 
 	}
 
 	public boolean checkClickOn(int x, int y, boolean isbagPanel) {
 		if (isbagPanel) {
-			for (int row = 0; row < 4; row++) {
+			for (int row = 0; row < 4; row++) { 
 				for (int col = 0; col < 3; col++) {
 
 					if (bagRectangle[row][col].contains(x, y)) {

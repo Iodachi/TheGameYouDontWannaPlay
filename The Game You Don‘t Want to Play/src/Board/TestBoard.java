@@ -148,16 +148,16 @@ public class TestBoard {
 		assertTrue(ST0.getWhatContain() instanceof Shop);
 
 		Ground TT0 = new Ground(65,0,0,0);
-		TT0.setContain((T) l.getTemple0());
+		TT0.SetShopOrTemple((T) l.getTemple0());
 		assertTrue(TT0.getWhatContain() instanceof Temple);
 		TT0.CloseTemple();
 		assertNull(TT0.getWhatContain());
 		assertEquals(TT0.GetCode(), 00);
 		Ground TT1 = new Ground(66,0,0,0);
-		TT1.setContain((T) l.getTemple1());
+		TT1.SetShopOrTemple((T) l.getTemple1());
 		assertTrue(TT1.getWhatContain() instanceof Temple);
 		Ground TT2 = new Ground(67,0,0,0);
-		TT2.setContain((T) l.getTemple2());
+		TT2.SetShopOrTemple((T) l.getTemple2());
 		assertTrue(TT2.getWhatContain() instanceof Temple);
 	}
 

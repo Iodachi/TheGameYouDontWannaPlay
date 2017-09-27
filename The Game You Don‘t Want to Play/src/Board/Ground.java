@@ -95,8 +95,8 @@ public class Ground<T> extends Entity{
 		return false;
 	}
 
-	
-	
+
+
 	/**
 	 * Help method for reset this ground to normal ground
 	 * @return
@@ -124,34 +124,33 @@ public class Ground<T> extends Entity{
 	 * 40 - Big BloodVial               - BB
 	 * 41 - Small BloodVial             - SB
 	 * 43 - Bomb                        - BM
+	 * 48 - Fate Coin
+	 * 49 - MonsterManual
 
-	 * 42 - 0-Armor                     - AR	 
-	 * 25 - 1-Armor
-	 * 26 - 2-Armor
-
-	 * 44 - 0-Weapon                    - WP
-	 * 35 - 1-Weapon
-	 * 36 - 2-Weapon
-
-	 * 45 - 0-wing                      - WG
-	 * 46 - 1-Wing
-	 * 47 - 2-Wing
-	 * 
-	 * 53 - Fate Coin
-	 * 54 - MonsterManual
-
-	 * 60 - Shop Type 0
+     * 60 - Shop Type 0
 	 * 65 - Temple Type 0 
 	 * 66 - Temple Type 1
 	 * 67 - Temple Type 2
+	 * 
+	 * 70 - 0-Armor                     - AR	 
+	 * 71 - 1-Armor
+	 * 72 - 2-Armor
+	 * 73 - 0-Weapon                    - WP	 
+	 * 74 - 1-Weapon
+	 * 75 - 2-Weapon
+	 * 76 - 0-wing                      - WG
+	 * 77 - 1-Wing
+	 * 78 - 2-Wing
+	 * 
+	 
 	 * 91 - M1  92 - M2 93 - M3 94 - M4 95 - M5 96 - M6 97 - M7 98 - M8
 	 */ @SuppressWarnings({"unchecked"})
 	 private  void SetGround() {
 		 if(super.Code == 03) this.t = (T) new WiseMan(new Armor(-1,-1,2));
 		 else if(super.Code == 04) this.t = (T) new WiseMan(new Weapon(-1,-1,2));
 		 else if(super.Code == 05) this.t = (T) new WiseMan(new Wing(-1,-1,2));
-		// else if(super.Code == 06) this.t = (T) new WiseMan(new MonsterManual());
-		 
+		 else if(super.Code == 06) this.t = (T) new WiseMan((Item) new MonsterManual());
+
 		 else if(super.Code == 30) this.t = (T) new Key(super.PosX,super.PosY, "gold");
 		 else if(super.Code == 31) this.t = (T) new Key(super.PosX,super.PosY, "cyan");
 		 else if(super.Code == 32) this.t = (T) new Key(super.PosX,super.PosY, "bronze");
@@ -160,22 +159,23 @@ public class Ground<T> extends Entity{
 
 		 else if(super.Code == 40) this.t = (T) new BloodVial(super.PosX,super.PosY,"big");
 		 else if(super.Code == 41) this.t = (T) new BloodVial(super.PosX,super.PosY,"small");
-
-		 else if(super.Code == 42) this.t = (T) new Armor(super.PosX,super.PosY,0);
-		 else if(super.Code == 25) this.t = (T) new Armor(super.PosX,super.PosY,1);
-		 else if(super.Code == 26) this.t = (T) new Armor(super.PosX,super.PosY,2);
-
 		 else if(super.Code == 43) this.t = (T) new Bomb(super.PosX,super.PosY);
+		 else if(super.Code == 48) this.t = (T) new FateCoin(super.PosX,super.PosY);
 
-		 else if(super.Code == 44) this.t = (T) new Weapon(super.PosX,super.PosY,0);
-		 else if(super.Code == 35) this.t = (T) new Weapon(super.PosX,super.PosY,1);
-		 else if(super.Code == 36) this.t = (T) new Weapon(super.PosX,super.PosY,2);
+		 else if(super.Code == 70) this.t = (T) new Armor(super.PosX,super.PosY,0);
+		 else if(super.Code == 71) this.t = (T) new Armor(super.PosX,super.PosY,1);
+		 else if(super.Code == 72) this.t = (T) new Armor(super.PosX,super.PosY,2);
 
-		 else if(super.Code == 45) this.t = (T) new Wing(super.PosX,super.PosY,0);
-		 else if(super.Code == 46) this.t = (T) new Wing(super.PosX,super.PosY,1);
-		 else if(super.Code == 47) this.t = (T) new Wing(super.PosX,super.PosY,2);
-		 else if(super.Code == 53) this.t = (T) new FateCoin(super.PosX,super.PosY);
-		 
+
+		 else if(super.Code == 73) this.t = (T) new Weapon(super.PosX,super.PosY,0);
+		 else if(super.Code == 74) this.t = (T) new Weapon(super.PosX,super.PosY,1);
+		 else if(super.Code == 75) this.t = (T) new Weapon(super.PosX,super.PosY,2);
+
+		 else if(super.Code == 76) this.t = (T) new Wing(super.PosX,super.PosY,0);
+		 else if(super.Code == 77) this.t = (T) new Wing(super.PosX,super.PosY,1);
+		 else if(super.Code == 78) this.t = (T) new Wing(super.PosX,super.PosY,2);
+
+		
 		 else if(super.Code == 60) this.t = (T) new Shop();
 
 		 else if(super.Code == 91) this.t = (T) new Monster(1);
@@ -195,7 +195,7 @@ public class Ground<T> extends Entity{
 	  * @param code
 	  * @return
 	  */
-	 public void setContain(T t){this.t = t;}
+	 public void SetShopOrTemple(T t){this.t = t;}
 
 
 

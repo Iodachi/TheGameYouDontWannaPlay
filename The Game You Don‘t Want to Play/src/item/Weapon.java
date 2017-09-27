@@ -13,7 +13,7 @@ public class Weapon extends WearableItem {
 	private int attack = 12;
 	private int x, y;
 	private boolean isOn = false;
-	private String name = "44";
+	private String name = "73";
 	private int cost = 600;
 	private int level = 0;
 
@@ -42,11 +42,11 @@ public class Weapon extends WearableItem {
 		switch (level) {
 		case 1:
 			attack = 200;
-			name = "35";
+			name = "74";
 			break;
 		case 2:
 			attack = 300;
-			name = "36";
+			name = "75";
 			break;
 		}
 

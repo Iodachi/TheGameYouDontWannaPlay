@@ -12,7 +12,7 @@ public class Armor extends WearableItem {
 	private int defence = 10;
 	private int x, y;
 	private boolean isOn = false; // the flag is used to indicate if player has wear the Armor
-	private String name = "42";
+	private String name = "70";
 	private int level = 0;
 	private int cost = 800;
 
@@ -42,11 +42,11 @@ public class Armor extends WearableItem {
 		switch (level) {
 		case 1:
 			defence = 200;
-			name = "25";
+			name = "71";
 			break;
 		case 2:
 			defence = 300;
-			name = "26";
+			name = "72";
 			break;
 		}
 
@@ -75,7 +75,7 @@ public class Armor extends WearableItem {
 		}
 
 	}
-
+	
 	public String getName() {
 		return name;
 	}

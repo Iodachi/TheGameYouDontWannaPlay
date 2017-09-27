@@ -1,20 +1,28 @@
 package controllers;
 
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.nio.channels.NonWritableChannelException;
 import java.util.Stack;
 
+import javax.security.auth.x500.X500Principal;
+
+import character.Player;
 import gui.BagPanel;
 import gui.CharacterPanel;
 import gui.View;
 import item.BloodVial;
 import item.ConsumableItem;
 import item.Item;
+import main.Game;
 import main.InvalidMove;
 
 /**
+ * This class is used to implement that the player use the mouse to click the
+ * consumable item to use
  * 
  * @author Minping
  */
@@ -32,21 +40,28 @@ public class MouseController implements MouseMotionListener, MouseListener {
 	private Rectangle[][] bagRectangle = new Rectangle[4][3];
 	private Rectangle[] charactRectangle = new Rectangle[3];
 	private Stack<ConsumableItem> inventory = new Stack<>();
-	
-	public void setInventory(Stack<ConsumableItem> temp) {inventory = temp;}
-	public Stack<ConsumableItem> getInventory() {
-		return inventory;
+
+	public void setInventory(Stack<ConsumableItem> temp) {
+		inventory = temp;
 	}
-	
+
+	/**
+	 * constructor
+	 * 
+	 * @param view
+	 **/
 	public MouseController(View view) {
 		this.view = view;
-	
+
 		inventory = view.getGame().getPlayer().getInventory();
 
 		fillRectangle();
-		printOut();
+		// printOut();
 	}
 
+	/**
+	 * This method is used to create array of rectangle for all valid selection area
+	 **/
 	public void fillRectangle() {
 		for (int row = 0; row < 4; row++) {
 			for (int col = 0; col < 3; col++) {
@@ -69,26 +84,30 @@ public class MouseController implements MouseMotionListener, MouseListener {
 		}
 
 	}
+
+	/**
+	 * This method is used to convert 2D array index into 1D array index
+	 * 
+	 * @param row
+	 * @param col
+	 **/
 	public int rowColCovertIndex(int row, int col) {
-		int index = 3*(row-1)+col;
-		return index -1;
-	}
-	public void printOut() {
-
-		for (int row = 0; row < 4; row++) {
-			for (int col = 0; col < 3; col++) {
-				int x = bagRectangle[row][col].x;
-				int y = bagRectangle[row][col].y;
-				System.out.println("row:" + row + " col" + col + "  x:" + x + "y:" + y);
-			}
-		}
-		
-
+		int index = 3 * (row - 1) + col;
+		return index - 1;
 	}
 
+	/**
+	 * This method is used to check if the mouse click on the correct position
+	 * 
+	 * @param x
+	 * @param y
+	 * @param isBagPanel
+	 *            --- either for bag panel or character panel
+	 * @return boolean
+	 **/
 	public boolean checkClickOn(int x, int y, boolean isbagPanel) {
 		if (isbagPanel) {
-			for (int row = 0; row < 4; row++) { 
+			for (int row = 0; row < 4; row++) {
 				for (int col = 0; col < 3; col++) {
 
 					if (bagRectangle[row][col].contains(x, y)) {
@@ -108,43 +127,38 @@ public class MouseController implements MouseMotionListener, MouseListener {
 			}
 
 		}
-
 		return false;
 	}
-
+	/**
+	 * This method is used to check if the input index is valid or not
+	 * @param index
+	 * */
 	public ConsumableItem findItem(int index) {
-		if(index>inventory.size()-1||index<0) { return null;}
+		if (index > inventory.size() - 1 || index < 0) {
+			return null;
+		}
 		return inventory.get(index);
 	}
-	
+
 	@Override
 	public void mousePressed(MouseEvent e) {
 		System.out.printf("X:%dY:%d\n", e.getX(), e.getY());
-//		for (int i = 0; i < inventory.size(); i++) {
-//			System.out.println("index: " + i + "  Item name: " + inventory.get(i));
-//		}
 		if (e.getSource() instanceof BagPanel) {
 
 			if (checkClickOn(e.getX(), e.getY(), true)) {
-			    int index = rowColCovertIndex(bagRow + 1, bagCol + 1);
-			    ConsumableItem consumableItem = findItem(index);
-			    if(consumableItem instanceof BloodVial) {
-			    		String name = consumableItem.getName();
-			    		System.out.println("blood vial name: "+name);
-			    		System.out.println("before health: "+view.getGame().getPlayer().getHealth());
-			    		try {
-							view.getGame().tryRestoreHealth(((BloodVial)consumableItem).getType());
-						} catch (InvalidMove e1) {
-							e1.printStackTrace();
-						}
-			    		System.out.println("After health: "+view.getGame().getPlayer().getHealth());
-			    		System.out.println("before size: "+view.getGame().getPlayer().getInventory().size());
-			    		System.out.println("After size: "+view.getGame().getPlayer().getInventory().size());
+				int index = rowColCovertIndex(bagRow + 1, bagCol + 1);
+				ConsumableItem consumableItem = findItem(index);
+				if (consumableItem instanceof BloodVial) {
+					String name = consumableItem.getName();
+					System.out.println("blood vial name: " + name);
+					System.out.println("before health: " + view.getGame().getPlayer().getHealth());
+					try {
+						view.getGame().tryRestoreHealth(((BloodVial) consumableItem).getType());
+					} catch (InvalidMove e1) {
+						e1.printStackTrace();
+					}
+				}
 
-			    }
-
-			    
-			    
 			} else {
 				System.out.println("have not clicked ");
 			}
@@ -156,6 +170,10 @@ public class MouseController implements MouseMotionListener, MouseListener {
 				System.out.println("have not clicked ");
 			}
 		}
+	}
+
+	public Stack<ConsumableItem> getInventory() {
+		return inventory;
 	}
 
 	@Override
@@ -191,5 +209,17 @@ public class MouseController implements MouseMotionListener, MouseListener {
 	public void mouseMoved(MouseEvent e) {
 
 	}
+	// public void printOut() {
+	//
+	// for (int row = 0; row < 4; row++) {
+	// for (int col = 0; col < 3; col++) {
+	// int x = bagRectangle[row][col].x;
+	// int y = bagRectangle[row][col].y;
+	// System.out.println("row:" + row + " col" + col + " x:" + x + "y:" + y);
+	// }
+	// }
+	//
+	//
+	// }
 
 }

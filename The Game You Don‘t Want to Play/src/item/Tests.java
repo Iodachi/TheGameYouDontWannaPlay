@@ -14,13 +14,13 @@ public class Tests {
 	@Test
 	public void testSetAttributes1() {
 		Armor armor = new Armor(0, 0, 0);
-		assertEquals(armor.getName(), "42");
+		assertEquals(armor.getName(), "70");
 		assertEquals(armor.getDefence(), 10);
 		armor = new Armor(0, 0, 1);
-		assertEquals(armor.getName(), "25");
+		assertEquals(armor.getName(), "71");
 		assertEquals(armor.getDefence(), 200);
 		armor = new Armor(0, 0, 2);
-		assertEquals(armor.getName(), "26");
+		assertEquals(armor.getName(), "72");
 		assertEquals(armor.getDefence(), 300);
 	}
 
@@ -28,13 +28,13 @@ public class Tests {
 	@Test
 	public void testSetAttributes2() {
 		Weapon weapon = new Weapon(0, 0, 0);
-		assertEquals(weapon.getName(), "44");
+		assertEquals(weapon.getName(), "73");
 		assertEquals(weapon.getAttack(), 12);
 		weapon = new Weapon(0, 0, 1);
-		assertEquals(weapon.getName(), "35");
+		assertEquals(weapon.getName(), "74");
 		assertEquals(weapon.getAttack(), 200);
 		weapon = new Weapon(0, 0, 2);
-		assertEquals(weapon.getName(), "36");
+		assertEquals(weapon.getName(), "75");
 		assertEquals(weapon.getAttack(), 300);
 	}
 
@@ -42,14 +42,14 @@ public class Tests {
 	@Test
 	public void testSetAttributes3() {
 		Wing wing = new Wing(0, 0, 0);
-		assertEquals(wing.getName(), "45");
+		assertEquals(wing.getName(), "76");
 		assertEquals(wing.getSpeedFactor(), 2);
 		wing = new Wing(0, 0, 1);
-		assertEquals(wing.getName(), "46");
+		assertEquals(wing.getName(), "77");
 		assertEquals(wing.getSpeedFactor(), 3);
 		wing = new Wing(0, 0, 2);
 		assertEquals(wing.getSpeedFactor(), 4);
-		assertEquals(wing.getName(), "47");
+		assertEquals(wing.getName(), "78");
 	}
 
 	// This test case is used to check the method of use for BloodVial class

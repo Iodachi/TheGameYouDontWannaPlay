@@ -14,7 +14,7 @@ public class Wing extends WearableItem {
 	private int speedFactor = 2;
 	private int health = (int) Math.pow(10, 3);
 	private boolean isOn = false;
-	private String name = "45";
+	private String name = "76";
 	private int x, y;
 	private int cost = 1000;
 	private int level = 0;
@@ -74,12 +74,12 @@ public class Wing extends WearableItem {
 		case 1:
 			speedFactor = 3;
 			health = health = (int) Math.pow(10, 6);
-			name = "46";
+			name = "77";
 			break;
 		case 2:
 			speedFactor = 4;
 			health = health = (int) Math.pow(10, 7);
-			name = "47";
+			name = "78";
 			break;
 		}
 

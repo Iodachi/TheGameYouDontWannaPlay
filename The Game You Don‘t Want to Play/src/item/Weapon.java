@@ -7,7 +7,7 @@ import character.Player;
  * increase the player's damage
  */
 public class Weapon extends WearableItem {
-	private int attack = 500;
+	private int attack = 12;
 	private int x, y;
 	private boolean isOn = false;
 	private String name = "44";
@@ -48,11 +48,11 @@ public class Weapon extends WearableItem {
 	public void setAttribute(int level) {
 		switch (level) {
 		case 1:
-			attack = 1000;
+			attack = 200;
 			name = "35";
 			break;
 		case 2:
-			attack = 2000;
+			attack = 300;
 			name = "36";
 			break;
 		}

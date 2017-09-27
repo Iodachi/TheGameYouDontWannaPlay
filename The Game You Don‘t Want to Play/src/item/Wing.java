@@ -12,6 +12,7 @@ import character.Player;
 public class Wing extends WearableItem {
 
 	private int speedFactor = 2;
+	private int health=(int)Math.pow(10, 3);
 	private boolean isOn = false;
 	private String name = "45";
 	private int x, y;
@@ -24,7 +25,7 @@ public class Wing extends WearableItem {
 	public boolean getIsOn() {
 		return isOn;
 	}
-	
+
 	@Override
 	public int getCost() {
 		return cost;
@@ -34,6 +35,7 @@ public class Wing extends WearableItem {
 	public void putOn(Player player) {
 		if (!isOn) {
 			player.setSpeed(player.getSpeed() * speedFactor);
+			player.setHealth(player.getHealth()+health);
 			isOn = true;
 		}
 
@@ -68,10 +70,12 @@ public class Wing extends WearableItem {
 		switch (level) {
 		case 1:
 			speedFactor = 3;
+			health= health=(int)Math.pow(10, 6);
 			name = "46";
 			break;
 		case 2:
 			speedFactor = 4;
+			health= health=(int)Math.pow(10, 7);
 			name = "47";
 			break;
 		}

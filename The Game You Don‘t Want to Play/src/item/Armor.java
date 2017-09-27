@@ -7,7 +7,7 @@ import character.Player;
  * @author minpingyang
  * */
 public class Armor extends WearableItem {
-    private int defence =500;
+    private int defence =10;
 	private int x,y;
 	private boolean isOn=false;
 	private String name = "42";
@@ -18,7 +18,7 @@ public class Armor extends WearableItem {
 	public int getDefence() {
 		return defence;
 	}
-	
+
 	@Override
 	public String toString() {
 		return name;
@@ -40,15 +40,15 @@ public class Armor extends WearableItem {
 	public void setAttribute(int level) {
 		switch (level) {
 		case 1:
-			defence=1000;
+			defence=200;
 			name="25";
 			break;
 		case 2:
-			defence=2000;
+			defence=300;
 			name="26";
 		    break;
 		}
-		
+
 	}
 	public String getName(){
 		return name;
@@ -76,7 +76,7 @@ public class Armor extends WearableItem {
 
     }
 
-    
+
 
 	@Override
 	public void fix(int amount) {

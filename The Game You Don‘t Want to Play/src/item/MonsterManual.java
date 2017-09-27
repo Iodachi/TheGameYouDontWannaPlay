@@ -9,7 +9,7 @@ import character.Monster;
 
 //This class is used to represent that monster manual
 public class MonsterManual {
-	private String name="54";
+	private String name= "49";
 	private HashMap<String,List<Integer>> manual= new HashMap<>();
 	public MonsterManual() {
 		fillBook();

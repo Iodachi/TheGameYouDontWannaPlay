@@ -150,7 +150,7 @@ public class Ground<T> extends Entity{
 		 if(super.Code == 03) this.t = (T) new WiseMan(new Armor(-1,-1,2));
 		 else if(super.Code == 04) this.t = (T) new WiseMan(new Weapon(-1,-1,2));
 		 else if(super.Code == 05) this.t = (T) new WiseMan(new Wing(-1,-1,2));
-		// else if(super.Code == 06) this.t = (T) new WiseMan(new MonsterManual());
+		 else if(super.Code == 06) this.t = (T) new WiseMan((Item) new MonsterManual());
 		 
 		 else if(super.Code == 30) this.t = (T) new Key(super.PosX,super.PosY, "gold");
 		 else if(super.Code == 31) this.t = (T) new Key(super.PosX,super.PosY, "cyan");
@@ -174,7 +174,8 @@ public class Ground<T> extends Entity{
 		 else if(super.Code == 45) this.t = (T) new Wing(super.PosX,super.PosY,0);
 		 else if(super.Code == 46) this.t = (T) new Wing(super.PosX,super.PosY,1);
 		 else if(super.Code == 47) this.t = (T) new Wing(super.PosX,super.PosY,2);
-		 else if(super.Code == 53) this.t = (T) new FateCoin(super.PosX,super.PosY);
+		 
+		 else if(super.Code == 48) this.t = (T) new FateCoin(super.PosX,super.PosY);
 		 
 		 else if(super.Code == 60) this.t = (T) new Shop();
 

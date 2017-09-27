@@ -97,5 +97,8 @@ public class Monster {
 	public boolean isDefeated() {
 		return isDefeated;
 	}
+	public String getName() {
+		return name;
+	}
 }
 

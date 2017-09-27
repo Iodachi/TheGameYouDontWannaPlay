@@ -132,24 +132,23 @@ public class MouseController implements MouseMotionListener, MouseListener {
 		if (e.getSource() instanceof BagPanel) {
 
 			if (checkClickOn(e.getX(), e.getY(), true)) {
-			    int index = rowColCovertIndex(bagRow + 1, bagCol + 1);
-			    ConsumableItem consumableItem = findItem(index);
-			    if(consumableItem instanceof BloodVial) {
-			    		String name = consumableItem.getName();
-			    		System.out.println("blood vial name: "+name);
-			    		System.out.println("before health: "+view.getGame().getPlayer().getHealth());
-			    		try {
-							view.getGame().tryRestoreHealth(((BloodVial)consumableItem).getType());
-						} catch (InvalidMove e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-			    		//consumableItem.use(view.getGame().getPlayer());
-			    		System.out.println("After health: "+view.getGame().getPlayer().getHealth());
-			    		System.out.println("before size: "+view.getGame().getPlayer().getInventory().size());
-			    		System.out.println("After size: "+view.getGame().getPlayer().getInventory().size());
-			    		//TODO：have not repaint()
-			    }
+				int index = rowColCovertIndex(bagRow + 1, bagCol + 1);
+				ConsumableItem consumableItem = findItem(index);
+				if(consumableItem instanceof BloodVial) {
+					String name = consumableItem.getName();
+					System.out.println("blood vial name: "+name);
+					System.out.println("before health: "+view.getGame().getPlayer().getHealth());
+					try {
+						view.getGame().tryRestoreHealth(((BloodVial)consumableItem).getType());
+					} catch (InvalidMove e1) {
+
+					}
+					//consumableItem.use(view.getGame().getPlayer());
+					System.out.println("After health: "+view.getGame().getPlayer().getHealth());
+					System.out.println("before size: "+view.getGame().getPlayer().getInventory().size());
+					System.out.println("After size: "+view.getGame().getPlayer().getInventory().size());
+					//TODO：have not repaint()
+				}
 			    
 			    
 			} else {

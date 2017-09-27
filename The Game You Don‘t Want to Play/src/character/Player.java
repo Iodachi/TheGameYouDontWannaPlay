@@ -101,7 +101,6 @@ public class Player{
 		}catch (java.util.InputMismatchException e) {
 			System.out.println(e);
 		}
-
 	}
 
 
@@ -118,7 +117,18 @@ public class Player{
 	}
 	
 	public void attack(Monster monster) {
+		game.setAttacking(true);
+		int playerDamage = damage - monster.getDefence();
+		int monsterDamage = monster.getDamage() - defence;
 		
+		while(!(health < 0 || monster.getHealth() < 0)) {	//loop until either player or monster is dead
+			monster.setHealth(monster.getHealth() - playerDamage);
+			System.out.println("monster health: " + monster.getHealth());
+			System.out.println("player health: " + health);
+			health -= monsterDamage;
+			//TODO set change to view
+		}
+		game.setAttacking(false);
 	}
 
 	public void equip(WearableItem item) {
@@ -198,7 +208,6 @@ public class Player{
 		int boardSize = Level.BOARDSIZE;
 		Entity[][] board = game.getBoard().GetCurrentLevel().getEntities();
 
-		//TODO: door interaction, as well as monsters
 		if(direction.equals("right")) {
 			moveRight(board, boardSize);
 		}else if(direction.equals("left")) {
@@ -290,17 +299,16 @@ public class Player{
 				if(g.getWhatContain() instanceof Item) {
 					if(g.getWhatContain() instanceof ConsumableItem) {
 						addItem((ConsumableItem)(g.getWhatContain()));
-						//game.setToEmpty(g);
-						boolean test = this.game.board.GetCurrentLevel().PickItem(yPos, xPos);
+						game.setToEmpty(g);
 					}
 				}else if(g.getWhatContain() instanceof Monster) {
 					attack((Monster)g.getWhatContain());
 				}
 			}else if(e instanceof Stairs) {
 				if(((Stairs)e).upOrDownStair())
-					game.board.setCurrentLevel(game.board.GetCurrentLevelNumber() + 1);
+					game.getBoard().setCurrentLevel(game.getBoard().GetCurrentLevelNumber() + 1);
 				else
-					game.board.setCurrentLevel(game.board.GetCurrentLevelNumber() - 1);
+					game.getBoard().setCurrentLevel(game.getBoard().GetCurrentLevelNumber() - 1);
 			}
 		}
 	}

@@ -8,7 +8,7 @@ public class Monster {
 		
 	private int health = 50;
 	private int damage =50;
-	private int defenece = 50;
+	private int defence = 50;
 	private boolean isDefeated = false;
 	//the potential drop of coins when the monster dies
 	private int drop;
@@ -25,7 +25,7 @@ public class Monster {
 	public void setAttrHelper(int amount) {
 		this.health=amount*2;
 		this.damage=amount;
-		this.defenece=amount;
+		this.defence=amount;
 	}
 	
 	public void setAttribute(int level) {
@@ -69,13 +69,28 @@ public class Monster {
 	}
 	
 	public void attack(Player player) {
-		//FIXME probably dont need this, just need a method in player class 
-		//like player.attack(monster)
+		
 	}
 	
 	public void defeated(Player player) {
 		isDefeated = true;
 		player.setGold(player.getGold() + drop);
+	}
+	
+	public int getDamage() {
+		return damage;
+	}
+	
+	public int getDefence() {
+		return defence;
+	}
+	
+	public int getHealth() {
+		return health;
+	}
+	
+	public void setHealth(int health) {
+		this.health = health;
 	}
 	
 	public boolean isDefeated() {

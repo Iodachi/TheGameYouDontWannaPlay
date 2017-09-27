@@ -95,7 +95,7 @@ public class View extends JComponent implements Observer {
 	@Override
 	public void paintComponent(Graphics g) {
 		drawFloor(g);
-		drawMap(game.board, g);
+		drawMap(game.getBoard(), g);
 		drawPlayer(game.getPlayer(), g);
 
 	}

@@ -1,16 +1,10 @@
 package main;
 
-import static org.junit.Assert.assertEquals;
-
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Scanner;
 
@@ -21,11 +15,7 @@ import Board.Ground;
 import Board.Wall;
 import character.Player;
 import gui.View;
-import item.BloodVial;
-import item.ConsumableItem;
-import item.Weapon;
 import item.WearableItem;
-import resources.SoundResources;
 
 /**
  * This class contains the game logic with methods that can be used for controller
@@ -34,7 +24,10 @@ import resources.SoundResources;
  */
 public class Game extends Observable{
 	private Player player;
-	public Board board;
+	private Board board;
+	
+	//if player is attacking monster, he should not be able to do other things until either of them is dead.
+	private boolean attacking = false;
 
 	public Game() {
 		//	SoundResources.Fight.sound.loop();
@@ -157,6 +150,10 @@ public class Game extends Observable{
 		player.useHealth(type);
 		this.setChanged();
 		this.notifyObservers();
+	}
+	
+	public void setAttacking(boolean attack) {
+		attacking = attack;
 	}
 	
 	//========================================================= Return Method ===========================================================================

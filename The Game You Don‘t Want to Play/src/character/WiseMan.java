@@ -1,5 +1,6 @@
 package character;
 
+import item.Item;
 import item.WearableItem;
 
 /**
@@ -8,14 +9,15 @@ import item.WearableItem;
  *
  */
 public class WiseMan {
-	private WearableItem item;
+	private Item item;
 	
-	public WiseMan(WearableItem item) {
+	public WiseMan(Item item) {
 		this.item = item;
 	}
 	
 	public void give(Player player) {
 		//FIXME: player doesn't want this equipment?
-		player.equip(item);
+		if(item instanceof WearableItem)
+			player.equip((WearableItem)item);
 	}
 }

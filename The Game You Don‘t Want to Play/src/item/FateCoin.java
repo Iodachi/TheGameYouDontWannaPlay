@@ -9,7 +9,7 @@ public class FateCoin extends ConsumableItem{
     private int x,y;
 	private int randomNumber=0;
 	private int amount= 100;
-	private String name="FC";
+	private String name="53";
 	private int cost= 80;
 	public int getCost() {return cost;}
     public FateCoin(int x, int y) {

@@ -120,11 +120,12 @@ public class Player{
 		game.setAttacking(true);
 		int playerDamage = damage - monster.getDefence();
 		int monsterDamage = monster.getDamage() - defence;
+		System.out.println("monster health: " + monster.getHealth() + ", player health: " + health);
 		
-		while(!(health < 0 || monster.getHealth() < 0)) {	//loop until either player or monster is dead
-			monster.setHealth(monster.getHealth() - playerDamage);
+		while(health > 0 && monster.getHealth() > 0) {	//loop until either player or monster is dead
 			System.out.println("monster health: " + monster.getHealth());
 			System.out.println("player health: " + health);
+			monster.setHealth(monster.getHealth() - playerDamage);
 			health -= monsterDamage;
 			//TODO set change to view
 		}
@@ -302,6 +303,7 @@ public class Player{
 						game.setToEmpty(g);
 					}
 				}else if(g.getWhatContain() instanceof Monster) {
+					System.out.println("monster encountered");
 					attack((Monster)g.getWhatContain());
 				}
 			}else if(e instanceof Stairs) {

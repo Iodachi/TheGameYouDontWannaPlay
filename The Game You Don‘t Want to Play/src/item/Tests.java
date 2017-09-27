@@ -57,7 +57,7 @@ public class Tests {
 	public void testUse1() {
 		BloodVial bloodVial = new BloodVial(0, 0, "small");
 		Player player = new Player();
-		int amount = bloodVial.getAmount();
+		int amount = bloodVial.getAmount() / 2;
 		int initialHealth = player.getHealth();
 		bloodVial.use(player);
 		assertEquals(initialHealth + amount, player.getHealth());

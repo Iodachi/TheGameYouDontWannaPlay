@@ -8,11 +8,15 @@ import javax.swing.JPanel;
 
 import resources.ImgResources;
 
+/**
+ * This Panel Shows conversation between NPC and player, and shows all the goods 
+ * of the shop or the all the attribute of the player, that can level up;
+ * @author jackgan
+ *
+ */
+
 public class DialogPanel  extends JPanel{ 
-	/**
-	 * This Panel Shows conversation between NPC and player, and shows all the goods 
-	 * of the shop or the all the attribute of the player, that can level up;
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private static final int TILESIZE = 64;
 	 @Override  

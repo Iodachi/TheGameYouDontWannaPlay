@@ -41,6 +41,12 @@ public class View extends JComponent implements Observer {
 	
 
 	private Game game;
+	/**
+	 * The Constructor of this view class  to lay out the game frame
+	 * add bag Panel characterPanel and dialogPanel 
+	 * add mouse listener and key listener for all panels
+	 * @param game
+	 */
 
 	public View(Game game) {
 		// setting attribute for this view
@@ -51,7 +57,7 @@ public class View extends JComponent implements Observer {
 		this.addKeyListener(new KeyController(game));
 		this.addMouseListener(new MouseController(this));
 
-		// create UI for the main
+		// create UI for the main, add panels
 		bagPanel = new BagPanel(this.game);
 		bagPanel.addMouseListener(new MouseController(this));
 		bagPanel.setSize(new Dimension(getPreferredSize()));
@@ -68,7 +74,8 @@ public class View extends JComponent implements Observer {
 		fl.add(characterPanel);
 		fl.add(bagPanel);
 		fl.setVisible(true);
-
+		
+		//add to the frame 
 		JFrame f = new JFrame("The Game You Don't Want to Play");
 		f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		f.setLayout(new BorderLayout());
@@ -91,18 +98,24 @@ public class View extends JComponent implements Observer {
 		repaint();
 
 	}
+	/**
+	 * To paint out the game board
+	 */
 
 	@Override
 	public void paintComponent(Graphics g) {
 		drawFloor(g);
 		drawMap(game.getBoard(), g);
 		drawPlayer(game.getPlayer(), g);
-
 	}
+	/**
+	 * To draw all the entity in the game board
+	 * @param board the game board in the game
+	 * @param g Graphics
+	 */
 
 	private void drawMap(Board board, Graphics g) {
 		
-
 		for (int x = 0; x < Level.BOARDSIZE; x++) {
 			for (int y = 0; y < Level.BOARDSIZE; y++) {
 				
@@ -113,23 +126,26 @@ public class View extends JComponent implements Observer {
 				try {
 				if(board.GetCurrentLevel().GetEntityAt(x, y)!=null) {
 					code = board.GetCurrentLevel().GetEntityAt(x, y).GetCode();
-					if(code>=90&&code<100) {
+					if(code>=90&&code<100) {// set the monster image in the middle 
 						py+=16;
 						px+=16;
 					}
-				
+					
 				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/"+code+".png"));
 				img.paintIcon(null, g, py,px);
 				}
 				if(code==60)y+=1;
 				}catch(NullPointerException e) {
-					
 					System.err.println("NullPointerException: image unfind" + code);
 				}
 			}
 		}
 
 	}
+	/**
+	 * To draw the floor of the current map, it Equivalent to background image
+	 * @param g Graphics
+	 */
 
 	private void drawFloor(Graphics g) {
 		for (int x = 0; x < Level.BOARDSIZE; x++) {
@@ -140,12 +156,17 @@ public class View extends JComponent implements Observer {
 		}
 
 	}
+	/**
+	 * To draw the image for current direction of player facing. 
+	 * @param player
+	 * @param g
+	 */
 
 	private void drawPlayer(Player player, Graphics g) {
 		int x = player.getXPos() * TILESIZE + 16;
 		int y = player.getYPos() * TILESIZE + 16;
 
-		switch (game.getPlayer().getFacingDirection()) {
+		switch (game.getPlayer().getFacingDirection()) {// use the image depends on witch direction the player using  
 		case "up":
 			PlayerResources.Up.image.paintIcon(null, g, x, y);
 			break;
@@ -161,9 +182,9 @@ public class View extends JComponent implements Observer {
 		default:
 			break;
 		}
-		
-	
 	}
+	
+	
 	public JPanel getBagPanel() {
 		return bagPanel;
 	}

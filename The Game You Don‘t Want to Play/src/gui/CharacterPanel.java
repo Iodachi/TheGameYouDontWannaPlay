@@ -14,10 +14,14 @@ import javax.swing.JPanel;
 import main.Game;
 import resources.ImgResources;
 
+/**
+ * The Panel for showing all the attribute main character
+ * @author Zhancheng gan
+ *
+ */
+
 public class CharacterPanel extends JPanel implements Observer {
-	/**
-	 * the Panel for showing all the attribute main character
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private static final int TILESIZE = 64;
 	private static final int RECTSIZE = 50;
@@ -43,12 +47,14 @@ public class CharacterPanel extends JPanel implements Observer {
 		drawKeys(g);
 		drawItem(g);
 	}
+	/**
+	 * 	To draw all the equipment on the player, shows on character Panel
+	 * @param g Graphics
+	 */
 
 	private void drawItem(Graphics g) {
 		if(game.getPlayer().getCurrentWeapon()!=null) {
-			
 			String name = game.getPlayer().getCurrentWeapon().getName();
-		
 			Image img;
 			try {
 				img = ImageIO.read(View.class.getResource("/Entities/" + name + ".png"));
@@ -91,9 +97,11 @@ public class CharacterPanel extends JPanel implements Observer {
 				e.printStackTrace();
 			}
 		}
-		
-		
 	}
+	/**
+	 * To draw Number of all keys of the player have 
+	 * @param g
+	 */
 
 	private void drawKeys(Graphics g) {
 		int x = 156;
@@ -108,8 +116,14 @@ public class CharacterPanel extends JPanel implements Observer {
 		g.drawString(game.getPlayer().getNumKeys("cyan")+"", x, y);
 		y += 40;
 		g.drawString(game.getPlayer().getNumKeys("purple")+"", x, y);
-
 	}
+	/**
+	 * To draw Attribute of the player:
+	 * Health
+	 * Damage
+	 * Defence
+	 * @param g
+	 */
 
 	private void drawAttribute(Graphics g) {
 		int x = 86;

@@ -15,12 +15,14 @@ import javax.swing.JPanel;
 
 import main.Game;
 import resources.ImgResources;
+/**
+ * The Panel for showing all the equipments in players bag
+ * @author Zhancheng Gan
+ *
+ */
 
 public class BagPanel extends JPanel implements Observer {
 
-	/**
-	 * the Panel for showing all the equipments in players bag
-	 */
 	private static final long serialVersionUID = 1L;
 	private static final int TILESIZE = 64;
 	private static final int RECTSIZE = 60;
@@ -37,24 +39,29 @@ public class BagPanel extends JPanel implements Observer {
 		game.addObserver(this);
 		CreateRectangle();
 	}
+	
 
 	@Override
 	public void paint(Graphics g) {
 
 		Image img = ImgResources.equipmentBackGroud.img; // to load the equipment BackGroud image
 		// fill the BackGroud to appropriate size
-		game.getPlayer().getInventory();
 		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), 0, 0, img.getWidth(null), img.getHeight(null), null);
 		drawItem(g);
 
 	}
+	/**
+	 * draw all the items in Players bag, it can be stack 
+	 * @param g Graphics
+	 */
 
 	private void drawItem(Graphics g) {
 		Map<String,Integer> items = new HashMap<String,Integer>();
 		int size = game.getPlayer().getInventory().size();
 		
+		//To store all the items in to hashMap, make them stackable 
 		for(int i = 0; i<size; i++) {
-			String name = game.getPlayer().getInventory().get(i).getName();
+			String name = game.getPlayer().getInventory().get(i).getName(); 
 			if(items.get(name)==null) {
 			items.put(name,1);
 			}else {
@@ -65,11 +72,14 @@ public class BagPanel extends JPanel implements Observer {
 		String Name = "";
 		size =items.size();
 		this.item = items.keySet().toArray();
+		
+		//To shows all the items on bag panel 
 		for (int i = 0; i < size; i++) {
-			int col = i % 3;
+			int col = i % 3; //  to calculate the item on witch row and  col
 			int row = i / 3;
 			int x = bagRectangle[row][col].x;
 			int y = bagRectangle[row][col].y;
+			// try to load the image by the item's name
 			try {
 				Name = (String) item[i];
 				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/" + Name + ".png"));

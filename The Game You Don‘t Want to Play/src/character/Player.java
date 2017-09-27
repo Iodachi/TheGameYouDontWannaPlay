@@ -170,6 +170,23 @@ public class Player{
 		if(!hasBomb)
 			throw new InvalidMove("No bomb in inventory, cannot break the wall");
 	}
+	
+	public void useHealth(String type) throws InvalidMove {
+		BloodVial b = null;
+		for(ConsumableItem item: inventory) {
+			if(item instanceof BloodVial && ((BloodVial)item).getType().equals(type)) {
+				b = (BloodVial) item;
+				break;
+			}
+		}
+
+		if(b == null) {
+			throw new InvalidMove("No health potion to use.");
+		}else {
+			b.use(this);
+			inventory.remove(b);
+		}
+	}
 
 	//================ movement methods =====================
 	public void move(String direction) throws InvalidMove {

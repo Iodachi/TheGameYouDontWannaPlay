@@ -154,21 +154,9 @@ public class Game extends Observable{
 	 * @throws InvalidMove
 	 */
 	public void tryRestoreHealth(String type) throws InvalidMove {
-		BloodVial b = null;
-		for(ConsumableItem item: player.getInventory()) {
-			if(item instanceof BloodVial && ((BloodVial)item).getType().equals(type)) {
-				b = (BloodVial) item;
-				break;
-			}
-		}
-
-		if(b == null) {
-			throw new InvalidMove("No health potion to use.");
-		}else {
-			b.use(player);
-			player.getInventory().remove(b);
-		}
+		player.useHealth(type);
 	}
+	
 	//========================================================= Return Method ===========================================================================
 	public Player getPlayer() {return player;}
 	public Board getBoard() {return board;}

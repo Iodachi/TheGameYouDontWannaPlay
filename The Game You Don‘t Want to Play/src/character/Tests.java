@@ -40,4 +40,10 @@ public class Tests {
 			//ok
 		}
 	}
+	
+	@Test
+	public void test03_playerUseHealthPotion() {
+		player = new Player();
+		int healthBefore = player.getHealth();
+	}
 }

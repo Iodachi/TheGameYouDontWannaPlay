@@ -8,7 +8,7 @@ import character.Player;
 public class BloodVial extends ConsumableItem {
 	
 	private int x,y;
-	private int amount = 500; //
+	private int amount = 250; //
 	private String type;// small ,big
 	private String name = "41";
 	public int getAmount() {
@@ -24,7 +24,7 @@ public class BloodVial extends ConsumableItem {
         
         	player.setHealth(player.getHealth()+amount);
         }else{
-        	player.setHealth(player.getHealth()+amount/2);
+        	player.setHealth(player.getHealth()+amount);
         }
     	
         this.amount=0;
@@ -45,8 +45,18 @@ public class BloodVial extends ConsumableItem {
 		this.type = type;  //either small or big
 		if(type.equals("big")) {
 			this.name="40";
+			this.amount = 500;
 		}
 	}
+	
+	public BloodVial(String type) {
+		this.type = type;  //either small or big
+		if(type.equals("big")) {
+			this.name="40";
+			this.amount = 500;
+		}
+	}
+	
 	@Override
 	public boolean on(int x, int y) {
 		return this.x==x&&this.y==y;

@@ -6,6 +6,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import item.BloodVial;
 import item.Bomb;
 import main.InvalidMove;
 
@@ -13,6 +14,7 @@ import main.InvalidMove;
 public class Tests {
 	private Player player;
 	private Bomb bomb = new Bomb();
+	private BloodVial health = new BloodVial("small");
 	
 	@Test
 	public void test01_playerPicksConsumables() {
@@ -42,8 +44,12 @@ public class Tests {
 	}
 	
 	@Test
-	public void test03_playerUseHealthPotion() {
+	public void test03_playerUseHealthPotion() throws InvalidMove {
 		player = new Player();
+		player.addItem(health);
 		int healthBefore = player.getHealth();
+		int amount = health.getAmount();
+		player.useHealth("small");
+		assertEquals(healthBefore + amount, player.getHealth());
 	}
 }

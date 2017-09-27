@@ -155,6 +155,8 @@ public class Game extends Observable{
 	 */
 	public void tryRestoreHealth(String type) throws InvalidMove {
 		player.useHealth(type);
+		this.setChanged();
+		this.notifyObservers();
 	}
 	
 	//========================================================= Return Method ===========================================================================

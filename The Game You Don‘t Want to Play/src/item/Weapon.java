@@ -3,8 +3,11 @@ package item;
 import Board.Level;
 import character.Player;
 
-/***
- * increase the player's damage
+/**
+ * This class is used to represent the armor equipment which the player can put
+ * on to increase defence of player
+ *
+ * @author minpingyang
  */
 public class Weapon extends WearableItem {
 	private int attack = 12;
@@ -13,28 +16,17 @@ public class Weapon extends WearableItem {
 	private String name = "44";
 	private int cost = 600;
 	private int level = 0;
+
 	boolean getIsoN() {
 		return isOn;
 	}
-	@Override
-	public String toString() {
-		return name;
-	}
-	public int getAttack() {
-		return attack;
-	}
-	@Override
-	public void putOn(Player player) {
-		if (!isOn) {
-			player.setDamage(player.getDamage() + attack);
-			isOn = true;
-		}
 
-	}
 
-	// level could be 0,1,2
-	// when level is 0, the name and defence keep as default
-	// Otherwise, they will be changed in setAttribute method
+
+	/**
+	 * level could be 0,1,2 when level is 0, the name and defence keep as default
+	 * Otherwise, they will be changed in setAttribute method
+	 **/
 	public Weapon(int x, int y, int level) {
 		this.x = x;
 		this.y = y;
@@ -42,9 +34,10 @@ public class Weapon extends WearableItem {
 		setAttribute(level);
 	}
 
-	// level could be 0,1,2
-	// when level is 0, the name and defence keep as default
-	// Otherwise, they will be changed in setAttribute method
+	/**
+	 * level could be 0,1,2 when level is 0, the name and defence keep as default
+	 * Otherwise, they will be changed in setAttribute method
+	 **/
 	public void setAttribute(int level) {
 		switch (level) {
 		case 1:
@@ -58,11 +51,22 @@ public class Weapon extends WearableItem {
 		}
 
 	}
+	/**
+	 * This method is used to put on the weapon, then player's attributes would be changed
+	 * @param player
+	 * **/
+	@Override
+	public void putOn(Player player) {
+		if (!isOn) {
+			player.setDamage(player.getDamage() + attack);
+			isOn = true;
+		}
 
-	public String getName() {
-		return name;
 	}
-
+	/**
+	 * This method is used to take off the weapon, then player's attributes would be changed
+	 *
+	 * **/
 	@Override
 	public void takeOff(Player player) {
 		if (isOn) {
@@ -71,18 +75,32 @@ public class Weapon extends WearableItem {
 		}
 	}
 
-	@Override
-	public void fix(int amount) {
 
-	}
 
 	@Override
 	public boolean on(int x, int y) {
-		return this.x==x&&this.y==y;
+		return this.x == x && this.y == y;
 	}
 
 	@Override
 	public int getCost() {
 		return cost;
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
+
+	public String getName() {
+		return name;
+	}
+	public int getAttack() {
+		return attack;
+	}
+
+	@Override
+	public void fix(int amount) {
+
 	}
 }

@@ -147,19 +147,19 @@ public class Level {
 		}else if(code >= 60 && code < 70){	
 			if(code == 60){
 				Ground GroundShop = new Ground(code,x,y,size);
-				GroundShop.SetShopOrTemple((T)SType);
+				GroundShop.setContain((T)SType);
 				this.entities[x][y] = GroundShop;
 			}else if(code == 65){
 				Ground GroundTemple = new Ground(code,x,y,size);
-				GroundTemple.SetShopOrTemple((T)TType0);
+				GroundTemple.setContain((T)TType0);
 				this.entities[x][y] = GroundTemple;
 			}else if(code == 66){
 				Ground GroundTemple = new Ground(code,x,y,size);
-				GroundTemple.SetShopOrTemple((T)TType1);
+				GroundTemple.setContain((T)TType1);
 				this.entities[x][y] = GroundTemple;
 			}else if(code == 67){
 				Ground GroundTemple = new Ground(code,x,y,size);
-				GroundTemple.SetShopOrTemple((T)TType2);
+				GroundTemple.setContain((T)TType2);
 				this.entities[x][y] = GroundTemple;
 			}
 			//from 90 ~ 99 Monster	

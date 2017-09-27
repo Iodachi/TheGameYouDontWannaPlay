@@ -127,20 +127,31 @@ public class Player{
 			System.out.println("player health: " + health);
 			monster.setHealth(monster.getHealth() - playerDamage);
 			health -= monsterDamage;
+			if(monster.getHealth() <= 0) {
+				monster.defeated(this);
+				//TODO:remove monster
+			}
 			//TODO set change to view
 		}
 		game.setAttacking(false);
 	}
 
-	public void equip(WearableItem item) {
+	public WearableItem equip(WearableItem item) {
 		//TODO: update on player's stats when an equipment is equiped
+		WearableItem old = null;		//the equipment that is going to be taken off
 		if(item instanceof Armor) {
+			if(armor != null) armor = (Armor) old;
 			armor = (Armor)item;
 		}else if(item instanceof Weapon) {
+			if(weapon != null) weapon = (Weapon)old;
 			weapon = (Weapon)item;
 		}else if(item instanceof Wing) {
+			if(wing != null) wing = (Wing)old;
 			wing = (Wing)item;
 		}
+		if(old != null)	old.takeOff(this);
+		item.putOn(this);
+		return old;
 	}
 
 	/**
@@ -187,7 +198,12 @@ public class Player{
 			throw new InvalidMove("No bomb in inventory, cannot break the wall");
 	}
 	
-	public void useHealth(String type) throws InvalidMove {
+	/**
+	 * click on the health potion to restore health
+	 * @param type
+	 * @throws InvalidMove
+	 */
+	public void useHealthPotion(String type) throws InvalidMove {
 		BloodVial b = null;
 		for(ConsumableItem item: inventory) {
 			if(item instanceof BloodVial && ((BloodVial)item).getType().equals(type)) {

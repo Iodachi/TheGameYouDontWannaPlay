@@ -195,7 +195,7 @@ public class Ground<T> extends Entity{
 	  * @param code
 	  * @return
 	  */
-	 public void SetShopOrTemple(T t){this.t = t;}
+	 public void setContain(T t){this.t = t;}
 
 
 

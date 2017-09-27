@@ -49,7 +49,7 @@ public class Tests {
 		player.addItem(health);
 		int healthBefore = player.getHealth();
 		int amount = health.getAmount();
-		player.useHealth("small");
+		player.useHealthPotion("small");
 		assertEquals(healthBefore + amount, player.getHealth());
 	}
 }

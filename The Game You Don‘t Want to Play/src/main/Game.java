@@ -132,8 +132,11 @@ public class Game extends Observable{
 		if(e instanceof Ground) {
 			Ground g = (Ground)e;
 			if(g.getWhatContain() instanceof WearableItem){
-				player.equip((WearableItem)g.getWhatContain());
-				//TODO put down current one
+				WearableItem old = player.equip((WearableItem)g.getWhatContain());
+				//TODO put down current one, test this!
+				if(old != null) {
+					putDownOnGround(old);
+				}
 				setToEmpty(e);
 				this.setChanged();
 				this.notifyObservers();
@@ -147,7 +150,7 @@ public class Game extends Observable{
 	 * @throws InvalidMove
 	 */
 	public void tryRestoreHealth(String type) throws InvalidMove {
-		player.useHealth(type);
+		player.useHealthPotion(type);
 		this.setChanged();
 		this.notifyObservers();
 	}
@@ -170,5 +173,14 @@ public class Game extends Observable{
 		int x = e.GetPosX();
 		int y = e.GetPosY();
 		board.GetCurrentLevel().getEntities()[x][y] = new Ground(00,x,y,View.TILESIZE);
+	}
+	
+	public void putDownOnGround(WearableItem item) {
+		int x = player.getXPos();
+		int y = player.getYPos();
+		Entity e = board.GetCurrentLevel().getEntities()[x][y];
+		if(e != null && e instanceof Ground) {
+			((Ground)e).setContain(item);
+		}
 	}
 }

@@ -68,11 +68,7 @@ public class Monster {
 		int randomNumber = (int)Math.random()*10;
 		drop = level * randomNumber;
 	}
-
-	public void attack(Player player) {
-
-	}
-
+	
 	public void defeated(Player player) {
 		isDefeated = true;
 		player.setGold(player.getGold() + drop);

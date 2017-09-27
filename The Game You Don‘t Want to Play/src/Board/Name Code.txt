@@ -37,12 +37,13 @@
 	 * 46 - 1-Wing
 	 * 47 - 2-Wing
 	 
-     * 51 - up stair                    - US
-	 * 52 - down stair                  - DS
-	 * 53 - Fate Coin
-	 * 54 - MonsterManual
+	 * 48 - Fate Coin
+	 * 49 - MonsterManual
 	 
-     * 60 - Shop Type 0                 - S0
+	 * 51 - up stair                    - US
+	 * 52 - down stair                  - DS
+	 
+	 * 60 - Shop Type 0                 - S0
 	
 	 * 65 - Temple Type 0               - T0
 	 * 66 - Temple Type 1               - T1

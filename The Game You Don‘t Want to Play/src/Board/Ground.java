@@ -149,7 +149,7 @@ public class Ground<T> extends Entity{
 		 if(super.Code == 03) this.t = (T) new WiseMan(new Armor(-1,-1,2));
 		 else if(super.Code == 04) this.t = (T) new WiseMan(new Weapon(-1,-1,2));
 		 else if(super.Code == 05) this.t = (T) new WiseMan(new Wing(-1,-1,2));
-		 else if(super.Code == 06) this.t = (T) new WiseMan((Item) new MonsterManual());
+		 else if(super.Code == 06) this.t = (T) new WiseMan(new MonsterManual());
 
 		 else if(super.Code == 30) this.t = (T) new Key(super.PosX,super.PosY, "gold");
 		 else if(super.Code == 31) this.t = (T) new Key(super.PosX,super.PosY, "cyan");

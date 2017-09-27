@@ -35,7 +35,7 @@ public class View extends JComponent implements Observer {
 	private static final long serialVersionUID = 1L;
 	public static final int TILESIZE = 64;
 
-	private JPanel bagPanel;
+	private BagPanel bagPanel;
 	private JPanel characterPanel;
 	private JPanel dialogPanel;
 	
@@ -185,7 +185,7 @@ public class View extends JComponent implements Observer {
 	}
 	
 	
-	public JPanel getBagPanel() {
+	public BagPanel getBagPanel() {
 		return bagPanel;
 	}
 

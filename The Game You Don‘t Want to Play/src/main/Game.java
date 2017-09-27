@@ -180,7 +180,7 @@ public class Game extends Observable{
 		int y = player.getYPos();
 		Entity e = board.GetCurrentLevel().getEntities()[x][y];
 		if(e != null && e instanceof Ground) {
-			((Ground)e).setContain(item);
+			//((Ground)e).setContain(item);
 		}
 	}
 }

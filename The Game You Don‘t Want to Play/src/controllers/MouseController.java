@@ -129,17 +129,26 @@ public class MouseController implements MouseMotionListener, MouseListener {
 		}
 		return false;
 	}
+
 	/**
 	 * This method is used to check if the input index is valid or not
+	 * 
 	 * @param index
-	 * */
+	 */
 	public ConsumableItem findItem(int index) {
 		if (index > inventory.size() - 1 || index < 0) {
 			return null;
 		}
 		return inventory.get(index);
 	}
-
+	public boolean findItemInBag(int index) {
+		if (index < view.getBagPanel().getItemInBag().length  && index >= 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		System.out.printf("X:%dY:%d\n", e.getX(), e.getY());
@@ -147,17 +156,22 @@ public class MouseController implements MouseMotionListener, MouseListener {
 
 			if (checkClickOn(e.getX(), e.getY(), true)) {
 				int index = rowColCovertIndex(bagRow + 1, bagCol + 1);
-				ConsumableItem consumableItem = findItem(index);
-				if (consumableItem instanceof BloodVial) {
-					String name = consumableItem.getName();
-					System.out.println("blood vial name: " + name);
-					System.out.println("before health: " + view.getGame().getPlayer().getHealth());
+				if(!findItemInBag(index)) {return;}
+				String itemName =view.getBagPanel().getItemInBag()[index];
+				System.out.println("item name: "+itemName);
+				if(itemName.equals("40")||itemName.equals("41")) {
 					try {
-						view.getGame().tryRestoreHealth(((BloodVial) consumableItem).getType());
+						if(itemName.equals("40")) {
+							view.getGame().tryRestoreHealth("big");
+						}else {
+							view.getGame().tryRestoreHealth("small");
+						}
+						
 					} catch (InvalidMove e1) {
 						e1.printStackTrace();
 					}
 				}
+				
 
 			} else {
 				System.out.println("have not clicked ");

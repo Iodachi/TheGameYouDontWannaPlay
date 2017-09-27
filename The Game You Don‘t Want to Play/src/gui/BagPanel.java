@@ -139,7 +139,11 @@ public class BagPanel extends JPanel implements Observer {
 	}
 	
 	public String[] getItemInBag() {
-		return (String[]) this.item;
+		String[] temp = new String [item.length]; 
+		for(int i=0;i<item.length;i++) {
+			temp[i]=item[i].toString();
+		}
+		return temp;
 		
 	}
 }

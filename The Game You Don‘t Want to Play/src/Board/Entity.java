@@ -4,7 +4,7 @@ import java.awt.Rectangle;
 
 /**
  * Entity have different type such as ground,stair and wall.
- * @author napier
+ * @author tian
  *
  */
 public abstract class Entity {

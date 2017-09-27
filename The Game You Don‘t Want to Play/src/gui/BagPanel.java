@@ -1,9 +1,12 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -12,12 +15,14 @@ import javax.swing.JPanel;
 
 import main.Game;
 import resources.ImgResources;
+/**
+ * The Panel for showing all the equipments in players bag
+ * @author Zhancheng Gan
+ *
+ */
 
 public class BagPanel extends JPanel implements Observer {
 
-	/**
-	 * the Panel for showing all the equipments in players bag
-	 */
 	private static final long serialVersionUID = 1L;
 	private static final int TILESIZE = 64;
 	private static final int RECTSIZE = 60;
@@ -27,43 +32,64 @@ public class BagPanel extends JPanel implements Observer {
 	private int initialY = 38;
 	private Game game;
 	private Rectangle[][] bagRectangle = new Rectangle[4][3];
+	private Object item[];
 
 	public BagPanel(Game game) {
 		this.game = game;
 		game.addObserver(this);
 		CreateRectangle();
 	}
+	
 
 	@Override
 	public void paint(Graphics g) {
 
 		Image img = ImgResources.equipmentBackGroud.img; // to load the equipment BackGroud image
 		// fill the BackGroud to appropriate size
-		game.getPlayer().getInventory();
 		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), 0, 0, img.getWidth(null), img.getHeight(null), null);
 		drawItem(g);
 
 	}
+	/**
+	 * draw all the items in Players bag, it can be stack 
+	 * @param g Graphics
+	 */
 
 	private void drawItem(Graphics g) {
+		Map<String,Integer> items = new HashMap<String,Integer>();
 		int size = game.getPlayer().getInventory().size();
+		
+		//To store all the items in to hashMap, make them stackable 
+		for(int i = 0; i<size; i++) {
+			String name = game.getPlayer().getInventory().get(i).getName(); 
+			if(items.get(name)==null) {
+			items.put(name,1);
+			}else {
+				items.put(name,items.get(name)+1);
+			}
+		}
+		
 		String Name = "";
-
+		size =items.size();
+		this.item = items.keySet().toArray();
+		
+		//To shows all the items on bag panel 
 		for (int i = 0; i < size; i++) {
-			int col = i % 3;
+			int col = i % 3; //  to calculate the item on witch row and  col
 			int row = i / 3;
 			int x = bagRectangle[row][col].x;
 			int y = bagRectangle[row][col].y;
+			// try to load the image by the item's name
 			try {
-				Name = game.getPlayer().getInventory().get(i).getName();
+				Name = (String) item[i];
 				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/" + Name + ".png"));
 				img.paintIcon(null, g, x, y);
-				System.out.println(i);
+				g.setColor(Color.WHITE);
+				g.drawString(items.get(Name)+"", x+48, y+60);
 			} catch (NullPointerException e) {
 				System.err.println("NullPointerException: image unfind" + Name);
 			}
 		}
-
 	}
 
 	/**
@@ -110,5 +136,10 @@ public class BagPanel extends JPanel implements Observer {
 	public void update(Observable o, Object arg) {
 		repaint();
 
+	}
+	
+	public String[] getItemInBag() {
+		return (String[]) this.item;
+		
 	}
 }

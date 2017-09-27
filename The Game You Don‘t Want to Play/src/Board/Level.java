@@ -143,6 +143,7 @@ public class Level {
 			Stairs Stair = new Stairs(code,x,y,size);
 			//Stair.SetStairs(this.floor);
 			this.entities[x][y] = (Entity)Stair;
+		
 			//60 ~ 70 shop and temple
 		}else if(code >= 60 && code < 70){	
 			if(code == 60){
@@ -162,6 +163,10 @@ public class Level {
 				GroundTemple.SetShopOrTemple((T)TType2);
 				this.entities[x][y] = GroundTemple;
 			}
+			//equipment
+		}else if(code >= 70 && code < 80){	
+			Entity equipment = new Ground(code,x,y,size);
+			this.entities[x][y] = equipment;
 			//from 90 ~ 99 Monster	
 		}else if(code >= 90 && code <= 99){
 			Entity GroundMonster = new Ground(code,x,y,size);

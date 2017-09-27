@@ -15,13 +15,13 @@ public class Tests {
 	public void testSetAttributes1() {
 		Armor armor = new Armor(0, 0, 0);
 		assertEquals(armor.getName(), "42");
-		assertEquals(armor.getDefence(), 500);
+		assertEquals(armor.getDefence(), 10);
 		armor = new Armor(0, 0, 1);
 		assertEquals(armor.getName(), "25");
-		assertEquals(armor.getDefence(), 1000);
+		assertEquals(armor.getDefence(), 200);
 		armor = new Armor(0, 0, 2);
 		assertEquals(armor.getName(), "26");
-		assertEquals(armor.getDefence(), 2000);
+		assertEquals(armor.getDefence(), 300);
 	}
 
 	// This test case is used to check the method of setAttributes for Weapon class
@@ -29,13 +29,13 @@ public class Tests {
 	public void testSetAttributes2() {
 		Weapon weapon = new Weapon(0, 0, 0);
 		assertEquals(weapon.getName(), "44");
-		assertEquals(weapon.getAttack(), 500);
+		assertEquals(weapon.getAttack(), 12);
 		weapon = new Weapon(0, 0, 1);
 		assertEquals(weapon.getName(), "35");
-		assertEquals(weapon.getAttack(), 1000);
+		assertEquals(weapon.getAttack(), 200);
 		weapon = new Weapon(0, 0, 2);
 		assertEquals(weapon.getName(), "36");
-		assertEquals(weapon.getAttack(), 2000);
+		assertEquals(weapon.getAttack(), 300);
 	}
 
 	// This test case is used to check the method of setAttributes for Wing class
@@ -57,7 +57,7 @@ public class Tests {
 	public void testUse1() {
 		BloodVial bloodVial = new BloodVial(0, 0, "small");
 		Player player = new Player();
-		int amount = bloodVial.getAmount() / 2;
+		int amount = bloodVial.getAmount();
 		int initialHealth = player.getHealth();
 		bloodVial.use(player);
 		assertEquals(initialHealth + amount, player.getHealth());
@@ -260,7 +260,7 @@ public class Tests {
 		assertEquals(initialDefense + armor.getDefence(), player.getDefence());
 	}
 	//Test on method for all item class
-	@Test 
+	@Test
 	public void testOn() {
 		Armor armor = new Armor(0, 0, 0);
 		assertEquals(true, armor.on(0, 0));

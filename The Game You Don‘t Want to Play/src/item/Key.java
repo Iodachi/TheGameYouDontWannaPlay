@@ -3,27 +3,26 @@ package item;
 import character.Player;
 
 /***
- * This class is used to present the key. The key has different type. The specific type of key could be used to open the corresponding door
- * 
- * Key
+ * This class is used to present the key. The key has different type.
+ * The specific type of key could be used to open the corresponding door
+ * @author yangminp
  * */
 
 public class Key extends ConsumableItem {
 	private int x,y;
     private String name = "30";
     private String color;
-	
+
 	public Key(int x, int y, String color){
 	    this.x =x;
 	    this.y =y;
 	    this.color = color;
 	    generateName(color);
     }
-	@Override
-	public String toString() {
-		return name;
-	}
-	
+
+	/**
+	 * This method is used to that generate name,according to its color
+	 * */
 	public void generateName(String color) {
 		switch (color) {
 		case "gold":
@@ -43,12 +42,12 @@ public class Key extends ConsumableItem {
 			break;
 		}
 	}
-	
+
 	public Key(String color) {
 		this.color = color;
 		generateName(color);
 	}
-	
+
 	@Override
 	public void use(Player player) {
 	}
@@ -57,13 +56,16 @@ public class Key extends ConsumableItem {
 	public boolean on(int x, int y) {
 		return this.x==x&&this.y==y;
 	}
-	
+
 	public String getName(){
 		return name;
 	}
-	
+
 	public String getColor() {
 		return color;
 	}
-
+	@Override
+	public String toString() {
+		return name;
+	}
 }

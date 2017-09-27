@@ -15,14 +15,9 @@ public class Bomb extends ConsumableItem {
 		this.y = y;
 	}
 
-	@Override
-	public String toString() {
-		return name;
-	}
-
-	public Bomb() {
-	}
-
+	/**
+	 * This method is used to check if the player on the item position
+	 **/
 	@Override
 	public boolean on(int x, int y) {
 		return this.x == x && this.y == y;
@@ -30,7 +25,17 @@ public class Bomb extends ConsumableItem {
 
 	@Override
 	public void use(Player player) {
+	}
 
+	/**
+	 * This method is used to save/load function
+	 */
+	@Override
+	public String toString() {
+		return name;
+	}
+
+	public Bomb() {
 	}
 
 	@Override

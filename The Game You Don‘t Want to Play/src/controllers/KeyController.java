@@ -39,6 +39,9 @@ public class KeyController implements KeyListener {
 			case 'q':
 				game.tryPickEquipment();
 				break;
+			case 'k':
+			   game.save();
+			break;
 			default:
 				break;
 			}

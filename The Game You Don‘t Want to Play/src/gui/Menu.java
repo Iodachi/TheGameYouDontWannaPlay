@@ -14,7 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
-import item.ConsumableItem;
 import main.Game;
 import resources.SoundResources;
 
@@ -45,7 +44,7 @@ public class Menu extends JComponent {
 		Load.addActionListener((e) -> {
 			// not implement yet
 			String load = "save.txt";
-			Game g =new Game(load);
+			new Game(load);
 			
 			f.setVisible(false); //hidden the menu frame
 			SoundResources.Meun.sound.stop();

@@ -1,24 +1,17 @@
 package controllers;
 
-import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.nio.channels.NonWritableChannelException;
 import java.util.Stack;
 
-import javax.security.auth.x500.X500Principal;
-
-import character.Player;
 import gui.BagPanel;
 import gui.CharacterPanel;
 import gui.View;
 import item.BloodVial;
 import item.ConsumableItem;
 import item.Item;
-import main.Game;
-import main.InvalidMove;
 
 /**
  * 
@@ -132,24 +125,19 @@ public class MouseController implements MouseMotionListener, MouseListener {
 		if (e.getSource() instanceof BagPanel) {
 
 			if (checkClickOn(e.getX(), e.getY(), true)) {
-				int index = rowColCovertIndex(bagRow + 1, bagCol + 1);
-				ConsumableItem consumableItem = findItem(index);
-				if(consumableItem instanceof BloodVial) {
-					String name = consumableItem.getName();
-					System.out.println("blood vial name: "+name);
-					System.out.println("before health: "+view.getGame().getPlayer().getHealth());
-					try {
-						view.getGame().tryRestoreHealth(((BloodVial)consumableItem).getType());
-					} catch (InvalidMove e1) {
-
-					}
-					//consumableItem.use(view.getGame().getPlayer());
-					System.out.println("After health: "+view.getGame().getPlayer().getHealth());
-					System.out.println("before size: "+view.getGame().getPlayer().getInventory().size());
-					System.out.println("After size: "+view.getGame().getPlayer().getInventory().size());
-					//TODO：have not repaint()
-				}
-			    
+			    int index = rowColCovertIndex(bagRow + 1, bagCol + 1);
+			    ConsumableItem consumableItem = findItem(index);
+			    if(consumableItem instanceof BloodVial) {
+			    		String name = consumableItem.getName();
+			    		System.out.println("blood vial name: "+name);
+			    		System.out.println("before health: "+view.getGame().getPlayer().getHealth());
+			    		consumableItem.use(view.getGame().getPlayer());
+			    		System.out.println("After health: "+view.getGame().getPlayer().getHealth());
+			    		System.out.println("before size: "+view.getGame().getPlayer().getInventory().size());
+			    		view.getGame().getPlayer().getInventory().remove(index);
+			    		System.out.println("After size: "+view.getGame().getPlayer().getInventory().size());
+			    		//TODO：have not repaint()
+			    }
 			    
 			    
 			} else {

@@ -152,6 +152,7 @@ public class MouseController implements MouseMotionListener, MouseListener {
 			    }
 			    
 			    
+			    
 			} else {
 				System.out.println("have not clicked ");
 			}

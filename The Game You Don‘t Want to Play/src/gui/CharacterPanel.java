@@ -116,6 +116,8 @@ public class CharacterPanel extends JPanel implements Observer {
 		g.drawString(game.getPlayer().getNumKeys("cyan")+"", x, y);
 		y += 40;
 		g.drawString(game.getPlayer().getNumKeys("purple")+"", x, y);
+		y += 40;
+		g.drawString(game.getPlayer().getGold()+"", x, y);
 	}
 	/**
 	 * To draw Attribute of the player:

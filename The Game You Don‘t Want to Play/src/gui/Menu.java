@@ -1,8 +1,8 @@
 package gui;
 
-
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Insets;
 
 import javax.imageio.ImageIO;
@@ -15,13 +15,15 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import main.Game;
+import resources.ImgResources;
 import resources.SoundResources;
 
 /**
  * 
  * @author Zhancheng Gan
- *  
- *  The game menu for this game, it contains New Game, Load, Info , Quit button and background images 
+ * 
+ *         The game menu for this game, it contains New Game, Load, Info , Quit
+ *         button and background images
  *
  */
 public class Menu extends JComponent {
@@ -31,22 +33,22 @@ public class Menu extends JComponent {
 
 	public Menu() {
 
-		//SoundResources.Meun.sound.loop();
+		// SoundResources.Meun.sound.loop();
 		JButton NewGame = new JButton("New Game");
 		JButton Load = new JButton("Load");
 		JButton Info = new JButton("Info");
 		JButton Quit = new JButton("Quit");
 		NewGame.addActionListener((e) -> {
 			new Game();
-			f.setVisible(false); //hidden the menu frame
+			f.setVisible(false); // hidden the menu frame
 			SoundResources.Meun.sound.stop();
 		});
 		Load.addActionListener((e) -> {
 			// not implement yet
 			String load = "save.txt";
 			new Game(load);
-			
-			f.setVisible(false); //hidden the menu frame
+
+			f.setVisible(false); // hidden the menu frame
 			SoundResources.Meun.sound.stop();
 		});
 
@@ -57,8 +59,8 @@ public class Menu extends JComponent {
 			// not implement yet
 		});
 
-		//set layout for the buttons 
-		this.setLayout(new GridLayout(0, 1, 0, 100)); 
+		// set layout for the buttons
+		this.setLayout(new GridLayout(0, 1, 0, 100));
 		this.setBorder(new EmptyBorder(150, 450, 150, 450));
 		Insets margin = new Insets(20, 150, 20, 150);
 
@@ -81,37 +83,39 @@ public class Menu extends JComponent {
 		f.pack();
 		f.setResizable(false);
 		f.setVisible(true);
-		f.setSize(View.TILESIZE*17, View.TILESIZE*12);	
+		f.setSize(View.TILESIZE * 17, View.TILESIZE * 12);
 
 	}
 
 	public static void main(String[] args) {
-		new Menu();  
+		new Menu();
 	}
+
 	/**
-	 * paint out the background images 
+	 * paint out the background images
 	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
-		int size = View.TILESIZE;
-		for(int x=0; x<this.getWidth()/size; x++) {
-			for(int y=0; y<=this.getHeight()/size; y++) {
-				int number = (int) (Math.random()*80)+1;
-				String code ="";
-				if(number<10) {code= "0"+number;}
-				else {code=""+number;}
-				try {
-					String path = "/tiles/tiles_"+code+".png";
-					Icon icon = new ImageIcon ( ImageIO.read(Menu.class.getResource(path)));
-					icon.paintIcon(null, g, x*size, y*size);;
-				} catch (Exception e) {
-					throw new Error(e);
-				}
-
-			}
-		}
+		Image img = ImgResources.BackGround.img;
+		g.drawImage(img, 0,0,this.getWidth(), this.getHeight(), null);
+		// int size = View.TILESIZE;
+		// for(int x=0; x<this.getWidth()/size; x++) {
+		// for(int y=0; y<=this.getHeight()/size; y++) {
+		// int number = (int) (Math.random()*80)+1;
+		// String code ="";
+		// if(number<10) {code= "0"+number;}
+		// else {code=""+number;}
+		// try {
+		// String path = "/tiles/tiles_"+code+".png";
+		// Icon icon = new ImageIcon ( ImageIO.read(Menu.class.getResource(path)));
+		// icon.paintIcon(null, g, x*size, y*size);;
+		// } catch (Exception e) {
+		// throw new Error(e);
+		// }
+		//
+		// }
+		// }
 	}
 
 }

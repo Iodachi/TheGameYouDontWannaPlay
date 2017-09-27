@@ -18,6 +18,7 @@ import item.BloodVial;
 import item.ConsumableItem;
 import item.Item;
 import main.Game;
+import main.InvalidMove;
 
 /**
  * 
@@ -137,10 +138,15 @@ public class MouseController implements MouseMotionListener, MouseListener {
 			    		String name = consumableItem.getName();
 			    		System.out.println("blood vial name: "+name);
 			    		System.out.println("before health: "+view.getGame().getPlayer().getHealth());
-			    		consumableItem.use(view.getGame().getPlayer());
+			    		try {
+							view.getGame().tryRestoreHealth(((BloodVial)consumableItem).getType());
+						} catch (InvalidMove e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+			    		//consumableItem.use(view.getGame().getPlayer());
 			    		System.out.println("After health: "+view.getGame().getPlayer().getHealth());
 			    		System.out.println("before size: "+view.getGame().getPlayer().getInventory().size());
-			    		view.getGame().getPlayer().getInventory().remove(index);
 			    		System.out.println("After size: "+view.getGame().getPlayer().getInventory().size());
 			    		//TODO：have not repaint()
 			    }

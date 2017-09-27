@@ -31,6 +31,7 @@ public class Player{
 	private int gold;
 	private int speed = 1;
 	private String facingDirection;
+	private boolean isDead;
 
 	//equipments
 	private Armor armor;
@@ -114,6 +115,10 @@ public class Player{
 			throw new InvalidMove("Inventory is full.");
 
 		inventory.add(item);
+	}
+	
+	public void attack(Monster monster) {
+		
 	}
 
 	public void equip(WearableItem item) {
@@ -288,6 +293,8 @@ public class Player{
 						//game.setToEmpty(g);
 						boolean test = this.game.board.GetCurrentLevel().PickItem(yPos, xPos);
 					}
+				}else if(g.getWhatContain() instanceof Monster) {
+					attack((Monster)g.getWhatContain());
 				}
 			}else if(e instanceof Stairs) {
 				if(((Stairs)e).upOrDownStair())
@@ -322,6 +329,13 @@ public class Player{
 				e = currentBoard[yPos+1][xPos];
 		}
 		return e;
+	}
+	
+	public boolean checkDead() {
+		if(health <= 0) {
+			return isDead = true;
+		}
+		return isDead;
 	}
 
 	//=============== counting inventory ====================

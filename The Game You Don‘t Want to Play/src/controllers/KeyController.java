@@ -19,6 +19,12 @@ public class KeyController implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		System.out.println(e.getKeyChar());
+		
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+	    {
+			//TODO - BACK TO MENU
+	       System.out.println("back to menu");
+	    }
 		try {
 			switch (e.getKeyChar()) {
 			case 'w':
@@ -42,6 +48,7 @@ public class KeyController implements KeyListener {
 			case 'k':
 			   game.save();
 			break;
+			
 			default:
 				break;
 			}

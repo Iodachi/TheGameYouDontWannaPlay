@@ -46,7 +46,7 @@ public class Wing extends WearableItem {
 			
 			player.setSpeed(player.getSpeed()+increaseSpeed);
 			player.setDamage(player.getDamage()+increasedDamage);
-			player.setDefence(player.getDefence()+increasedDefense);
+			player.setDefence(player.getDamage()+increasedDefense);
 			isOn = true;
 		}
 
@@ -63,7 +63,7 @@ public class Wing extends WearableItem {
 		if (isOn) {
 			player.setSpeed(player.getSpeed()-increaseSpeed);
 			player.setDamage(player.getDamage()-increasedDamage);
-			player.setDefence(player.getDefence()-increasedDefense);
+			player.setDefence(player.getDamage()-increasedDefense);
 			
 			isOn = false;
 		}

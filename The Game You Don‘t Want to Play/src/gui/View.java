@@ -111,10 +111,10 @@ public class View extends JComponent implements Observer {
 			@Override
 			public void run() {
 
-				if (ac < 2) {
-					ac += 2;
+				if (ac == 200) {
+					ac = 100;
 				} else {
-					ac = 0;
+					ac = 200;
 				}
 				repaint();
 			}
@@ -247,6 +247,7 @@ public class View extends JComponent implements Observer {
 					if (board.GetCurrentLevel().GetEntityAt(x, y) != null) {
 						code = board.GetCurrentLevel().GetEntityAt(x, y).GetCode();
 						if (code >= 90 && code < 100) {// set the monster image in the middle
+							code+=ac;
 							py += 16;
 							px += 16;
 						}

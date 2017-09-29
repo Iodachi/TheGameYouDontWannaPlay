@@ -229,6 +229,27 @@ public class Player{
 			inventory.remove(b);
 		}
 	}
+	
+	/**
+	 * click on the fate coin to use, player will randomly gain or lose health.
+	 * @throws InvalidMove
+	 */
+	public void useFateCoin() throws InvalidMove {
+		FateCoin c = null;
+		for(ConsumableItem item: inventory) {
+			if(item instanceof FateCoin) {
+				c = (FateCoin) item;
+				break;
+			}
+		}
+
+		if(c == null) {
+			throw new InvalidMove("No fate coin to use.");
+		}else {
+			c.use(this);
+			inventory.remove(c);
+		}
+	}
 
 	//================ movement methods =====================
 	public void move(String direction) throws InvalidMove {

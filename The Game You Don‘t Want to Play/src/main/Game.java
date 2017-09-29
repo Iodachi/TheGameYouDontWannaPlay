@@ -146,6 +146,15 @@ public class Game extends Observable{
 		player.useHealthPotion(type);
 		changeView();
 	}
+	
+	/**
+	 * player gains or loses health using the fate coin
+	 * @throws InvalidMove
+	 */
+	public void tryUseFateCoin() throws InvalidMove {
+		player.useFateCoin();
+		changeView();
+	}
 
 	public void setAttacking(boolean attack) {
 		attacking = attack;

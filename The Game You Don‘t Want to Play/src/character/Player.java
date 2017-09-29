@@ -72,6 +72,7 @@ public class Player{
 					else if(a == 40) this.inventory.push(  new BloodVial(-1,-1, "big"));
 					else if(a == 41) this.inventory.push(  new BloodVial(-1,-1, "small"));
 					else if(a == 43) this.inventory.push(  new Bomb(-1,-1));
+					else if(a == 48) this.inventory.push(  new FateCoin(-1,-1));
 				}
 			}
 			sc.next();                //consume )
@@ -86,16 +87,16 @@ public class Player{
 			//finally add gear
 			while(sc.hasNextInt()){
 				int gear = sc.nextInt();
-				if(gear != -1) continue;
-				else if(gear == 42) this.armor = new Armor(-1,-1,0);
-				else if(gear == 25) this.armor = new Armor(-1,-1,1);
-				else if(gear == 26) this.armor = new Armor(-1,-1,2);
-				else if(gear == 44) this.weapon = new Weapon(-1,-1,0);
-				else if(gear == 35) this.weapon = new Weapon(-1,-1,1);
-				else if(gear == 23) this.weapon = new Weapon(-1,-1,2);
-				else if(gear == 45) this.wing = new Wing(-1,-1,0);
-				else if(gear == 46) this.wing = new Wing(-1,-1,1);
-				else if(gear == 47) this.wing = new Wing(-1,-1,2);
+				if(gear == -1) continue;
+				else if(gear == 70) this.armor = new Armor(-1,-1,0);
+				else if(gear == 71) this.armor = new Armor(-1,-1,1);
+				else if(gear == 72) this.armor = new Armor(-1,-1,2);
+				else if(gear == 73) this.weapon = new Weapon(-1,-1,0);
+				else if(gear == 74) this.weapon = new Weapon(-1,-1,1);
+				else if(gear == 75) this.weapon = new Weapon(-1,-1,2);
+				else if(gear == 76) this.wing = new Wing(-1,-1,0);
+				else if(gear == 77) this.wing = new Wing(-1,-1,1);
+				else if(gear == 78) this.wing = new Wing(-1,-1,2);
 			}
 
 		}catch (java.util.InputMismatchException e) {
@@ -140,19 +141,23 @@ public class Player{
 
 	public WearableItem equip(WearableItem item) {
 		//TODO: update on player's stats when an equipment is equiped
+
 		WearableItem old = null;		//the equipment that is going to be taken off
 		if(item instanceof Armor) {
 			if(armor != null) old = armor;
 			armor = (Armor)item;
+			item.putOn(this);
 		}else if(item instanceof Weapon) {
 			if(weapon != null) old = weapon;
 			weapon = (Weapon)item;
+			item.putOn(this);
 		}else if(item instanceof Wing) {
 			if(wing != null) old = wing;
 			wing = (Wing)item;
+			item.putOn(this);
 		}
 		if(old != null)	old.takeOff(this);
-		item.putOn(this);
+		//item.putOn(this);
 		return old;
 	}
 
@@ -330,7 +335,7 @@ public class Player{
 					}else{
 						System.out.println("defeat");
 					}
-					
+
 				}
 			}else if(e instanceof Stairs) {
 				if(((Stairs)e).upOrDownStair())

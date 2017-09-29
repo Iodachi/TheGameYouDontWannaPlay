@@ -1,6 +1,6 @@
 package item;
 
-import Board.Level;
+
 import character.Player;
 
 /***
@@ -10,9 +10,10 @@ import character.Player;
  * changed
  */
 public class Wing extends WearableItem {
+	private int increaseSpeed= 1;
+	private int increasedDamage =2;
+	private int increasedDefense=3;
 
-	private int speedFactor = 2;
-	private int health = (int) Math.pow(10, 3);
 	private boolean isOn = false;
 	private String name = "76";
 	private int x, y;
@@ -42,8 +43,10 @@ public class Wing extends WearableItem {
 	@Override
 	public void putOn(Player player) {
 		if (!isOn) {
-			player.setSpeed(player.getSpeed() * speedFactor);
-			player.setHealth(player.getHealth() + health);
+			
+			player.setSpeed(player.getSpeed()+increaseSpeed);
+			player.setDamage(player.getDamage()+increasedDamage);
+			player.setDefence(player.getDamage()+increasedDefense);
 			isOn = true;
 		}
 
@@ -58,7 +61,10 @@ public class Wing extends WearableItem {
 	@Override
 	public void takeOff(Player player) {
 		if (isOn) {
-			player.setSpeed(player.getSpeed() / speedFactor);
+			player.setSpeed(player.getSpeed()-increaseSpeed);
+			player.setDamage(player.getDamage()-increasedDamage);
+			player.setDefence(player.getDamage()-increasedDefense);
+			
 			isOn = false;
 		}
 
@@ -72,13 +78,17 @@ public class Wing extends WearableItem {
 	public void setAttribute(int level) {
 		switch (level) {
 		case 1:
-			speedFactor = 3;
-			health = health = (int) Math.pow(10, 6);
+			increaseSpeed=3;
+			increasedDamage= 5;
+			increasedDefense=10;
+	
 			name = "77";
 			break;
 		case 2:
-			speedFactor = 4;
-			health = health = (int) Math.pow(10, 7);
+			increaseSpeed=6;
+			increasedDamage= 26;
+			increasedDefense=20;
+	
 			name = "78";
 			break;
 		}
@@ -87,10 +97,15 @@ public class Wing extends WearableItem {
 	/**
 	 * all getter and setter
 	 * */
-	public int getSpeedFactor() {
-		return speedFactor;
+	public int getIncreasedDamage() {
+		return increasedDamage;
 	}
-
+	public int getIncreasedDefense() {
+		return increasedDefense;
+	}
+	public int getIncreaseSpeed() {
+		return increaseSpeed;
+	}
 	@Override
 	public void fix(int amount) {
 

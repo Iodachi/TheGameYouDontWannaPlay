@@ -1,5 +1,6 @@
 package item;
 
+import character.Monster;
 import character.Player;
 
 /**
@@ -10,6 +11,7 @@ import character.Player;
  */
 public class Armor extends WearableItem {
 	private int defence = 10;
+	private double factor= 2;
 	private int x, y;
 	private boolean isOn = false; // the flag is used to indicate if player has wear the Armor
 	private String name = "70";
@@ -41,11 +43,11 @@ public class Armor extends WearableItem {
 	public void setAttribute(int level) {
 		switch (level) {
 		case 1:
-			defence = 200;
+			defence = (int)(new Monster(4).getDefence()*factor);
 			name = "71";
 			break;
 		case 2:
-			defence = 300;
+			defence = (int)(new Monster(7).getDefence()*factor);
 			name = "72";
 			break;
 		}

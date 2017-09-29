@@ -1,6 +1,7 @@
 package item;
 
 import Board.Level;
+import character.Monster;
 import character.Player;
 
 /**
@@ -12,6 +13,7 @@ import character.Player;
 public class Weapon extends WearableItem {
 	private int attack = 12;
 	private int x, y;
+	private double factor = 0.66;
 	private boolean isOn = false;
 	private String name = "73";
 	private int cost = 600;
@@ -41,11 +43,11 @@ public class Weapon extends WearableItem {
 	public void setAttribute(int level) {
 		switch (level) {
 		case 1:
-			attack = 200;
+			attack = (int)(new Monster(4).getDamage()*factor);
 			name = "74";
 			break;
 		case 2:
-			attack = 300;
+			attack = (int)(new Monster(7).getDamage()*factor);
 			name = "75";
 			break;
 		}

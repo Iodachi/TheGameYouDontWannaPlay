@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.validator.TestClassValidator;
 
+import character.Monster;
 import character.Player;
 
 //@author minping
@@ -18,10 +19,10 @@ public class Tests {
 		assertEquals(armor.getDefence(), 10);
 		armor = new Armor(0, 0, 1);
 		assertEquals(armor.getName(), "71");
-		assertEquals(armor.getDefence(), 200);
+		assertEquals(armor.getDefence(), (int)(new Monster(4).getDefence()*2));
 		armor = new Armor(0, 0, 2);
 		assertEquals(armor.getName(), "72");
-		assertEquals(armor.getDefence(), 300);
+		assertEquals(armor.getDefence(), (int)(new Monster(7).getDefence()*2));
 	}
 
 	// This test case is used to check the method of setAttributes for Weapon class
@@ -32,23 +33,24 @@ public class Tests {
 		assertEquals(weapon.getAttack(), 12);
 		weapon = new Weapon(0, 0, 1);
 		assertEquals(weapon.getName(), "74");
-		assertEquals(weapon.getAttack(), 200);
+		assertEquals(weapon.getAttack(), (int)(new Monster(4).getDamage()*0.66));
 		weapon = new Weapon(0, 0, 2);
 		assertEquals(weapon.getName(), "75");
-		assertEquals(weapon.getAttack(), 300);
+		assertEquals(weapon.getAttack(), (int)(new Monster(7).getDamage()*0.66));
 	}
 
 	// This test case is used to check the method of setAttributes for Wing class
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testSetAttributes3() {
 		Wing wing = new Wing(0, 0, 0);
-		assertEquals(wing.getName(), "76");
-		assertEquals(wing.getSpeedFactor(), 2);
+		assertEquals(wing.getName(), "76");		
+		assertEquals(2,wing.getIncreasedDamage());
 		wing = new Wing(0, 0, 1);
 		assertEquals(wing.getName(), "77");
-		assertEquals(wing.getSpeedFactor(), 3);
+		assertEquals(wing.getIncreasedDamage(), 5);
 		wing = new Wing(0, 0, 2);
-		assertEquals(wing.getSpeedFactor(), 4);
+		assertEquals(wing.getIncreasedDamage(), 26);
 		assertEquals(wing.getName(), "78");
 	}
 
@@ -166,7 +168,7 @@ public class Tests {
 		Wing wing = new Wing(0, 0, 0);
 		wing.putOn(player);
 		assertEquals(true, wing.getIsOn());
-		assertEquals(initalSpeed * wing.getSpeedFactor(), player.getSpeed());
+		assertEquals(initalSpeed + wing.getIncreaseSpeed(), player.getSpeed());
 	}
 
 	// this test case is used to test if the player has not wear the wing, then just
@@ -206,7 +208,7 @@ public class Tests {
 		wing.putOn(player);
 		wing.putOn(player);
 		assertEquals(true, wing.getIsOn());
-		assertEquals(initialSpeed * wing.getSpeedFactor(), player.getSpeed());
+		assertEquals(initialSpeed+wing.getIncreaseSpeed(), player.getSpeed());
 	}
 
 	// this test case is used to test if putOn method for Armor class

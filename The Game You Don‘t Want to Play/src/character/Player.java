@@ -115,13 +115,13 @@ public class Player{
 
 		inventory.add(item);
 	}
-	
-	public void attack(Monster monster) {
+
+	public boolean attack(Monster monster) {
 		game.setAttacking(true);
 		int playerDamage = damage - monster.getDefence();
 		int monsterDamage = monster.getDamage() - defence;
 		System.out.println("monster health: " + monster.getHealth() + ", player health: " + health);
-		
+
 		while(health > 0 && monster.getHealth() > 0) {	//loop until either player or monster is dead
 			System.out.println("monster health: " + monster.getHealth());
 			System.out.println("player health: " + health);
@@ -130,10 +130,12 @@ public class Player{
 			if(monster.getHealth() <= 0) {
 				monster.defeated(this);
 				//TODO:remove monster
+				return true;
 			}
 			//TODO set change to view
 		}
 		game.setAttacking(false);
+		return false;
 	}
 
 	public WearableItem equip(WearableItem item) {
@@ -197,7 +199,7 @@ public class Player{
 		if(!hasBomb)
 			throw new InvalidMove("No bomb in inventory, cannot break the wall");
 	}
-	
+
 	/**
 	 * click on the health potion to restore health
 	 * @param type
@@ -240,6 +242,8 @@ public class Player{
 
 	public void moveRight(Entity[][] board, int boardSize) throws InvalidMove {
 		if(xPos + 1 > boardSize - 1) 
+			throw new InvalidMove("Cannot move out of board");
+		if(this.isDead) 
 			throw new InvalidMove("Cannot move out of board");
 
 		Entity e = board[yPos][xPos+1];
@@ -320,7 +324,13 @@ public class Player{
 					}
 				}else if(g.getWhatContain() instanceof Monster) {
 					System.out.println("monster encountered");
-					attack((Monster)g.getWhatContain());
+					if(attack((Monster)g.getWhatContain())) {
+						g.CleanBattleground();
+						System.out.println("win");
+					}else{
+						System.out.println("defeat");
+					}
+					
 				}
 			}else if(e instanceof Stairs) {
 				if(((Stairs)e).upOrDownStair())
@@ -356,7 +366,7 @@ public class Player{
 		}
 		return e;
 	}
-	
+
 	public boolean checkDead() {
 		if(health <= 0) {
 			return isDead = true;

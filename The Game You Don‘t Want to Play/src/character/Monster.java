@@ -1,14 +1,11 @@
 
 package character;
 
-import Board.Entity;
-import item.Item;
 
 public class Monster {
 
-	private int health = 10;
-	private int damage =2;
-	private int defence = 2;
+	private int health,damage,defence; 
+	private final double factor = 0.6;
 	private boolean isDefeated = false;
 	//the potential drop of coins when the monster dies
 	private int drop;
@@ -22,12 +19,10 @@ public class Monster {
 		computeDrop();
 	}
 
-
-
 	public void setAttribute(int level) {
-		this.health= (int) Math.pow(health,level );
-		this.damage= (int)Math.pow(damage, level);
-		this.defence =(int)Math.pow(defence, level);
+		this.health= (int) (100*level*factor);
+		this.damage= (int) (11*level*factor);
+		this.defence =(int) (3*level*factor);
 	}
 
 	public void setName(int level) {
@@ -68,7 +63,7 @@ public class Monster {
 		int randomNumber = (int)Math.random()*10;
 		drop = level * randomNumber;
 	}
-	
+
 	public void defeated(Player player) {
 		isDefeated = true;
 		player.setGold(player.getGold() + drop);

@@ -14,7 +14,7 @@ public class Ground<T> extends Entity{
 	private T t;
 	public Ground(int code, int x, int y, int size) {
 		super(code, x, y, size);
-		SetGround();
+		setGround();
 	}
 
 	//===================================== Return ================================================
@@ -54,6 +54,21 @@ public class Ground<T> extends Entity{
 		if(this.t != null && this.t instanceof Item) return SetContainNothing();
 		return false;
 	}	
+	
+	/**
+	 * When you replace item then need drop item on board. For example,unique item weapon, armor
+	 * @param i
+	 * @return
+	 */
+	public boolean setItem(Item i){
+		if(i != null){
+			super.Code = Integer.valueOf(i.getName());
+			System.out.println(super.Code);
+			setGround();
+			return true;
+		}
+		return false;
+	}
 
 	/**
 	 * When we beat monster then we need clean the battleground set it to normal ground
@@ -145,7 +160,7 @@ public class Ground<T> extends Entity{
 	 
 	 * 91 - M1  92 - M2 93 - M3 94 - M4 95 - M5 96 - M6 97 - M7 98 - M8
 	 */ @SuppressWarnings({"unchecked"})
-	 private  void SetGround() {
+	 private  void setGround() {
 		 if(super.Code == 03) this.t = (T) new WiseMan(new Armor(-1,-1,2));
 		 else if(super.Code == 04) this.t = (T) new WiseMan(new Weapon(-1,-1,2));
 		 else if(super.Code == 05) this.t = (T) new WiseMan(new Wing(-1,-1,2));

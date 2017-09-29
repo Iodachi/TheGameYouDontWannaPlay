@@ -8,14 +8,12 @@ import java.io.PrintWriter;
 import java.util.Observable;
 import java.util.Scanner;
 
-import Board.Board;
-import Board.Door;
-import Board.Entity;
-import Board.Ground;
-import Board.Wall;
+import Board.*;
+
 import character.Player;
 import gui.View;
-import item.WearableItem;
+import item.*;
+
 
 /**
  * This class contains the game logic with methods that can be used for controller
@@ -25,7 +23,7 @@ import item.WearableItem;
 public class Game extends Observable{
 	private Player player;
 	private Board board;
-	
+
 	//if player is attacking monster, he should not be able to do other things until either of them is dead.
 	private boolean attacking = false;
 
@@ -52,14 +50,14 @@ public class Game extends Observable{
 			StringBuilder b = new StringBuilder();
 			this.player.ParserPlayer(sc);
 			this.board = new Board(sc);   
-            this.player.setCurrentGame(this);
-			
+			this.player.setCurrentGame(this);
+
 		} catch (FileNotFoundException ex) {
 			System.out.println(ex);
 		} catch (IOException ex) {
 			System.out.println(ex);
 		}
-		
+
 		new View(this);
 	}
 	//========================================================= Control Method ===========================================================================
@@ -131,17 +129,35 @@ public class Game extends Observable{
 		Entity e = currentBoard[player.getYPos()][player.getXPos()];
 		if(e instanceof Ground) {
 			Ground g = (Ground)e;
-			if(g.getWhatContain() instanceof WearableItem){
-				WearableItem old = player.equip((WearableItem)g.getWhatContain());
+			if(g.getWhatContain() instanceof Armor){
+				Armor oldarmor = player.getCurrentArmor();
+				player.equip((WearableItem)g.getWhatContain());
 				//TODO put down current one, test this!
-				if(old != null) {
-					putDownOnGround(old);
+				if(oldarmor != null ) {
+					g.setItem(oldarmor);
+				}else{
+					g.SetContainNothing();
 				}
-				setToEmpty(e);
-				this.setChanged();
-				this.notifyObservers();
+			}else if(g.getWhatContain() instanceof Weapon){
+				Weapon oldWeapon = player.getCurrentWeapon();
+				player.equip((WearableItem)g.getWhatContain());
+				if(oldWeapon != null ) {
+					g.setItem(oldWeapon);
+				}else{
+					g.SetContainNothing();
+				}
+			}else if(g.getWhatContain() instanceof Wing){
+				Wing oldWing = player.getCurrentWing();
+				player.equip((WearableItem)g.getWhatContain());
+				if(oldWing != null ) {
+					g.setItem(oldWing);
+				}else{
+					g.SetContainNothing();
+				}
 			}
 		}
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	/**
@@ -154,11 +170,13 @@ public class Game extends Observable{
 		this.setChanged();
 		this.notifyObservers();
 	}
-	
+
 	public void setAttacking(boolean attack) {
 		attacking = attack;
+		this.setChanged();
+		this.notifyObservers();
 	}
-	
+
 	//========================================================= Return Method ===========================================================================
 	public Player getPlayer() {return player;}
 	public Board getBoard() {return board;}
@@ -174,13 +192,7 @@ public class Game extends Observable{
 		int y = e.GetPosY();
 		board.GetCurrentLevel().getEntities()[x][y] = new Ground(00,x,y,View.TILESIZE);
 	}
-	
-	public void putDownOnGround(WearableItem item) {
-		int x = player.getXPos();
-		int y = player.getYPos();
-		Entity e = board.GetCurrentLevel().getEntities()[x][y];
-		if(e != null && e instanceof Ground) {
-			//((Ground)e).setContain(item);
-		}
-	}
+
+
+
 }

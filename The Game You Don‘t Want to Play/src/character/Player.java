@@ -1,6 +1,5 @@
 package character;
 
-
 import java.util.Scanner;
 import java.util.Stack;
 import Board.Door;
@@ -119,27 +118,36 @@ public class Player{
 	public boolean attack(Monster monster) {
 		game.setAttacking(true);
 		int playerDamage = damage - monster.getDefence();
+		if(playerDamage < 0)		playerDamage = 0;
+		
 		int monsterDamage = monster.getDamage() - defence;
-		System.out.println("monster health: " + monster.getHealth() + ", player health: " + health);
+		if(monsterDamage < 0)	monsterDamage = 0;
 
 		while(health > 0 && monster.getHealth() > 0) {	//loop until either player or monster is dead
 			System.out.println("monster health: " + monster.getHealth());
 			System.out.println("player health: " + health);
 			monster.setHealth(monster.getHealth() - playerDamage);
 			health -= monsterDamage;
+			
 			if(monster.getHealth() <= 0) {
 				game.setAttacking(false);
 				monster.defeated(this);
 				return true;
 			}
-			//TODO set change to view
+			
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			//game.changeView();
 		}
+		
 		game.setAttacking(false);
 		return false;
 	}
 
 	public WearableItem equip(WearableItem item) {
-		//TODO: update on player's stats when an equipment is equiped
 		WearableItem old = null;		//the equipment that is going to be taken off
 		if(item instanceof Armor) {
 			if(armor != null) old = armor;
@@ -237,6 +245,7 @@ public class Player{
 			moveDown(board, boardSize);
 		}
 
+		game.changeView();
 		newGridInteraction(board);
 	}
 

@@ -80,12 +80,10 @@ public class Game extends Observable{
 	public void move(String direction) throws InvalidMove {
 		//facing direction is changed even if player didn't actually move 
 		player.setFacingDirection(direction);
-		this.setChanged();
-		this.notifyObservers();
-
+		changeView();
+		
 		player.move(direction);
-		this.setChanged();
-		this.notifyObservers();
+		changeView();
 	}
 
 	/**
@@ -99,8 +97,7 @@ public class Game extends Observable{
 		player.useKey(keyColor);
 		setToEmpty(door);
 
-		this.setChanged();
-		this.notifyObservers();
+		changeView();
 	}
 
 	/**
@@ -113,9 +110,7 @@ public class Game extends Observable{
 		if(e instanceof Wall && ((Wall)e).isBreakable()) {
 			player.useBomb();
 			setToEmpty(e);
-
-			this.setChanged();
-			this.notifyObservers();
+			changeView();
 		}else {
 			throw new InvalidMove("No breakable wall in front, cannot use bomb.");
 		}
@@ -123,21 +118,23 @@ public class Game extends Observable{
 
 	/**
 	 * picks up the equipment on the ground by pressing q, put down current one on floor.
+	 * @throws InvalidMove 
 	 */
-	public void tryPickEquipment() {
+	public void tryPickEquipment() throws InvalidMove {
 		Entity[][] currentBoard = getBoard().GetCurrentLevel().getEntities();
 		Entity e = currentBoard[player.getYPos()][player.getXPos()];
-		if(e instanceof Ground) {
+		if(e instanceof Ground && ((Ground) e).getWhatContain() instanceof WearableItem) {
 			Ground g = (Ground)e;
 			WearableItem old = player.equip(((WearableItem)g.getWhatContain()));
-			if(old != null ) {
+			if(old != null) {
 				g.setItem(old);
 			}else{
 				g.SetContainNothing();
 			}
+		}else {
+			throw new InvalidMove("No equipment on ground to pick up.");
 		}
-		this.setChanged();
-		this.notifyObservers();
+		changeView();
 	}
 
 	/**
@@ -147,14 +144,12 @@ public class Game extends Observable{
 	 */
 	public void tryRestoreHealth(String type) throws InvalidMove {
 		player.useHealthPotion(type);
-		this.setChanged();
-		this.notifyObservers();
+		changeView();
 	}
 
 	public void setAttacking(boolean attack) {
 		attacking = attack;
-		this.setChanged();
-		this.notifyObservers();
+		changeView();
 	}
 
 	//========================================================= Return Method ===========================================================================
@@ -171,5 +166,13 @@ public class Game extends Observable{
 		int x = e.GetPosX();
 		int y = e.GetPosY();
 		board.GetCurrentLevel().getEntities()[x][y] = new Ground(00,x,y,View.TILESIZE);
+	}
+	
+	/**
+	 * Notify the view to change
+	 */
+	public void changeView() {
+		this.setChanged();
+		this.notifyObservers();
 	}
 }

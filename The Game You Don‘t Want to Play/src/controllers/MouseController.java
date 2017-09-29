@@ -159,12 +159,14 @@ public class MouseController implements MouseMotionListener, MouseListener {
 				if(!findItemInBag(index)) {return;}
 				String itemName =view.getBagPanel().getItemInBag()[index];
 				System.out.println("item name: "+itemName);
-				if(itemName.equals("40")||itemName.equals("41")) {
+				if(itemName.equals("40")||itemName.equals("41")||itemName.equals("48")) {
 					try {
 						if(itemName.equals("40")) {
 							view.getGame().tryRestoreHealth("big");
-						}else {
+						}else if(itemName.equals("41")){
 							view.getGame().tryRestoreHealth("small");
+						}else {
+							view.getGame().tryUseFateCoin();
 						}
 						
 					} catch (InvalidMove e1) {

@@ -9,7 +9,7 @@ import character.Monster;
 import character.Player;
 
 //This class is used to represent that monster manual
-public class MonsterManual extends WearableItem{
+public class MonsterManual extends ConsumableItem{
 	private String name="49";
 	private int x;
 	private int y;
@@ -41,26 +41,14 @@ public class MonsterManual extends WearableItem{
 	}
 
 	@Override
-	public void putOn(Player player) {
+	public String toString() {
+		// TODO Auto-generated method stub
+		return name;
+	}
+	
+	@Override
+	public void use(Player player) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void takeOff(Player player) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void fix(int amount) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public int getCost() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 }

@@ -129,31 +129,11 @@ public class Game extends Observable{
 		Entity e = currentBoard[player.getYPos()][player.getXPos()];
 		if(e instanceof Ground) {
 			Ground g = (Ground)e;
-			if(g.getWhatContain() instanceof Armor){
-				Armor oldarmor = player.getCurrentArmor();
-				player.equip((WearableItem)g.getWhatContain());
-				//TODO put down current one, test this!
-				if(oldarmor != null ) {
-					g.setItem(oldarmor);
-				}else{
-					g.SetContainNothing();
-				}
-			}else if(g.getWhatContain() instanceof Weapon){
-				Weapon oldWeapon = player.getCurrentWeapon();
-				player.equip((WearableItem)g.getWhatContain());
-				if(oldWeapon != null ) {
-					g.setItem(oldWeapon);
-				}else{
-					g.SetContainNothing();
-				}
-			}else if(g.getWhatContain() instanceof Wing){
-				Wing oldWing = player.getCurrentWing();
-				player.equip((WearableItem)g.getWhatContain());
-				if(oldWing != null ) {
-					g.setItem(oldWing);
-				}else{
-					g.SetContainNothing();
-				}
+			WearableItem old = player.equip(((WearableItem)g.getWhatContain()));
+			if(old != null ) {
+				g.setItem(old);
+			}else{
+				g.SetContainNothing();
 			}
 		}
 		this.setChanged();
@@ -192,7 +172,4 @@ public class Game extends Observable{
 		int y = e.GetPosY();
 		board.GetCurrentLevel().getEntities()[x][y] = new Ground(00,x,y,View.TILESIZE);
 	}
-
-
-
 }

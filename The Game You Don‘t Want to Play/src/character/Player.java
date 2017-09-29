@@ -128,8 +128,8 @@ public class Player{
 			monster.setHealth(monster.getHealth() - playerDamage);
 			health -= monsterDamage;
 			if(monster.getHealth() <= 0) {
+				game.setAttacking(false);
 				monster.defeated(this);
-				//TODO:remove monster
 				return true;
 			}
 			//TODO set change to view
@@ -142,13 +142,13 @@ public class Player{
 		//TODO: update on player's stats when an equipment is equiped
 		WearableItem old = null;		//the equipment that is going to be taken off
 		if(item instanceof Armor) {
-			if(armor != null) armor = (Armor) old;
+			if(armor != null) old = armor;
 			armor = (Armor)item;
 		}else if(item instanceof Weapon) {
-			if(weapon != null) weapon = (Weapon)old;
+			if(weapon != null) old = weapon;
 			weapon = (Weapon)item;
 		}else if(item instanceof Wing) {
-			if(wing != null) wing = (Wing)old;
+			if(wing != null) old = wing;
 			wing = (Wing)item;
 		}
 		if(old != null)	old.takeOff(this);

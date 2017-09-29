@@ -26,6 +26,7 @@ public class Game extends Observable{
 
 	//if player is attacking monster, he should not be able to do other things until either of them is dead.
 	private boolean attacking = false;
+	private boolean isInShop = false;
 
 	public Game() {
 		//	SoundResources.Fight.sound.loop();
@@ -156,14 +157,20 @@ public class Game extends Observable{
 		changeView();
 	}
 
+	//========================================================= setters and getters ===========================================================================
+	public Player getPlayer() {return player;}
+	
+	public Board getBoard() {return board;}
+	
 	public void setAttacking(boolean attack) {
 		attacking = attack;
 		changeView();
 	}
+	
+	public void setInShop(boolean inShop) {
+		isInShop = inShop;
+	}
 
-	//========================================================= Return Method ===========================================================================
-	public Player getPlayer() {return player;}
-	public Board getBoard() {return board;}
 
 	//========================================================= Help Method ===========================================================================
 	/**

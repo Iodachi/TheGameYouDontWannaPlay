@@ -253,6 +253,7 @@ public class Player{
 
 	//================ movement methods =====================
 	public void move(String direction) throws InvalidMove {
+		game.setInShop(false);
 		int boardSize = Level.BOARDSIZE;
 		Entity[][] board = game.getBoard().GetCurrentLevel().getEntities();
 
@@ -361,6 +362,9 @@ public class Player{
 						System.out.println("defeat");
 					}
 					
+				}else if(g.getWhatContain() instanceof Shop) {
+					System.out.println("shop encountered");
+					game.setInShop(true);
 				}
 			}else if(e instanceof Stairs) {
 				if(((Stairs)e).upOrDownStair())

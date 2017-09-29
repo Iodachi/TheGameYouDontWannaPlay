@@ -1,9 +1,11 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.TimerTask;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -19,18 +21,20 @@ import resources.ImgResources;
  *
  */
 
-public class DialogPanel extends JPanel {
+public class DialogPanel extends JPanel implements Observer {
 
 	private static final long serialVersionUID = 1L;
 	private static final int TILESIZE = 64;
 	private Game game;
-	
+
 	private int code = 0;
-	private int i=0;
-	private java.util.Timer timer = new java.util.Timer();
+	private int i = 0;
+	
+	
 
 	public DialogPanel(Game game) {
 		this.game = game;
+		game.addObserver(this);
 
 	}
 
@@ -62,36 +66,34 @@ public class DialogPanel extends JPanel {
 		default:
 			break;
 		}
-
-		timer.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				if(i<2) {
-				 i++;
-				}else {
-					i=0;
-				}
-				
-				repaint();
-			}
-		}, 500, 500);
-		
 		String name = code + i + "";
-		//System.out.println(name);
 		ImageIcon img = new ImageIcon(View.class.getResource("/Player/Player_" + name + ".png"));
 		img.paintIcon(null, g, 30, 30);
 		
+		String str = "11111111111*11111111111*11111111111*11111111111*11111111111*11111111111*11111111111*11111111111*11111111111*";
+		
+		g.setColor(Color.WHITE);
+		int i = 0;
+		for (; i < str.length()/25; i++) {
+			
+			g.drawString(str.substring(i*25,i*25+25), 30, 80+20*i);
 		}
+		g.drawString(str.substring(i*25,str.length()), 30, 80+20*i);
 
+		}
 		
 		
-
-	
 
 	/**
 	 * set the size for character panel, on the basis of tile size
 	 */
 	public Dimension getPreferredSize() {
 		return new Dimension((int) (TILESIZE * 4), TILESIZE * 12);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		repaint();
+		
 	}
 }

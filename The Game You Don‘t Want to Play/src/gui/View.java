@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,16 +41,18 @@ public class View extends JComponent implements Observer {
 
 	private static final long serialVersionUID = 1L;
 	public static final int TILESIZE = 64;
+	private java.util.Timer timer = new java.util.Timer();
+	private int ac = 0;
 
 	private BagPanel bagPanel;
 	private JPanel characterPanel;
 	private JPanel dialogPanel;
-	
+
 	private JButton Save;
 	private JButton Load;
 	private JButton Music;
 	private JButton Quit;
-	
+
 	private boolean gameStop = false;
 	private boolean MusicOn = false;
 
@@ -100,16 +103,31 @@ public class View extends JComponent implements Observer {
 		f.pack();
 		f.setResizable(false);
 		f.setVisible(true);
-		
+
 		addButton();
+
+		timer.schedule(new TimerTask() {
+
+			@Override
+			public void run() {
+
+				if (ac < 2) {
+					ac += 2;
+				} else {
+					ac = 0;
+				}
+				repaint();
+			}
+
+		}, 0, 500);
 
 	}
 
 	private void addButton() {
-		 Save = new JButton("Save");
-		 Load = new JButton("Load");
-		 Music = new JButton("Music");
-		 Quit = new JButton("Quit");
+		Save = new JButton("Save");
+		Load = new JButton("Load");
+		Music = new JButton("Music");
+		Quit = new JButton("Quit");
 
 		Save.addActionListener((e) -> {
 			game.save();
@@ -122,7 +140,7 @@ public class View extends JComponent implements Observer {
 		});
 
 		Quit.addActionListener((e) -> {
-			//gameContinue();
+			// gameContinue();
 			System.exit(0);
 		});
 		Music.addActionListener((e) -> {
@@ -144,22 +162,31 @@ public class View extends JComponent implements Observer {
 		Load.setMargin(margin);
 		Music.setMargin(margin);
 		Quit.setMargin(margin);
-
-		this.add(Save);
-		this.add(Load);
-		this.add(Music);
-		this.add(Quit);
+		
+		Save.setFocusable(false);
+		Load.setFocusable(false);
+		Music.setFocusable(false);
+		Quit.setFocusable(false);
 		
 		Save.setVisible(gameStop);
 		Load.setVisible(gameStop);
 		Music.setVisible(gameStop);
 		Quit.setVisible(gameStop);
+
+		this.add(Save);
+		this.add(Load);
+		this.add(Music);
+		this.add(Quit);
+
 		
+		
+		
+
 	}
 
 	public void gameStop() {
-		
-		gameStop=!gameStop;
+
+		gameStop = !gameStop;
 		Save.setVisible(gameStop);
 		Load.setVisible(gameStop);
 		Music.setVisible(gameStop);
@@ -184,11 +211,11 @@ public class View extends JComponent implements Observer {
 
 	@Override
 	public void paintComponent(Graphics g) {
-		
+
 		drawFloor(g);
 		drawMap(game.getBoard(), g);
 		drawPlayer(game.getPlayer(), g);
-		
+
 		if (gameStop) {
 			Graphics2D _g = (Graphics2D) g.create();
 			_g.setComposite(AlphaComposite.SrcOver.derive(0.8f));

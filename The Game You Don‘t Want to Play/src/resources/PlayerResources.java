@@ -10,9 +10,9 @@ import javax.swing.ImageIcon;
 public enum PlayerResources {
 	
 	Up("Player_10.png"),
-	Down("Player_01.png"),
-	Left("Player_04.png"),
-	Right("Player_07.png");
+	Down("Player_1.png"),
+	Left("Player_4.png"),
+	Right("Player_7.png");
 	
 	
 	public final ImageIcon image;

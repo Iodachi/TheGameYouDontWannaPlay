@@ -1,60 +1,56 @@
 package controllers;
 
-import main.Game;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import gui.View;
 
 /**
  * This class is used to implement the key listener
  * */
 public class KeyController implements KeyListener {
 
-	private Game game;
+	private View view;
 
-	public KeyController(Game game) {
-		this.game = game;
+	public KeyController(View view) {
+		this.view = view;
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println(e.getKeyChar());
-		
-		if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
-	    {
-			//TODO - BACK TO MENU
-	       System.out.println("back to menu");
-	    }
+	
 		try {
 			switch (e.getKeyChar()) {
 			case 'w':
-				game.move("up");
+				view.getGame().move("up");
 				break;
 			case 'a':
-				game.move("left");
+				view.getGame().move("left");
 				break;
 			case 's':
-				game.move("down");
+				view.getGame().move("down");
 				break;
 			case 'd':
-				game.move("right");
+				view.getGame().move("right");
 				break;
 			case 'e':
-				game.tryBomb();
+				view.getGame().tryBomb();
 				break;
 			case 'q':
-				game.tryPickEquipment();
+				view.getGame().tryPickEquipment();
 				break;
 			case 'k':
-			   game.save();
+				view.getGame().save();
 			break;
-			
 			default:
 				break;
 			}
 		} catch (main.InvalidMove invalidMove) {
-			//invalidMove.printStackTrace();
 			System.out.println(invalidMove.getMessage());
+		}
+		if(e.getKeyCode()==27) {
+			this.view.gameStop();
 		}
 	}
 

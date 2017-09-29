@@ -122,7 +122,6 @@ public class BagPanel extends JPanel implements Observer {
 			}
 		}
 		return false;
-
 	}
 
 	/**

@@ -5,9 +5,6 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
 
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -117,5 +114,4 @@ public class Menu extends JComponent {
 		// }
 		// }
 	}
-
 }

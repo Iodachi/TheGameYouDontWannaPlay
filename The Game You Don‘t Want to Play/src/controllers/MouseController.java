@@ -152,6 +152,12 @@ public class MouseController implements MouseMotionListener, MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		System.out.printf("X:%dY:%d\n", e.getX(), e.getY());
+		if(!view.getGameStop()) {
+			useConsumableItem(e);
+		}
+	}
+	
+	public void useConsumableItem(MouseEvent e) {
 		if (e.getSource() instanceof BagPanel) {
 
 			if (checkClickOn(e.getX(), e.getY(), true)) {
@@ -187,7 +193,7 @@ public class MouseController implements MouseMotionListener, MouseListener {
 			}
 		}
 	}
-
+	
 	public Stack<ConsumableItem> getInventory() {
 		return inventory;
 	}

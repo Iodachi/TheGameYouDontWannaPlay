@@ -17,14 +17,12 @@ public class Level {
 	public static final int BOARDSIZE = 12;
 	private Entity entities[][];
 	private int floor;
-	private int[][] pieces;
 	private Shop SType;
 	private Temple TType0,TType1,TType2;
 
 	public Level(int floor) {
 		this.floor = floor;
 		this.entities = new Entity[BOARDSIZE][BOARDSIZE];
-		this.pieces = new int[12][12];
 		this.SType = new Shop();
 		this.TType0 = getTemple0();
 		this.TType1 = getTemple1();
@@ -109,7 +107,6 @@ public class Level {
 		for(int i = 0; i < BOARDSIZE; i++ ){
 			for(int c = 0; c < BOARDSIZE; c++ ){
 				int entry = sc.nextInt();
-				this.pieces[i][c] = entry;
 				AddEntity(entry,i,c,View.TILESIZE,sc);
 			}
 		}

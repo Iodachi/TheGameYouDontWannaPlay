@@ -65,7 +65,9 @@ public class View extends JComponent implements Observer {
 	 * 
 	 * @param game
 	 */
-
+	public boolean getGameStop() {
+		return gameStop;
+	}
 	public View(Game game) {
 		// setting attribute for this view
 		game.addObserver(this);

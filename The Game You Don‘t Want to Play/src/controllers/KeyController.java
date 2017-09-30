@@ -3,8 +3,10 @@ package controllers;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.IllegalFormatCodePointException;
 
 import gui.View;
+import main.Game;
 
 /**
  * This class is used to implement the key listener
@@ -20,6 +22,17 @@ public class KeyController implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 	
+		
+		if(e.getKeyCode()==27) {
+			
+			this.view.gameStop();
+			
+		}else if(e.getKeyCode()!=27&&!view.getGameStop()) {
+			generalAction(e);
+		}
+	}
+	
+	public void generalAction(KeyEvent e) {
 		try {
 			switch (e.getKeyChar()) {
 			case 'w':
@@ -43,17 +56,13 @@ public class KeyController implements KeyListener {
 			case 'k':
 				view.getGame().save();
 			break;
-			default:
-				break;
+			
 			}
 		} catch (main.InvalidMove invalidMove) {
 			System.out.println(invalidMove.getMessage());
 		}
-		if(e.getKeyCode()==27) {
-			this.view.gameStop();
-		}
 	}
-
+	
 	@Override
 	public void keyReleased(KeyEvent e) {
 	}

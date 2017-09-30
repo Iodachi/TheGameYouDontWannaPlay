@@ -107,7 +107,7 @@ public class Level {
 		for(int i = 0; i < BOARDSIZE; i++ ){
 			for(int c = 0; c < BOARDSIZE; c++ ){
 				int entry = sc.nextInt();
-				AddEntity(entry,i,c,View.TILESIZE,sc);
+				AddEntity(entry,i,c,View.TILESIZE);
 			}
 		}
 		sc.next();            //consume )
@@ -118,7 +118,7 @@ public class Level {
 	 * @param <T>
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public <T> void AddEntity(int code, int x, int y, int size,Scanner sc) {
+	public <T> void AddEntity(int code, int x, int y, int size) {
 		// from 00 ~09  Ground
 		if(code < 10){
 			Entity Ground = new Ground(code,x,y,size);

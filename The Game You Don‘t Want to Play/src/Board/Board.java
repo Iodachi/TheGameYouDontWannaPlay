@@ -75,10 +75,10 @@ public class Board {
 	/**
 	 * Start the normal Game
 	 */
-	public void OriginalInitialize(){
+	private void OriginalInitialize(){
 		String fileName = "OriginalMap.txt";
 		try {
-			InputStream is = Board.class.getResourceAsStream(fileName);
+			InputStream is = Board.class.getResourceAsStream("OriginalMap.txt");
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
 
 			Scanner sc = new Scanner(bufferedReader);

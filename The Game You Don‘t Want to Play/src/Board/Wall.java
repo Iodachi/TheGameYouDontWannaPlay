@@ -23,15 +23,5 @@ public class Wall extends Entity{
 		return false;
 	}
 
-	//================================= Test ============================================================
-	/**
-	 * 10 - normal wall    - WW   
-	 * 11 - Breakable wall - WB
-	 */
-	@Override
-	public String toString(){
-		if(super.Code == 11) return  "WB";
-		return "WW";
-	}
 
 }

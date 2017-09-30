@@ -25,14 +25,5 @@ public class Stairs extends Entity{
 	 * @return
 	 */
 	public boolean upOrDownStair(){ return this.upOrDown;}
-	
-	//================================= Test ===========================================================
-	@Override
-	public String toString(){
-		String temp = null;
-		if(super.Code == 51) temp = "US";
-		else if(super.Code == 52) temp = "DS";
-		return temp;
-	}
 
 }

@@ -210,7 +210,10 @@ public class Ground<T> extends Entity{
 	  * @param code
 	  * @return
 	  */
-	 public void SetShopOrTemple(T t){this.t = t;}
+	 public void SetShopOrTemple(T t){
+		 assert t!=null;
+		 this.t = t;
+	}
 
 
 
@@ -250,48 +253,6 @@ public class Ground<T> extends Entity{
 	  * 91 - M1  92 - M2 93 - M3 94 - M4 95 - M5 96 - M6 97 - M7 98 - M8
 	  */
 
-	 @Override
-	 public String toString(){
-		 if( super.Code == 01) return "GL";
-		 else if(super.Code == 02) return "GP";
-		 else if(super.Code == 03) return "W0";
-		 else if(super.Code == 04) return "W1";
-		 else if(super.Code == 05) return "W5";
-		 else if(super.Code == 30) return "GK";
-		 else if(super.Code == 31) return "CK";
-		 else if(super.Code == 32) return "BK";
-		 else if(super.Code == 33) return "PK";
-		 else if(super.Code == 34) return "SK";
-		 else if(super.Code == 40) return "BB";
-		 else if(super.Code == 41) return "SB";
-		 else if(super.Code == 43) return "BM";
-
-		 else if(super.Code == 42) return "A0";
-		 else if(super.Code == 25) return "A1";
-		 else if(super.Code == 26) return "A2";
-
-		 else if(super.Code == 44) return "P0";
-		 else if(super.Code == 35) return "P1";
-		 else if(super.Code == 36) return "P2";
-
-		 else if(super.Code == 45) return "Y0";
-		 else if(super.Code == 46) return "Y1";
-		 else if(super.Code == 47) return "Y2";
-
-		 else if(super.Code == 60) return "S0";	
-		 else if(super.Code == 65) return "T0";	
-		 else if(super.Code == 66) return "T1";
-		 else if(super.Code == 67) return "T2";	
-		 else if(super.Code == 91) return "M1";	
-		 else if(super.Code == 92) return "M2";	
-		 else if(super.Code == 93) return "M3";	
-		 else if(super.Code == 94) return "M4";	
-		 else if(super.Code == 95) return "M5";	
-		 else if(super.Code == 96) return "M6";	
-		 else if(super.Code == 97) return "M7";
-		 else if(super.Code == 98) return "M8";	
-		 return "GG";
-	 }
-
+	
 
 }

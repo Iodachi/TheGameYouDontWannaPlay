@@ -48,10 +48,10 @@ public class View extends JComponent implements Observer {
 	private JPanel characterPanel;
 	private JPanel dialogPanel;
 
-	private JButton Save;
-	private JButton Load;
-	private JButton Music;
-	private JButton Quit;
+	private JButton save;
+	private JButton load;
+	private JButton music;
+	private JButton quit;
 
 	private boolean gameStop = false;
 	private boolean MusicOn = false;
@@ -68,6 +68,7 @@ public class View extends JComponent implements Observer {
 	public boolean getGameStop() {
 		return gameStop;
 	}
+	
 	public View(Game game) {
 		// setting attribute for this view
 		game.addObserver(this);
@@ -109,43 +110,37 @@ public class View extends JComponent implements Observer {
 		addButton();
 
 		timer.schedule(new TimerTask() {
-
 			@Override
 			public void run() {
-
-				if (ac == 200) {
-					ac = 100;
-				} else {
-					ac = 200;
-				}
+				if (ac == 200)	ac = 100;
+				else				ac = 200;
 				repaint();
 			}
-
 		}, 0, 500);
 
 	}
 
 	private void addButton() {
-		Save = new JButton("Save");
-		Load = new JButton("Load");
-		Music = new JButton("Music");
-		Quit = new JButton("Quit");
+		save = new JButton("Save");
+		load = new JButton("Load");
+		music = new JButton("Music");
+		quit = new JButton("Quit");
 
-		Save.addActionListener((e) -> {
+		save.addActionListener((e) -> {
 			game.save();
 		});
-		Load.addActionListener((e) -> {
+		load.addActionListener((e) -> {
 			// not implement yet
 			String load = "save.txt";
 			new Game(load);
 			SoundResources.Meun.sound.stop();
 		});
 
-		Quit.addActionListener((e) -> {
+		quit.addActionListener((e) -> {
 			// gameContinue();
 			System.exit(0);
 		});
-		Music.addActionListener((e) -> {
+		music.addActionListener((e) -> {
 			MusicOn = !MusicOn;
 			if (MusicOn) {
 				SoundResources.Fight.sound.loop();
@@ -160,41 +155,34 @@ public class View extends JComponent implements Observer {
 		this.setBorder(new EmptyBorder(160, 300, 160, 300));
 		Insets margin = new Insets(20, 150, 20, 150);
 
-		Save.setMargin(margin);
-		Load.setMargin(margin);
-		Music.setMargin(margin);
-		Quit.setMargin(margin);
+		save.setMargin(margin);
+		load.setMargin(margin);
+		music.setMargin(margin);
+		quit.setMargin(margin);
 		
-		Save.setFocusable(false);
-		Load.setFocusable(false);
-		Music.setFocusable(false);
-		Quit.setFocusable(false);
+		save.setFocusable(false);
+		load.setFocusable(false);
+		music.setFocusable(false);
+		quit.setFocusable(false);
 		
-		Save.setVisible(gameStop);
-		Load.setVisible(gameStop);
-		Music.setVisible(gameStop);
-		Quit.setVisible(gameStop);
+		save.setVisible(gameStop);
+		load.setVisible(gameStop);
+		music.setVisible(gameStop);
+		quit.setVisible(gameStop);
 
-		this.add(Save);
-		this.add(Load);
-		this.add(Music);
-		this.add(Quit);
-
-		
-		
-		
-
+		this.add(save);
+		this.add(load);
+		this.add(music);
+		this.add(quit);
 	}
 
 	public void gameStop() {
-
 		gameStop = !gameStop;
-		Save.setVisible(gameStop);
-		Load.setVisible(gameStop);
-		Music.setVisible(gameStop);
-		Quit.setVisible(gameStop);
+		save.setVisible(gameStop);
+		load.setVisible(gameStop);
+		music.setVisible(gameStop);
+		quit.setVisible(gameStop);
 		repaint();
-
 	}
 
 	public Dimension getPreferredSize() {
@@ -204,13 +192,11 @@ public class View extends JComponent implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		repaint();
-
 	}
 
 	/**
-	 * To paint out the game board
+	 * To paint the game board
 	 */
-
 	@Override
 	public void paintComponent(Graphics g) {
 
@@ -235,9 +221,7 @@ public class View extends JComponent implements Observer {
 	 * @param g
 	 *            Graphics
 	 */
-
 	private void drawMap(Board board, Graphics g) {
-
 		for (int x = 0; x < Level.BOARDSIZE; x++) {
 			for (int y = 0; y < Level.BOARDSIZE; y++) {
 
@@ -257,8 +241,7 @@ public class View extends JComponent implements Observer {
 						ImageIcon img = new ImageIcon(View.class.getResource("/Entities/" + code + ".png"));
 						img.paintIcon(null, g, py, px);
 					}
-					if (code == 60)
-						y += 1;
+					if (code == 60)		y += 1;
 				} catch (NullPointerException e) {
 					System.err.println("NullPointerException: image unfind" + code);
 				}
@@ -273,7 +256,6 @@ public class View extends JComponent implements Observer {
 	 * @param g
 	 *            Graphics
 	 */
-
 	private void drawFloor(Graphics g) {
 		for (int x = 0; x < Level.BOARDSIZE; x++) {
 			for (int y = 0; y < Level.BOARDSIZE; y++) {
@@ -281,7 +263,6 @@ public class View extends JComponent implements Observer {
 				img.paintIcon(null, g, y * TILESIZE, x * TILESIZE);
 			}
 		}
-
 	}
 
 	/**
@@ -290,7 +271,6 @@ public class View extends JComponent implements Observer {
 	 * @param player
 	 * @param g
 	 */
-
 	private void drawPlayer(Player player, Graphics g) {
 		int x = player.getXPos() * TILESIZE + 16;
 		int y = player.getYPos() * TILESIZE + 16;
@@ -328,5 +308,4 @@ public class View extends JComponent implements Observer {
 	public Game getGame() {
 		return game;
 	}
-
 }

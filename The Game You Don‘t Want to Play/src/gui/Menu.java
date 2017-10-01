@@ -27,50 +27,21 @@ public class Menu extends JComponent {
 
 	private static final long serialVersionUID = 1L;
 	private static final JFrame f = new JFrame("The Game You Don't Want To Play");
+	private JButton newGame, load, info, quit;
 
 	public Menu() {
-
 		// SoundResources.Meun.sound.loop();
-		JButton NewGame = new JButton("New Game");
-		JButton Load = new JButton("Load");
-		JButton Info = new JButton("Info");
-		JButton Quit = new JButton("Quit");
-		NewGame.addActionListener((e) -> {
-			new Game();
-			f.setVisible(false); // hidden the menu frame
-			SoundResources.Meun.sound.stop();
-		});
-		Load.addActionListener((e) -> {
-			// not implement yet
-			String load = "save.txt";
-			new Game(load);
+		newGame = new JButton("New Game");
+		load = new JButton("Load");
+		info = new JButton("Info");
+		quit = new JButton("Quit");
 
-			f.setVisible(false); // hidden the menu frame
-			SoundResources.Meun.sound.stop();
-		});
-
-		Quit.addActionListener((e) -> {
-			System.exit(0);
-		});
-		Info.addActionListener((e) -> {
-			// not implement yet
-		});
-
+		setButtons();
+		
 		// set layout for the buttons
 		this.setLayout(new GridLayout(0, 1, 0, 100));
 		this.setBorder(new EmptyBorder(150, 450, 150, 450));
-		Insets margin = new Insets(20, 150, 20, 150);
-
-		NewGame.setMargin(margin);
-		Load.setMargin(margin);
-		Info.setMargin(margin);
-		Quit.setMargin(margin);
-
-		this.add(NewGame);
-		this.add(Load);
-		this.add(Info);
-		this.add(Quit);
-
+		
 		setFocusable(true);
 		setVisible(true);
 
@@ -81,11 +52,45 @@ public class Menu extends JComponent {
 		f.setResizable(false);
 		f.setVisible(true);
 		f.setSize(View.TILESIZE * 17, View.TILESIZE * 12);
-
 	}
 
 	public static void main(String[] args) {
 		new Menu();
+	}
+	
+	public void setButtons() {
+		newGame.addActionListener((e) -> {
+			new Game();
+			f.setVisible(false); // hidden the menu frame
+			SoundResources.Meun.sound.stop();
+		});
+		load.addActionListener((e) -> {
+			// not implement yet
+			String load = "save.txt";
+			new Game(load);
+
+			f.setVisible(false); // hidden the menu frame
+			SoundResources.Meun.sound.stop();
+		});
+
+		quit.addActionListener((e) -> {
+			System.exit(0);
+		});
+		
+		info.addActionListener((e) -> {
+			// not implement yet
+		});
+		
+		Insets margin = new Insets(20, 150, 20, 150);
+		newGame.setMargin(margin);
+		load.setMargin(margin);
+		info.setMargin(margin);
+		quit.setMargin(margin);
+
+		this.add(newGame);
+		this.add(load);
+		this.add(info);
+		this.add(quit);
 	}
 
 	/**

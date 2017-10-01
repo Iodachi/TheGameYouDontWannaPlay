@@ -39,7 +39,6 @@ public class CharacterPanel extends JPanel implements Observer {
 
 	@Override
 	public void paint(Graphics g) {
-
 		Image img = ImgResources.characterBackGroud.img; // to load the character BackGroud image
 		// fill the BackGroud to appropriate size
 		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), 0, 0, img.getWidth(null), img.getHeight(null), null);
@@ -47,15 +46,16 @@ public class CharacterPanel extends JPanel implements Observer {
 		drawKeys(g);
 		drawItem(g);
 	}
+	
 	/**
 	 * 	To draw all the equipment on the player, shows on character Panel
 	 * @param g Graphics
 	 */
-
 	private void drawItem(Graphics g) {
 		if(game.getPlayer().getCurrentWeapon()!=null) {
 			String name = game.getPlayer().getCurrentWeapon().getName();
 			Image img;
+			
 			try {
 				img = ImageIO.read(View.class.getResource("/Entities/" + name + ".png"));
 				int x = charaRect[0].x;
@@ -68,7 +68,8 @@ public class CharacterPanel extends JPanel implements Observer {
 			}
 			
 		}
-		if(game.getPlayer().getCurrentArmor()!=null) {
+		
+		if(game.getPlayer().getCurrentArmor() != null) {
 			String name = game.getPlayer().getCurrentArmor().getName();
 			Image img;
 			try {
@@ -83,7 +84,7 @@ public class CharacterPanel extends JPanel implements Observer {
 			}
 		}
 		
-		if(game.getPlayer().getCurrentWing()!=null) {
+		if(game.getPlayer().getCurrentWing() != null) {
 			String name = game.getPlayer().getCurrentWing().getName();
 			Image img;
 			try {
@@ -98,11 +99,11 @@ public class CharacterPanel extends JPanel implements Observer {
 			}
 		}
 	}
+	
 	/**
 	 * To draw Number of all keys of the player have 
 	 * @param g
 	 */
-
 	private void drawKeys(Graphics g) {
 		int x = 156;
 		int y = 267;
@@ -119,6 +120,7 @@ public class CharacterPanel extends JPanel implements Observer {
 		y += 40;
 		g.drawString(game.getPlayer().getGold()+"", x, y);
 	}
+	
 	/**
 	 * To draw Attribute of the player:
 	 * Health
@@ -126,17 +128,14 @@ public class CharacterPanel extends JPanel implements Observer {
 	 * Defence
 	 * @param g
 	 */
-
 	private void drawAttribute(Graphics g) {
 		int x = 86;
 		int y = 267;
-		// System.out.print(game.getPlayer().getHealth();
 		g.drawString(game.getPlayer().getHealth() + "", x, y);
 		y += 40;
 		g.drawString(game.getPlayer().getDamage() + "", x, y);
 		y += 40;
 		g.drawString(game.getPlayer().getDefence() + "", x, y);
-
 	}
 
 	/**
@@ -149,7 +148,6 @@ public class CharacterPanel extends JPanel implements Observer {
 			int y = INITIALY + (RECTSIZE + GAPSIZE) * row;
 			// the gap changes when the row lager than 1
 			charaRect[row] = new Rectangle(x, y, RECTSIZE, RECTSIZE);
-
 		}
 	}
 
@@ -164,7 +162,6 @@ public class CharacterPanel extends JPanel implements Observer {
 				return true;
 		}
 		return false;
-
 	}
 
 	/**
@@ -177,6 +174,5 @@ public class CharacterPanel extends JPanel implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		repaint();
-
 	}
 }

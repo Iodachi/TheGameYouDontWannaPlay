@@ -21,12 +21,8 @@ public class KeyController implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-	
-		
 		if(e.getKeyCode()==27) {
-			
 			this.view.gameStop();
-			
 		}else if(e.getKeyCode()!=27&&!view.getGameStop()) {
 			generalAction(e);
 		}

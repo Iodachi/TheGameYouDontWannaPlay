@@ -30,8 +30,6 @@ public class DialogPanel extends JPanel implements Observer {
 	private int code = 0;
 	private int i = 0;
 	
-	
-
 	public DialogPanel(Game game) {
 		this.game = game;
 		game.addObserver(this);
@@ -40,16 +38,13 @@ public class DialogPanel extends JPanel implements Observer {
 
 	@Override
 	public void paint(Graphics g) {
-
 		Image img = ImgResources.dialogBackGroud.img;// to load the dialog BackGroud image
 		// fill the BackGroud to appropriate size
 		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), 0, 0, img.getWidth(null), img.getHeight(null), null);
-
 		showDialog(g);
 	}
 
 	public void showDialog(Graphics g) {
-		
 		switch (game.getPlayer().getFacingDirection()) {
 		case "up":
 			code = 10;
@@ -69,20 +64,17 @@ public class DialogPanel extends JPanel implements Observer {
 		String name = code + i + "";
 		ImageIcon img = new ImageIcon(View.class.getResource("/Player/Player_" + name + ".png"));
 		img.paintIcon(null, g, 30, 30);
-		
+
 		String str = "11111111111*11111111111*11111111111*11111111111*11111111111*11111111111*11111111111*11111111111*11111111111*";
-		
+
 		g.setColor(Color.WHITE);
 		int i = 0;
 		for (; i < str.length()/25; i++) {
-			
 			g.drawString(str.substring(i*25,i*25+25), 30, 80+20*i);
 		}
-		g.drawString(str.substring(i*25,str.length()), 30, 80+20*i);
 
-		}
-		
-		
+		g.drawString(str.substring(i*25,str.length()), 30, 80+20*i);
+	}
 
 	/**
 	 * set the size for character panel, on the basis of tile size
@@ -94,6 +86,5 @@ public class DialogPanel extends JPanel implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		repaint();
-		
 	}
 }

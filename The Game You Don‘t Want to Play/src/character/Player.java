@@ -268,7 +268,7 @@ public class Player{
 	public void move(String direction) throws InvalidMove {
 		game.setInShop(false);
 		int boardSize = Level.BOARDSIZE;
-		Entity[][] board = game.getBoard().GetCurrentLevel().getEntities();
+		Entity[][] board = game.getBoard().getCurrentLevel().getEntities();
 
 		if(direction.equals("right")) {
 			moveRight(board, boardSize);
@@ -370,7 +370,7 @@ public class Player{
 				}else if(g.getWhatContain() instanceof Monster) {
 					System.out.println("monster encountered");
 					if(attack((Monster)g.getWhatContain())) {
-						g.CleanBattleground();
+						g.cleanBattleground();
 						System.out.println("win");
 					}else{
 						JOptionPane.showConfirmDialog(new JLabel("defeat!"),
@@ -383,9 +383,9 @@ public class Player{
 				}
 			}else if(e instanceof Stairs) {
 				if(((Stairs)e).upOrDownStair())
-					game.getBoard().setCurrentLevel(game.getBoard().GetCurrentLevelNumber() + 1);
+					game.getBoard().setCurrentLevel(game.getBoard().getCurrentLevelNumber() + 1);
 				else
-					game.getBoard().setCurrentLevel(game.getBoard().GetCurrentLevelNumber() - 1);
+					game.getBoard().setCurrentLevel(game.getBoard().getCurrentLevelNumber() - 1);
 			}
 		}
 	}

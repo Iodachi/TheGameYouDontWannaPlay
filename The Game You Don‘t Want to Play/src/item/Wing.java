@@ -20,7 +20,7 @@ public class Wing extends WearableItem {
 	private int cost = 1000;
 	private int level = 0;
 
-	/*
+	/**
 	 * level could be 0,1,2 when level is 0, the name and defence keep as default
 	 * Otherwise, they will be changed in setAttribute method
 	 * @param x
@@ -34,7 +34,7 @@ public class Wing extends WearableItem {
 		setAttribute(level);
 	}
 
-	/*
+	/**
 	 * This method is used to put on the wing, then player's attributes would be
 	 * changed
 	 *
@@ -52,7 +52,7 @@ public class Wing extends WearableItem {
 
 	}
 
-	/*
+	/**
 	 * This method is used to take off the wing, then player's attributes would be
 	 * changed
 	 *
@@ -70,7 +70,7 @@ public class Wing extends WearableItem {
 
 	}
 
-	/*
+	/**
 	 * level could be 0,1,2 when level is 0, the name and defence keep as default
 	 * Otherwise, they will be changed in setAttribute method
 	 * @param level

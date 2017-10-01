@@ -36,7 +36,7 @@ public class TestMain {
 						+	")\n";
 		Game g = new Game();
 		g.move("down");
-		assertEquals(token,g.getBoard().GetCurrentLevel().toString());
+		assertEquals(token,g.getBoard().getCurrentLevel().toString());
 	}
 
 

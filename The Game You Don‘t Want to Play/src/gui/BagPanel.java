@@ -40,18 +40,21 @@ public class BagPanel extends JPanel implements Observer {
 		CreateRectangle();
 	}
 	
+
 	@Override
 	public void paint(Graphics g) {
+
 		Image img = ImgResources.equipmentBackGroud.img; // to load the equipment BackGroud image
 		// fill the BackGroud to appropriate size
 		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), 0, 0, img.getWidth(null), img.getHeight(null), null);
 		drawItem(g);
+
 	}
-	
 	/**
 	 * draw all the items in Players bag, it can be stack 
 	 * @param g Graphics
 	 */
+
 	private void drawItem(Graphics g) {
 		Map<String,Integer> items = new HashMap<String,Integer>();
 		int size = game.getPlayer().getInventory().size();
@@ -66,26 +69,25 @@ public class BagPanel extends JPanel implements Observer {
 			}
 		}
 		
-		String name = "";
-		size = items.size();
+		String Name = "";
+		size =items.size();
 		this.item = items.keySet().toArray();
 		
 		//To shows all the items on bag panel 
 		for (int i = 0; i < size; i++) {
-			int col = i % 3; //  to calculate the item on which row and col
+			int col = i % 3; //  to calculate the item on witch row and  col
 			int row = i / 3;
 			int x = bagRectangle[row][col].x;
 			int y = bagRectangle[row][col].y;
-			
 			// try to load the image by the item's name
 			try {
-				name = (String) item[i];
-				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/" + name + ".png"));
+				Name = (String) item[i];
+				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/" + Name + ".png"));
 				img.paintIcon(null, g, x, y);
 				g.setColor(Color.WHITE);
-				g.drawString(items.get(name)+"", x+48, y+60);
+				g.drawString(items.get(Name)+"", x+48, y+60);
 			} catch (NullPointerException e) {
-				System.err.println("NullPointerException: image unfind" + name);
+				System.err.println("NullPointerException: image unfind" + Name);
 			}
 		}
 	}
@@ -94,12 +96,14 @@ public class BagPanel extends JPanel implements Observer {
 	 * The Rectangles is provide for the Mouse controller, to checking does the user
 	 * chick on the items on bag Panel.
 	 */
+
 	public void CreateRectangle() {
 		for (int row = 0; row < 4; row++) {
 			for (int col = 0; col < 3; col++) {
 				int x = initialX + (RECTSIZE + COLGAPSIZE) * col;
 				int y = initialY + (RECTSIZE + ROWGAPSIZE) * row;
-				if (row > 1)		y += 20;// the gap changes when the row lager than 1
+				if (row > 1)
+					y += 20;// the gap changes when the row lager than 1
 				bagRectangle[row][col] = new Rectangle(x, y, RECTSIZE, RECTSIZE);
 			}
 		}
@@ -130,6 +134,7 @@ public class BagPanel extends JPanel implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		repaint();
+
 	}
 	
 	public String[] getItemInBag() {
@@ -138,5 +143,6 @@ public class BagPanel extends JPanel implements Observer {
 			temp[i]=item[i].toString();
 		}
 		return temp;
+		
 	}
 }

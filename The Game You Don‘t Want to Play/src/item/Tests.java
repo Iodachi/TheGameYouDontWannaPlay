@@ -3,14 +3,17 @@ package item;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import org.junit.validator.TestClassValidator;
 
 import character.Monster;
 import character.Player;
+/**
+ * 
+ * @author minping
+ *
+ */
 
-//@author minping
 public class Tests {
-
+	
 	// This test case is used to check the method of setAttributes for armor class
 	@Test
 	public void testSetAttributes1() {

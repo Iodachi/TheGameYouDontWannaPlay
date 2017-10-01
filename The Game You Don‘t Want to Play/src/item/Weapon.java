@@ -77,8 +77,6 @@ public class Weapon extends WearableItem {
 		}
 	}
 
-
-
 	@Override
 	public boolean on(int x, int y) {
 		return this.x == x && this.y == y;

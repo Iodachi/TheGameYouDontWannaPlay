@@ -114,7 +114,8 @@ public class Level {
 				addEntity(entry,i,c,View.TILESIZE);
 			}
 		}
-		if(count!=144) throw new InvalidFileException("invalid file");
+		
+		if(count!=143) throw new InvalidFileException("invalid file");	
 		sc.next();            //consume )
 	}
 

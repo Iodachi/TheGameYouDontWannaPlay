@@ -8,9 +8,6 @@ import java.awt.event.MouseMotionListener;
 import java.nio.channels.NonWritableChannelException;
 import java.util.Stack;
 
-import javax.security.auth.x500.X500Principal;
-
-import character.Player;
 import gui.BagPanel;
 import gui.CharacterPanel;
 import gui.View;

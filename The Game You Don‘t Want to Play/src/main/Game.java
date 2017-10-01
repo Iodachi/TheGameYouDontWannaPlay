@@ -111,7 +111,7 @@ public class Game extends Observable{
 	 * @throws InvalidMove
 	 */
 	public void tryBomb() throws InvalidMove {
-		Entity[][] currentBoard = getBoard().GetCurrentLevel().getEntities();
+		Entity[][] currentBoard = getBoard().getCurrentLevel().getEntities();
 		Entity e = player.findFacingEntity(currentBoard);
 		if(e instanceof Wall && ((Wall)e).isBreakable()) {
 			player.useBomb();
@@ -127,7 +127,7 @@ public class Game extends Observable{
 	 * @throws InvalidMove 
 	 */
 	public void tryPickEquipment() throws InvalidMove {
-		Entity[][] currentBoard = getBoard().GetCurrentLevel().getEntities();
+		Entity[][] currentBoard = getBoard().getCurrentLevel().getEntities();
 		Entity e = currentBoard[player.getYPos()][player.getXPos()];
 		if(e instanceof Ground && ((Ground) e).getWhatContain() instanceof WearableItem) {
 			Ground g = (Ground)e;
@@ -184,9 +184,9 @@ public class Game extends Observable{
 	 * @param e
 	 */
 	public void setToEmpty(Entity e) {
-		int x = e.GetPosX();
-		int y = e.GetPosY();
-		board.GetCurrentLevel().getEntities()[x][y] = new Ground(00,x,y,View.TILESIZE);
+		int x = e.getPosX();
+		int y = e.getPosY();
+		board.getCurrentLevel().getEntities()[x][y] = new Ground(00,x,y,View.TILESIZE);
 	}
 	
 	/**
@@ -195,5 +195,10 @@ public class Game extends Observable{
 	public void changeView() {
 		this.setChanged();
 		this.notifyObservers();
+	}
+
+	public boolean getInShop() {
+		
+		return isInShop;
 	}
 }

@@ -83,15 +83,15 @@ public class Player{
 			while(sc.hasNextInt()){
 				int gear = sc.nextInt();
 				if(gear != -1) continue;
-				else if(gear == 42) this.armor = new Armor(-1,-1,0);
-				else if(gear == 25) this.armor = new Armor(-1,-1,1);
-				else if(gear == 26) this.armor = new Armor(-1,-1,2);
-				else if(gear == 44) this.weapon = new Weapon(-1,-1,0);
-				else if(gear == 35) this.weapon = new Weapon(-1,-1,1);
-				else if(gear == 23) this.weapon = new Weapon(-1,-1,2);
-				else if(gear == 45) this.wing = new Wing(-1,-1,0);
-				else if(gear == 46) this.wing = new Wing(-1,-1,1);
-				else if(gear == 47) this.wing = new Wing(-1,-1,2);
+				else if(gear == 70) this.armor = new Armor(-1,-1,0);
+				else if(gear == 71) this.armor = new Armor(-1,-1,1);
+				else if(gear == 72) this.armor = new Armor(-1,-1,2);
+				else if(gear == 73) this.weapon = new Weapon(-1,-1,0);
+				else if(gear == 74) this.weapon = new Weapon(-1,-1,1);
+				else if(gear == 75) this.weapon = new Weapon(-1,-1,2);
+				else if(gear == 76) this.wing = new Wing(-1,-1,0);
+				else if(gear == 77) this.wing = new Wing(-1,-1,1);
+				else if(gear == 78) this.wing = new Wing(-1,-1,2);
 			}
 
 		}catch (java.util.InputMismatchException e) {
@@ -162,15 +162,18 @@ public class Player{
 		if(item instanceof Armor) {
 			if(armor != null) old = armor;
 			armor = (Armor)item;
+			item.putOn(this);
 		}else if(item instanceof Weapon) {
 			if(weapon != null) old = weapon;
 			weapon = (Weapon)item;
+			item.putOn(this);
 		}else if(item instanceof Wing) {
 			if(wing != null) old = wing;
 			wing = (Wing)item;
+			item.putOn(this);
 		}
 		if(old != null)	old.takeOff(this);
-		item.putOn(this);
+		
 		return old;
 	}
 

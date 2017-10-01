@@ -1,8 +1,10 @@
 package gui;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.Observable;
 import java.util.Observer;
@@ -43,11 +45,29 @@ public class DialogPanel extends JPanel implements Observer {
 		String str = "get XXX string";
 		drawString(str,g);
 		drawIcon(g);
-		if(game.getInShop())
-		drawitem();
+		//if(game.getInShop())
+		drawitem(g);
 	}
 
-	private void drawitem() {
+	private void drawitem(Graphics g) {
+		int x = 18;
+		int y = 430;
+		int w = 60;
+		int h = 60;
+		int gap = 20;
+		Graphics2D _g = (Graphics2D) g.create();
+		_g.setComposite(AlphaComposite.SrcOver.derive(0.5f));
+		_g.setColor(Color.WHITE);
+		
+		for(int i = 0; i<4; i++) {
+			for(int j=0; j<3; j++) {
+				_g.fillRect(x, y, w, h);
+				//game.getBoard()
+				x+=(w+gap);
+			}
+			x=18;
+			y+=(gap+h);
+		}
 		game.getBoard();
 	}
 

@@ -1,6 +1,5 @@
 package item;
 
-
 import character.Player;
 
 /***
@@ -10,9 +9,9 @@ import character.Player;
  * changed
  */
 public class Wing extends WearableItem {
-	private int increaseSpeed= 1;
-	private int increasedDamage =2;
-	private int increasedDefense=3;
+	private int increaseSpeed = 1;
+	private int increasedDamage = 2;
+	private int increasedDefense = 3;
 
 	private boolean isOn = false;
 	private String name = "76";
@@ -23,6 +22,7 @@ public class Wing extends WearableItem {
 	/**
 	 * level could be 0,1,2 when level is 0, the name and defence keep as default
 	 * Otherwise, they will be changed in setAttribute method
+	 * 
 	 * @param x
 	 * @param y
 	 * @param level
@@ -43,10 +43,10 @@ public class Wing extends WearableItem {
 	@Override
 	public void putOn(Player player) {
 		if (!isOn) {
-			
-			player.setSpeed(player.getSpeed()+increaseSpeed);
-			player.setDamage(player.getDamage()+increasedDamage);
-			player.setDefence(player.getDefence()+increasedDefense);
+
+			player.setSpeed(player.getSpeed() + increaseSpeed);
+			player.setDamage(player.getDamage() + increasedDamage);
+			player.setDefence(player.getDefence() + increasedDefense);
 			isOn = true;
 		}
 
@@ -61,10 +61,10 @@ public class Wing extends WearableItem {
 	@Override
 	public void takeOff(Player player) {
 		if (isOn) {
-			player.setSpeed(player.getSpeed()-increaseSpeed);
-			player.setDamage(player.getDamage()-increasedDamage);
-			player.setDefence(player.getDefence()-increasedDefense);
-			
+			player.setSpeed(player.getSpeed() - increaseSpeed);
+			player.setDamage(player.getDamage() - increasedDamage);
+			player.setDefence(player.getDefence() - increasedDefense);
+
 			isOn = false;
 		}
 
@@ -73,39 +73,44 @@ public class Wing extends WearableItem {
 	/**
 	 * level could be 0,1,2 when level is 0, the name and defence keep as default
 	 * Otherwise, they will be changed in setAttribute method
+	 * 
 	 * @param level
 	 */
 	public void setAttribute(int level) {
 		switch (level) {
 		case 1:
-			increaseSpeed=3;
-			increasedDamage= 5;
-			increasedDefense=10;
-	
+			increaseSpeed = 3;
+			increasedDamage = 5;
+			increasedDefense = 10;
+
 			name = "77";
 			break;
 		case 2:
-			increaseSpeed=6;
-			increasedDamage= 26;
-			increasedDefense=20;
-	
+			increaseSpeed = 6;
+			increasedDamage = 26;
+			increasedDefense = 20;
+
 			name = "78";
 			break;
 		}
 
 	}
+
 	/**
 	 * all getter and setter
-	 * */
+	 */
 	public int getIncreasedDamage() {
 		return increasedDamage;
 	}
+
 	public int getIncreasedDefense() {
 		return increasedDefense;
 	}
+
 	public int getIncreaseSpeed() {
 		return increaseSpeed;
 	}
+
 	@Override
 	public void fix(int amount) {
 

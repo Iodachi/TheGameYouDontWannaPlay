@@ -84,6 +84,7 @@ public class View extends JComponent implements Observer {
 		characterPanel.setSize(new Dimension(getPreferredSize()));
 
 		dialogPanel = new DialogPanel(this.game);
+		dialogPanel.addMouseListener(new MouseController(this));
 		dialogPanel.setSize(new Dimension(getPreferredSize()));
 
 		// set GridLayout for fl

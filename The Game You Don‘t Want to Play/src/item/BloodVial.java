@@ -24,7 +24,8 @@ public class BloodVial extends ConsumableItem {
 			this.amount = 500;
 		}
 	}
-	//the constructor without passing the coordinator of the blood vial
+
+	// the constructor without passing the coordinator of the blood vial
 	public BloodVial(String type) {
 		this.type = type; // either small or big
 		if (type.equals("big")) {
@@ -32,11 +33,13 @@ public class BloodVial extends ConsumableItem {
 			this.amount = 500;
 		}
 	}
-	
+
 	/**
-	 * This method is used to change the player's attributes, when the player use the Blood Vial
+	 * This method is used to change the player's attributes, when the player use
+	 * the Blood Vial
+	 * 
 	 * @param player
-	 * */
+	 */
 	@Override
 	public void use(Player player) {
 		if (type == "big") {

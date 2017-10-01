@@ -32,6 +32,7 @@ public class FateCoin extends ConsumableItem {
 			player.setHealth(player.getHealth() + amount);
 		}
 	}
+
 	/**
 	 * This method is used to check if the player on the item position
 	 **/
@@ -44,6 +45,7 @@ public class FateCoin extends ConsumableItem {
 	public String getName() {
 		return name;
 	}
+
 	@Override
 	public String toString() {
 		return name;

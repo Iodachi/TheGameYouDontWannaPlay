@@ -3,46 +3,47 @@ package item;
 import character.Player;
 
 /***
- * This class is used to present the key. The key has different type.
- * The specific type of key could be used to open the corresponding door
+ * This class is used to present the key. The key has different type. The
+ * specific type of key could be used to open the corresponding door
+ * 
  * @author yangminp
- * */
+ */
 
 public class Key extends ConsumableItem {
-	private int x,y;
-    private String name = "30";
-    private String color;
+	private int x, y;
+	private String name = "30";
+	private String color;
 
-	public Key(int x, int y, String color){
-	    this.x =x;
-	    this.y =y;
-	    this.color = color;
-	    generateName(color);
-    }
+	public Key(int x, int y, String color) {
+		this.x = x;
+		this.y = y;
+		this.color = color;
+		generateName(color);
+	}
 
 	/**
 	 * This method is used to that generate name,according to its color
-	 * */
+	 */
 	public void generateName(String color) {
 		switch (color) {
 		case "gold":
-			name= "30";
+			name = "30";
 			break;
 		case "silver":
-			name= "34";
+			name = "34";
 			break;
 		case "purple":
-			name="33";
+			name = "33";
 			break;
 		case "cyan":
-			name="31";
+			name = "31";
 			break;
 		case "bronze":
-			name="32";
+			name = "32";
 			break;
 		}
 	}
-	
+
 	public Key(String color) {
 		this.color = color;
 		generateName(color);
@@ -54,16 +55,17 @@ public class Key extends ConsumableItem {
 
 	@Override
 	public boolean on(int x, int y) {
-		return this.x==x&&this.y==y;
+		return this.x == x && this.y == y;
 	}
 
-	public String getName(){
+	public String getName() {
 		return name;
 	}
 
 	public String getColor() {
 		return color;
 	}
+
 	@Override
 	public String toString() {
 		return name;

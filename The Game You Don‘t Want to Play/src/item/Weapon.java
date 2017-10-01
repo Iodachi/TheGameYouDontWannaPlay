@@ -23,8 +23,6 @@ public class Weapon extends WearableItem {
 		return isOn;
 	}
 
-
-
 	/**
 	 * level could be 0,1,2 when level is 0, the name and defence keep as default
 	 * Otherwise, they will be changed in setAttribute method
@@ -43,20 +41,23 @@ public class Weapon extends WearableItem {
 	public void setAttribute(int level) {
 		switch (level) {
 		case 1:
-			attack = (int)(new Monster(4).getDamage()*factor);
+			attack = (int) (new Monster(4).getDamage() * factor);
 			name = "74";
 			break;
 		case 2:
-			attack = (int)(new Monster(7).getDamage()*factor);
+			attack = (int) (new Monster(7).getDamage() * factor);
 			name = "75";
 			break;
 		}
 
 	}
+
 	/**
-	 * This method is used to put on the weapon, then player's attributes would be changed
+	 * This method is used to put on the weapon, then player's attributes would be
+	 * changed
+	 * 
 	 * @param player
-	 * **/
+	 **/
 	@Override
 	public void putOn(Player player) {
 		if (!isOn) {
@@ -65,10 +66,12 @@ public class Weapon extends WearableItem {
 		}
 
 	}
+
 	/**
-	 * This method is used to take off the weapon, then player's attributes would be changed
+	 * This method is used to take off the weapon, then player's attributes would be
+	 * changed
 	 *
-	 * **/
+	 **/
 	@Override
 	public void takeOff(Player player) {
 		if (isOn) {
@@ -95,6 +98,7 @@ public class Weapon extends WearableItem {
 	public String getName() {
 		return name;
 	}
+
 	public int getAttack() {
 		return attack;
 	}

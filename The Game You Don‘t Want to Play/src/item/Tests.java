@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import character.Monster;
 import character.Player;
+
 /**
  * 
  * @author minping
@@ -13,7 +14,7 @@ import character.Player;
  */
 
 public class Tests {
-	
+
 	// This test case is used to check the method of setAttributes for armor class
 	@Test
 	public void testSetAttributes1() {
@@ -22,10 +23,10 @@ public class Tests {
 		assertEquals(armor.getDefence(), 10);
 		armor = new Armor(0, 0, 1);
 		assertEquals(armor.getName(), "71");
-		assertEquals(armor.getDefence(), (int)(new Monster(4).getDefence()*2));
+		assertEquals(armor.getDefence(), (int) (new Monster(4).getDefence() * 2));
 		armor = new Armor(0, 0, 2);
 		assertEquals(armor.getName(), "72");
-		assertEquals(armor.getDefence(), (int)(new Monster(7).getDefence()*2));
+		assertEquals(armor.getDefence(), (int) (new Monster(7).getDefence() * 2));
 	}
 
 	// This test case is used to check the method of setAttributes for Weapon class
@@ -36,10 +37,10 @@ public class Tests {
 		assertEquals(weapon.getAttack(), 12);
 		weapon = new Weapon(0, 0, 1);
 		assertEquals(weapon.getName(), "74");
-		assertEquals(weapon.getAttack(), (int)(new Monster(4).getDamage()*0.66));
+		assertEquals(weapon.getAttack(), (int) (new Monster(4).getDamage() * 0.66));
 		weapon = new Weapon(0, 0, 2);
 		assertEquals(weapon.getName(), "75");
-		assertEquals(weapon.getAttack(), (int)(new Monster(7).getDamage()*0.66));
+		assertEquals(weapon.getAttack(), (int) (new Monster(7).getDamage() * 0.66));
 	}
 
 	// This test case is used to check the method of setAttributes for Wing class
@@ -47,8 +48,8 @@ public class Tests {
 	@Test
 	public void testSetAttributes3() {
 		Wing wing = new Wing(0, 0, 0);
-		assertEquals(wing.getName(), "76");		
-		assertEquals(2,wing.getIncreasedDamage());
+		assertEquals(wing.getName(), "76");
+		assertEquals(2, wing.getIncreasedDamage());
 		wing = new Wing(0, 0, 1);
 		assertEquals(wing.getName(), "77");
 		assertEquals(wing.getIncreasedDamage(), 5);
@@ -211,7 +212,7 @@ public class Tests {
 		wing.putOn(player);
 		wing.putOn(player);
 		assertEquals(true, wing.getIsOn());
-		assertEquals(initialSpeed+wing.getIncreaseSpeed(), player.getSpeed());
+		assertEquals(initialSpeed + wing.getIncreaseSpeed(), player.getSpeed());
 	}
 
 	// this test case is used to test if putOn method for Armor class
@@ -222,10 +223,11 @@ public class Tests {
 		Armor armor = new Armor(0, 0, 0);
 		armor.putOn(player);
 		assertEquals(true, armor.getIsOn());
-		assertEquals(initalDefence+armor.getDefence(), player.getDefence());
+		assertEquals(initalDefence + armor.getDefence(), player.getDefence());
 	}
 
-	// this test case is used to test if the player has not wear the armor, then just
+	// this test case is used to test if the player has not wear the armor, then
+	// just
 	// directly want to take off the armor.Which is invalid
 	// take off
 	@Test
@@ -264,28 +266,29 @@ public class Tests {
 		assertEquals(true, armor.getIsOn());
 		assertEquals(initialDefense + armor.getDefence(), player.getDefence());
 	}
-	//Test on method for all item class
+
+	// Test on method for all item class
 	@Test
 	public void testOn() {
 		Armor armor = new Armor(0, 0, 0);
 		assertEquals(true, armor.on(0, 0));
 		assertEquals(false, armor.on(1, 0));
-		BloodVial bloodVial =new BloodVial(0, 0,"small");
+		BloodVial bloodVial = new BloodVial(0, 0, "small");
 		assertEquals(true, bloodVial.on(0, 0));
 		assertEquals(false, bloodVial.on(1, 0));
 		Bomb bomb = new Bomb(0, 0);
 		assertEquals(true, bomb.on(0, 0));
 		assertEquals(false, bomb.on(1, 0));
-		FateCoin fateCoin =new FateCoin(0, 0);
+		FateCoin fateCoin = new FateCoin(0, 0);
 		assertEquals(true, fateCoin.on(0, 0));
 		assertEquals(false, fateCoin.on(1, 0));
-		Key key = new Key(0, 0,"dd");
+		Key key = new Key(0, 0, "dd");
 		assertEquals(true, key.on(0, 0));
 		assertEquals(false, bomb.on(1, 0));
-		Weapon weapon =new Weapon(0, 0,0);
+		Weapon weapon = new Weapon(0, 0, 0);
 		assertEquals(true, weapon.on(0, 0));
 		assertEquals(false, weapon.on(1, 0));
-		Wing wing =new Wing(0, 0,0);
+		Wing wing = new Wing(0, 0, 0);
 		assertEquals(true, wing.on(0, 0));
 		assertEquals(false, wing.on(1, 0));
 	}

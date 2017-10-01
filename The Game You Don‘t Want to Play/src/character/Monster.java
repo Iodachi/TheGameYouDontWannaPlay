@@ -3,65 +3,24 @@ package character;
 
 
 public class Monster {
-
-	private int health,damage,defence; 
-	private final double factor = 0.6;
-	private boolean isDefeated = false;
+	private int health,damage,defence,drop,level; 
+	private final double factor = 0.7;
+	private boolean isDefeated;
 	//the potential drop of coins when the monster dies
-	private int drop;
-	private int level=1;
-	private String name = "M1";
+
 
 	public Monster(int level){
+		initialize(level);
+	}
+	//==================================== initialize ========================================================
+	private void initialize(int level){
 		this.level = level;
-		setName(level);
-		setAttribute(level);
-		computeDrop();
-	}
-
-	public void setAttribute(int level) {
-		this.health= (int) (100*level*factor);
-		this.damage= (int) (11*level*factor);
-		this.defence =(int) (3*level*factor);
-	}
-
-	public void setName(int level) {
-		switch (level) {
-		case 1:
-			this.name = "91";
-			break;
-		case 2:
-			this.name = "92";
-			break;
-		case 3:
-			this.name = "93";
-			break;
-		case 4:
-			this.name = "94";
-			break;
-		case 5:
-			this.name = "95";
-			break;
-		case 6:
-			this.name = "96";
-			break;
-		case 7:
-			this.name = "97";
-			break;
-		case 8:
-			this.name = "98";
-			break;
-
-		}
-	}
-
-	/**
-	 * generates a random number of coins drop when monster is defeated
-	 */
-	public void computeDrop() {
-		//FIXME probably need to balance this
-		int randomNumber = (int)Math.random()*10;
-		drop = level * randomNumber;
+		this.isDefeated = false;
+		this.health= (int) (100*(level- 90)*factor);
+		this.damage= (int) (11*(level- 90)*factor);
+		this.defence =(int) (3*(level- 90)*factor);
+		//generates a random number of coins drop when monster is defeated
+		this.drop = (int)Math.random()*10*(level- 90);
 	}
 
 	public void defeated(Player player) {
@@ -88,8 +47,9 @@ public class Monster {
 	public boolean isDefeated() {
 		return isDefeated;
 	}
-	public String getName() {
-		return name;
+
+	public String toString() {
+		return String.valueOf(this.level);
 	}
 }
 

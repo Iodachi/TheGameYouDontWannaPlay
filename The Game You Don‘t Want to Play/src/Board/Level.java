@@ -18,15 +18,14 @@ public class Level {
 	private Entity entities[][];
 	private int floor;
 	private Shop SType;
-	private Temple TType0,TType1,TType2;
+	private Temple TType;
 
 	public Level(int floor) {
 		this.floor = floor;
 		this.entities = new Entity[BOARDSIZE][BOARDSIZE];
 		this.SType = new Shop();
-		this.TType0 = getTemple0();
-		this.TType1 = getTemple1();
-		this.TType2 = getTemple2();
+		this.TType = new Temple();
+		
 
 	}
 
@@ -149,15 +148,15 @@ public class Level {
 				this.entities[x][y] = GroundShop;
 			}else if(code == 65){
 				Ground GroundTemple = new Ground(code,x,y,size);
-				GroundTemple.SetShopOrTemple((T)TType0);
+				GroundTemple.SetShopOrTemple((T)TType);
 				this.entities[x][y] = GroundTemple;
 			}else if(code == 66){
 				Ground GroundTemple = new Ground(code,x,y,size);
-				GroundTemple.SetShopOrTemple((T)TType1);
+				GroundTemple.SetShopOrTemple((T)TType);
 				this.entities[x][y] = GroundTemple;
 			}else if(code == 67){
 				Ground GroundTemple = new Ground(code,x,y,size);
-				GroundTemple.SetShopOrTemple((T)TType2);
+				GroundTemple.SetShopOrTemple((T)TType);
 				this.entities[x][y] = GroundTemple;
 			}
 			//equipment
@@ -172,41 +171,6 @@ public class Level {
 
 	}
 
-	/**
-	 * Temple Type 0 contain ("health", 10)	, ("damage", 10) and ("defence", 10)	
-	 * @return
-	 */
-	public Temple getTemple0(){
-		Map<String,Integer> type0 = new HashMap<>();
-		type0.put("health", 10);
-		type0.put("damage", 10);
-		type0.put("defence", 10);
-		return new Temple(type0);
-	}
-
-	/**
-	 * Temple Type 1 contain ("health", 100)	, ("damage", 100) and ("defence", 100)	
-	 * @return
-	 */
-	public Temple getTemple1(){
-		Map<String,Integer> type1 = new HashMap<>();
-		type1.put("health", 100);
-		type1.put("damage", 100);
-		type1.put("defence", 100);
-		return new Temple(type1);
-	}
-
-	/**
-	 * Temple Type 2 contain ("health", 1000)	, ("damage", 1000) and ("defence", 1000)	
-	 * @return
-	 */
-	public Temple getTemple2(){
-		Map<String,Integer> type2 = new HashMap<>();
-		type2.put("health", 1000);
-		type2.put("damage", 1000);
-		type2.put("defence", 1000);
-		return new Temple(type2);
-	}
 	//============================================= Test =================================================================
 	/**
 	 * Use for load and save

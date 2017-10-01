@@ -373,7 +373,8 @@ public class Player{
 						g.CleanBattleground();
 						System.out.println("win");
 					}else{
-						System.out.println("defeat");
+						JOptionPane.showConfirmDialog(new JLabel("defeat!"),
+								"Again?");
 					}
 					
 				}else if(g.getWhatContain() instanceof Shop) {

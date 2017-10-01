@@ -27,7 +27,7 @@ public class Monster {
 		isDefeated = true;
 		player.setGold(player.getGold() + drop);
 	}
-
+	//==================================== get method ========================================================
 	public int getDamage() {
 		return damage;
 	}

@@ -2,12 +2,9 @@ package character;
 
 import java.util.Scanner;
 import java.util.Stack;
-import Board.Door;
-import Board.Entity;
-import Board.Ground;
-import Board.Level;
-import Board.Stairs;
-import Board.Wall;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import Board.*;
 import item.*;
 import main.Game;
 import main.InvalidMove;

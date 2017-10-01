@@ -26,7 +26,7 @@ public class MonsterManual extends ConsumableItem{
 			attributes.add(monster.getHealth());
 			attributes.add(monster.getDamage());
 			attributes.add(monster.getDefence());
-			manual.put(monster.getName(),attributes);
+			manual.put(monster.toString(),attributes);
 		}
 
 	}

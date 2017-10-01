@@ -6,6 +6,7 @@ import java.util.Scanner;
 import character.*;
 import gui.View;
 import item.*;
+import character.Temple;
 
 /**
  * The basic of Level is 2D-array of Entity. Each entity would instance as different things such as wall and ground.

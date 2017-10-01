@@ -25,30 +25,30 @@ public abstract class Entity {
 	 * 
 	 * @return name of the entity
 	 */
-	public int GetCode() {return this.Code;}
+	public int getCode() {return this.Code;}
 	/**
 	 * position X
 	 * @return
 	 */
-	public int GetPosX(){return this.PosX;}
+	public int getPosX(){return this.PosX;}
 
 	/**
 	 * position Y
 	 * @return
 	 */
-	public int GetPosY(){return this.PosY;}
+	public int getPosY(){return this.PosY;}
 
 	/**
 	 * Entity Size
 	 * @return
 	 */
-	public int GetSize(){return this.size;}
+	public int getSize(){return this.size;}
 
 	/**
 	 * Range of the entity
 	 * @return
 	 */
-	public Rectangle GetRange(){return this.EntityRange;}
+	public Rectangle getRange(){return this.EntityRange;}
 	//================================= Test ============================================================
 	@Override
 	public String toString(){ return String.valueOf(this.Code);}

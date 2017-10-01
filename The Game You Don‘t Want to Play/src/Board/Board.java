@@ -18,13 +18,23 @@ public class Board {
 
 	public Board(Scanner sc){
 		this.levels = new HashMap<Integer, Level>();
-		LoadInitialize(sc);
+		try {
+			loadInitialize(sc);
+		} catch (InvalidFileException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public Board(){
 		this.levels = new HashMap<Integer, Level>();
 		this.currentLevel = 1;
-		OriginalInitialize();
+		try {
+			originalInitialize();
+		} catch (InvalidFileException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	//====================================== Return ======================================================
@@ -32,7 +42,7 @@ public class Board {
 	/**
 	 * Return current level
 	 */
-	public Level GetCurrentLevel(){
+	public Level getCurrentLevel(){
 		return this.levels.get(currentLevel);
 	}
 
@@ -40,7 +50,7 @@ public class Board {
 	 * Return the number of current level 
 	 * @return
 	 */
-	public int GetCurrentLevelNumber(){
+	public int getCurrentLevelNumber(){
 		return this.currentLevel;
 	}
 
@@ -56,7 +66,7 @@ public class Board {
 	 * Method of Get All levels
 	 * @return
 	 */
-	public Collection<Level> GetAllLevel(){
+	public Collection<Level> getAllLevel(){
 		return this.levels.values();
 	}
 
@@ -74,8 +84,9 @@ public class Board {
 	//================================== initialize ======================================================
 	/**
 	 * Start the normal Game
+	 * @throws InvalidFileException 
 	 */
-	private void OriginalInitialize(){
+	private void originalInitialize() throws InvalidFileException{
 		String fileName = "OriginalMap.txt";
 		try {
 			InputStream is = Board.class.getResourceAsStream("OriginalMap.txt");
@@ -87,7 +98,7 @@ public class Board {
 					sc.next();      //consume l
 					int NumOfLevel = sc.nextInt();
 					Level temp = new Level(NumOfLevel);
-					temp.ParserLevel(sc);
+					temp.parserLevel(sc);
 					this.levels.put(NumOfLevel, temp);
 				}
 			}
@@ -102,8 +113,9 @@ public class Board {
 
 	/**
 	 * Load a file, start a saved game.
+	 * @throws InvalidFileException 
 	 */
-	public void LoadInitialize(Scanner sc){
+	public void loadInitialize(Scanner sc) throws InvalidFileException{
 		try{
 			sc.next();      // consume (
 			this.currentLevel = sc.nextInt();
@@ -112,7 +124,7 @@ public class Board {
 				sc.next();      //consume l
 				int NumOfLevel = sc.nextInt();
 				Level temp = new Level(NumOfLevel);
-				temp.ParserLevel(sc);
+				temp.parserLevel(sc);
 				this.levels.put(NumOfLevel, temp);
 			}
 			sc.close();

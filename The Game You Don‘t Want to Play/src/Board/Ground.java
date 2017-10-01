@@ -41,7 +41,7 @@ public class Ground<T> extends Entity{
 	 * if code name as 00 then mean it is empty ground then player could move
 	 * @return
 	 */
-	public boolean CouldMove(){
+	public boolean couldMove(){
 		if(super.Code == 00) return true;
 		return false;
 	}
@@ -74,7 +74,7 @@ public class Ground<T> extends Entity{
 	 * When we beat monster then we need clean the battleground set it to normal ground
 	 * @return
 	 */
-	public boolean CleanBattleground(){
+	public boolean cleanBattleground(){
 		if(this.t != null && this.t instanceof Monster) return SetContainNothing();
 
 		return false;
@@ -84,7 +84,7 @@ public class Ground<T> extends Entity{
 	 * Please accept my sincerest and deepest apology, Sorry for we are closed.
 	 * @return
 	 */
-	public boolean CloseShop(){
+	public boolean closeShop(){
 		if(this.t != null && this.t instanceof Shop) return SetContainNothing();
 
 		return false;
@@ -94,7 +94,7 @@ public class Ground<T> extends Entity{
 	 *  Myth is Myth, you cannot have good luck every day.
 	 * @return
 	 */
-	public boolean CloseTemple(){
+	public boolean closeTemple(){
 		if(this.t != null && this.t instanceof Temple) return SetContainNothing();
 
 		return false;
@@ -104,7 +104,7 @@ public class Ground<T> extends Entity{
 	 * Your time is over, this time belongs to me!
 	 * @return
 	 */
-	public boolean KillWiseMan(){
+	public boolean killWiseMan(){
 		if(this.t != null && this.t instanceof WiseMan) return SetContainNothing();
 
 		return false;
@@ -191,7 +191,7 @@ public class Ground<T> extends Entity{
 	  * @param code
 	  * @return
 	  */
-	 public void SetShopOrTemple(T t){
+	 public void setShopOrTemple(T t){
 		 assert t!=null;
 		 this.t = t;
 	}

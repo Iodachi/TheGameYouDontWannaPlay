@@ -59,7 +59,7 @@ public class TestBoard {
 		assertTrue(k1.getWhatContain() instanceof Key);
 		k1.pickItem();
 		assertNull(k1.getWhatContain());
-		assertEquals(k1.GetCode(), 00);
+		assertEquals(k1.getCode(), 00);
 		Ground k2 = new Ground(31,0,0,0);
 		assertTrue(k2.getWhatContain() instanceof Key);
 		Ground k3 = new Ground(32,0,0,0);
@@ -73,7 +73,7 @@ public class TestBoard {
 		assertTrue(BB.getWhatContain() instanceof BloodVial);
 		BB.pickItem();
 		assertNull(BB.getWhatContain());
-		assertEquals(BB.GetCode(), 00);
+		assertEquals(BB.getCode(), 00);
 		Ground SB = new Ground(41,0,0,0);
 		assertTrue(SB.getWhatContain() instanceof BloodVial);
 		Ground AR = new Ground(42,0,0,0);
@@ -101,9 +101,9 @@ public class TestBoard {
 	public <T> void testCast02(){
 		Ground w0 = new Ground(03,0,0,0);
 		assertTrue(w0.getWhatContain() instanceof WiseMan);
-		w0.KillWiseMan();
+		w0.killWiseMan();
 		assertNull(w0.getWhatContain());
-		assertEquals(w0.GetCode(), 00);
+		assertEquals(w0.getCode(), 00);
 		Ground w1 = new Ground(04,0,0,0);
 		assertTrue(w1.getWhatContain() instanceof WiseMan);
 		Ground w2 = new Ground(05,0,0,0);
@@ -118,9 +118,9 @@ public class TestBoard {
 	public <T> void testCast03(){
 		Ground t1 = new Ground(91,0,0,0);
 		assertTrue(t1.getWhatContain() instanceof Monster);
-		t1.CleanBattleground();
+		t1.cleanBattleground();
 		assertNull(t1.getWhatContain());
-		assertEquals(t1.GetCode(), 00);
+		assertEquals(t1.getCode(), 00);
 		Ground t2 = new Ground(92,0,0,0);
 		assertTrue(t2.getWhatContain() instanceof Monster);
 		Ground t3 = new Ground(93,0,0,0);
@@ -148,16 +148,16 @@ public class TestBoard {
 		assertTrue(ST0.getWhatContain() instanceof Shop);
 
 		Ground TT0 = new Ground(65,0,0,0);
-		TT0.SetShopOrTemple((T) l.getTemple0());
+		TT0.setShopOrTemple((T) l.getTemple0());
 		assertTrue(TT0.getWhatContain() instanceof Temple);
-		TT0.CloseTemple();
+		TT0.closeTemple();
 		assertNull(TT0.getWhatContain());
-		assertEquals(TT0.GetCode(), 00);
+		assertEquals(TT0.getCode(), 00);
 		Ground TT1 = new Ground(66,0,0,0);
-		TT1.SetShopOrTemple((T) l.getTemple1());
+		TT1.setShopOrTemple((T) l.getTemple1());
 		assertTrue(TT1.getWhatContain() instanceof Temple);
 		Ground TT2 = new Ground(67,0,0,0);
-		TT2.SetShopOrTemple((T) l.getTemple2());
+		TT2.setShopOrTemple((T) l.getTemple2());
 		assertTrue(TT2.getWhatContain() instanceof Temple);
 	}
 

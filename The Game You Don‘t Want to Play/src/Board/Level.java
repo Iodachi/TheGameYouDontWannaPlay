@@ -37,7 +37,7 @@ public class Level {
 	 * @param y
 	 * @return
 	 */
-	public boolean PickItem(int x, int y){
+	public boolean pickItem(int x, int y){
 		if(this.entities[x][y] instanceof Ground){
 			return ((Ground) this.entities[x][y]).pickItem();
 		}
@@ -50,7 +50,7 @@ public class Level {
 	 * @param y
 	 * @return
 	 */
-	public boolean BreakWall(int x, int y){
+	public boolean breakWall(int x, int y){
 		if(this.entities[x][y] instanceof Wall){
 			if( ((Wall) this.entities[x][y]).isBreakable()){
 				this.entities[x][y] = new Ground(00,x,y,View.TILESIZE);
@@ -66,7 +66,7 @@ public class Level {
 	 * @param y
 	 * @return
 	 */
-	public boolean OpenTheDoor(int x,int y){
+	public boolean openTheDoor(int x,int y){
 		if ( this.entities[x][y] instanceof Door ){
 			this.entities[x][y] = new Ground(00,x,y,View.TILESIZE);
 			return true;
@@ -79,7 +79,7 @@ public class Level {
 	 * 
 	 * @return
 	 */
-	public int Getfloor() {return this.floor;}
+	public int getfloor() {return this.floor;}
 
 
 	/**
@@ -89,7 +89,7 @@ public class Level {
 	 * @param y
 	 * @return
 	 */
-	public Entity GetEntityAt(int x, int y) {return entities[x][y];}
+	public Entity getEntityAt(int x, int y) {return entities[x][y];}
 
 	/**
 	 * return the array of entities
@@ -103,7 +103,7 @@ public class Level {
 	 * @param sc
 	 * @throws InvalidFileException 
 	 */
-	public void ParserLevel(Scanner sc) throws InvalidFileException{
+	public void parserLevel(Scanner sc) throws InvalidFileException{
 		int count = 0;
 		sc.next();           //consume (
 		for(int i = 0; i < BOARDSIZE; i++ ){
@@ -111,7 +111,7 @@ public class Level {
 				int entry = sc.nextInt();
 				if(sc.hasNextInt()) count++;
 				
-				AddEntity(entry,i,c,View.TILESIZE);
+				addEntity(entry,i,c,View.TILESIZE);
 			}
 		}
 		if(count!=144) throw new InvalidFileException("invalid file");
@@ -123,7 +123,7 @@ public class Level {
 	 * @param <T>
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public <T> void AddEntity(int code, int x, int y, int size) {
+	public <T> void addEntity(int code, int x, int y, int size) {
 		// from 00 ~09  Ground
 		if(code < 10){
 			Entity Ground = new Ground(code,x,y,size);
@@ -150,19 +150,19 @@ public class Level {
 		}else if(code >= 60 && code < 70){	
 			if(code == 60){
 				Ground GroundShop = new Ground(code,x,y,size);
-				GroundShop.SetShopOrTemple((T)SType);
+				GroundShop.setShopOrTemple((T)SType);
 				this.entities[x][y] = GroundShop;
 			}else if(code == 65){
 				Ground GroundTemple = new Ground(code,x,y,size);
-				GroundTemple.SetShopOrTemple((T)TType0);
+				GroundTemple.setShopOrTemple((T)TType0);
 				this.entities[x][y] = GroundTemple;
 			}else if(code == 66){
 				Ground GroundTemple = new Ground(code,x,y,size);
-				GroundTemple.SetShopOrTemple((T)TType1);
+				GroundTemple.setShopOrTemple((T)TType1);
 				this.entities[x][y] = GroundTemple;
 			}else if(code == 67){
 				Ground GroundTemple = new Ground(code,x,y,size);
-				GroundTemple.SetShopOrTemple((T)TType2);
+				GroundTemple.setShopOrTemple((T)TType2);
 				this.entities[x][y] = GroundTemple;
 			}
 			//equipment
@@ -221,9 +221,9 @@ public class Level {
 		temp.append("l " + this.floor +" (" + "\n" );
 		for (int i = 0; i < 12; i++) {
 			for (int c = 0; c < 12; c++) {
-				int code = this.entities[i][c].GetCode();
+				int code = this.entities[i][c].getCode();
 				if(code < 10) temp.append(" 0" + code);
-				else temp.append(" " + this.entities[i][c].GetCode());
+				else temp.append(" " + this.entities[i][c].getCode());
 			}
 			temp.append("\n");
 		}

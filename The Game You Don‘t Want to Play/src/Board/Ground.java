@@ -190,7 +190,7 @@ public class Ground<T> extends Entity{
 		 else if(super.Code == 77) this.t = (T) new Wing(super.PosX,super.PosY,1);
 		 else if(super.Code == 78) this.t = (T) new Wing(super.PosX,super.PosY,2);
 
-		  else if(super.Code >= 90 && super.Code <=99) this.t = (T) new Monster(super.Code);
+		 else if(super.Code >= 90 && super.Code <=99) this.t = (T) new Monster(super.Code);
 		 
 //		 else if(super.Code == 91) this.t = (T) new Monster(1);
 //		 else if(super.Code == 92) this.t = (T) new Monster(2); 

@@ -115,6 +115,12 @@ public class Player{
 		inventory.add(item);
 	}
 
+	/**
+	 * player tries to attack monster and monster attack back, the damage is equal to current damage - other's defence.
+	 * when either of them reaches 0 health, the fight is over.
+	 * @param monster
+	 * @return
+	 */
 	public boolean attack(Monster monster) {
 		game.setAttacking(true);
 		int playerDamage = damage - monster.getDefence();
@@ -147,6 +153,13 @@ public class Player{
 		return false;
 	}
 
+	/**
+	 * player tries to equip an equipment on ground, and if player currently have one on him,
+	 * the one will be taken off and put on ground instead
+	 * @param item
+	 * @return
+	 * 			the equipment being take off, null if doesn't have one
+	 */
 	public WearableItem equip(WearableItem item) {
 		WearableItem old = null;		//the equipment that is going to be taken off
 		if(item instanceof Armor) {
@@ -339,7 +352,8 @@ public class Player{
 
 	/**
 	 * if there is an item that can be picked up in the new position, pick it up,
-	 * if there is a stair, teleport player to corresponding level
+	 * if there is a stair, teleport player to corresponding level,
+	 * if there is a monster, player tries to attack it
 	 * @param board
 	 * @throws InvalidMove
 	 */

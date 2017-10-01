@@ -78,6 +78,11 @@ public class Game extends Observable{
 
 	}
 
+	/**
+	 * player moves one grid to the given direction, can only move on ground.
+	 * @param direction
+	 * @throws InvalidMove
+	 */
 	public void move(String direction) throws InvalidMove {
 		//facing direction is changed even if player didn't actually move 
 		player.setFacingDirection(direction);

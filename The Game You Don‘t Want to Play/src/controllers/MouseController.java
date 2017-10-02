@@ -10,6 +10,7 @@ import java.util.Stack;
 
 import gui.BagPanel;
 import gui.CharacterPanel;
+import gui.DialogPanel;
 import gui.View;
 import item.BloodVial;
 import item.ConsumableItem;
@@ -29,13 +30,14 @@ public class MouseController implements MouseMotionListener, MouseListener {
 	private View view;
 	private Item[][] bag = new Item[4][3];
 	private int sizeRectangle = 60;
-	private int width = 45, length = 50;
+	private int width = 45, length = 60;
 	private int gapWidth = 10;
 	private int initialX = 25;
 	private int initialY = 60;
-	private int bagRow = 0, bagCol = 0, charaCol = 0;
+	private int bagRow = 0, bagCol = 0, itemCol = 0;
 	private Rectangle[][] bagRectangle = new Rectangle[4][3];
-	private Rectangle[] charactRectangle = new Rectangle[3];
+
+	private Rectangle[] shopRectangle = new Rectangle[3];
 	private Stack<ConsumableItem> inventory = new Stack<>();
 
 	public void setInventory(Stack<ConsumableItem> temp) {
@@ -72,12 +74,7 @@ public class MouseController implements MouseMotionListener, MouseListener {
 			}
 		}
 		for (int col = 0; col < 3; col++) {
-			if (col < 2) {
-				charactRectangle[col] = new Rectangle(40, 50 + (length + 10) * col, width, length);
-			} else {
-				charactRectangle[col] = new Rectangle(40, 50 + (length + 10) * col + 10, width, length);
-			}
-
+				shopRectangle[col] = new Rectangle(20+(length+20)*col, 430,length,length);
 		}
 
 	}
@@ -114,16 +111,17 @@ public class MouseController implements MouseMotionListener, MouseListener {
 					}
 				}
 			}
-		} else {
-			for (int col = 0; col < 3; col++) {
-				if (charactRectangle[col].contains(x, y)) {
-					charaCol = col;
-					return true;
-				}
-
-			}
-
 		}
+		 else {
+			 for (int col = 0; col < 3; col++) {
+				 if (shopRectangle[col].contains(x, y)) {
+				 itemCol = col;
+				 return true;
+				 }
+			
+			 }
+		
+		 }
 		return false;
 	}
 
@@ -138,59 +136,76 @@ public class MouseController implements MouseMotionListener, MouseListener {
 		}
 		return inventory.get(index);
 	}
+
 	public boolean findItemInBag(int index) {
-		if (index < view.getBagPanel().getItemInBag().length  && index >= 0) {
+		if (index < view.getBagPanel().getItemInBag().length && index >= 0) {
 			return true;
 		}
 		return false;
 	}
-	
-	
+
 	@Override
 	public void mousePressed(MouseEvent e) {
 		System.out.printf("X:%dY:%d\n", e.getX(), e.getY());
-		if(!view.getGameStop()) {
-			useConsumableItem(e);
+		if (!view.getGameStop()) {
+			if (e.getSource() instanceof BagPanel) {
+				useConsumableItem(e);
+			} else if (e.getSource() instanceof DialogPanel) {
+//				System.out.println("its dialog panel");
+				buyItem(e);
+			}
+
 		}
 	}
-	
+
+	public void buyItem(MouseEvent e) {
+		if (checkClickOn(e.getX(), e.getY(), false)) {
+			System.out.println("rol: " + (itemCol + 1));
+			String[] shopItem= new String[3];
+			Object[] itemShop=view.getDialogPanel().getItemsInOrder();
+			for(int i=0;i<itemShop.length;i++) {
+				shopItem[i]=itemShop[i].toString();
+			}
+			System.out.println("shop item name: "+shopItem[itemCol]);
+			if(Integer.parseInt(shopItem[itemCol])>=30 &&Integer.parseInt(shopItem[itemCol])<35) {
+//				view.getGame()
+				//buy key and pay the money. should check the money first
+			}
+		} else {
+			System.out.println("have not clicked ");
+		}
+	}
+
 	public void useConsumableItem(MouseEvent e) {
-		if (e.getSource() instanceof BagPanel) {
 
-			if (checkClickOn(e.getX(), e.getY(), true)) {
-				int index = rowColCovertIndex(bagRow + 1, bagCol + 1);
-				if(!findItemInBag(index)) {return;}
-				String itemName =view.getBagPanel().getItemInBag()[index];
-				System.out.println("item name: "+itemName);
-				if(itemName.equals("40")||itemName.equals("41")||itemName.equals("48")) {
-					try {
-						if(itemName.equals("40")) {
-							view.getGame().tryRestoreHealth("big");
-						}else if(itemName.equals("41")){
-							view.getGame().tryRestoreHealth("small");
-						}else {
-							view.getGame().tryUseFateCoin();
-						}
-						
-					} catch (InvalidMove e1) {
-						e1.printStackTrace();
+		if (checkClickOn(e.getX(), e.getY(), true)) {
+			int index = rowColCovertIndex(bagRow + 1, bagCol + 1);
+			if (!findItemInBag(index)) {
+				return;
+			}
+			String itemName = view.getBagPanel().getItemInBag()[index];
+//			System.out.println("item name: " + itemName);
+			if (itemName.equals("40") || itemName.equals("41") || itemName.equals("48")) {
+				try {
+					if (itemName.equals("40")) {
+						view.getGame().tryRestoreHealth("big");
+					} else if (itemName.equals("41")) {
+						view.getGame().tryRestoreHealth("small");
+					} else {
+						view.getGame().tryUseFateCoin();
 					}
+
+				} catch (InvalidMove e1) {
+					e1.printStackTrace();
 				}
-				
-
-			} else {
-				System.out.println("have not clicked ");
 			}
-		} else if (e.getSource() instanceof CharacterPanel) {
 
-			if (checkClickOn(e.getX(), e.getY(), false)) {
-				System.out.println("rol: " + (charaCol + 1));
-			} else {
-				System.out.println("have not clicked ");
-			}
+		} else {
+			System.out.println("have not clicked ");
 		}
+
 	}
-	
+
 	public Stack<ConsumableItem> getInventory() {
 		return inventory;
 	}

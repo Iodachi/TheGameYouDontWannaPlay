@@ -162,17 +162,21 @@ public class Player{
 		if(item instanceof Armor) {
 			if(armor != null) old = armor;
 			armor = (Armor)item;
-			item.putOn(this);
+			System.out.println("armor :" + armor.getDefence());
 		}else if(item instanceof Weapon) {
 			if(weapon != null) old = weapon;
 			weapon = (Weapon)item;
-			item.putOn(this);
+			System.out.println("weapon :" + weapon.getAttack());
 		}else if(item instanceof Wing) {
 			if(wing != null) old = wing;
 			wing = (Wing)item;
-			item.putOn(this);
+			System.out.println("wing :" + wing.getIncreasedDamage());
+			System.out.println("wing :" + wing.getIncreasedDefense());
 		}
+		
 		if(old != null)	old.takeOff(this);
+		item.putOn(this);
+		
 		
 		return old;
 	}

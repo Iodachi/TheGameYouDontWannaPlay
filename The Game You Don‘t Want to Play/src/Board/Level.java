@@ -232,5 +232,10 @@ public class Level {
 		return temp.toString();
 	}
 
+	public Shop getshop() {
+		// TODO Auto-generated method stub
+		return this.SType;
+	}
+
 
 }

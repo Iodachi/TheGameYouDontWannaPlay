@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 
 public enum ImgResources {
 	//
-	
+	fightingBackGroud("fighting.png"),
 	equipmentBackGroud("equipmentPanel.png"),
 	characterBackGroud("characterPanel.png"),
 	dialogBackGroud("dialogPanel.png"),

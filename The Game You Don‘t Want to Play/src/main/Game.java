@@ -201,4 +201,9 @@ public class Game extends Observable{
 		
 		return isInShop;
 	}
+
+	public boolean isAttacking() {
+		// TODO Auto-generated method stub
+		return this.attacking;
+	}
 }

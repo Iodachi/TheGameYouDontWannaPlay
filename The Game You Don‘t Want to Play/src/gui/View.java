@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.util.Observable;
 import java.util.Observer;
@@ -24,6 +25,7 @@ import Board.*;
 import character.Player;
 import controllers.*;
 import main.Game;
+import resources.ImgResources;
 import resources.PlayerResources;
 import resources.SoundResources;
 
@@ -44,8 +46,8 @@ public class View extends JComponent implements Observer {
 	private int ac = 0;
 
 	private BagPanel bagPanel;
-	private JPanel characterPanel;
-	private JPanel dialogPanel;
+	private CharacterPanel characterPanel;
+	private DialogPanel dialogPanel;
 
 	private JButton Save;
 	private JButton Load;
@@ -122,6 +124,9 @@ public class View extends JComponent implements Observer {
 		}, 0, 500);
 
 	}
+	/**
+	 * added all the buttons for this View panel
+	 */
 
 	private void addButton() {
 		Save = new JButton("Save");
@@ -178,6 +183,11 @@ public class View extends JComponent implements Observer {
 		this.add(Music);
 		this.add(Quit);
 	}
+	/**
+	 * When user purses ESC button, the game will stop
+	 * set the button to Visible
+	 * and will repaint the current Frame
+	 */
 
 	public void gameStop() {
 
@@ -211,13 +221,47 @@ public class View extends JComponent implements Observer {
 		drawMap(game.getBoard(), g);
 		drawPlayer(game.getPlayer(), g);
 
-		if (gameStop) {
+		if (gameStop) { // if the game is stop paint out the stop frame
 			Graphics2D _g = (Graphics2D) g.create();
 			_g.setComposite(AlphaComposite.SrcOver.derive(0.8f));
 
 			_g.setColor(Color.darkGray.darker());
 			_g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		}
+		
+		if(game.isAttacking()){
+			drawAttacking(g);
+		}
+	}
+	
+	/**
+	 * to show the attacking panel when player fighting with monsters 
+	 * it shows the 
+	 * @param g
+	 */
+	private void drawAttacking(Graphics g) {
+		
+		int x = TILESIZE*3;
+		int y = TILESIZE*4;
+		
+		Image img = ImgResources.fightingBackGroud.img;
+		g.drawImage(img, x, y, x+TILESIZE*6, y+TILESIZE*4, 0, 0,img.getWidth(null), img.getHeight(null), null);
+		ImageIcon icon = PlayerResources.Down.image;
+		
+		x+=TILESIZE;
+		y+=TILESIZE*0.6;
+		icon.paintIcon(null, g, x, y);
+		y+=TILESIZE;
+		g.drawString("HP: ", x, y);
+		g.drawString("Attack: ", x, y+30);
+		g.drawString("Deffence: ", x, y+60);
+		
+		//icon.paintIcon(null, g, x, y);
+		x+=TILESIZE*2.5;
+		g.drawString("HP: ", x, y);
+		g.drawString("Attack: ", x, y+30);
+		g.drawString("Deffence: ", x, y+60);
+		
 	}
 
 	/**
@@ -304,6 +348,7 @@ public class View extends JComponent implements Observer {
 			break;
 		}
 	}
+	//==========getters==========
 
 	public BagPanel getBagPanel() {
 		return bagPanel;
@@ -313,7 +358,7 @@ public class View extends JComponent implements Observer {
 		return characterPanel;
 	}
 
-	public JPanel getDialogPanel() {
+	public DialogPanel getDialogPanel() {
 		return dialogPanel;
 	}
 

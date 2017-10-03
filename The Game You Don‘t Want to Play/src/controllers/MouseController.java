@@ -178,7 +178,10 @@ public class MouseController implements MouseMotionListener, MouseListener {
 					buyList.add(item);		 
 			}
 			if(itemCol>=0 && itemCol<itemShop.length) {
+				
+				System.out.println("item name: "+buyList.get(itemCol).toString());
 				shop.buyItem(buyList.get(itemCol), view.getGame().getPlayer());
+				view.getGame().changeView();
 			}
 			
 		} else {

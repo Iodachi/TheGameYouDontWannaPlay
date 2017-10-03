@@ -50,7 +50,7 @@ public class Shop {
 	 */
 	public void buyItem(Item item, Player player) throws InvalidMove{
 		int price = items.get(item);
-
+		System.out.println("price: "+price);
 		if(player.getGold() >= price) {
 			//player buys the item, deduct money and equip/add item to inventory.
 			player.setGold(player.getGold() - price);

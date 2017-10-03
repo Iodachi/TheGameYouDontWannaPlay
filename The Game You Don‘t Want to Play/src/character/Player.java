@@ -24,7 +24,7 @@ public class Player{
 	//the current position of player on board
 	private int xPos, yPos;
 	private int health, damage, defence;
-	private int gold;
+	private int gold=0;
 	private int speed = 1;
 	private String facingDirection;
 	private boolean isDead;
@@ -135,18 +135,20 @@ public class Player{
 			if(monster.getHealth() <= 0) {
 				game.setAttacking(false);
 				monster.defeated(this);
+				System.out.printf("Gold: %d\n",this.getGold());
 				return true;
 			}
 			
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			//game.changeView();
+//			try {
+//				Thread.sleep(100);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+			game.changeView();
 		}
 		
 		game.setAttacking(false);
+		
 		return false;
 	}
 

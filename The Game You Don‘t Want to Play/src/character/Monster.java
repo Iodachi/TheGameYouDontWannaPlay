@@ -20,11 +20,13 @@ public class Monster {
 		this.damage= (int) (11*(level)*factor);
 		this.defence =(int) (3*(level)*factor);
 		//generates a random number of coins drop when monster is defeated
-		this.drop = (int)Math.random()*10*(level);
+		this.drop = (int) (Math.random()*10*(level+1));
+		System.out.printf("MonsterDrop: %d\n",drop);
 	}
 
 	public void defeated(Player player) {
 		isDefeated = true;
+		System.out.printf("drop: %d\n",drop);
 		player.setGold(player.getGold() + drop);
 	}
 	//==================================== get method ========================================================

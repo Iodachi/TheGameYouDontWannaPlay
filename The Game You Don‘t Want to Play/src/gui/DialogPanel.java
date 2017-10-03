@@ -32,6 +32,7 @@ public class DialogPanel extends JPanel implements Observer {
 	private static final int TILESIZE = 64;
 	
 	private Map<Item, Integer> items;
+	private String str = "";
 	private Game game;
 	private Object[] it;
 
@@ -48,11 +49,14 @@ public class DialogPanel extends JPanel implements Observer {
 	public void paint(Graphics g) {
 		Image img = ImgResources.dialogBackGroud.img;
 		drawBackGround(img,g);
-		String str = "get XXX string";
-		drawString(str,g);
+		
 		drawIcon(g);
-		if(game.getInShop())
+		if(game.getInShop()) {
 		drawitem(g);
+		}else {
+			str = "hahahahah";
+		}
+		drawString(str,g);
 	}
 
 	private void drawitem(Graphics g) {
@@ -160,6 +164,10 @@ public class DialogPanel extends JPanel implements Observer {
 	
 	public Map<Item, Integer> getItemsInShop(){
 		return this.items;
+	}
+	
+	public void setString(String str) {
+		this.str=str;
 	}
 	
 	

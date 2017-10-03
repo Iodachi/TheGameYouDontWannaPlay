@@ -154,19 +154,15 @@ public class MouseController implements MouseMotionListener, MouseListener {
 			if (e.getSource() instanceof BagPanel) {
 				useConsumableItem(e);
 			} else if (e.getSource() instanceof DialogPanel) {
-//				System.out.println("its dialog panel");
-				try {
 					buyItem(e);
-				} catch (InvalidMove e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+			
+				
 			}
 
 		}
 	}
 
-	public void buyItem(MouseEvent e) throws InvalidMove {
+	public void buyItem(MouseEvent e) {
 		
 		if (checkClickOn(e.getX(), e.getY(), false)) {
 			Object[] itemShop=view.getDialogPanel().getItemsInOrder();
@@ -180,7 +176,10 @@ public class MouseController implements MouseMotionListener, MouseListener {
 			if(itemCol>=0 && itemCol<itemShop.length) {
 				
 				System.out.println("item name: "+buyList.get(itemCol).toString());
-				shop.buyItem(buyList.get(itemCol), view.getGame().getPlayer());
+				try {
+					shop.buyItem(buyList.get(itemCol), view.getGame().getPlayer());
+				} catch (InvalidMove e1) {
+				}
 				view.getGame().changeView();
 			}
 			

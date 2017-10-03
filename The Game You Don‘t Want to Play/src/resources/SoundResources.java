@@ -10,7 +10,9 @@ public enum SoundResources {
 	//
 	Break("break.wav"),
 	Meun("meunBGM.wav"),
-	Fight("fightBGM.wav");
+	FightBGM("fightBGM.wav"),
+	Fight1("fight1.wav"),
+	Fight2("fight2.wav");
 
 	public final AudioClip sound;
 

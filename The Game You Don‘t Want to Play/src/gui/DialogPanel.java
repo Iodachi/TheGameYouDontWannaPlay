@@ -67,6 +67,7 @@ public class DialogPanel extends JPanel implements Observer {
 		_g.setColor(Color.WHITE);
 		
 		this.items = game.getBoard().getCurrentLevel().getshop().showShop();
+		if(items==null) return;
 		this.it = items.keySet().toArray();
 		
 		for(int i = 0; i<4; i++) {

@@ -23,7 +23,7 @@ public class KeyController implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode()==27) {
 			this.view.gameStop();
-		}else if(e.getKeyCode()!=27&&!view.getGameStop()) {
+		}else if(e.getKeyCode()!=27&&!view.getGameStop()&&view.getGame().getPlayer().moveAble()) {
 			generalAction(e);
 		}
 	}

@@ -9,6 +9,8 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.TimerTask;
@@ -18,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
@@ -151,9 +154,9 @@ public class View extends JComponent implements Observer {
 		Music.addActionListener((e) -> {
 			MusicOn = !MusicOn;
 			if (MusicOn) {
-				SoundResources.Fight.sound.loop();
+				SoundResources.FightBGM.sound.loop();
 			} else {
-				SoundResources.Fight.sound.stop();
+				SoundResources.FightBGM.sound.stop();
 			}
 
 		});
@@ -197,6 +200,8 @@ public class View extends JComponent implements Observer {
 		Music.setVisible(gameStop);
 		Quit.setVisible(gameStop);
 		repaint();
+		
+		
 
 	}
 
@@ -221,16 +226,17 @@ public class View extends JComponent implements Observer {
 		drawMap(game.getBoard(), g);
 		drawPlayer(game.getPlayer(), g);
 
+		
+		
+		if(game.isAttacking()){
+			drawAttacking(g);
+		}
 		if (gameStop) { // if the game is stop paint out the stop frame
 			Graphics2D _g = (Graphics2D) g.create();
 			_g.setComposite(AlphaComposite.SrcOver.derive(0.8f));
 
 			_g.setColor(Color.darkGray.darker());
 			_g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		}
-		
-		if(game.isAttacking()){
-			drawAttacking(g);
 		}
 	}
 	
@@ -246,21 +252,23 @@ public class View extends JComponent implements Observer {
 		
 		Image img = ImgResources.fightingBackGroud.img;
 		g.drawImage(img, x, y, x+TILESIZE*6, y+TILESIZE*4, 0, 0,img.getWidth(null), img.getHeight(null), null);
-		ImageIcon icon = PlayerResources.Down.image;
 		
 		x+=TILESIZE;
 		y+=TILESIZE*0.6;
+		ImageIcon icon = PlayerResources.Down.image;
 		icon.paintIcon(null, g, x, y);
-		y+=TILESIZE;
-		g.drawString("HP: ", x, y);
-		g.drawString("Attack: ", x, y+30);
-		g.drawString("Deffence: ", x, y+60);
 		
-		//icon.paintIcon(null, g, x, y);
-		x+=TILESIZE*2.5;
-		g.drawString("HP: ", x, y);
-		g.drawString("Attack: ", x, y+30);
-		g.drawString("Deffence: ", x, y+60);
+		g.drawString("HP: "+game.getPlayer().getHealth(), x, y+64);
+		g.drawString("Attack: "+game.getPlayer().getDamage(), x, y+94);
+		g.drawString("Deffence: "+game.getPlayer().getDefence(), x, y+124);
+		
+		x+=TILESIZE*3;
+		String path = "/Entities/" + game.getPlayer().getVSmonster().getName() + ".png";
+		icon = new ImageIcon(View.class.getResource(path));
+		icon.paintIcon(null, g, x, y);
+		g.drawString("HP: "+game.getPlayer().getVSmonster().getHealth(), x, y+64);
+		g.drawString("Attack: "+game.getPlayer().getVSmonster().getDamage(), x, y+94);
+		g.drawString("Deffence: "+game.getPlayer().getVSmonster().getDefence(), x, y+124);
 		
 	}
 

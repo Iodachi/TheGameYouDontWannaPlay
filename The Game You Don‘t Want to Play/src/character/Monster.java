@@ -21,12 +21,11 @@ public class Monster {
 		this.defence =(int) (3*(level)*factor);
 		//generates a random number of coins drop when monster is defeated
 		this.drop = (int) (Math.random()*10*(level+1));
-		System.out.printf("MonsterDrop: %d\n",drop);
+		
 	}
 
 	public void defeated(Player player) {
 		isDefeated = true;
-		System.out.printf("drop: %d\n",drop);
 		player.setGold(player.getGold() + drop);
 	}
 	//==================================== get method ========================================================
@@ -52,6 +51,10 @@ public class Monster {
 
 	public String toString() {
 		return String.valueOf(this.level);
+	}
+	
+	public String getName() {
+		return "9"+ String.valueOf(this.level);
 	}
 }
 

@@ -177,7 +177,7 @@ public class MouseController implements MouseMotionListener, MouseListener {
 					Item item = (Item) object;
 					buyList.add(item);		 
 			}
-			if(itemCol>=0 && itemCol<=itemShop.length) {
+			if(itemCol>=0 && itemCol<itemShop.length) {
 				shop.buyItem(buyList.get(itemCol), view.getGame().getPlayer());
 			}
 			
@@ -186,9 +186,6 @@ public class MouseController implements MouseMotionListener, MouseListener {
 		}
 	}
 	
-	public void buyKey() {
-		
-	}
 	
 	public void useConsumableItem(MouseEvent e) {
 

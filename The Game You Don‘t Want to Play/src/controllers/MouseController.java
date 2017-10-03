@@ -1,13 +1,16 @@
 package controllers;
 
+import java.awt.List;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.nio.channels.NonWritableChannelException;
+import java.util.ArrayList;
 import java.util.Stack;
 
+import character.Shop;
 import gui.BagPanel;
 import gui.CharacterPanel;
 import gui.DialogPanel;
@@ -152,30 +155,41 @@ public class MouseController implements MouseMotionListener, MouseListener {
 				useConsumableItem(e);
 			} else if (e.getSource() instanceof DialogPanel) {
 //				System.out.println("its dialog panel");
-				buyItem(e);
+				try {
+					buyItem(e);
+				} catch (InvalidMove e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 
 		}
 	}
 
-	public void buyItem(MouseEvent e) {
+	public void buyItem(MouseEvent e) throws InvalidMove {
+		
 		if (checkClickOn(e.getX(), e.getY(), false)) {
-			System.out.println("rol: " + (itemCol + 1));
-			String[] shopItem= new String[3];
 			Object[] itemShop=view.getDialogPanel().getItemsInOrder();
-			for(int i=0;i<itemShop.length;i++) {
-				shopItem[i]=itemShop[i].toString();
+			ArrayList<Item> buyList = new ArrayList<Item>();
+			Shop shop = view.getGame().getBoard().getCurrentLevel().getshop();
+			
+			for(Object object:itemShop) {
+					Item item = (Item) object;
+					buyList.add(item);		 
 			}
-			System.out.println("shop item name: "+shopItem[itemCol]);
-			if(Integer.parseInt(shopItem[itemCol])>=30 &&Integer.parseInt(shopItem[itemCol])<35) {
-//				view.getGame()
-				//buy key and pay the money. should check the money first
+			if(itemCol>=0 && itemCol<=itemShop.length) {
+				shop.buyItem(buyList.get(itemCol), view.getGame().getPlayer());
 			}
+			
 		} else {
 			System.out.println("have not clicked ");
 		}
 	}
-
+	
+	public void buyKey() {
+		
+	}
+	
 	public void useConsumableItem(MouseEvent e) {
 
 		if (checkClickOn(e.getX(), e.getY(), true)) {

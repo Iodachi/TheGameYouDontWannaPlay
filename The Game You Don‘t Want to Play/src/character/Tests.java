@@ -6,14 +6,22 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import item.Armor;
 import item.BloodVial;
 import item.Bomb;
+import item.Key;
+import item.Weapon;
+import item.Wing;
 import main.InvalidMove;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Tests {
 	private Player player;
 	private Bomb bomb = new Bomb();
+	private Key key = new Key("yellow");
+	private Armor armor = new Armor(1);
+	private Weapon weapon = new Weapon(1);
+	private Wing wing = new Wing(1);
 	private BloodVial health = new BloodVial("small");
 	
 	@Test
@@ -51,5 +59,76 @@ public class Tests {
 		int amount = health.getAmount();
 		player.useHealthPotion("small");
 		assertEquals(healthBefore + amount, player.getHealth());
+	}
+	
+	@Test
+	public void test04_playerUseBomb() {
+		player = new Player();
+		try {
+			player.addItem(bomb);
+			player.useBomb();
+			assertFalse(player.getInventory().contains(bomb));
+			//ok
+		} catch (InvalidMove e) {
+			fail("fail to use bomb");
+		}
+	}
+	
+	@Test
+	public void test05_playerUseKey() {
+		player = new Player();
+		try {
+			player.addItem(key);
+			player.useKey("yellow");
+			assertFalse(player.getInventory().contains(key));
+			//ok
+		} catch (InvalidMove e) {
+			fail("fail to use key");
+		}
+	}
+	
+	@Test
+	public void test06_playerUseKeyColorNotMatch() {
+		player = new Player();
+		try {
+			player.addItem(key);
+			player.useKey("cyan");
+			fail("Should not be able to use key");
+		} catch (InvalidMove e) {
+			//ok
+		}
+	}
+	
+	@Test
+	public void test07_playerEquipArmor() {
+		player = new Player();
+		int prevDefence = player.getDefence();
+		int boostDefence = armor.getDefence();
+		player.equip(armor);
+		assertEquals(player.getDefence(), prevDefence + boostDefence);
+		assertTrue(player.getCurrentArmor() == armor);
+	}
+	
+	@Test
+	public void test08_playerEquipWeapon() {
+		player = new Player();
+		int prevDamage = player.getDamage();
+		int boostDamage = weapon.getAttack();
+		player.equip(weapon);
+		assertEquals(player.getDamage(), prevDamage + boostDamage);
+		assertTrue(player.getCurrentWeapon() == weapon);
+	}
+	
+	@Test
+	public void test09_playerEquipWing() {
+		player = new Player();
+		int prevDamage = player.getDamage();
+		int prevDefence = player.getDefence();
+		int boostDamage = wing.getIncreasedDamage();
+		int boostDefence = wing.getIncreasedDefense();
+		player.equip(wing);
+		assertEquals(player.getDamage(), prevDamage + boostDamage);
+		assertEquals(player.getDefence(), prevDefence + boostDefence);
+		assertTrue(player.getCurrentWing() == wing);
 	}
 }

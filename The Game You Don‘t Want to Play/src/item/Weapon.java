@@ -33,6 +33,11 @@ public class Weapon extends WearableItem {
 		this.level = level;
 		setAttribute(level);
 	}
+	
+	public Weapon(int level) {
+		this.level = level;
+		setAttribute(level);
+	}
 
 	/**
 	 * level could be 0,1,2 when level is 0, the name and defence keep as default

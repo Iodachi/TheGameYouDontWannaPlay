@@ -35,6 +35,11 @@ public class Armor extends WearableItem {
 		this.level = level;
 		setAttribute(level);
 	}
+	
+	public Armor(int level) {
+		this.level = level;
+		setAttribute(level);
+	}
 
 	/**
 	 * According to the level of armor, set up the armor code name and defence

@@ -1,14 +1,11 @@
 package character;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Scanner;
 import java.util.Stack;
 import java.util.TimerTask;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
 
 import Board.*;
 import item.*;

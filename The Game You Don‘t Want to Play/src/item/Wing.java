@@ -33,6 +33,11 @@ public class Wing extends WearableItem {
 		this.level = level;
 		setAttribute(level);
 	}
+	
+	public Wing(int level) {
+		this.level = level;
+		setAttribute(level);
+	}
 
 	/**
 	 * This method is used to put on the wing, then player's attributes would be

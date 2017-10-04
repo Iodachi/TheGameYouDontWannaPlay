@@ -26,7 +26,6 @@ public class ExternalTest {
 		assertEquals((int) (100 * factor), monster.getHealth());
 		assertEquals((int) (3 * factor), monster.getDefence());
 	}
-
 	@Test
 	public void testDefeated() {
 		Player player = new Player();
@@ -44,7 +43,7 @@ public class ExternalTest {
 		int initialSize = player.getInventory().size();
 		player.useFateCoin();
 		assertEquals(initialSize - 1, player.getInventory().size());
-		assertEquals(false, initialHealth != player.getHealth());
+		assertEquals(true, initialHealth != player.getHealth());
 
 	}
 
@@ -55,26 +54,30 @@ public class ExternalTest {
 		int initialHealth = player.getHealth();
 		int initialSize = player.getInventory().size();
 		player.useFateCoin();
-		assertEquals(initialSize, player.getInventory().size());
+		assertEquals(initialSize-1, player.getInventory().size());
 		assertEquals(true, initialHealth != player.getHealth());
 	}
 
 	@Test
-	public void testMove() throws InvalidMove {
+	public void testMove() {
 		Game game = new Game();
 		Player player = game.getPlayer();
 		int initialX = player.getXPos();
-		player.move("right");
-		assertEquals(initialX + 1, player.getXPos());
-		player.move("left");
-		player.move("left");
-		assertEquals(initialX - 1, player.getXPos());
-		int initialY = player.getYPos();
-		player.move("up");
-		assertEquals(initialY - 1, player.getYPos());
-		player.move("down");
-		player.move("down");
-		assertEquals(initialY + 1, player.getYPos());
+		
+		try {
+			player.move("right");
+			assertEquals(initialX + 1, player.getXPos());
+			player.move("left");
+			player.move("left");
+			assertEquals(initialX - 1, player.getXPos());
+			int initialY = player.getYPos();
+			player.move("up");
+			assertEquals(initialY, player.getYPos());
+		} catch (InvalidMove e) {
+			
+		}
+		
+	
 	}
 	@Test
 	public void testBuyItem() throws InvalidMove {
@@ -82,12 +85,34 @@ public class ExternalTest {
 		player.setGold(10000);
 		Shop shop = new Shop();
 		Set<Item> items = shop.getItems().keySet();
+		Item tempitem = null;
 		for(Item item:items) {
-			shop.buyItem(item, player);
+			tempitem=item;
 		}
-		assertEquals(0, items.size());
+		shop.buyItem(tempitem, player);
+		assertEquals(2, items.size());
 		assertEquals(false, player.getGold()==10000);
 	
 	}
+	@Test
+	public void testInvalidBuyItem() {
+		Player player=new Player();
+		player.setGold(0);
+		Shop shop = new Shop();
+		Set<Item> items = shop.getItems().keySet();
+		for(Item item:items) {
+			try {
+				shop.buyItem(item, player);
+			} catch (InvalidMove e) {
+				
+			}
+		}
+		assertEquals(3, items.size());
+		assertEquals(true, player.getGold()==0);
+	
+	}
+	
+	
+	
 	
 }

@@ -13,7 +13,6 @@ import item.*;
  *
  */
 public class Level {
-	// private List<Entity> entities = new ArrayList<Entity>();
 	public static final int BOARDSIZE = 12;
 	private Entity entities[][];
 	private int floor;
@@ -96,6 +95,7 @@ public class Level {
 	 * @return
 	 */
 	public Entity[][] getEntities() {return entities;}
+	public Shop getshop() {return this.SType;}
 
 	//============================================= initialize =======================================================
 	/**
@@ -197,10 +197,7 @@ public class Level {
 		return temp.toString();
 	}
 
-	public Shop getshop() {
-		// TODO Auto-generated method stub
-		return this.SType;
-	}
+
 
 
 }

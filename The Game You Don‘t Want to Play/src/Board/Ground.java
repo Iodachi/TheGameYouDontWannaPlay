@@ -1,6 +1,7 @@
 package Board;
 
 import character.*;
+import commonPackage.usefor.test.*;
 import item.*;
 
 /**
@@ -60,7 +61,7 @@ public class Ground<T> extends Entity{
 	 * @param i
 	 * @return
 	 */
-	public boolean setItem(Item i){
+	public boolean setItem(MockWearableItem i){
 		if(i != null){
 			super.Code = Integer.valueOf(i.getName());
 			System.out.println(super.Code);
@@ -85,7 +86,7 @@ public class Ground<T> extends Entity{
 	 * @return
 	 */
 	public boolean closeShop(){
-		if(this.t != null && this.t instanceof Shop) return SetContainNothing();
+		if(this.t != null && this.t instanceof MockShop) return SetContainNothing();
 
 		return false;
 	}
@@ -95,7 +96,7 @@ public class Ground<T> extends Entity{
 	 * @return
 	 */
 	public boolean closeTemple(){
-		if(this.t != null && this.t instanceof Temple) return SetContainNothing();
+		if(this.t != null && this.t instanceof MockTemple) return SetContainNothing();
 
 		return false;
 	}
@@ -176,7 +177,7 @@ public class Ground<T> extends Entity{
 		 else if(super.Code == 41) this.t = (T) new BloodVial(super.PosX,super.PosY,"small");
 		 else if(super.Code == 43) this.t = (T) new Bomb(super.PosX,super.PosY);
 		 else if(super.Code == 48) this.t = (T) new FateCoin(super.PosX,super.PosY);
-		 else if(super.Code == 60) this.t = (T) new Shop();
+		 //else if(super.Code == 60) this.t = (T) new Shop();
 		 else if(super.Code>=70&&super.Code<=72) this.t = (T) new Armor(super.PosX,super.PosY,super.Code-70);
 		 else if(super.Code>=73&&super.Code<=75) this.t = (T) new Weapon(super.PosX,super.PosY,super.Code-73);
 		 else if(super.Code>=76&&super.Code<=78) this.t = (T) new Wing(super.PosX,super.PosY,super.Code-76);
@@ -199,41 +200,6 @@ public class Ground<T> extends Entity{
 
 
 	 //================================= Test ============================================================
-	 /**
-	  * 00 - nothing                     - GG  
-	  * 01 - lava                        - GL 
-	  * 02 - contain player              - GP 
-	  * 03 - contain wise man type0      - W0
-	  * 04 - contain wise man type1      - W1
-	  * 05 - contain wise man type2      - W2
-	  * 20 - GoldDoor - Gold key  - 30   - GK
-	  * 21 - CyanDoor - Cyan key  - 31   - CK
-	  * 22 - Bornze D - Bronze K  - 32   - BK
-	  * 23 - Purplye  - Purplye   - 33   - PK
-	  * 24 - Silver D - Sliver K  - 34   - SK
-	  * 40 - Big BloodVial               - BB
-	  * 41 - Small BloodVial             - SB
-	  * 43 - Bomb                        - BM
 
-	  * 42 - 0-Armor                     - A0	 
-	  * 25 - 1-Armor                     - A1
-	  * 26 - 2-Armor                     - A2
-
-	  * 44 - 0-Weapon                    - P0
-	  * 35 - 1-Weapon                    - P1
-	  * 36 - 2-Weapon                    - P2
-
-	  * 45 - 0-wing                      - Y0
-	  * 46 - 1-Wing                      - Y1
-	  * 47 - 2-Wing                      - Y2
-
-	  * 60 - Shop Type 0
-	  * 65 - Temple Type 0               - T0
-	  * 66 - Temple Type 1               - T1
-	  * 67 - Temple Type 2               - T2
-	  * 91 - M1  92 - M2 93 - M3 94 - M4 95 - M5 96 - M6 97 - M7 98 - M8
-	  */
-
-	
 
 }

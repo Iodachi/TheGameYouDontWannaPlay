@@ -11,12 +11,12 @@ public class Door extends Entity {
 
 	public Door(int code, int x, int y, int size) {
 		super(code, x, y, size);
-		setColor(code);
+		setColor();
 	}
 
 
-	public void setColor(int code) {
-		switch (code) {
+	public void setColor() {
+		switch (super.Code) {
 		case 20:
 			color = "gold";
 			break;
@@ -32,12 +32,9 @@ public class Door extends Entity {
 		case 24:
 			color = "silver";
 			break;
-
-
 		}
 	}
-	// ================================= Return
-	// =========================================================
+	// ================================= Return =========================================================
 
 	public String getColor() {
 		return this.color;

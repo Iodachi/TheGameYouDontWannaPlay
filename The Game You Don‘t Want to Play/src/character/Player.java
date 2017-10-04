@@ -430,6 +430,8 @@ public class Player {
 				} else if (g.getWhatContain() instanceof Shop) {
 					System.out.println("shop encountered");
 					game.setInShop(true);
+				} else if(g.getWhatContain() instanceof Temple) {
+					game.setInTemple(true);
 				}
 			} else if (e instanceof Stairs) {
 				if (((Stairs) e).upOrDownStair())

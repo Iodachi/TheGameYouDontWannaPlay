@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
@@ -32,7 +34,9 @@ public class DialogPanel extends JPanel implements Observer {
 	private static final int TILESIZE = 64;
 	
 	private Map<Item, Integer> items;
-	private String str = "";
+	private boolean bookUse=false;
+	private HashMap<String, List<Integer>> manual = new HashMap<>();
+	private String str;
 	private Game game;
 	private Object[] it;
 
@@ -56,7 +60,31 @@ public class DialogPanel extends JPanel implements Observer {
 		}else {
 			str = "hahahahah";
 		}
-		drawString(str,g);
+		
+		if(bookUse) {
+		drawBook(g);
+		}
+	}
+
+	private void drawBook(Graphics g) {
+		int x= 30;
+		int y =30;
+		
+		ImageIcon icon = new ImageIcon(View.class.getResource("/Entities/49.png"));
+		icon.paintIcon(null, g, x, y);
+		
+		y = 100;
+		g.setColor(Color.WHITE);
+		for(String key :manual.keySet()) {
+		List<Integer> attribute = manual.get(key);
+		icon = new ImageIcon(View.class.getResource("/Entities/9"+key+".png"));
+		icon.paintIcon(null, g, x, y);
+		g.drawString("Heath: "+attribute.get(0), x+50, y);
+		g.drawString("Damage: "+attribute.get(1), x+50, y+=20);
+		g.drawString("Deference: "+attribute.get(2), x+50, y+=20);
+		y+=30;
+		
+		}
 	}
 
 	private void drawitem(Graphics g) {
@@ -166,8 +194,10 @@ public class DialogPanel extends JPanel implements Observer {
 		return this.items;
 	}
 	
-	public void setString(String str) {
-		this.str=str;
+	public void setBook(HashMap<String, List<Integer>> map) {
+		this.manual = map;
+		bookUse=!bookUse;
+		repaint();
 	}
 	
 	

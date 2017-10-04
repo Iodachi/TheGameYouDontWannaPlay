@@ -18,6 +18,7 @@ import gui.View;
 import item.BloodVial;
 import item.ConsumableItem;
 import item.Item;
+import item.MonsterManual;
 import main.Game;
 import main.InvalidMove;
 
@@ -206,8 +207,9 @@ public class MouseController implements MouseMotionListener, MouseListener {
 					} else if(itemName.equals("48")){
 						view.getGame().tryUseFateCoin();
 					}else {
-						//TODO use 
-						System.out.println("open book");
+						MonsterManual mm=new MonsterManual();
+						
+						view.getDialogPanel().setBook(mm.getManual());
 					}
 
 				} catch (InvalidMove e1) {

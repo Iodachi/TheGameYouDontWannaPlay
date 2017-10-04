@@ -15,8 +15,7 @@ public class Temple {
 	//the temple can only be used once and after that it will no longer be active
 	private boolean isActive;
 
-	public Temple(Map<String, Integer> type0) {
-		this.boosts=type0;
+	public Temple() {
 		initialize();
 	}
 

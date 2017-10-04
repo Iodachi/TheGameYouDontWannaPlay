@@ -4,6 +4,9 @@ import java.util.Scanner;
 import java.util.Stack;
 import java.util.TimerTask;
 
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import Board.*;
 import commonPackage.usefor.test.RealPlayer;
 import item.*;
@@ -20,13 +23,12 @@ import resources.SoundResources;
  * @author stella
  *
  */
-public class Player implements RealPlayer {
+public class Player implements RealPlayer{
 	// the maximum amount of items can be stored in the inventory
 	public static final int INVENTORY_CAPACITY = 30;
 	private Game game;
 	private Monster VSMonster;
-	private boolean moveAble = true;
-
+	private boolean moveAble=true;
 	// a stack of items that player collected and can be used later.
 	private Stack<ConsumableItem> inventory;
 	// the current position of player on board
@@ -148,14 +150,13 @@ public class Player implements RealPlayer {
 	 */
 	public boolean attack(Monster monster, Player player) {
 		game.setAttacking(true);
-		moveAble = false;
+		moveAble=false;
 		VSMonster = monster;
 		java.util.Timer timer = new java.util.Timer();
 		timer.schedule(new TimerTask() {
-
 			@Override
 			public void run() {
-
+				
 				int playerDamage = damage - monster.getDefence();
 				if (playerDamage < 0)
 					playerDamage = 0;
@@ -172,17 +173,18 @@ public class Player implements RealPlayer {
 					this.cancel();
 					game.setAttacking(false);
 					monster.defeated(player);
-					moveAble = true;
-					System.out.printf("Gold: %d\n", player.getGold());
-				} else if (health <= 0) {
+					moveAble=true;
+					System.out.printf("Gold: %d\n", player.getGold());					
+				}else if(health<0) {
 					this.cancel();
 					game.setAttacking(false);
-					player.isDead = true;
+					moveAble=true;
 				}
 				game.changeView();
 			}
-		}, 0, 50);
+		}, 0, 500);
 
+		//game.setAttacking(false);
 		return true;
 	}
 
@@ -289,7 +291,7 @@ public class Player implements RealPlayer {
 			inventory.remove(b);
 		}
 	}
-
+	
 	/**
 	 * click on the fate coin to use, player will randomly gain or lose health.
 	 * 
@@ -303,7 +305,6 @@ public class Player implements RealPlayer {
 				break;
 			}
 		}
-
 		if (c == null) {
 			throw new InvalidMove("No fate coin to use.");
 		} else {
@@ -311,7 +312,7 @@ public class Player implements RealPlayer {
 			inventory.remove(c);
 		}
 	}
-
+	
 	// ================ movement methods =====================
 	public void move(String direction) throws InvalidMove {
 		game.setInShop(false);
@@ -322,14 +323,17 @@ public class Player implements RealPlayer {
 
 		if (direction.equals("right")) {
 			moveRight(board, boardSize);
+			System.out.println("player x: "+getXPos()+"  y:"+getYPos() );
 		} else if (direction.equals("left")) {
 			moveLeft(board, boardSize);
+			System.out.println("player x: "+getXPos()+"  y:"+getYPos() );
 		} else if (direction.equals("up")) {
 			moveUp(board, boardSize);
+			System.out.println("player x: "+getXPos()+"  y:"+getYPos() );
 		} else if (direction.equals("down")) {
 			moveDown(board, boardSize);
+			System.out.println("player x: "+getXPos()+"  y:"+getYPos() );
 		}
-
 		game.changeView();
 		newGridInteraction(board);
 	}
@@ -387,7 +391,6 @@ public class Player implements RealPlayer {
 	public void moveDown(Entity[][] board, int boardSize) throws InvalidMove {
 		if (yPos + 1 > boardSize - 1)
 			throw new InvalidMove("Cannot move out of board");
-
 		Entity e = board[yPos + 1][xPos];
 		if (e != null) {
 			if (e instanceof Wall)
@@ -420,9 +423,11 @@ public class Player implements RealPlayer {
 					}
 				} else if (g.getWhatContain() instanceof Monster) {
 					System.out.println("monster encountered");
-					if (attack((Monster) g.getWhatContain(), this)) {
+					if (attack((Monster) g.getWhatContain(),this)) {
 						g.cleanBattleground();
 						System.out.println("win");
+					} else {
+						JOptionPane.showConfirmDialog(new JLabel("defeat!"), "Again?");
 					}
 				} else if (g.getWhatContain() instanceof Shop) {
 					System.out.println("shop encountered");
@@ -433,7 +438,6 @@ public class Player implements RealPlayer {
 					((WiseMan)g.getWhatContain()).give(this);
 					game.setToEmpty(e);
 				}
-
 			} else if (e instanceof Stairs) {
 				if (((Stairs) e).upOrDownStair())
 					game.getBoard().setCurrentLevel(game.getBoard().getCurrentLevelNumber() + 1);
@@ -452,7 +456,6 @@ public class Player implements RealPlayer {
 	 * @return
 	 */
 	public Entity findFacingEntity(Entity[][] currentBoard) {
-		// TODO: test me!
 		Entity e = null;
 		int boardSize = Level.BOARDSIZE;
 		if (facingDirection.equals("right")) {
@@ -608,11 +611,11 @@ public class Player implements RealPlayer {
 		this.yPos = y;
 		return this;
 	}
-
+	
 	public boolean moveAble() {
 		return moveAble;
 	}
-
+	
 	public Monster getVSmonster() {
 		return this.VSMonster;
 	}

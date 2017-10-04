@@ -16,6 +16,9 @@ public class Armor extends WearableItem {
 	private int x, y;
 	private boolean isOn = false; // the flag is used to indicate if player has wear the Armor
 	private String name = "70";
+	public static final int defence4 = 8,defence7=14;
+	
+			
 	private int level = 0;
 	private int cost = 800;
 
@@ -49,11 +52,12 @@ public class Armor extends WearableItem {
 	public void setAttribute(int level) {
 		switch (level) {
 		case 1:
-			defence = (int)(new Monster(4).getDefence()*factor);
+			defence = (int)(defence4*factor);
+			
 			name = "71";
 			break;
 		case 2:
-			defence = (int)(new Monster(7).getDefence()*factor);
+			defence = (int)(defence7*factor);
 			name = "72";
 			break;
 		}

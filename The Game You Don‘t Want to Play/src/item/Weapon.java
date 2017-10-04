@@ -17,6 +17,8 @@ public class Weapon extends WearableItem {
 	private double factor = 0.66;
 	private boolean isOn = false;
 	private String name = "73";
+	public static final int attack4= 30,attack7=53;
+	
 	private int cost = 600;
 	private int level = 0;
 
@@ -47,11 +49,11 @@ public class Weapon extends WearableItem {
 	public void setAttribute(int level) {
 		switch (level) {
 		case 1:
-			attack = (int) (new Monster(4).getDamage() * factor);
+			attack = (int) ( attack4* factor);
 			name = "74";
 			break;
 		case 2:
-			attack = (int) (new Monster(7).getDamage() * factor);
+			attack = (int) (attack7* factor);
 			name = "75";
 			break;
 		}

@@ -4,8 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import character.Monster;
-import character.Player;
+
 import commonPackage.usefor.test.RealPlayer;
 
 /**
@@ -24,10 +23,10 @@ public class Tests {
 		assertEquals(armor.getDefence(), 10);
 		armor = new Armor(0, 0, 1);
 		assertEquals(armor.getName(), "71");
-		assertEquals(armor.getDefence(), (int) (new Monster(4).getDefence() * 2));
+		assertEquals(armor.getDefence(),Armor.defence4 * 2);
 		armor = new Armor(0, 0, 2);
 		assertEquals(armor.getName(), "72");
-		assertEquals(armor.getDefence(), (int) (new Monster(7).getDefence() * 2));
+		assertEquals(armor.getDefence(), Armor.defence7 * 2);
 	}
 
 	// This test case is used to check the method of setAttributes for Weapon class
@@ -38,10 +37,10 @@ public class Tests {
 		assertEquals(weapon.getAttack(), 12);
 		weapon = new Weapon(0, 0, 1);
 		assertEquals(weapon.getName(), "74");
-		assertEquals(weapon.getAttack(), (int) (new Monster(4).getDamage() * 0.66));
+		assertEquals(weapon.getAttack(),(int)( Weapon.attack4 * 0.66));
 		weapon = new Weapon(0, 0, 2);
 		assertEquals(weapon.getName(), "75");
-		assertEquals(weapon.getAttack(), (int) (new Monster(7).getDamage() * 0.66));
+		assertEquals(weapon.getAttack(), (int) (Weapon.attack7 * 0.66));
 	}
 
 	// This test case is used to check the method of setAttributes for Wing class

@@ -437,6 +437,7 @@ public class Player implements RealPlayer{
 					game.setInTemple(true);
 				} else if(g.getWhatContain() instanceof WiseMan) {
 					((WiseMan)g.getWhatContain()).give(this);
+					game.setToEmpty(e);
 				}
 			} else if (e instanceof Stairs) {
 				if (((Stairs) e).upOrDownStair())
@@ -456,7 +457,6 @@ public class Player implements RealPlayer{
 	 * @return
 	 */
 	public Entity findFacingEntity(Entity[][] currentBoard) {
-		// TODO: test me!
 		Entity e = null;
 		int boardSize = Level.BOARDSIZE;
 		if (facingDirection.equals("right")) {

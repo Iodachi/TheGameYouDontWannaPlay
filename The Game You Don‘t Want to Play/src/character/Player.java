@@ -4,9 +4,6 @@ import java.util.Scanner;
 import java.util.Stack;
 import java.util.TimerTask;
 
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import Board.*;
 import commonPackage.usefor.test.RealPlayer;
 import item.*;
@@ -23,12 +20,13 @@ import resources.SoundResources;
  * @author stella
  *
  */
-public class Player implements RealPlayer{
+public class Player implements RealPlayer {
 	// the maximum amount of items can be stored in the inventory
 	public static final int INVENTORY_CAPACITY = 30;
 	private Game game;
 	private Monster VSMonster;
-	private boolean moveAble=true;
+	private boolean moveAble = true;
+
 	// a stack of items that player collected and can be used later.
 	private Stack<ConsumableItem> inventory;
 	// the current position of player on board
@@ -150,14 +148,14 @@ public class Player implements RealPlayer{
 	 */
 	public boolean attack(Monster monster, Player player) {
 		game.setAttacking(true);
-		moveAble=false;
+		moveAble = false;
 		VSMonster = monster;
 		java.util.Timer timer = new java.util.Timer();
 		timer.schedule(new TimerTask() {
 
 			@Override
 			public void run() {
-				
+
 				int playerDamage = damage - monster.getDefence();
 				if (playerDamage < 0)
 					playerDamage = 0;
@@ -174,18 +172,17 @@ public class Player implements RealPlayer{
 					this.cancel();
 					game.setAttacking(false);
 					monster.defeated(player);
-					moveAble=true;
-					System.out.printf("Gold: %d\n", player.getGold());					
-				}else if(health<0) {
+					moveAble = true;
+					System.out.printf("Gold: %d\n", player.getGold());
+				} else if (health <= 0) {
 					this.cancel();
 					game.setAttacking(false);
-					moveAble=true;
+					player.isDead = true;
 				}
 				game.changeView();
 			}
-		}, 0, 500);
+		}, 0, 50);
 
-		//game.setAttacking(false);
 		return true;
 	}
 
@@ -318,8 +315,6 @@ public class Player implements RealPlayer{
 	// ================ movement methods =====================
 	public void move(String direction) throws InvalidMove {
 		game.setInShop(false);
-		game.setInTemple(false);
-		
 		int boardSize = Level.BOARDSIZE;
 		Entity[][] board = game.getBoard().getCurrentLevel().getEntities();
 
@@ -423,21 +418,13 @@ public class Player implements RealPlayer{
 					}
 				} else if (g.getWhatContain() instanceof Monster) {
 					System.out.println("monster encountered");
-					if (attack((Monster) g.getWhatContain(),this)) {
+					if (attack((Monster) g.getWhatContain(), this)) {
 						g.cleanBattleground();
 						System.out.println("win");
-					} else {
-						JOptionPane.showConfirmDialog(new JLabel("defeat!"), "Again?");
 					}
-
 				} else if (g.getWhatContain() instanceof Shop) {
 					System.out.println("shop encountered");
 					game.setInShop(true);
-				} else if(g.getWhatContain() instanceof Temple) {
-					game.setInTemple(true);
-				} else if(g.getWhatContain() instanceof WiseMan) {
-					((WiseMan)g.getWhatContain()).give(this);
-					game.setToEmpty(e);
 				}
 			} else if (e instanceof Stairs) {
 				if (((Stairs) e).upOrDownStair())
@@ -457,6 +444,7 @@ public class Player implements RealPlayer{
 	 * @return
 	 */
 	public Entity findFacingEntity(Entity[][] currentBoard) {
+		// TODO: test me!
 		Entity e = null;
 		int boardSize = Level.BOARDSIZE;
 		if (facingDirection.equals("right")) {
@@ -612,11 +600,11 @@ public class Player implements RealPlayer{
 		this.yPos = y;
 		return this;
 	}
-	
+
 	public boolean moveAble() {
 		return moveAble;
 	}
-	
+
 	public Monster getVSmonster() {
 		return this.VSMonster;
 	}

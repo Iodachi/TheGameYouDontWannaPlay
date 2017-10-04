@@ -25,24 +25,19 @@ public class Shop {
 	public void initialize() {
 		items = new HashMap<>();
 		for(int i = 0; i < 3;i++){
-			int item = (int) (Math.random()*9);
-			int price = (int) (Math.random()*60) + 10;
+			int item = (int) (Math.random()*5);
 			if(item == 0) {
-				items.put(new Key("gold"), (int) (price*1.5));
+				items.put(new Key("gold"), (int) (Math.random()*20 + 30));
 			}else if(item == 1) {
-				items.put(new Key("silver"), (int) (price*1.2));
+				items.put(new Key("silver"), (int) (Math.random()*20 + 30));
 			}else if(item == 2) {
-				items.put(new Key("purple"), (int) (price*2));
+				items.put(new Key("purple"), (int) (Math.random()*20 + 30));
 			}else if(item == 3) {
-				items.put(new Key("cyan"), (int) (price*1.8));
+				items.put(new Key("cyan"), (int) (Math.random()*20 + 30));
 			}else if(item == 4) {
-				items.put(new Key("bronze"), price);
+				items.put(new Key("bronze"), (int) (Math.random()*20 + 30));
 			}else if(item == 5) {
-				items.put(new BloodVial("small"), (int) (price*1.2));
-			}else if(item == 6){
-				items.put(new BloodVial("big"), (int) (price*1.5));
-			}else {
-				items.put(new Bomb(), (int) (price*1.5));
+				items.put(new Bomb(), (int) (Math.random()*20 + 30));
 			}
 		}
 	}
@@ -74,4 +69,5 @@ public class Shop {
 
 	//================================================= get method ================================================================
 	public Map<Item, Integer> showShop(){return this.items;}
+
 }

@@ -23,7 +23,6 @@ public class Tests {
 	private Weapon weapon = new Weapon(1);
 	private Wing wing = new Wing(1);
 	private BloodVial health = new BloodVial("small");
-	private Monster monster = new Monster(1);
 	
 	@Test
 	public void test01_playerPicksConsumables() {
@@ -63,18 +62,7 @@ public class Tests {
 	}
 	
 	@Test
-	public void test04_playerUseHealthPotionNotHave() {
-		player = new Player();
-		try {
-			player.useHealthPotion("small");
-			fail("Should not be able to use health potion.");
-		} catch (InvalidMove e) {
-			//ok
-		}
-	}
-	
-	@Test
-	public void test05_playerUseBomb() {
+	public void test04_playerUseBomb() {
 		player = new Player();
 		try {
 			player.addItem(bomb);
@@ -87,18 +75,7 @@ public class Tests {
 	}
 	
 	@Test
-	public void test06_playerUseBombNotHave() {
-		player = new Player();
-		try {
-			player.useBomb();
-			fail("Should not be able to use bomb.");
-		} catch (InvalidMove e) {
-			//ok
-		}
-	}
-	
-	@Test
-	public void test07_playerUseKey() {
+	public void test05_playerUseKey() {
 		player = new Player();
 		try {
 			player.addItem(key);
@@ -111,7 +88,7 @@ public class Tests {
 	}
 	
 	@Test
-	public void test08_playerUseKeyColorNotMatch() {
+	public void test06_playerUseKeyColorNotMatch() {
 		player = new Player();
 		try {
 			player.addItem(key);
@@ -123,7 +100,7 @@ public class Tests {
 	}
 	
 	@Test
-	public void test09_playerEquipArmor() {
+	public void test07_playerEquipArmor() {
 		player = new Player();
 		int prevDefence = player.getDefence();
 		int boostDefence = armor.getDefence();
@@ -133,21 +110,7 @@ public class Tests {
 	}
 	
 	@Test
-	public void test10_playerChangeArmor() {
-		player = new Player();
-		player.equip(armor);
-		int prevDefence = player.getDefence();
-		int boostDefence = armor.getDefence();
-		int basicDefence = prevDefence - boostDefence;
-		Armor newArmor = new Armor(2);
-		int newBoostDefence = newArmor.getDefence();
-		player.equip(newArmor);
-		assertEquals(player.getDefence(), basicDefence + newBoostDefence);
-		assertTrue(player.getCurrentArmor() == newArmor);
-	}
-	
-	@Test
-	public void test11_playerEquipWeapon() {
+	public void test08_playerEquipWeapon() {
 		player = new Player();
 		int prevDamage = player.getDamage();
 		int boostDamage = weapon.getAttack();
@@ -157,21 +120,7 @@ public class Tests {
 	}
 	
 	@Test
-	public void test12_playerChangeWeapon() {
-		player = new Player();
-		player.equip(weapon);
-		int prevDamage = player.getDamage();
-		int boostDamage = weapon.getAttack();
-		int basicDamage = prevDamage - boostDamage;
-		Weapon newWeapon = new Weapon(2);
-		int newBoostDamage = newWeapon.getAttack();
-		player.equip(newWeapon);
-		assertEquals(player.getDamage(), basicDamage + newBoostDamage);
-		assertTrue(player.getCurrentWeapon() == newWeapon);
-	}
-	
-	@Test
-	public void test13_playerEquipWing() {
+	public void test09_playerEquipWing() {
 		player = new Player();
 		int prevDamage = player.getDamage();
 		int prevDefence = player.getDefence();
@@ -181,41 +130,5 @@ public class Tests {
 		assertEquals(player.getDamage(), prevDamage + boostDamage);
 		assertEquals(player.getDefence(), prevDefence + boostDefence);
 		assertTrue(player.getCurrentWing() == wing);
-	}
-	
-	@Test
-	public void test14_playerChangeWing() {
-		player = new Player();
-		player.equip(wing);
-		int prevDamage = player.getDamage();
-		int boostDamage = wing.getIncreasedDamage();
-		int basicDamage = prevDamage - boostDamage;
-		
-		int prevDefence = player.getDefence();
-		int boostDefence = wing.getIncreasedDefense();
-		int basicDefence = prevDefence - boostDefence;
-		
-		Wing newWing = new Wing(2);
-		int newBoostDamage = newWing.getIncreasedDamage();
-		int newBoostDefence = newWing.getIncreasedDefense();
-		player.equip(newWing);
-		assertEquals(player.getDamage(), basicDamage + newBoostDamage);
-		assertEquals(player.getDefence(), basicDefence + newBoostDefence);
-		assertTrue(player.getCurrentWing() == newWing);
-	}
-	
-	@Test
-	public void test15_playerAttackMonster() {
-		
-	}
-	
-	@Test
-	public void test16_playerBuyItem() {
-		
-	}
-	
-	@Test
-	public void test17_playerUseTemple() {
-		
 	}
 }

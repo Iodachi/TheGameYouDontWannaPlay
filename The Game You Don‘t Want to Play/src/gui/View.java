@@ -9,18 +9,17 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.TimerTask;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
@@ -28,6 +27,7 @@ import Board.*;
 import character.Player;
 import controllers.*;
 import main.Game;
+import resources.IconResources;
 import resources.ImgResources;
 import resources.PlayerResources;
 import resources.SoundResources;
@@ -61,6 +61,7 @@ public class View extends JComponent implements Observer {
 	private boolean MusicOn = false;
 
 	private Game game;
+	private JFrame f;
 
 	/**
 	 * The Constructor of this view class to lay out the game frame add bag Panel
@@ -99,7 +100,7 @@ public class View extends JComponent implements Observer {
 		fl.setVisible(true);
 
 		// add to the frame
-		JFrame f = new JFrame("The Game You Don't Want to Play");
+		f = new JFrame("The Game You Don't Want to Play");
 		f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		f.setLayout(new BorderLayout());
 		f.add(fl, BorderLayout.WEST);
@@ -121,7 +122,7 @@ public class View extends JComponent implements Observer {
 				} else {
 					ac = 200;
 				}
-				repaint();
+				if(!game.getPlayer().checkDead())repaint();
 			}
 
 		}, 0, 500);
@@ -238,6 +239,25 @@ public class View extends JComponent implements Observer {
 			_g.setColor(Color.darkGray.darker());
 			_g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		}
+		//System.out.println(game.getPlayer().isDeath());
+		if(game.getPlayer().checkDead()) {
+			Icon icon = IconResources.Info.icon;
+			Object[] options = {"FHB","Restart","Quit"};
+			int response=JOptionPane.showOptionDialog(this, "Do you want to restart your game?", "You Die",JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
+			if(response==0)
+			{
+			}
+			else if(response==1)
+			{ 	new Menu();
+				f.setVisible(false);
+			}
+			else if(response==2)
+			{ 
+				System.exit(0);
+				
+			}
+			
+		}
 	}
 	
 	/**
@@ -293,7 +313,7 @@ public class View extends JComponent implements Observer {
 				try {
 					if (board.getCurrentLevel().getEntityAt(x, y) != null) {
 						code = board.getCurrentLevel().getEntityAt(x, y).getCode();
-						if (code >= 90 && code < 100) {// set the monster image in the middle
+						if (code >= 90 && code < 98) {// set the monster image in the middle
 							code+=ac;
 							py += 16;
 							px += 16;

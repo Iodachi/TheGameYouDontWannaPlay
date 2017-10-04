@@ -27,7 +27,7 @@ public class Game extends Observable{
 	//if player is attacking monster, he should not be able to do other things until either of them is dead.
 	private boolean attacking = false;
 	private boolean isInShop = false;
-	private boolean isInTemple = false;
+	private boolean gameOver = false;
 
 	public Game() {
 		//	SoundResources.Fight.sound.loop();
@@ -177,8 +177,8 @@ public class Game extends Observable{
 		isInShop = inShop;
 	}
 	
-	public void setInTemple(boolean inTemple) {
-		isInTemple = inTemple;
+	public void gameOver() {
+		gameOver = true;
 	}
 
 
@@ -202,15 +202,13 @@ public class Game extends Observable{
 		this.notifyObservers();
 	}
 
-	public boolean isInShop() {
+	public boolean getInShop() {
+		
 		return isInShop;
-	}
-	
-	public boolean isInTemple() {
-		return isInTemple;
 	}
 
 	public boolean isAttacking() {
-		return attacking;
+		// TODO Auto-generated method stub
+		return this.attacking;
 	}
 }

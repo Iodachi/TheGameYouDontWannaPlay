@@ -51,7 +51,7 @@ public class DialogPanel extends JPanel implements Observer {
 		drawBackGround(img,g);
 		
 		drawIcon(g);
-		if(game.getInShop()) {
+		if(game.isInShop()) {
 		drawitem(g);
 		}else {
 			str = "hahahahah";
@@ -128,7 +128,7 @@ public class DialogPanel extends JPanel implements Observer {
 		}
 		String name = code + i + "";
 		ImageIcon img = null;
-		if(game.getInShop()) {
+		if(game.isInShop()) {
 			img = new ImageIcon(View.class.getResource("/Entities/60.png"));
 		}else {
 			img = new ImageIcon(View.class.getResource("/Player/Player_" + name + ".png"));

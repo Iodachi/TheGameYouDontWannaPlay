@@ -315,6 +315,8 @@ public class Player implements RealPlayer {
 	// ================ movement methods =====================
 	public void move(String direction) throws InvalidMove {
 		game.setInShop(false);
+		game.setInTemple(false);
+		
 		int boardSize = Level.BOARDSIZE;
 		Entity[][] board = game.getBoard().getCurrentLevel().getEntities();
 
@@ -425,7 +427,13 @@ public class Player implements RealPlayer {
 				} else if (g.getWhatContain() instanceof Shop) {
 					System.out.println("shop encountered");
 					game.setInShop(true);
+				} else if(g.getWhatContain() instanceof Temple) {
+					game.setInTemple(true);
+				} else if(g.getWhatContain() instanceof WiseMan) {
+					((WiseMan)g.getWhatContain()).give(this);
+					game.setToEmpty(e);
 				}
+
 			} else if (e instanceof Stairs) {
 				if (((Stairs) e).upOrDownStair())
 					game.getBoard().setCurrentLevel(game.getBoard().getCurrentLevelNumber() + 1);

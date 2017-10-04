@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import character.Monster;
 import character.Player;
+import commonPackage.usefor.test.RealPlayer;
 
 /**
  * 
@@ -62,7 +63,8 @@ public class Tests {
 	@Test
 	public void testUse1() {
 		BloodVial bloodVial = new BloodVial(0, 0, "small");
-		Player player = new Player();
+		RealPlayer player = new MockPlayer();
+//		Player player = new Player();
 		int amount = bloodVial.getAmount();
 		int initialHealth = player.getHealth();
 		bloodVial.use(player);
@@ -73,7 +75,8 @@ public class Tests {
 	@Test
 	public void testUse2() {
 		BloodVial bloodVial = new BloodVial(0, 0, "big");
-		Player player = new Player();
+		RealPlayer player = new MockPlayer();
+//		Player player = new Player();
 		int amount = bloodVial.getAmount();
 		int initialHealth = player.getHealth();
 		bloodVial.use(player);
@@ -99,7 +102,7 @@ public class Tests {
 	// the player's attribute should be changed
 	@Test
 	public void testValidPutOn() {
-		Player player = new Player();
+		RealPlayer player = new MockPlayer();
 		int initalDamage = player.getDamage();
 		Weapon weapon = new Weapon(0, 0, 0);
 		weapon.putOn(player);
@@ -112,7 +115,7 @@ public class Tests {
 	// the player take off the weapon, the player' damages should also be decreased
 	@Test
 	public void testValidTakeOff() {
-		Player player = new Player();
+		RealPlayer player = new MockPlayer();
 		int initalDamage = player.getDamage();
 		Weapon weapon = new Weapon(0, 0, 0);
 		weapon.putOn(player);
@@ -127,7 +130,8 @@ public class Tests {
 	// the player can not take off the weapon
 	@Test
 	public void testInvalidTakeOff() {
-		Player player = new Player();
+		RealPlayer player = new MockPlayer();
+//		Player player = new Player();
 		int initalDamage = player.getDamage();
 		Weapon weapon = new Weapon(0, 0, 0);
 		weapon.takeOff(player);
@@ -139,7 +143,8 @@ public class Tests {
 	// cannot wear two weapons at same time
 	@Test
 	public void testInvalidPutOn() {
-		Player player = new Player();
+		RealPlayer player = new MockPlayer();
+//		Player player = new Player();
 		Weapon weapon = new Weapon(0, 0, 0);
 		weapon.putOn(player);
 		assertEquals(true, weapon.getIsoN());
@@ -152,7 +157,8 @@ public class Tests {
 	// this test case is used to test the "use" method for FateCoin class
 	@Test
 	public void testUse3() {
-		Player player = new Player();
+		RealPlayer player = new MockPlayer();
+//		Player player = new Player();
 		FateCoin fateCoin = new FateCoin(0, 0);
 		int initialHealth = player.getHealth();
 		fateCoin.use(player);
@@ -167,7 +173,8 @@ public class Tests {
 	// this test case is used to test if putOn method for Wing class
 	@Test
 	public void testValidPutOn2() {
-		Player player = new Player();
+		RealPlayer player = new MockPlayer();
+//		Player player = new Player();
 		int initalSpeed = player.getSpeed();
 		Wing wing = new Wing(0, 0, 0);
 		wing.putOn(player);
@@ -180,7 +187,8 @@ public class Tests {
 	// take off
 	@Test
 	public void testInValidTakeOff2() {
-		Player player = new Player();
+		RealPlayer player = new MockPlayer();
+//		Player player = new Player();
 		int initialSpeed = player.getSpeed();
 		Wing wing = new Wing(0, 0, 0);
 		wing.takeOff(player);
@@ -193,7 +201,8 @@ public class Tests {
 	// the player take off the wing, the player's speed should also be decreased
 	@Test
 	public void testValidTakeOff2() {
-		Player player = new Player();
+		RealPlayer player = new MockPlayer();
+//		Player player = new Player();
 		Wing wing = new Wing(0, 0, 0);
 		int initialSpeed = player.getSpeed();
 		wing.putOn(player);
@@ -206,7 +215,8 @@ public class Tests {
 	// speed can not increase anymore.
 	@Test
 	public void testInValidPutOn2() {
-		Player player = new Player();
+		RealPlayer player = new MockPlayer();
+//		Player player = new Player();
 		Wing wing = new Wing(0, 0, 0);
 		int initialSpeed = player.getSpeed();
 		wing.putOn(player);
@@ -218,7 +228,8 @@ public class Tests {
 	// this test case is used to test if putOn method for Armor class
 	@Test
 	public void testValidPutOn3() {
-		Player player = new Player();
+		RealPlayer player = new MockPlayer();
+//		Player player = new Player();
 		int initalDefence = player.getDefence();
 		Armor armor = new Armor(0, 0, 0);
 		armor.putOn(player);
@@ -232,7 +243,8 @@ public class Tests {
 	// take off
 	@Test
 	public void testInValidTakeOff3() {
-		Player player = new Player();
+		RealPlayer player = new MockPlayer();
+//		Player player = new Player();
 		int initialDefence = player.getDefence();
 		Armor armor = new Armor(0, 0, 0);
 		armor.takeOff(player);
@@ -245,7 +257,8 @@ public class Tests {
 	// the player take off the armor, the player's defense should also be decreased
 	@Test
 	public void testValidTakeOff3() {
-		Player player = new Player();
+		RealPlayer player = new MockPlayer();
+//		Player player = new Player();
 		Armor armor = new Armor(0, 0, 0);
 		int initialDefense = player.getDefence();
 		armor.putOn(player);
@@ -258,7 +271,8 @@ public class Tests {
 	// defense can not increase anymore.
 	@Test
 	public void testInValidPutOn3() {
-		Player player = new Player();
+		RealPlayer player = new MockPlayer();
+//		Player player = new Player();
 		Armor armor = new Armor(0, 0, 0);
 		int initialDefense = player.getDefence();
 		armor.putOn(player);

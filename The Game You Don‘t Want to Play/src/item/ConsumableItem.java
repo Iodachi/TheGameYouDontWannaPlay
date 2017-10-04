@@ -1,6 +1,7 @@
 package item;
 
 import character.Player;
+import commonPackage.usefor.test.RealPlayer;
 
 /**
  * This abstract class is used to represent a kind of items. If consumable item
@@ -9,6 +10,6 @@ import character.Player;
  */
 public abstract class ConsumableItem implements Item {
 
-	public abstract void use(Player player);
+	public abstract void use(RealPlayer player);
 
 }

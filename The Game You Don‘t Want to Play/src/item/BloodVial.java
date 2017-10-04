@@ -1,6 +1,7 @@
 package item;
 
 import character.Player;
+import commonPackage.usefor.test.RealPlayer;
 
 /**
  * This class is used to represent the boold vial. It will randomly appear in
@@ -41,7 +42,7 @@ public class BloodVial extends ConsumableItem {
 	 * @param player
 	 */
 	@Override
-	public void use(Player player) {
+	public void use(RealPlayer player) {
 		if (type == "big") {
 			player.setHealth(player.getHealth() + amount);
 		} else {

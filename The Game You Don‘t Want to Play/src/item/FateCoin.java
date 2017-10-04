@@ -1,6 +1,7 @@
 package item;
 
 import character.Player;
+import commonPackage.usefor.test.RealPlayer;
 
 /***
  * This class is used to represent the a lucky coin item when the fate coin is
@@ -24,7 +25,7 @@ public class FateCoin extends ConsumableItem {
 	 * This method is used to use the fate coin, once the player want to use
 	 **/
 	@Override
-	public void use(Player player) {
+	public void use(RealPlayer player) {
 		randomNumber = (int) (10 * Math.random());
 		if (randomNumber < 5) {
 			player.setHealth(player.getHealth() - amount);

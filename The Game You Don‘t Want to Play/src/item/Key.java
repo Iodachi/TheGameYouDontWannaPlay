@@ -1,6 +1,7 @@
 package item;
 
 import character.Player;
+import commonPackage.usefor.test.RealPlayer;
 
 /***
  * This class is used to present the key. The key has different type. The
@@ -50,7 +51,7 @@ public class Key extends ConsumableItem {
 	}
 
 	@Override
-	public void use(Player player) {
+	public void use(RealPlayer player) {
 	}
 
 	@Override

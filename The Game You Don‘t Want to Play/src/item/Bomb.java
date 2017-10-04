@@ -1,6 +1,7 @@
 package item;
 
 import character.Player;
+import commonPackage.usefor.test.RealPlayer;
 
 /**
  * This class is used to represent bomb. It is used to destroy the breakable
@@ -24,7 +25,7 @@ public class Bomb extends ConsumableItem {
 	}
 
 	@Override
-	public void use(Player player) {
+	public void use(RealPlayer player) {
 	}
 
 	/**

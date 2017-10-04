@@ -2,6 +2,7 @@ package item;
 
 import character.Monster;
 import character.Player;
+import commonPackage.usefor.test.RealPlayer;
 
 /**
  * This class is used to represent the armor equipment which the player can put
@@ -63,7 +64,7 @@ public class Armor extends WearableItem {
 	 * @param player
 	 * **/
 	@Override
-	public void putOn(Player player) {
+	public void putOn(RealPlayer player) {
 		if (!isOn) {
 			player.setDefence(player.getDefence() + defence);
 			isOn = true;
@@ -75,7 +76,7 @@ public class Armor extends WearableItem {
 	 * @param player
 	 * **/
 	@Override
-	public void takeOff(Player player) {
+	public void takeOff(RealPlayer player) {
 		if (isOn) {
 			player.setDefence(player.getDefence() - defence);
 			isOn = false;

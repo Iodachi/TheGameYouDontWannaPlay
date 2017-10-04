@@ -1,6 +1,7 @@
 package item;
 
 import character.Player;
+import commonPackage.usefor.test.RealPlayer;
 
 /***
  * This class is represent the wing. it will appear somewhere in the game map.
@@ -46,7 +47,7 @@ public class Wing extends WearableItem {
 	 * @param player
 	 **/
 	@Override
-	public void putOn(Player player) {
+	public void putOn(RealPlayer player) {
 		if (!isOn) {
 
 			player.setSpeed(player.getSpeed() + increaseSpeed);
@@ -64,7 +65,7 @@ public class Wing extends WearableItem {
 	 * @parmater player
 	 **/
 	@Override
-	public void takeOff(Player player) {
+	public void takeOff(RealPlayer player) {
 		if (isOn) {
 			player.setSpeed(player.getSpeed() - increaseSpeed);
 			player.setDamage(player.getDamage() - increasedDamage);

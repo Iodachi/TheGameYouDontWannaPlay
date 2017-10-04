@@ -7,6 +7,7 @@ import java.util.jar.Attributes.Name;
 
 import character.Monster;
 import character.Player;
+import commonPackage.usefor.test.RealPlayer;
 
 //This class is used to represent that monster manual
 public class MonsterManual extends ConsumableItem {
@@ -53,7 +54,7 @@ public class MonsterManual extends ConsumableItem {
 	}
 
 	@Override
-	public void use(Player player) {
+	public void use(RealPlayer player) {
 		// TODO Auto-generated method stub
 
 	}

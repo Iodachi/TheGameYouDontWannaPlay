@@ -46,7 +46,6 @@ public class MouseController implements MouseMotionListener, MouseListener {
 	public void setInventory(Stack<ConsumableItem> temp) {
 		inventory = temp;
 	}
-
 	/**
 	 * constructor
 	 * 
@@ -198,14 +197,17 @@ public class MouseController implements MouseMotionListener, MouseListener {
 			}
 			String itemName = view.getBagPanel().getItemInBag()[index];
 //			System.out.println("item name: " + itemName);
-			if (itemName.equals("40") || itemName.equals("41") || itemName.equals("48")) {
+			if (itemName.equals("49")||itemName.equals("40") || itemName.equals("41") || itemName.equals("48")) {
 				try {
 					if (itemName.equals("40")) {
 						view.getGame().tryRestoreHealth("big");
 					} else if (itemName.equals("41")) {
 						view.getGame().tryRestoreHealth("small");
-					} else {
+					} else if(itemName.equals("48")){
 						view.getGame().tryUseFateCoin();
+					}else {
+						//TODO use 
+						System.out.println("open book");
 					}
 
 				} catch (InvalidMove e1) {

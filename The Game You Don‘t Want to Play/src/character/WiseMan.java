@@ -18,7 +18,6 @@ public class WiseMan {
 	}
 	
 	public void give(Player player) throws InvalidMove {
-		//FIXME: player doesn't want this equipment?
 		if(item instanceof WearableItem) player.equip((WearableItem)item);
 		else if(item instanceof ConsumableItem) player.addItem((ConsumableItem)item);
 	}

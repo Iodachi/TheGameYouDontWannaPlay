@@ -23,6 +23,7 @@ public class Tests {
 	private Weapon weapon = new Weapon(1);
 	private Wing wing = new Wing(1);
 	private BloodVial health = new BloodVial("small");
+	private Monster monster = new Monster(1);
 	
 	@Test
 	public void test01_playerPicksConsumables() {
@@ -201,5 +202,20 @@ public class Tests {
 		assertEquals(player.getDamage(), basicDamage + newBoostDamage);
 		assertEquals(player.getDefence(), basicDefence + newBoostDefence);
 		assertTrue(player.getCurrentWing() == newWing);
+	}
+	
+	@Test
+	public void test15_playerAttackMonster() {
+		
+	}
+	
+	@Test
+	public void test16_playerBuyItem() {
+		
+	}
+	
+	@Test
+	public void test17_playerUseTemple() {
+		
 	}
 }

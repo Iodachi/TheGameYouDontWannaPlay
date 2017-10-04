@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import Board.*;
+import commonPackage.usefor.test.RealPlayer;
 import item.*;
 import main.Game;
 import main.InvalidMove;
@@ -22,7 +23,7 @@ import resources.SoundResources;
  * @author stella
  *
  */
-public class Player {
+public class Player implements RealPlayer{
 	// the maximum amount of items can be stored in the inventory
 	public static final int INVENTORY_CAPACITY = 30;
 	private Game game;
@@ -434,6 +435,8 @@ public class Player {
 					game.setInShop(true);
 				} else if(g.getWhatContain() instanceof Temple) {
 					game.setInTemple(true);
+				} else if(g.getWhatContain() instanceof WiseMan) {
+					((WiseMan)g.getWhatContain()).give(this);
 				}
 			} else if (e instanceof Stairs) {
 				if (((Stairs) e).upOrDownStair())

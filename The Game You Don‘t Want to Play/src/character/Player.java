@@ -317,6 +317,8 @@ public class Player {
 	// ================ movement methods =====================
 	public void move(String direction) throws InvalidMove {
 		game.setInShop(false);
+		game.setInTemple(false);
+		
 		int boardSize = Level.BOARDSIZE;
 		Entity[][] board = game.getBoard().getCurrentLevel().getEntities();
 

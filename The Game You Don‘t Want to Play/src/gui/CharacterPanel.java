@@ -51,7 +51,7 @@ public class CharacterPanel extends JPanel implements Observer {
 	 * 	To draw all the equipment on the player, shows on character Panel
 	 * @param g Graphics
 	 */
-
+ 
 	private void drawItem(Graphics g) {
 		if(game.getPlayer().getCurrentWeapon()!=null) {
 			String name = game.getPlayer().getCurrentWeapon().getName();

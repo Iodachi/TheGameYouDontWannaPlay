@@ -16,8 +16,8 @@ public enum ImgResources {
 	equipmentBackGroud("equipmentPanel.png"),
 	characterBackGroud("characterPanel.png"),
 	dialogBackGroud("dialogPanel.png"),
+	dialogBackGroud2("dialogPanel2.png"),
 	BackGround("background.jpg");
-	
 	public final Image img;
 
 	ImgResources(String resourceName) {

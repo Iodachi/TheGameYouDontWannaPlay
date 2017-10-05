@@ -9,7 +9,8 @@ import javax.swing.ImageIcon;
  */
 public enum IconResources {
 	
-		Info("Info.png");
+		Info("Info.png"),
+		Die("die.png");
 		
 		public final  ImageIcon icon;
 

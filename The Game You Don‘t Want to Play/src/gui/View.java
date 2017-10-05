@@ -59,6 +59,7 @@ public class View extends JComponent implements Observer {
 
 	private boolean gameStop = false;
 	private boolean MusicOn = false;
+	
 
 	private Game game;
 	private JFrame f;
@@ -181,7 +182,7 @@ public class View extends JComponent implements Observer {
 		Load.setVisible(gameStop);
 		Music.setVisible(gameStop);
 		Quit.setVisible(gameStop);
-
+ 
 		this.add(Save);
 		this.add(Load);
 		this.add(Music);
@@ -225,6 +226,7 @@ public class View extends JComponent implements Observer {
 
 		drawFloor(g);
 		drawMap(game.getBoard(), g);
+		//drawDecoration(g);
 		drawPlayer(game.getPlayer(), g);
 
 		
@@ -241,7 +243,7 @@ public class View extends JComponent implements Observer {
 		}
 		//System.out.println(game.getPlayer().isDeath());
 		if(game.getPlayer().checkDead()) {
-			Icon icon = IconResources.Info.icon;
+			Icon icon = IconResources.Die.icon;
 			Object[] options = {"FHB","Restart","Quit"};
 			int response=JOptionPane.showOptionDialog(this, "Do you want to restart your game?", "You Die",JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
 			if(response==0)
@@ -251,7 +253,7 @@ public class View extends JComponent implements Observer {
 			{ 	new Menu();
 				f.setVisible(false);
 			}
-			else if(response==2)
+			else if(response==2) 
 			{ 
 				System.exit(0);
 				
@@ -260,6 +262,16 @@ public class View extends JComponent implements Observer {
 		}
 	}
 	
+	private void drawDecoration(Graphics g) {
+		for (int x = 0; x < Level.BOARDSIZE*2; x++) {
+			for (int y = 0; y < Level.BOARDSIZE*2; y++) {
+				if((int)(Math.random()*5)==0) continue;
+				int num = (int)(Math.random()*40)+1;
+				ImageIcon img = new ImageIcon(View.class.getResource("/decoration/d"+num +".png"));
+				img.paintIcon(null, g, y * TILESIZE/2, x * TILESIZE/2);
+			}
+		}
+	}
 	/**
 	 * to show the attacking panel when player fighting with monsters 
 	 * it shows the 
@@ -317,6 +329,8 @@ public class View extends JComponent implements Observer {
 							code+=ac;
 							py += 16;
 							px += 16;
+						}else if (code == 98) {
+							code+=ac;
 						}
 						ImageIcon img = new ImageIcon(View.class.getResource("/Entities/" + code + ".png"));
 						img.paintIcon(null, g, py, px);

@@ -29,27 +29,28 @@ public class KeyController implements KeyListener {
 	}
 	
 	public void generalAction(KeyEvent e) {
+		System.out.println(e.getKeyCode());
 		try {
-			switch (e.getKeyChar()) {
-			case 'w':
+			switch (e.getKeyCode()) {
+			case 87:
 				view.getGame().move("up");
 				break;
-			case 'a':
+			case 65:
 				view.getGame().move("left");
 				break;
-			case 's':
+			case 83:
 				view.getGame().move("down");
 				break;
-			case 'd':
+			case 68:
 				view.getGame().move("right");
 				break;
-			case 'e':
+			case 69:
 				view.getGame().tryBomb();
 				break;
-			case 'q':
+			case 81:
 				view.getGame().tryPickEquipment();
 				break;
-			case 'k':
+			case 75:
 				view.getGame().save();
 			break;
 			

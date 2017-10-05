@@ -32,9 +32,9 @@ public class DialogPanel extends JPanel implements Observer {
 
 	private static final long serialVersionUID = 1L;
 	private static final int TILESIZE = 64;
-	
+
 	private Map<Item, Integer> items;
-	private boolean bookUse=false;
+	private boolean bookUse = false;
 	private HashMap<String, List<Integer>> manual = new HashMap<>();
 	private String str;
 	private Game game;
@@ -42,7 +42,7 @@ public class DialogPanel extends JPanel implements Observer {
 
 	private int code = 0;
 	private int i = 0;
-	
+
 	public DialogPanel(Game game) {
 		this.game = game;
 		game.addObserver(this);
@@ -51,39 +51,45 @@ public class DialogPanel extends JPanel implements Observer {
 
 	@Override
 	public void paint(Graphics g) {
+
+		if (bookUse) {
+			drawBook(g);
+			return;
+		}
+
 		Image img = ImgResources.dialogBackGroud.img;
-		drawBackGround(img,g);
-		
+		drawBackGround(img, g);
 		drawIcon(g);
-		if(game.isInShop()) {
-		drawitem(g);
-		}else {
-			str = "hahahahah";
-		}
 		
-		if(bookUse) {
-		drawBook(g);
+		if (game.isInShop()) {
+			drawitem(g);
 		}
+		String str = "Now is on floor: "+ game.getBoard().getCurrentLevelNumber();
+		g.setColor(Color.WHITE);
+		g.drawString(str, 80, 50);
+		//drawString(str,g);
 	}
 
 	private void drawBook(Graphics g) {
-		int x= 30;
-		int y =20;
+		int x = 30;
+		int y = 20;
 		
+		Image img = ImgResources.dialogBackGroud2.img;
+		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), 0, 0, img.getWidth(null), img.getHeight(null), null);
 		ImageIcon icon = new ImageIcon(View.class.getResource("/Entities/49.png"));
 		icon.paintIcon(null, g, x, y);
-		
+
 		y = 120;
 		g.setColor(Color.WHITE);
-		for(String key :manual.keySet()) {
-		List<Integer> attribute = manual.get(key);
-		icon = new ImageIcon(View.class.getResource("/Entities/9"+key+".png"));
-		icon.paintIcon(null, g, x, y);
-		g.drawString("Heath: "+attribute.get(0), x+50, y);
-		g.drawString("Damage: "+attribute.get(1), x+50, y+=20);
-		g.drawString("Deference: "+attribute.get(2), x+50, y+=20);
-		y+=30;
-		
+		for (String key : manual.keySet()) {
+			List<Integer> attribute = manual.get(key);
+			icon = new ImageIcon(View.class.getResource("/Entities/9" + key + ".png"));
+			icon.paintIcon(null, g, x, y);
+			g.drawString("Heath: " + attribute.get(0), x + 50, y);
+			g.drawString("Damage: " + attribute.get(1), x + 50, y += 20);
+			g.drawString("Deference: " + attribute.get(2), x + 50, y += 20);
+			y += 30;
+
 		}
 	}
 
@@ -93,49 +99,52 @@ public class DialogPanel extends JPanel implements Observer {
 		int w = 60;
 		int h = 60;
 		int gap = 20;
-		
+
 		Graphics2D _g = (Graphics2D) g.create();
 		_g.setComposite(AlphaComposite.SrcOver.derive(0.7f));
 		_g.setColor(Color.WHITE);
-		
+
 		this.items = game.getBoard().getCurrentLevel().getshop().showShop();
-		
+
 		this.it = items.keySet().toArray();
-		if(it.length==0) return;
-		for(int i = 0; i<4; i++) {
-			int j=0;
-			for(; j<3; j++) {
+		if (it.length == 0)
+			return;
+		for (int i = 0; i < 4; i++) {
+			int j = 0;
+			for (; j < 3; j++) {
 				_g.fillRect(x, y, w, h);
-				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/"+it[i*3+j].toString()+".png"));
-				img.paintIcon(null, g, x-2, y-2);
+				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/" + it[i * 3 + j].toString() + ".png"));
+				img.paintIcon(null, g, x - 2, y - 2);
 				g.setColor(Color.RED.darker());
-				//Font font = new Font();
-				//g.setFont(font);
-				g.drawString("$"+items.get(it[i*3+j])+"", x+35, y+55);
-				
-				if((i*3+j+1)==it.length) {break;}
-				x+=(w+gap);
+				// Font font = new Font();
+				// g.setFont(font);
+				g.drawString("$" + items.get(it[i * 3 + j]) + "", x + 35, y + 55);
+
+				if ((i * 3 + j + 1) == it.length) {
+					break;
+				}
+				x += (w + gap);
 			}
-			if((i*3+j+1)==it.length) {break;}
-			x=18;
-			y+=(gap+h);
+			if ((i * 3 + j + 1) == it.length) {
+				break;
+			}
+			x = 18;
+			y += (gap + h);
 		}
-		
+
 	}
 
-	private void drawString(String str,Graphics g) {
-	
+	private void drawString(String str, Graphics g) {
+
 		g.setColor(Color.WHITE);
 
 		int i = 0;
-		for (; i < str.length()/25; i++) {
-			g.drawString(str.substring(i*25,i*25+25), 30, 110+20*i);
+		for (; i < str.length() / 25; i++) {
+			g.drawString(str.substring(i * 25, i * 25 + 25), 30, 110 + 20 * i);
 		}
-			g.drawString(str.substring(i*25,str.length()), 30, 110+20*i);
+		g.drawString(str.substring(i * 25, str.length()), 30, 110 + 20 * i);
 
-		}
-		
-	
+	}
 
 	private void drawIcon(Graphics g) {
 		switch (game.getPlayer().getFacingDirection()) {
@@ -156,22 +165,22 @@ public class DialogPanel extends JPanel implements Observer {
 		}
 		String name = code + i + "";
 		ImageIcon img = null;
-		if(game.isInShop()) {
+		if (game.isInShop()) {
 			img = new ImageIcon(View.class.getResource("/Entities/60.png"));
-		}else {
+		} else {
 			img = new ImageIcon(View.class.getResource("/Player/Player_" + name + ".png"));
 
 		}
-			img.paintIcon(null, g, 30, 30);
-		
+		img.paintIcon(null, g, 30, 30);
+
 	}
 
-	private void drawBackGround(Image img,Graphics g) {
+	private void drawBackGround(Image img, Graphics g) {
 		// to load the dialog BackGroud image
 		// fill the BackGroud to appropriate size
 		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), 0, 0, img.getWidth(null), img.getHeight(null), null);
-		
-	}	
+
+	}
 
 	/**
 	 * set the size for character panel, on the basis of tile size
@@ -183,22 +192,21 @@ public class DialogPanel extends JPanel implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		repaint();
-		
+
 	}
-	
+
 	public Object[] getItemsInOrder() {
 		return this.it;
 	}
-	
-	public Map<Item, Integer> getItemsInShop(){
+
+	public Map<Item, Integer> getItemsInShop() {
 		return this.items;
 	}
-	
+
 	public void setBook(HashMap<String, List<Integer>> map) {
 		this.manual = map;
-		bookUse=!bookUse;
+		bookUse = !bookUse;
 		repaint();
 	}
-	
-	
+
 }

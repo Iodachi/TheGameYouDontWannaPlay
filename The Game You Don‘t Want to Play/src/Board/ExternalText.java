@@ -6,13 +6,10 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
-import commonPackage.usefor.test.MockWearableItem;
-import item.Key;
-
 public class ExternalText {
 
 	/**
-	 * to test can pick any items in any position of the board
+	 * to test enter the  temple and level the temple 
 	 */
 	@Test
 	public <T> void testCast01() {
@@ -29,6 +26,9 @@ public class ExternalText {
 		k1 = new Ground<Object>(67, 0, 0, 0);
 		assertTrue(!k1.closeTemple());
 	}
+	/**
+	 * to test enter the shop and level the shop
+	 */
 
 	@Test
 	public <T> void testCast03() {
@@ -41,6 +41,9 @@ public class ExternalText {
 		Ground<?> k1 = new Ground<Object>(60, 0, 0, 0);
 		assertTrue(k1.closeShop());
 	}
+	/**
+	 * to test can pick any items in any position of the board
+	 */
 
 	@Test
 	public <T> void testCast05() {
@@ -67,7 +70,7 @@ public class ExternalText {
 	}
 
 	/**
-	 * to test can pick any items in any position of the board
+	 * to test if there do not have items, it can not pick up in any position of the board
 	 */
 	@Test
 	public <T> void testCast06() {
@@ -92,6 +95,9 @@ public class ExternalText {
 			System.out.println(e);
 		}
 	}
+	/**
+	 * to test in all position of the board, the wall can be break 
+	 */
 
 	@Test
 	public <T> void testCast07() {
@@ -131,7 +137,10 @@ public class ExternalText {
 		Ground<?> k1 = new Ground<Object>(00, 0, 0, 0);
 		assertTrue(!k1.isLava());
 	}
-	
+	/**
+	 * to test in every position of the board the wall can not break because the wall are 
+	 * not breakable
+	 */
 
 	@Test
 	public <T> void testCast10() {
@@ -155,6 +164,9 @@ public class ExternalText {
 			System.out.println(e);
 		}
 	}
+	/**
+	 * to test in every position of the board the the door can not be open if there don't have any doors
+	 */
 
 	@Test
 	public <T> void testCast11() {
@@ -178,6 +190,9 @@ public class ExternalText {
 			System.out.println(e);
 		}
 	}
+	/**
+	 * to test the doors can be open in every position of the board
+	 */
 
 	@Test
 	public <T> void testCast12() {

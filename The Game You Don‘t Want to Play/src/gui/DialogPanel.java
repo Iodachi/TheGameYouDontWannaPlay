@@ -68,12 +68,12 @@ public class DialogPanel extends JPanel implements Observer {
 
 	private void drawBook(Graphics g) {
 		int x= 30;
-		int y =30;
+		int y =20;
 		
 		ImageIcon icon = new ImageIcon(View.class.getResource("/Entities/49.png"));
 		icon.paintIcon(null, g, x, y);
 		
-		y = 100;
+		y = 120;
 		g.setColor(Color.WHITE);
 		for(String key :manual.keySet()) {
 		List<Integer> attribute = manual.get(key);

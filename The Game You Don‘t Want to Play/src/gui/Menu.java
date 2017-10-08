@@ -4,12 +4,16 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import main.Game;
 import resources.ImgResources;
@@ -41,13 +45,22 @@ public class Menu extends JComponent {
 			SoundResources.Meun.sound.stop();
 		});
 		Load.addActionListener((e) -> {
-			// not implement yet
-			String load = "save.txt";
-			new Game(load);
-
+			JFileChooser chooser = new JFileChooser();
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("txt");
+			chooser.setFileFilter(filter);
+			//chooser.setCurrentDirectory(dir);
+			FileReader savefile;
+			int result = chooser.showOpenDialog(new JFrame());
+			if (result == JFileChooser.APPROVE_OPTION) {
+			try {
+				savefile = new FileReader(chooser.getSelectedFile());
+				new Game(savefile);
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			}
 			f.setVisible(false); // hidden the menu frame
 			SoundResources.Meun.sound.stop();
-		});
+		}});
 
 		Quit.addActionListener((e) -> {
 			System.exit(0);

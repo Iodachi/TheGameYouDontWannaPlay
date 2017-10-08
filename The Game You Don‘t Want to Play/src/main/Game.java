@@ -8,6 +8,9 @@ import java.io.PrintWriter;
 import java.util.Observable;
 import java.util.Scanner;
 
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+
 import Board.*;
 
 import character.Player;
@@ -43,8 +46,21 @@ public class Game extends Observable{
 	 * @param p
 	 * @param b
 	 */
+	public Game(FileReader savefile) {
+		
+			BufferedReader save = new BufferedReader(savefile);
+			Scanner sc = new Scanner(save);
+			this.player = new Player();
+			StringBuilder b = new StringBuilder();
+			this.player.ParserPlayer(sc);
+			this.board = new Board(sc);   
+			this.player.setCurrentGame(this);
+
+		new View(this);
+	}
+	
 	public Game(String filename) {
-		//	SoundResources.Fight.sound.loop();
+			
 		try {
 			FileReader savefile =  new FileReader(filename);
 			BufferedReader save = new BufferedReader(savefile);
@@ -56,7 +72,7 @@ public class Game extends Observable{
 			this.player.setCurrentGame(this);
 
 		} catch (FileNotFoundException ex) {
-			System.out.println(ex);
+		System.out.println(ex);
 		} catch (IOException ex) {
 			System.out.println(ex);
 		}
@@ -67,13 +83,18 @@ public class Game extends Observable{
 
 	public void save(){
 		try{
-			PrintWriter writer = new PrintWriter("save.txt", "UTF-8");
+			
+			JFileChooser chooser = new JFileChooser();
+			int result = chooser.showSaveDialog(new JFrame());
+			if (result == JFileChooser.APPROVE_OPTION) {
+			PrintWriter writer = new PrintWriter(chooser.getSelectedFile()+".txt");
 			String saveBoard = this.board.toString(); 
 			String savePlayer = this.player.toString();
 			writer.write(savePlayer);
 			writer.write(saveBoard);
 
 			writer.close();
+			}
 		} catch (IOException e) {
 			// do something
 		}

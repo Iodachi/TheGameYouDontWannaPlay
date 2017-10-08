@@ -9,6 +9,8 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.TimerTask;
@@ -17,11 +19,13 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Board.*;
 import character.Player;
@@ -59,7 +63,6 @@ public class View extends JComponent implements Observer {
 
 	private boolean gameStop = false;
 	private boolean MusicOn = false;
-	
 
 	private Game game;
 	private JFrame f;
@@ -123,12 +126,14 @@ public class View extends JComponent implements Observer {
 				} else {
 					ac = 200;
 				}
-				if(!game.getPlayer().checkDead())repaint();
+				if (!game.getPlayer().checkDead())
+					repaint();
 			}
 
 		}, 0, 500);
 
 	}
+
 	/**
 	 * added all the buttons for this View panel
 	 */
@@ -143,10 +148,21 @@ public class View extends JComponent implements Observer {
 			game.save();
 		});
 		Load.addActionListener((e) -> {
-			// not implement yet
-			String load = "save.txt";
-			new Game(load);
-			SoundResources.Meun.sound.stop();
+			JFileChooser chooser = new JFileChooser();
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Files(*.txt)", "txt");
+			chooser.setFileFilter(filter);
+			FileReader savefile;
+			int result = chooser.showOpenDialog(new JFrame());
+			if (result == JFileChooser.APPROVE_OPTION) {
+				try {
+
+					savefile = new FileReader(chooser.getSelectedFile());
+					new Game(savefile);
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				}
+				SoundResources.Meun.sound.stop();
+			}
 		});
 
 		Quit.addActionListener((e) -> {
@@ -172,26 +188,26 @@ public class View extends JComponent implements Observer {
 		Load.setMargin(margin);
 		Music.setMargin(margin);
 		Quit.setMargin(margin);
-		
+
 		Save.setFocusable(false);
 		Load.setFocusable(false);
 		Music.setFocusable(false);
 		Quit.setFocusable(false);
-		
+
 		Save.setVisible(gameStop);
 		Load.setVisible(gameStop);
 		Music.setVisible(gameStop);
 		Quit.setVisible(gameStop);
- 
+
 		this.add(Save);
 		this.add(Load);
 		this.add(Music);
 		this.add(Quit);
 	}
+
 	/**
-	 * When user purses ESC button, the game will stop
-	 * set the button to Visible
-	 * and will repaint the current Frame
+	 * When user purses ESC button, the game will stop set the button to Visible and
+	 * will repaint the current Frame
 	 */
 
 	public void gameStop() {
@@ -202,8 +218,6 @@ public class View extends JComponent implements Observer {
 		Music.setVisible(gameStop);
 		Quit.setVisible(gameStop);
 		repaint();
-		
-		
 
 	}
 
@@ -226,12 +240,10 @@ public class View extends JComponent implements Observer {
 
 		drawFloor(g);
 		drawMap(game.getBoard(), g);
-		//drawDecoration(g);
+		// drawDecoration(g);
 		drawPlayer(game.getPlayer(), g);
 
-		
-		
-		if(game.isAttacking()){
+		if (game.isAttacking()) {
 			drawAttacking(g);
 		}
 		if (gameStop) { // if the game is stop paint out the stop frame
@@ -241,67 +253,66 @@ public class View extends JComponent implements Observer {
 			_g.setColor(Color.darkGray.darker());
 			_g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		}
-		//System.out.println(game.getPlayer().isDeath());
-		if(game.getPlayer().checkDead()) {
+		// System.out.println(game.getPlayer().isDeath());
+		if (game.getPlayer().checkDead()) {
 			Icon icon = IconResources.Die.icon;
-			Object[] options = {"FHB","Restart","Quit"};
-			int response=JOptionPane.showOptionDialog(this, "Do you want to restart your game?", "You Die",JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
-			if(response==0)
-			{
-			}
-			else if(response==1)
-			{ 	new Menu();
+			Object[] options = { "FHB", "Restart", "Quit" };
+			int response = JOptionPane.showOptionDialog(this, "Do you want to restart your game?", "You Die",
+					JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
+			if (response == 0) {
+			} else if (response == 1) {
+				new Menu();
 				f.setVisible(false);
-			}
-			else if(response==2) 
-			{ 
+			} else if (response == 2) {
 				System.exit(0);
-				
+
 			}
-			
+
 		}
 	}
-	
+
 	private void drawDecoration(Graphics g) {
-		for (int x = 0; x < Level.BOARDSIZE*2; x++) {
-			for (int y = 0; y < Level.BOARDSIZE*2; y++) {
-				if((int)(Math.random()*5)==0) continue;
-				int num = (int)(Math.random()*40)+1;
-				ImageIcon img = new ImageIcon(View.class.getResource("/decoration/d"+num +".png"));
-				img.paintIcon(null, g, y * TILESIZE/2, x * TILESIZE/2);
+		for (int x = 0; x < Level.BOARDSIZE * 2; x++) {
+			for (int y = 0; y < Level.BOARDSIZE * 2; y++) {
+				if ((int) (Math.random() * 5) == 0)
+					continue;
+				int num = (int) (Math.random() * 40) + 1;
+				ImageIcon img = new ImageIcon(View.class.getResource("/decoration/d" + num + ".png"));
+				img.paintIcon(null, g, y * TILESIZE / 2, x * TILESIZE / 2);
 			}
 		}
 	}
+
 	/**
-	 * to show the attacking panel when player fighting with monsters 
-	 * it shows the 
+	 * to show the attacking panel when player fighting with monsters it shows the
+	 * 
 	 * @param g
 	 */
 	private void drawAttacking(Graphics g) {
-		
-		int x = TILESIZE*3;
-		int y = TILESIZE*4;
-		
+
+		int x = TILESIZE * 3;
+		int y = TILESIZE * 4;
+
 		Image img = ImgResources.fightingBackGroud.img;
-		g.drawImage(img, x, y, x+TILESIZE*6, y+TILESIZE*4, 0, 0,img.getWidth(null), img.getHeight(null), null);
-		
-		x+=TILESIZE;
-		y+=TILESIZE*0.6;
+		g.drawImage(img, x, y, x + TILESIZE * 6, y + TILESIZE * 4, 0, 0, img.getWidth(null), img.getHeight(null), null);
+
+		x += TILESIZE;
+		y += TILESIZE * 0.6;
 		ImageIcon icon = PlayerResources.Down.image;
 		icon.paintIcon(null, g, x, y);
-		
-		g.drawString("HP: "+game.getPlayer().getHealth(), x, y+64);
-		g.drawString("Attack: "+game.getPlayer().getDamage(), x, y+94);
-		g.drawString("Deffence: "+game.getPlayer().getDefence(), x, y+124);
-		
-		x+=TILESIZE*3;
+
+		g.drawString("HP: " + game.getPlayer().getHealth(), x, y + 64);
+		g.drawString("Attack: " + game.getPlayer().getDamage(), x, y + 94);
+		g.drawString("Deffence: " + game.getPlayer().getDefence(), x, y + 124);
+
+		x += TILESIZE * 3;
 		String path = "/Entities/" + game.getPlayer().getVSmonster().getName() + ".png";
 		icon = new ImageIcon(View.class.getResource(path));
 		icon.paintIcon(null, g, x, y);
-		g.drawString("HP: "+game.getPlayer().getVSmonster().getHealth(), x, y+64);
-		g.drawString("Attack: "+game.getPlayer().getVSmonster().getDamage(), x, y+94);
-		g.drawString("Deffence: "+game.getPlayer().getVSmonster().getDefence(), x, y+124);
-		
+		g.drawString("HP: " + game.getPlayer().getVSmonster().getHealth(), x, y + 64);
+		g.drawString("Attack: " + game.getPlayer().getVSmonster().getDamage(), x, y + 94);
+		g.drawString("Deffence: " + game.getPlayer().getVSmonster().getDefence(), x, y + 124);
+
 	}
 
 	/**
@@ -326,19 +337,20 @@ public class View extends JComponent implements Observer {
 					if (board.getCurrentLevel().getEntityAt(x, y) != null) {
 						code = board.getCurrentLevel().getEntityAt(x, y).getCode();
 						if (code >= 90 && code < 98) {// set the monster image in the middle
-							code+=ac;
+							code += ac;
 							py += 16;
 							px += 16;
-						}else if (code == 98) {
-							code+=ac;
+						} else if (code == 98) {
+							code += ac;
 						}
 						ImageIcon img = new ImageIcon(View.class.getResource("/Entities/" + code + ".png"));
 						img.paintIcon(null, g, py, px);
 					}
-					if (code == 60) y += 1;
+					if (code == 60)
+						y += 1;
 				} catch (NullPointerException e) {
 					System.err.println("NullPointerException: DrawMap image unfind: " + code);
-					
+
 				}
 			}
 		}
@@ -390,7 +402,7 @@ public class View extends JComponent implements Observer {
 			break;
 		}
 	}
-	//==========getters==========
+	// ==========getters==========
 
 	public BagPanel getBagPanel() {
 		return bagPanel;

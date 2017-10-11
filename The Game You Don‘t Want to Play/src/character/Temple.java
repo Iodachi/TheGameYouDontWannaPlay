@@ -54,4 +54,7 @@ public class Temple {
 	public boolean isActive() {
 		return isActive;
 	}
+	public Map<String, Integer> getBoosts(){
+		return boosts;
+	}
 }

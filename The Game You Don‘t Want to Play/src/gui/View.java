@@ -155,7 +155,6 @@ public class View extends JComponent implements Observer {
 			int result = chooser.showOpenDialog(new JFrame());
 			if (result == JFileChooser.APPROVE_OPTION) {
 				try {
-
 					savefile = new FileReader(chooser.getSelectedFile());
 					new Game(savefile);
 				} catch (FileNotFoundException e1) {
@@ -182,7 +181,6 @@ public class View extends JComponent implements Observer {
 		// set layout for the buttons
 		this.setLayout(new GridLayout(0, 1, 0, 100));
 		this.setBorder(new EmptyBorder(160, 300, 160, 300));
-		
 
 		Save.setFocusable(false);
 		Load.setFocusable(false);

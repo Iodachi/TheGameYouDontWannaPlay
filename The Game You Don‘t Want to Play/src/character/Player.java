@@ -166,7 +166,7 @@ public class Player implements RealPlayer{
 				}
 				game.changeView();
 			}
-		}, 0, 50);
+		}, 0, 200);
 
 		//game.setAttacking(false);
 		return true;

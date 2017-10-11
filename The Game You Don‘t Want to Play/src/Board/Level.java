@@ -96,6 +96,7 @@ public class Level {
 	 */
 	public Entity[][] getEntities() {return entities;}
 	public Shop getshop() {return this.SType;}
+	public Temple getTemple() {return this.TType0;}
 
 	//============================================= initialize =======================================================
 	/**

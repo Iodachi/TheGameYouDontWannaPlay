@@ -34,9 +34,10 @@ public class DialogPanel extends JPanel implements Observer {
 	private static final int TILESIZE = 64;
 
 	private Map<Item, Integer> items;
+	private Map<String, Integer> boosts;
+	private String[] boostsStr;
 	private boolean bookUse = false;
 	private HashMap<String, List<Integer>> manual = new HashMap<>();
-	private String str;
 	private Game game;
 	private Object[] it;
 
@@ -60,20 +61,62 @@ public class DialogPanel extends JPanel implements Observer {
 		Image img = ImgResources.dialogBackGroud.img;
 		drawBackGround(img, g);
 		drawIcon(g);
-		
+
 		if (game.isInShop()) {
 			drawitem(g);
+			return;
+		} else if (game.isInTemple()) {
+			drawTempleItem(g);
+			return;
+		} else {
+			String str = "Now is on floor: " + game.getBoard().getCurrentLevelNumber();
+			g.setColor(Color.WHITE);
+			g.drawString(str, 80, 50);
+			// drawString(str,g);
 		}
-		String str = "Now is on floor: "+ game.getBoard().getCurrentLevelNumber();
-		g.setColor(Color.WHITE);
-		g.drawString(str, 80, 50);
-		//drawString(str,g);
+	}
+
+	private void drawTempleItem(Graphics g) {
+		int x = 18;
+		int y = 430;
+		int w = 60;
+		int h = 60;
+		int gap = 20;
+
+		boosts = game.getBoard().getCurrentLevel().getTemple().getBoosts();
+		boostsStr = boosts.keySet().toArray(new String[boosts.size()]);
+
+		if (boostsStr.length == 0)
+			return;
+		for (int i = 0; i < 4; i++) {
+			int j = 0;
+			for (; j < 3; j++) {
+
+				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/" + boostsStr[i * 3 + j] + ".png"));
+				img.paintIcon(null, g, x - 2, y - 2);
+				g.setColor(Color.RED.darker());
+				// Font font = new Font();
+				// g.setFont(font);
+				g.drawString("+" + boosts.get(boostsStr[i * 3 + j]) + "", x + 35, y + 55);
+
+				if ((i * 3 + j + 1) == boostsStr.length) {
+					break;
+				}
+				x += (w + gap);
+			}
+			if ((i * 3 + j + 1) == boostsStr.length) {
+				break;
+			}
+			x = 18;
+			y += (gap + h);
+		}
+
 	}
 
 	private void drawBook(Graphics g) {
 		int x = 30;
 		int y = 20;
-		
+
 		Image img = ImgResources.dialogBackGroud2.img;
 		g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), 0, 0, img.getWidth(null), img.getHeight(null), null);
 		ImageIcon icon = new ImageIcon(View.class.getResource("/Entities/49.png"));
@@ -115,10 +158,10 @@ public class DialogPanel extends JPanel implements Observer {
 				_g.fillRect(x, y, w, h);
 				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/" + it[i * 3 + j].toString() + ".png"));
 				img.paintIcon(null, g, x - 2, y - 2);
-				g.setColor(Color.RED.darker());
+				g.setColor(Color.WHITE);
 				// Font font = new Font();
 				// g.setFont(font);
-				g.drawString("$" + items.get(it[i * 3 + j]) + "", x + 35, y + 55);
+				g.drawString("$" + items.get(it[i * 3 + j]) + "", x + 30, y + 55);
 
 				if ((i * 3 + j + 1) == it.length) {
 					break;
@@ -167,7 +210,10 @@ public class DialogPanel extends JPanel implements Observer {
 		ImageIcon img = null;
 		if (game.isInShop()) {
 			img = new ImageIcon(View.class.getResource("/Entities/60.png"));
-		} else {
+		}else if(game.isInTemple()) 
+		{
+			img = new ImageIcon(View.class.getResource("/Entities/65.png"));
+		}else {
 			img = new ImageIcon(View.class.getResource("/Player/Player_" + name + ".png"));
 
 		}
@@ -207,6 +253,14 @@ public class DialogPanel extends JPanel implements Observer {
 		this.manual = map;
 		bookUse = !bookUse;
 		repaint();
+	}
+
+	public String[] getboosts() {
+		return this.boostsStr;
+	}
+	
+	public Map<String, Integer> getboostsInTemple() {
+		return this.boosts;
 	}
 
 }

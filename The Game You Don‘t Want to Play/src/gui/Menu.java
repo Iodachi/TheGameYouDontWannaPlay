@@ -20,9 +20,9 @@ import resources.ImgResources;
 import resources.SoundResources;
 
 /**
- *
+ * 
  * @author Zhancheng Gan
- *
+ * 
  *         The game menu for this game, it contains New Game, Load, Info , Quit
  *         button and background images
  *
@@ -46,7 +46,7 @@ public class Menu extends JComponent {
 		});
 		Load.addActionListener((e) -> {
 			JFileChooser chooser = new JFileChooser();
-			FileNameExtensionFilter filter = new FileNameExtensionFilter("txt");
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Files(*.txt)", "txt");
 			chooser.setFileFilter(filter);
 			//chooser.setCurrentDirectory(dir);
 			FileReader savefile;
@@ -72,7 +72,6 @@ public class Menu extends JComponent {
 		// set layout for the buttons
 		this.setLayout(new GridLayout(0, 1, 0, 100));
 		this.setBorder(new EmptyBorder(150, 450, 150, 450));
-
 
 		this.add(NewGame);
 		this.add(Load);

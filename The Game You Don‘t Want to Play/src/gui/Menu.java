@@ -20,9 +20,9 @@ import resources.ImgResources;
 import resources.SoundResources;
 
 /**
- * 
+ *
  * @author Zhancheng Gan
- * 
+ *
  *         The game menu for this game, it contains New Game, Load, Info , Quit
  *         button and background images
  *
@@ -72,12 +72,7 @@ public class Menu extends JComponent {
 		// set layout for the buttons
 		this.setLayout(new GridLayout(0, 1, 0, 100));
 		this.setBorder(new EmptyBorder(150, 450, 150, 450));
-		Insets margin = new Insets(20, 150, 20, 150);
 
-		NewGame.setMargin(margin);
-		Load.setMargin(margin);
-		Info.setMargin(margin);
-		Quit.setMargin(margin);
 
 		this.add(NewGame);
 		this.add(Load);

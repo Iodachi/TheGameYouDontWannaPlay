@@ -182,12 +182,7 @@ public class View extends JComponent implements Observer {
 		// set layout for the buttons
 		this.setLayout(new GridLayout(0, 1, 0, 100));
 		this.setBorder(new EmptyBorder(160, 300, 160, 300));
-		Insets margin = new Insets(20, 150, 20, 150);
-
-		Save.setMargin(margin);
-		Load.setMargin(margin);
-		Music.setMargin(margin);
-		Quit.setMargin(margin);
+		
 
 		Save.setFocusable(false);
 		Load.setFocusable(false);

@@ -149,19 +149,35 @@ public class MouseController implements MouseMotionListener, MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		System.out.printf("X:%dY:%d\n", e.getX(), e.getY());
+		//System.out.printf("X:%dY:%d\n", e.getX(), e.getY());
 		if (!view.getGameStop()) {
 			if (e.getSource() instanceof BagPanel) {
 				useConsumableItem(e);
 			} else if (e.getSource() instanceof DialogPanel) {
+				if(view.getGame().isInShop()) {
 					buyItem(e);
-			
+				}else if(view.getGame().isInTemple()) {
+					System.out.printf("X:%dY:%d\n", e.getX(), e.getY());
+					chooseTemple(e);
+				}
 				
 			}
 
 		}
 	}
+	public void chooseTemple(MouseEvent e) {
+		if(checkClickOn(e.getX(), e.getY(), false)) {
+			String[] names =view.getDialogPanel().getboosts();
 
+			System.out.println("key size: "+view.getDialogPanel().getboostsInTemple().keySet().size());
+			if(itemCol>=0 && itemCol<view.getDialogPanel().getboostsInTemple().keySet().size()) {
+				view.getGame().tryTemple(names[itemCol]);
+			}
+			
+			
+		}
+	}
+	
 	public void buyItem(MouseEvent e) {
 		
 		if (checkClickOn(e.getX(), e.getY(), false)) {

@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import Board.*;
 
 import character.Player;
+import character.Temple;
 import gui.View;
 import item.*;
 
@@ -32,13 +33,14 @@ public class Game extends Observable{
 	private boolean isInShop = false;
 	private boolean isInTemple = false;
 	private boolean gameOver = false;
+	private View view;
 
 	public Game() {
 		//	SoundResources.Fight.sound.loop();
 		player = new Player();
 		player.setCurrentGame(this);
 		board = new Board();
-		new View(this);
+		view =new View(this);
 	}
 
 	/**
@@ -165,7 +167,23 @@ public class Game extends Observable{
 		}
 		changeView();
 	}
-
+	
+	public void tryTemple(String option) {
+		Entity[][] currentBoard = getBoard().getCurrentLevel().getEntities();
+		Entity e = currentBoard[player.getYPos()][player.getXPos()];
+		if(e instanceof Ground && ((Ground) e).getWhatContain() instanceof Temple) {
+			Ground g = (Ground)e;
+			Temple temple = (Temple)g.getWhatContain();
+			if(temple != null && temple.isActive()) {
+				temple.boost(option, player);
+				temple.getBoosts().remove(option);
+				view.getDialogPanel().getboostsInTemple().remove(option);
+			}
+		}
+		changeView();
+	}
+	
+	
 	/**
 	 * player restores health using the health potion
 	 * @param type

@@ -94,10 +94,10 @@ public class DialogPanel extends JPanel implements Observer {
 
 				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/" + boostsStr[i * 3 + j] + ".png"));
 				img.paintIcon(null, g, x - 2, y - 2);
-				g.setColor(Color.RED.darker());
+				g.setColor(Color.WHITE);
 				// Font font = new Font();
 				// g.setFont(font);
-				g.drawString("+" + boosts.get(boostsStr[i * 3 + j]) + "", x + 35, y + 55);
+				g.drawString("+" + boosts.get(boostsStr[i * 3 + j]) + "", x + 30, y + 55);
 
 				if ((i * 3 + j + 1) == boostsStr.length) {
 					break;
@@ -158,10 +158,10 @@ public class DialogPanel extends JPanel implements Observer {
 				_g.fillRect(x, y, w, h);
 				ImageIcon img = new ImageIcon(View.class.getResource("/Entities/" + it[i * 3 + j].toString() + ".png"));
 				img.paintIcon(null, g, x - 2, y - 2);
-				g.setColor(Color.WHITE);
+				g.setColor(Color.RED.darker());
 				// Font font = new Font();
 				// g.setFont(font);
-				g.drawString("$" + items.get(it[i * 3 + j]) + "", x + 30, y + 55);
+				g.drawString("$" + items.get(it[i * 3 + j]) + "", x + 35, y + 55);
 
 				if ((i * 3 + j + 1) == it.length) {
 					break;

@@ -32,7 +32,7 @@ public class Game extends Observable{
 	private boolean attacking = false;
 	private boolean isInShop = false;
 	private boolean isInTemple = false;
-	private boolean gameOver = false;
+	private boolean gameWin = false;
 	private View view;
 
 	public Game() {
@@ -208,6 +208,8 @@ public class Game extends Observable{
 	
 	public Board getBoard() {return board;}
 	
+	public boolean getGameWin() {return gameWin;}
+	
 	public void setAttacking(boolean attack) {
 		attacking = attack;
 		changeView();
@@ -221,8 +223,8 @@ public class Game extends Observable{
 		isInTemple = inTemple;
 	}
 	
-	public void gameOver() {
-		gameOver = true;
+	public void SetgameWin() {
+		gameWin = true;
 	}
 
 

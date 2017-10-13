@@ -11,6 +11,8 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.TimerTask;
@@ -126,7 +128,7 @@ public class View extends JComponent implements Observer {
 				} else {
 					ac = 200;
 				}
-				if (!game.getPlayer().checkDead())
+				if (!game.getPlayer().checkDead()&&!game.getGameWin())
 					repaint();
 			}
 
@@ -249,18 +251,27 @@ public class View extends JComponent implements Observer {
 		// System.out.println(game.getPlayer().isDeath());
 		if (game.getPlayer().checkDead()) {
 			Icon icon = IconResources.Die.icon;
-			Object[] options = { "FHB", "Restart", "Quit" };
+			Object[] options = { "Restart", "Quit" };
 			int response = JOptionPane.showOptionDialog(this, "Do you want to restart your game?", "You Die",
 					JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
-			if (response == 0) {
-			} else if (response == 1) {
+			 if (response == 0) {
 				new Menu();
 				f.setVisible(false);
-			} else if (response == 2) {
+			} else if (response == 1) {
 				System.exit(0);
-
 			}
-
+		}
+		if (game.getGameWin()) {
+			Icon icon = PlayerResources.Down.image;
+			Object[] options = { "Restart", "Quit" };
+			int response = JOptionPane.showOptionDialog(this, "Do you want to restart your game?", "You WIN!",
+					JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
+			 if (response == 0) {
+				new Menu();
+				f.setVisible(false);
+			} else if (response == 1) {
+				System.exit(0);
+			}
 		}
 	}
 
@@ -293,19 +304,58 @@ public class View extends JComponent implements Observer {
 		y += TILESIZE * 0.6;
 		ImageIcon icon = PlayerResources.Down.image;
 		icon.paintIcon(null, g, x, y);
-
-		g.drawString("HP: " + game.getPlayer().getHealth(), x, y + 64);
-		g.drawString("Attack: " + game.getPlayer().getDamage(), x, y + 94);
-		g.drawString("Deffence: " + game.getPlayer().getDefence(), x, y + 124);
+		
+		drawHeathBar(x,(int) (y + TILESIZE*0.7), game.getPlayer().getHealth(),30,g);
+		
+		g.drawString("HP: " + game.getPlayer().getHealth(), x, (int) (y + TILESIZE*1.5));
+		g.drawString("Attack: " + game.getPlayer().getDamage(), x, (int) (y + TILESIZE*2));
+		g.drawString("Deffence: " + game.getPlayer().getDefence(), x, (int) (y + TILESIZE*2.5));
 
 		x += TILESIZE * 3;
 		String path = "/Entities/" + game.getPlayer().getVSmonster().getName() + ".png";
 		icon = new ImageIcon(View.class.getResource(path));
 		icon.paintIcon(null, g, x, y);
-		g.drawString("HP: " + game.getPlayer().getVSmonster().getHealth(), x, y + 64);
-		g.drawString("Attack: " + game.getPlayer().getVSmonster().getDamage(), x, y + 94);
-		g.drawString("Deffence: " + game.getPlayer().getVSmonster().getDefence(), x, y + 124);
+		
+		drawHeathBar(x,(int) (y + TILESIZE*0.7), game.getPlayer().getVSmonster().getHealth(),30,g);
+		
+		
+		g.drawString("HP: " + game.getPlayer().getVSmonster().getHealth(), x, (int) (y + TILESIZE*1.5));
+		g.drawString("Attack: " + game.getPlayer().getVSmonster().getDamage(), x, (int) (y + TILESIZE*2));
+		g.drawString("Deffence: " + game.getPlayer().getVSmonster().getDefence(), x, (int) (y + TILESIZE*2.5));
 
+	}
+
+	private void drawHeathBar(int x, int y, int health, int height, Graphics g) {
+		
+		int count = health/100;
+		int lastBarLenth = health%100;
+		
+		List<Color> c = new ArrayList<Color>();
+		c.add(Color.BLUE);
+		c.add(Color.RED.darker());
+		c.add(Color.ORANGE);
+		c.add(Color.YELLOW.darker());
+		c.add(Color.GREEN.brighter());
+		c.add(Color.CYAN.darker());
+		c.add(Color.BLUE);
+		c.add(Color.MAGENTA);
+		
+		for(int i = 0; i<100; i++) {
+			c.add(c.get(i).darker());
+		}
+		
+		if(count!=0) {
+		g.setColor(c.get(count));
+		g.fillRect(x, y, 100, height);
+		}
+		g.setColor(c.get(count+1));
+		g.fillRect(x, y, lastBarLenth, height);
+		
+		g.setColor(Color.WHITE);
+		g.drawString("X"+(count), x+75, y+20);
+		g.setColor(Color.BLACK);
+		g.drawRect(x, y, 100, height);
+		
 	}
 
 	/**

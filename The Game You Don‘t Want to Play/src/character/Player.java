@@ -158,6 +158,9 @@ public class Player implements RealPlayer{
 					game.setAttacking(false);
 					monster.defeated(player);
 					moveAble=true;
+					if(monster.getName().equals("98")) {
+						game.SetgameWin();
+					}
 					System.out.printf("Gold: %d\n", player.getGold());					
 				}else if(health<0) {
 					this.cancel();

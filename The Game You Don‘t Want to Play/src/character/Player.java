@@ -204,8 +204,9 @@ public class Player implements RealPlayer{
 		}
 
 		if (old != null)
-			old.takeOff(this);
-		item.putOn(this);
+			old.takeOff(this);	//if previously have an equipment, take it off
+								//with stats being deducted
+		item.putOn(this);		//and put on new one, with new stats boost
 
 		return old;
 	}
@@ -222,7 +223,7 @@ public class Player implements RealPlayer{
 	public void useKey(String color) throws InvalidMove {
 		boolean hasKey = false;
 		for (ConsumableItem item : inventory) {
-			if (item instanceof Key && ((Key) item).getColor().equals(color)) {
+			if (item instanceof Key && ((Key) item).getColor().equals(color)) {		//found a key to use
 				inventory.remove(item);
 				hasKey = true;
 				break;
@@ -244,14 +245,14 @@ public class Player implements RealPlayer{
 	public void useBomb() throws InvalidMove {
 		boolean hasBomb = false;
 		for (ConsumableItem item : inventory) {
-			if (item instanceof Bomb) {
-				// bomb used,
-				inventory.remove(item);
+			if (item instanceof Bomb) {			//found a bomb to use
+				inventory.remove(item);		
 				hasBomb = true;
 				break;
 			}
 		}
 
+		//no bomb to use
 		if (!hasBomb)
 			throw new InvalidMove("No bomb in inventory, cannot break the wall");
 	}
@@ -265,7 +266,7 @@ public class Player implements RealPlayer{
 	public void useHealthPotion(String type) throws InvalidMove {
 		BloodVial b = null;
 		for (ConsumableItem item : inventory) {
-			if (item instanceof BloodVial && ((BloodVial) item).getType().equals(type)) {
+			if (item instanceof BloodVial && ((BloodVial) item).getType().equals(type)) {		//found a health potion to use
 				b = (BloodVial) item;
 				break;
 			}
@@ -287,7 +288,7 @@ public class Player implements RealPlayer{
 	public void useFateCoin() throws InvalidMove {
 		FateCoin c = null;
 		for (ConsumableItem item : inventory) {
-			if (item instanceof FateCoin) {
+			if (item instanceof FateCoin) {			//found a fate coin to use
 				c = (FateCoin) item;
 				break;
 			}
@@ -302,6 +303,7 @@ public class Player implements RealPlayer{
 	
 	// ================ movement methods =====================
 	public void move(String direction) throws InvalidMove {
+		//reset player to be not in shop or temple
 		game.setInShop(false);
 		game.setInTemple(false);
 		
@@ -321,6 +323,7 @@ public class Player implements RealPlayer{
 			moveDown(board, boardSize);
 			System.out.println("player x: "+getXPos()+"  y:"+getYPos() );
 		}
+		
 		game.changeView();
 		newGridInteraction(board);
 	}
@@ -403,12 +406,12 @@ public class Player implements RealPlayer{
 		if (e != null) {
 			if (e instanceof Ground) {
 				Ground g = ((Ground) e);
-				if (g.getWhatContain() instanceof Item) {
+				if (g.getWhatContain() instanceof Item) {			//if there is an item, try to pick it up
 					if (g.getWhatContain() instanceof ConsumableItem) {
 						addItem((ConsumableItem) (g.getWhatContain()));
 						game.setToEmpty(g);
 					}
-				} else if (g.getWhatContain() instanceof Monster) {
+				} else if (g.getWhatContain() instanceof Monster) {	//if there is a monster, attack it
 					System.out.println("monster encountered");
 					if (attack((Monster) g.getWhatContain(),this)) {
 						g.cleanBattleground();
@@ -416,16 +419,16 @@ public class Player implements RealPlayer{
 					} else {
 						JOptionPane.showConfirmDialog(new JLabel("defeat!"), "Again?");
 					}
-				} else if (g.getWhatContain() instanceof Shop) {
+				} else if (g.getWhatContain() instanceof Shop) {		//if there is a shop
 					System.out.println("shop encountered");
 					game.setInShop(true);
-				} else if(g.getWhatContain() instanceof Temple) {
+				} else if(g.getWhatContain() instanceof Temple) {		//if there is a temple
 					game.setInTemple(true);
-				} else if(g.getWhatContain() instanceof WiseMan) {
+				} else if(g.getWhatContain() instanceof WiseMan) {	//if there is a wise man, give stuff to player
 					((WiseMan)g.getWhatContain()).give(this);
 					game.setToEmpty(e);
 				}
-			} else if (e instanceof Stairs) {
+			} else if (e instanceof Stairs) {						//if there is a stairs, go to corresponding level
 				if (((Stairs) e).upOrDownStair())
 					game.getBoard().setCurrentLevel(game.getBoard().getCurrentLevelNumber() + 1);
 				else
@@ -461,6 +464,11 @@ public class Player implements RealPlayer{
 		return e;
 	}
 
+	/**
+	 * check whether player is dead.
+	 * @return	true 
+	 * 				- if player's health reaches 0
+	 */
 	public boolean checkDead() {
 		if (health <= 0) {
 			return isDead = true;

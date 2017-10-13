@@ -94,7 +94,7 @@ public class Player implements RealPlayer{
 			// finally add gear
 			while (sc.hasNextInt()) {
 				int gear = sc.nextInt();
-				if (gear != -1) continue;
+				if (gear == -1) continue;
 				else if (gear == 70) this.armor = new Armor(-1, -1, 0);
 				else if (gear == 71) this.armor = new Armor(-1, -1, 1);
 				else if (gear == 72) this.armor = new Armor(-1, -1, 2);
@@ -109,6 +109,7 @@ public class Player implements RealPlayer{
 		} catch (java.util.InputMismatchException e) {
 			System.out.println(e);
 		}
+		
 	}
 
 	/**

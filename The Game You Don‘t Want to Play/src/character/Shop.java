@@ -54,6 +54,9 @@ public class Shop {
 	 * @throws InvalidMove
 	 */
 	public void buyItem(Item item, Player player) throws InvalidMove{
+		if(!items.containsKey(item))
+			throw new InvalidMove("No such item in shop");
+		
 		int price = items.get(item);
 		System.out.println("price: "+price);
 		if(player.getGold() >= price) {

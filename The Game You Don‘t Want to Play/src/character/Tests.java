@@ -6,30 +6,35 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import commonPackage.usefor.test.MockConsumableItem;
+import commonPackage.usefor.test.MockWearableItem;
 import item.Armor;
 import item.BloodVial;
 import item.Bomb;
+import item.ConsumableItem;
+import item.Item;
 import item.Key;
 import item.Weapon;
+import item.WearableItem;
 import item.Wing;
 import main.InvalidMove;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Tests {
 	private Player player;
-	private Bomb bomb = new Bomb();
-	private Key key = new Key("yellow");
-	private Armor armor = new Armor(1);
-	private Weapon weapon = new Weapon(1);
-	private Wing wing = new Wing(1);
-	private BloodVial health = new BloodVial("small");
+	private MockConsumableItem bomb = new Bomb();
+	private MockConsumableItem key = new Key("yellow");
+	private MockWearableItem armor = new Armor(1);
+	private MockWearableItem weapon = new Weapon(1);
+	private MockWearableItem wing = new Wing(1);
+	private MockConsumableItem health = new BloodVial("small");
 	private Monster monster = new Monster(1);
 	
 	@Test
 	public void test01_playerPicksConsumables() {
 		player = new Player();
 		try {
-			player.addItem(bomb);
+			player.addItem((ConsumableItem) bomb);
 			assertTrue(player.getInventory().contains(bomb));
 		} catch (InvalidMove e) {
 			fail("Should be able to pick up bomb.");
@@ -44,7 +49,7 @@ public class Tests {
 				player.addItem(new Bomb(0,0));
 			}
 			
-			player.addItem(bomb);
+			player.addItem((ConsumableItem) bomb);
 			fail("Should not be able to pick up bomb since inventory is full.");
 			assertFalse(player.getInventory().contains(bomb));
 		} catch (InvalidMove e) {
@@ -55,9 +60,9 @@ public class Tests {
 	@Test
 	public void test03_playerUseHealthPotion() throws InvalidMove {
 		player = new Player();
-		player.addItem(health);
+		player.addItem((ConsumableItem) health);
 		int healthBefore = player.getHealth();
-		int amount = health.getAmount();
+		int amount = ((BloodVial) health).getAmount();
 		player.useHealthPotion("small");
 		assertEquals(healthBefore + amount, player.getHealth());
 	}
@@ -77,7 +82,7 @@ public class Tests {
 	public void test05_playerUseBomb() {
 		player = new Player();
 		try {
-			player.addItem(bomb);
+			player.addItem((ConsumableItem) bomb);
 			player.useBomb();
 			assertFalse(player.getInventory().contains(bomb));
 			//ok
@@ -101,7 +106,7 @@ public class Tests {
 	public void test07_playerUseKey() {
 		player = new Player();
 		try {
-			player.addItem(key);
+			player.addItem((ConsumableItem) key);
 			player.useKey("yellow");
 			assertFalse(player.getInventory().contains(key));
 			//ok
@@ -114,7 +119,7 @@ public class Tests {
 	public void test08_playerUseKeyColorNotMatch() {
 		player = new Player();
 		try {
-			player.addItem(key);
+			player.addItem((ConsumableItem) key);
 			player.useKey("cyan");
 			fail("Should not be able to use key");
 		} catch (InvalidMove e) {
@@ -126,8 +131,8 @@ public class Tests {
 	public void test09_playerEquipArmor() {
 		player = new Player();
 		int prevDefence = player.getDefence();
-		int boostDefence = armor.getDefence();
-		player.equip(armor);
+		int boostDefence = ((Armor) armor).getDefence();
+		player.equip((WearableItem) armor);
 		assertEquals(player.getDefence(), prevDefence + boostDefence);
 		assertTrue(player.getCurrentArmor() == armor);
 	}
@@ -135,9 +140,9 @@ public class Tests {
 	@Test
 	public void test10_playerChangeArmor() {
 		player = new Player();
-		player.equip(armor);
+		player.equip((WearableItem) armor);
 		int prevDefence = player.getDefence();
-		int boostDefence = armor.getDefence();
+		int boostDefence = ((Armor) armor).getDefence();
 		int basicDefence = prevDefence - boostDefence;
 		Armor newArmor = new Armor(2);
 		int newBoostDefence = newArmor.getDefence();
@@ -150,8 +155,8 @@ public class Tests {
 	public void test11_playerEquipWeapon() {
 		player = new Player();
 		int prevDamage = player.getDamage();
-		int boostDamage = weapon.getAttack();
-		player.equip(weapon);
+		int boostDamage = ((Weapon) weapon).getAttack();
+		player.equip((WearableItem) weapon);
 		assertEquals(player.getDamage(), prevDamage + boostDamage);
 		assertTrue(player.getCurrentWeapon() == weapon);
 	}
@@ -159,9 +164,9 @@ public class Tests {
 	@Test
 	public void test12_playerChangeWeapon() {
 		player = new Player();
-		player.equip(weapon);
+		player.equip((WearableItem) weapon);
 		int prevDamage = player.getDamage();
-		int boostDamage = weapon.getAttack();
+		int boostDamage = ((Weapon) weapon).getAttack();
 		int basicDamage = prevDamage - boostDamage;
 		Weapon newWeapon = new Weapon(2);
 		int newBoostDamage = newWeapon.getAttack();
@@ -175,9 +180,9 @@ public class Tests {
 		player = new Player();
 		int prevDamage = player.getDamage();
 		int prevDefence = player.getDefence();
-		int boostDamage = wing.getIncreasedDamage();
-		int boostDefence = wing.getIncreasedDefense();
-		player.equip(wing);
+		int boostDamage = ((Wing) wing).getIncreasedDamage();
+		int boostDefence = ((Wing) wing).getIncreasedDefense();
+		player.equip((WearableItem) wing);
 		assertEquals(player.getDamage(), prevDamage + boostDamage);
 		assertEquals(player.getDefence(), prevDefence + boostDefence);
 		assertTrue(player.getCurrentWing() == wing);
@@ -186,13 +191,13 @@ public class Tests {
 	@Test
 	public void test14_playerChangeWing() {
 		player = new Player();
-		player.equip(wing);
+		player.equip((WearableItem) wing);
 		int prevDamage = player.getDamage();
-		int boostDamage = wing.getIncreasedDamage();
+		int boostDamage = ((Wing) wing).getIncreasedDamage();
 		int basicDamage = prevDamage - boostDamage;
 		
 		int prevDefence = player.getDefence();
-		int boostDefence = wing.getIncreasedDefense();
+		int boostDefence = ((Wing) wing).getIncreasedDefense();
 		int basicDefence = prevDefence - boostDefence;
 		
 		Wing newWing = new Wing(2);
@@ -205,17 +210,63 @@ public class Tests {
 	}
 	
 	@Test
-	public void test15_playerAttackMonster() {
+	public void test15_playerBuyItemOK() {
+		player = new Player();
+		player.setGold(1000);
+		Shop shop = new Shop();
+		Item item = null;
 		
+		for(Item i: shop.getItems().keySet()) {
+			item = i;
+			break;
+		}
+		
+		try {
+			shop.buyItem(item, player);
+		} catch (InvalidMove e) {
+			fail("fail to buy the item");
+		}
 	}
 	
 	@Test
-	public void test16_playerBuyItem() {
+	public void test16_playerBuyItemNotEnoughMoney() {
+		player = new Player();
+		Shop shop = new Shop();
+		Item item = null;
 		
+		for(Item i: shop.getItems().keySet()) {
+			item = i;
+			break;
+		}
+		
+		try {
+			shop.buyItem(item, player);
+			fail("should not be able to buy the item, not enough money");
+		} catch (InvalidMove e) {
+			//ok
+		}
 	}
 	
 	@Test
-	public void test17_playerUseTemple() {
+	public void test17_playerBuyItemNotHave() {
+		player = new Player();
+		Shop shop = new Shop();
 		
+		try {
+			shop.buyItem(new Bomb(), player);
+			fail("should not be able to buy the item, no such item in shop");
+		} catch (InvalidMove e) {
+			//ok
+		}
+	}
+	
+	@Test
+	public void test18_playerUseTemple() {
+		player = new Player();
+		Temple temple = new Temple();
+		int boost = temple.getBoosts().get("health");
+		int health = player.getHealth();
+		temple.boost("health", player);
+		assertEquals(player.getHealth(), health + boost);
 	}
 }

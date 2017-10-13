@@ -40,7 +40,8 @@ public class Menu extends JComponent {
 		JButton Info = new JButton("Info");
 		JButton Quit = new JButton("Quit");
 		NewGame.addActionListener((e) -> {
-			new Game();
+			new View();
+			//new Game();
 			f.setVisible(false); // hidden the menu frame
 			SoundResources.Meun.sound.stop();
 		});

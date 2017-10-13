@@ -40,7 +40,14 @@ public class Game extends Observable{
 		player = new Player();
 		player.setCurrentGame(this);
 		board = new Board();
-		view =new View(this);
+	}
+	
+	public Game(View view) {
+		//	SoundResources.Fight.sound.loop();
+		player = new Player();
+		player.setCurrentGame(this);
+		board = new Board();
+		this.view = view;
 	}
 
 	/**

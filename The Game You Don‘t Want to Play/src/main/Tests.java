@@ -69,7 +69,7 @@ public class Tests {
 	}
 	
 	@Test
-	public void test02_playerMovement() throws InvalidMove {
+	public void test06_playerMovement() throws InvalidMove {
 		Game game = new Game();
 		Player player = game.getPlayer();
 		int xPos = player.getXPos();

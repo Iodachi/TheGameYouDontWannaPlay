@@ -1,7 +1,5 @@
 package item;
 
-import character.Monster;
-import character.Player;
 import commonPackage.usefor.test.RealPlayer;
 
 /**
@@ -17,8 +15,6 @@ public class Armor extends WearableItem {
 	private boolean isOn = false; // the flag is used to indicate if player has wear the Armor
 	private String name = "70";
 	public static final int defence4 = 8,defence7=14;
-	
-			
 	private int level = 0;
 	private int cost = 800;
 

@@ -77,15 +77,26 @@ public class View extends JComponent implements Observer {
 	 * @param game
 	 */
 
-	public View(Game game) {
+	public View() {
+		game = new Game(this);
 		// setting attribute for this view
 		game.addObserver(this);
+		//this.game = game;
+		setPanels();
+	}
+	
+	public View(Game game) {
 		this.game = game;
+		game.addObserver(this);
+		setPanels();
+	}
+
+	public void setPanels() {
 		this.setFocusable(true);
 		this.setPreferredSize(getPreferredSize());
 		this.addKeyListener(new KeyController(this));
 		this.addMouseListener(new MouseController(this));
-
+		
 		// create UI for the main, add panels
 		bagPanel = new BagPanel(this.game);
 		bagPanel.addMouseListener(new MouseController(this));
@@ -133,7 +144,6 @@ public class View extends JComponent implements Observer {
 			}
 
 		}, 0, 500);
-
 	}
 
 	/**

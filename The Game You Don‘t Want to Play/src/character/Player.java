@@ -241,7 +241,6 @@ public class Player implements RealPlayer{
 	 *             throws an invalid move excepction if doesn't have a bomb
 	 */
 	public void useBomb() throws InvalidMove {
-		// FIXME: note, need to test if the wall breaks if dont' have bomb
 		boolean hasBomb = false;
 		for (ConsumableItem item : inventory) {
 			if (item instanceof Bomb) {

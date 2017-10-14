@@ -1,7 +1,9 @@
 
 package character;
 
-public class Monster {
+import commonPackage.usefor.test.MockMonster;
+
+public class Monster implements MockMonster{
 	private int health, damage, defence, drop, level;
 	private final double factor = 0.7;
 	private boolean isDefeated;

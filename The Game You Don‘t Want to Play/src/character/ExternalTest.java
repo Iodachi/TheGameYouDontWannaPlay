@@ -22,9 +22,9 @@ public class ExternalTest {
 	public void testInitialisation() {
 		Monster monster = new Monster(1);
 		double factor = monster.getFactor();
-		assertEquals((int) (11 * factor), monster.getDamage());
-		assertEquals((int) (100 * factor), monster.getHealth());
-		assertEquals((int) (3 * factor), monster.getDefence());
+		assertEquals((int) (11 + (10) * factor ), monster.getDamage());
+		assertEquals((int) (20 * factor), monster.getHealth());
+		assertEquals((int) (1 + (1 + 9) * factor), monster.getDefence());
 	}
 	@Test
 	public void testDefeated() {

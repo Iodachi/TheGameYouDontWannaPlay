@@ -20,7 +20,7 @@ public class Tests {
 	public void testSetAttributes1() {
 		Armor armor = new Armor(0, 0, 0);
 		assertEquals(armor.getName(), "70");
-		assertEquals(armor.getDefence(), 10);
+		assertEquals(armor.getDefence(), 2);
 		armor = new Armor(0, 0, 1);
 		assertEquals(armor.getName(), "71");
 		assertEquals(armor.getDefence(),Armor.defence4 * 2);
@@ -34,7 +34,7 @@ public class Tests {
 	public void testSetAttributes2() {
 		Weapon weapon = new Weapon(0, 0, 0);
 		assertEquals(weapon.getName(), "73");
-		assertEquals(weapon.getAttack(), 12);
+		assertEquals(weapon.getAttack(), 2);
 		weapon = new Weapon(0, 0, 1);
 		assertEquals(weapon.getName(), "74");
 		assertEquals(weapon.getAttack(),(int)( Weapon.attack4 * 0.66));

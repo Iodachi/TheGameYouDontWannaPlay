@@ -9,7 +9,7 @@ import commonPackage.usefor.test.RealPlayer;
  * @author minpingyang
  */
 public class Armor extends WearableItem {
-	private int defence = 10;
+	private int defence = 2;
 	private double factor= 2;
 	private int x, y;
 	private boolean isOn = false; // the flag is used to indicate if player has wear the Armor

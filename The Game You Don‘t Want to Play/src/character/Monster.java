@@ -17,9 +17,9 @@ public class Monster implements MockMonster{
 	private void initialize(int level) {
 		this.level = level;
 		this.isDefeated = false;
-		this.health = (int) (100 * (level) * factor);
-		this.damage = (int) (11 + (level + 5) * factor );
-		this.defence = (int) (3 + (level + 3) * factor);
+		this.health = (int) (20 * (level) * factor);
+		this.damage = (int) (11 + (level + 9) * factor );
+		this.defence = (int) (1 + (level + 9) * factor);
 		// generates a random number of coins drop when monster is defeated
 		this.drop = (int) (Math.random() * 10 * (level + 1));
 

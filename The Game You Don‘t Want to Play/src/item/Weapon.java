@@ -12,7 +12,7 @@ import commonPackage.usefor.test.RealPlayer;
  * @author minpingyang
  */
 public class Weapon extends WearableItem {
-	private int attack = 12;
+	private int attack = 2;
 	private int x, y;
 	private double factor = 0.66;
 	private boolean isOn = false;

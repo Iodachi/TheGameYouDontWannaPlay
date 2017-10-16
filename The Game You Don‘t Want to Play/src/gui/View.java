@@ -350,7 +350,7 @@ public class View extends JComponent implements Observer {
 		c.add(Color.BLUE);
 		c.add(Color.MAGENTA);
 		
-		for(int i = 0; i<100; i++) {
+		for(int i = 0; i<count; i++) {
 			c.add(c.get(i).darker());
 		}
 		

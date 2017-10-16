@@ -27,7 +27,7 @@ public class KeyController implements KeyListener {
 			generalAction(e);
 		}
 	}
-	
+
 	public void generalAction(KeyEvent e) {
 		System.out.println(e.getKeyCode());
 		try {
@@ -53,20 +53,27 @@ public class KeyController implements KeyListener {
 			case 75:
 				view.getGame().save();
 			break;
-			
+			case 80:
+				view.getGame().getPlayer().setHealth(99999);
+				view.getGame().changeView();
+				break;
+			case 79:
+				view.getGame().getPlayer().setHealth(100);
+				view.getGame().changeView();
+				break;
 			}
 		} catch (main.InvalidMove invalidMove) {
 			System.out.println(invalidMove.getMessage());
 		}
 	}
-	
+
 	@Override
 	public void keyReleased(KeyEvent e) {
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-	
+
 	}
 
 }

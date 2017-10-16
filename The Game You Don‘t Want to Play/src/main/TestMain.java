@@ -716,9 +716,9 @@ public class TestMain {
 						+	" 00 00 00 00 00 00 00 00 00 00 00 00\n"
 						+	" 00 00 00 00 00 00 00 00 00 00 00 00\n"
 						+	" 00 00 00 00 00 00 00 00 00 00 00 00\n"
-						+	" 00 00 00 00 30 00 30 00 00 00 00 00\n"
-						+	" 00 00 00 00 00 00 00 00 00 00 00 00\n"
-						+	" 00 00 00 00 00 00 00 00 00 00 00 00\n"
+						+	" 00 00 00 00 30 71 30 00 00 00 00 00\n"
+						+	" 00 00 00 00 00 74 00 00 00 00 00 00\n"
+						+	" 00 00 00 00 00 76 00 00 00 00 00 00\n"
 						+	" 00 00 00 00 00 00 00 00 00 00 00 00\n"
 						+	" 00 00 00 00 00 00 00 00 00 00 00 00\n"
 						+	" 00 00 00 00 00 00 00 00 00 00 00 00\n"
@@ -733,7 +733,6 @@ public class TestMain {
 		g.move("down");
 		g.tryPickEquipment();
 		assertEquals("76",g.getPlayer().getCurrentWing().getName());
-
 		assertEquals(token,g.getBoard().getCurrentLevel().toString());
 	}
 
@@ -763,7 +762,7 @@ public class TestMain {
 		g.tryUseFateCoin();
 
 	}
-	
+
 	@Test
 	public void testRestoreHealth() throws InvalidMove  {
 		String testfile =  "down i ( 40 41 )\n"
@@ -788,7 +787,7 @@ public class TestMain {
 		maketestfile(testfile);
 		Game g = new Game("test.txt");
 		g.tryRestoreHealth("big");
-		g.tryRestoreHealth("smalla");
+		g.tryRestoreHealth("small");
 	}
 
 	@Test

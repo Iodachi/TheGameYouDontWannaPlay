@@ -1,5 +1,6 @@
 package character;
 
+import commonPackage.usefor.test.MockWiseMan;
 import item.ConsumableItem;
 import item.Item;
 import item.WearableItem;
@@ -10,7 +11,7 @@ import main.InvalidMove;
  * @author stella
  *
  */
-public class WiseMan {
+public class WiseMan implements MockWiseMan{
 	private Item item;
 	
 	public WiseMan(Item item) {

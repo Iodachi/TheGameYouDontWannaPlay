@@ -1,6 +1,5 @@
 
 package character;
-
 import commonPackage.usefor.test.MockMonster;
 
 public class Monster implements MockMonster{
@@ -19,8 +18,8 @@ public class Monster implements MockMonster{
 		this.level = level;
 		this.isDefeated = false;
 		this.health = (int) (100 * (level) * factor);
-		this.damage = (int) (11 * (level) * factor);
-		this.defence = (int) (3 * (level) * factor);
+		this.damage = (int) (11 + (level + 5) * factor );
+		this.defence = (int) (3 + (level + 3) * factor);
 		// generates a random number of coins drop when monster is defeated
 		this.drop = (int) (Math.random() * 10 * (level + 1));
 

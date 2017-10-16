@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -67,7 +68,22 @@ public class Menu extends JComponent {
 			System.exit(0);
 		});
 		Info.addActionListener((e) -> {
-			// not implement yet
+			JOptionPane.showMessageDialog(null, "How the game play\n" + 
+					"\n" + 
+					"w/a/s/d   move the player\n" + 
+					"\n" + 
+					"press ‘P’ -  marker model \n" + 
+					"press ‘O’ - normal model\n" + 
+					"press ‘Q’ — pick the equipment on the ground\n" + 
+					"press ‘K’ -  save the current game\n" + 
+					"press ‘E’ - the player face the wall and the player has bomb, then break breakable wall.\n" +
+					"press esc — show a menu  to pause game. then chose the option what you want to do\n" + 
+					"\n" + 
+					"mouse click to use consumable item (blood vial, monster manual, fate coin )in the bag \n" + 
+					"mouse click to choose one buff from temple\n" + 
+					"mouse click to choose the item you want to buy form shop\n"+
+					"mouse click to open the monster manual, then click the monster manual again to close the manual.\n"+
+					" (!!!!!!!before you go to shop / temple, please close monster manual)\n" , "Info",JOptionPane.PLAIN_MESSAGE);
 		});
 
 		// set layout for the buttons
